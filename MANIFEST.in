@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include erpx_prulia *.css
+recursive-include erpx_prulia *.csv
+recursive-include erpx_prulia *.html
+recursive-include erpx_prulia *.ico
+recursive-include erpx_prulia *.js
+recursive-include erpx_prulia *.json
+recursive-include erpx_prulia *.md
+recursive-include erpx_prulia *.png
+recursive-include erpx_prulia *.py
+recursive-include erpx_prulia *.svg
+recursive-include erpx_prulia *.txt
+recursive-exclude erpx_prulia *.pyc
