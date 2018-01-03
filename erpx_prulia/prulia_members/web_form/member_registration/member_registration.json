@@ -18,9 +18,9 @@
  "is_standard": 1, 
  "login_required": 0, 
  "max_attachment_size": 25, 
- "modified": "2018-01-02 00:21:50.432934", 
+ "modified": "2018-01-03 08:39:12.246959", 
  "modified_by": "Administrator", 
- "module": "PRULIA Member", 
+ "module": "PRULIA Members", 
  "name": "member-registration", 
  "owner": "Administrator", 
  "payment_button_label": "Buy Now", 
@@ -73,16 +73,6 @@
    "reqd": 1
   }, 
   {
-   "fieldname": "date_of_birth", 
-   "fieldtype": "Date", 
-   "hidden": 0, 
-   "label": "Date of Birth", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 1
-  }, 
-  {
    "fieldname": "gender", 
    "fieldtype": "Link", 
    "hidden": 0, 
@@ -90,17 +80,6 @@
    "max_length": 0, 
    "max_value": 0, 
    "options": "Gender", 
-   "read_only": 0, 
-   "reqd": 1
-  }, 
-  {
-   "fieldname": "race", 
-   "fieldtype": "Select", 
-   "hidden": 0, 
-   "label": "Race", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "options": "Malay\nChinese \nIndian\nOthers", 
    "read_only": 0, 
    "reqd": 1
   }, 
@@ -146,36 +125,6 @@
    "max_value": 0, 
    "read_only": 0, 
    "reqd": 1
-  }, 
-  {
-   "fieldname": "office_number", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "Office Number", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 0
-  }, 
-  {
-   "fieldname": "fax_number", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "Fax Number", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 0
-  }, 
-  {
-   "fieldname": "assistant_name", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "Assistant Name", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 0
   }, 
   {
    "fieldname": "shirt_size", 
