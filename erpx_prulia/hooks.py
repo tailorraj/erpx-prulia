@@ -16,7 +16,7 @@ app_license = "MIT"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/erpx_prulia/css/erpx_prulia.css"
-# app_include_js = "/assets/erpx_prulia/js/erpx_prulia.js"
+app_include_js = "/assets/js/erpx_prulia.min.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/erpx_prulia/css/erpx_prulia.css"
@@ -57,7 +57,7 @@ app_license = "MIT"
 # before_install = "erpx_prulia.install.before_install"
 after_install = "erpx_prulia.install.after_install"
 
-boot_session = "erpx_prulia.startup.boot.boot_session"
+boot_session = "erpx_prulia.boot.boot_session"
 
 # Desk Notifications
 # ------------------
