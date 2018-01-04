@@ -1,7 +1,7 @@
 {
  "allow_copy": 0, 
  "allow_guest_to_view": 0, 
- "allow_import": 0, 
+ "allow_import": 1, 
  "allow_rename": 0, 
  "autoname": "PRE.#####", 
  "beta": 0, 
@@ -386,7 +386,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2018-01-01 22:39:23.721605", 
+ "modified": "2018-01-04 08:54:43.239125", 
  "modified_by": "Administrator", 
  "module": "PRULIA Events", 
  "name": "PRULIA Event", 

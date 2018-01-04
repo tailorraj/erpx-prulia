@@ -1,7 +1,7 @@
 {
  "allow_copy": 0, 
  "allow_guest_to_view": 0, 
- "allow_import": 0, 
+ "allow_import": 1, 
  "allow_rename": 0, 
  "autoname": "field:position_code", 
  "beta": 0, 
@@ -84,7 +84,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2017-12-31 15:25:18.667727", 
+ "modified": "2018-01-04 08:55:01.190018", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "PRULIA Position", 

@@ -1,7 +1,7 @@
 {
  "allow_copy": 0, 
  "allow_guest_to_view": 0, 
- "allow_import": 0, 
+ "allow_import": 1, 
  "allow_rename": 0, 
  "autoname": "field:branch_name", 
  "beta": 0, 
@@ -85,7 +85,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2017-12-31 13:42:37.813896", 
+ "modified": "2018-01-04 08:54:29.758035", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "PRULIA Branch", 

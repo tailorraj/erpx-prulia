@@ -30,8 +30,8 @@ def add_registration_complete_page():
 		webpage.insert()
 
 def add_password_change_success_page():
-	if not frappe.db.exists("Web Page","password-changed"):
+	if not frappe.db.exists("Web Page","password_changed"):
 		webpage = frappe.get_doc(dict(doctype= "Web Page", title="Password Changed", insert_code=1,
-			show_title=1,main_section="Your password have successfully changed, you may proceed to login thru PRULIA App", route="password-changed",published=1))
+			show_title=1,main_section="Your password have successfully changed, you may proceed to login thru PRULIA App", route="password_changed",published=1))
 		webpage.flags.ignore_mandatory = webpage.flags.ignore_permissions = True
 		webpage.insert()
