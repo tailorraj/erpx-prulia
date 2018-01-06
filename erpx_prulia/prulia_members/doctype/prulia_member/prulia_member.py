@@ -10,7 +10,9 @@ from frappe.model.document import Document
 
 
 class PRULIAMember(Document):
-
+	__new_password = None
+	__send_password_update_notification = None
+	__logout_all_sessions = None
 	def validate(self):
 		self.validate_date()
 		self.validate_email()
@@ -26,6 +28,20 @@ class PRULIAMember(Document):
 			if self.user_id is None and existing_member.user_id:
 				frappe.permissions.remove_user_permission("PRULIA Member", self.name, existing_member.user_id)
 
+		# clear new password
+		self.__new_password = self.new_password
+		self.new_password = ""
+
+		self.__send_password_update_notification = self.send_password_update_notification
+		self.send_password_update_notification = ""
+
+		self.__logout_all_sessions = self.logout_all_sessions
+		self.logout_all_sessions = ""
+
+	# def on_update(self):
+	# 	if __new_password != None:
+	# 		existing_member = frappe.get_doc("PRULIA Member", self.name)
+	# 	send_password_notification(self.__new_password)
 
 	def run_post_save_methods(self):
 		#Autocreate User
@@ -114,6 +130,13 @@ class PRULIAMember(Document):
 					# already exists
 					pass
 
+		if self.__new_password:
+			user.new_password = self.__new_password
+			if self.__send_password_update_notification:
+				user.send_password_update_notification = self.__send_password_update_notification
+			if self.__logout_all_sessions:
+				user.logout_all_sessions = self.__logout_all_sessions
+
 		user.save()
 
 	def activateUser(self, userid = None, activate = True):
@@ -139,6 +162,12 @@ def create_user(member, user = None):
 	})
 	user.flags.no_welcome_email = True
 	user.flags.ignore_permissions = True
+	if self.__new_password:
+			user.new_password = self.__new_password
+			if self.__send_password_update_notification:
+				user.send_password_update_notification = self.__send_password_update_notification
+			if self.__logout_all_sessions:
+				user.logout_all_sessions = self.__logout_all_sessions
 	user.insert(ignore_permissions=True)
 	user.add_roles("PRULIA Member")
 	return user.name

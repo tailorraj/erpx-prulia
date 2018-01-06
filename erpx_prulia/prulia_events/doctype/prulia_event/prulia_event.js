@@ -5,7 +5,7 @@ frappe.ui.form.on('PRULIA Event', {
 	refresh: function(frm) {
 		var me = this;
 		var tempFrm = frm;
-		if(!frm.doc.__islocal) {
+		if(!frm.doc.__islocal && typeof(frappe.boot.prulia_member) !== undefined) {
 			// custom buttons
 			frappe.call({
 				    method:"erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.check_registration",
@@ -35,6 +35,7 @@ frappe.ui.form.on('PRULIA Event', {
 													method: "erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.add_attendance",
 													args: {
 														"member": frappe.boot.prulia_member.name,
+														"member_name": frappe.boot.prulia_member.full_name,
 														"event": frm.doc.name,
 														"meal": data.meal,
 														"shirt": data.shirt
@@ -66,16 +67,33 @@ frappe.ui.form.on('PRULIA Event', {
 								)
 				        	})
 				        }
+				        if(r.message.register == true){
+				        	$(cur_frm.fields_dict.registration_status.wrapper).html(cur_frm.cscript.get_input_field("Attendance Status", "Attendance registered"));
+				        } else {
+				        	$(cur_frm.fields_dict.registration_status.wrapper).html(cur_frm.cscript.get_input_field("Attendance Status", "No Attendance register"));
+				        }
 						
 				    }
 				})
-		
+			
+			
 
 			// frm.add_custom_button(__('Accounts Receivable'), function() {
 			// 	frappe.set_route('query-report', 'Accounts Receivable', {member:frm.doc.name});
 			// });
 		} 
-	}
+	},
+	
 
 
 });
+
+cur_frm.add_fetch('member','full_name','member_name');
+cur_frm.add_fetch('member','shirt_size','shirt_size');
+cur_frm.add_fetch('member','meal_option','meal_option');
+
+cur_frm.cscript.get_input_field = function(label, text){
+		return '<div class="frappe-control input-max-width" data-fieldtype="Data" data-fieldname="registration_status"><div class="form-group"><div class="clearfix">'+
+		'<label class="control-label" style="padding-right: 0px;">'+label+'</label></div><div class="control-input-wrapper"><div class="control-input" style="display: none;">'+
+		'</div><div class="control-value like-disabled-input bold" style="">'+text+'</div><p class="help-box small text-muted hidden-xs"></p></div></div></div>'
+	}

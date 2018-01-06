@@ -11,11 +11,12 @@ class PRULIAEvent(Document):
 
 
 @frappe.whitelist()
-def add_attendance(member, event, meal, shirt):
+def add_attendance(member, member_name, event, meal, shirt):
 	event = frappe.get_doc("PRULIA Event", event)
 	event.flags.ignore_permissions = True
 	event.append("attendee", {
 		"member": member,
+		"member_name" : member_name,
 		"event": event.name,
 		"shirt_size": shirt,
 		"meal_option" : meal
