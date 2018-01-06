@@ -4,7 +4,7 @@ from . import __version__ as app_version
 
 app_name = "erpx_prulia"
 app_title = "PRULIA"
-app_publisher = "Alpha Harald Management"
+app_publisher = "Alpha Herald Management"
 app_description = "ERP-X Extension for PRULIA"
 app_icon = "fa fa-star-o"
 app_color = "#ED1C24"
