@@ -17,6 +17,7 @@ class PRULIAMember(Document):
 		self.validate_date()
 		self.validate_email()
 		self.validate_branch()
+		self.update_region()
 
 		if self.user_id:
 			self.validate_duplicate_user_id()			
@@ -38,11 +39,6 @@ class PRULIAMember(Document):
 		self.__logout_all_sessions = self.logout_all_sessions
 		self.logout_all_sessions = ""
 
-	# def on_update(self):
-	# 	if __new_password != None:
-	# 		existing_member = frappe.get_doc("PRULIA Member", self.name)
-	# 	send_password_notification(self.__new_password)
-
 	def run_post_save_methods(self):
 		#Autocreate User
 		if self.user_status in ["Active"]:
@@ -50,7 +46,7 @@ class PRULIAMember(Document):
 				if(frappe.db.exists("User", self.email)):
 					self.user_id = self.email
 				else:
-					self.user_id = create_user(self)
+					self.user_id = self.create_user(self)
 			else:
 				self.activateUser(self.user_id, True)
 
@@ -92,11 +88,16 @@ class PRULIAMember(Document):
 				self.user_id, member[0]), frappe.DuplicateEntryError)
 
 	def validate_branch(self):
-		branch = frappe.db.sql_list("""select name from `tabPRULIA Branch` where
-			name=%s and region=%s""", (self.branch, self.region))
-		if not branch:
-			throw(_("Branch {0} is not a valid branch for region {1}").format(
-				self.branch, self.region))
+		if self.region:
+			branch = frappe.db.sql_list("""select name from `tabPRULIA Branch` where
+				name=%s and region=%s""", (self.branch, self.region))
+			if not branch:
+				throw(_("Branch {0} is not a valid branch for region {1}").format(
+					self.branch, self.region))
+
+	def update_region(self):
+		branch = frappe.get_doc("PRULIA Branch", self.branch)
+		self.region = branch.region
 
 	def update_user(self):
 		# add employee role if missing
@@ -148,29 +149,29 @@ class PRULIAMember(Document):
 			user.save()
 
 
-def create_user(member, user = None):
-	user = frappe.get_doc({
-		"doctype": "User",
-		"name": member.full_name,
-		"email": member.email,
-		"enabled": 1,
-		"first_name": member.full_name,
-		"gender": member.gender,
-		"birth_date": member.date_of_birth,
-		"phone": member.cell_number,
-		"username": member.prudential_id
-	})
-	user.flags.no_welcome_email = True
-	user.flags.ignore_permissions = True
-	if self.__new_password:
-			user.new_password = self.__new_password
-			if self.__send_password_update_notification:
-				user.send_password_update_notification = self.__send_password_update_notification
-			if self.__logout_all_sessions:
-				user.logout_all_sessions = self.__logout_all_sessions
-	user.insert(ignore_permissions=True)
-	user.add_roles("PRULIA Member")
-	return user.name
+	def create_user(self, member, user = None):
+		user = frappe.get_doc({
+			"doctype": "User",
+			"name": member.full_name,
+			"email": member.email,
+			"enabled": 1,
+			"first_name": member.full_name,
+			"gender": member.gender,
+			"birth_date": member.date_of_birth,
+			"phone": member.cell_number,
+			"username": member.prudential_id
+		})
+		user.flags.no_welcome_email = True
+		user.flags.ignore_permissions = True
+		if self.__new_password:
+				user.new_password = self.__new_password
+				if self.__send_password_update_notification:
+					user.send_password_update_notification = self.__send_password_update_notification
+				if self.__logout_all_sessions:
+					user.logout_all_sessions = self.__logout_all_sessions
+		user.insert(ignore_permissions=True)
+		user.add_roles("PRULIA Member")
+		return user.name
 
 @frappe.whitelist(allow_guest=True)
 def update_password(new_password, key=None, old_password=None):

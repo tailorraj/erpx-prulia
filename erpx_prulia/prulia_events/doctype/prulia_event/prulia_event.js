@@ -67,7 +67,7 @@ frappe.ui.form.on('PRULIA Event', {
 								)
 				        	})
 				        }
-				        if(r.message.register == true){
+				        if(r.message.cancel == true){
 				        	$(cur_frm.fields_dict.registration_status.wrapper).html(cur_frm.cscript.get_input_field("Attendance Status", "Attendance registered"));
 				        } else {
 				        	$(cur_frm.fields_dict.registration_status.wrapper).html(cur_frm.cscript.get_input_field("Attendance Status", "No Attendance register"));

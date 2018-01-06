@@ -10,7 +10,7 @@ def execute(filters=None):
 	if not filters: filters = {}
 
 	columns = get_columns()
-	data = get_employees(filters)
+	data = get_registrations(filters)
 
 	return columns, data
 
@@ -21,31 +21,27 @@ def get_columns():
 		_("Shirt Size") + ":Data:120"
 	]
 
-def get_employees(filters):
+def get_registrations(filters):
 	conditions = get_conditions(filters)
-
-
-	return frappe.db.sql("""select event.name
+	return frappe.db.sql("""select attendee.parent as "EventID", event.event_name as "EventName", member.prudential_id as "PrudentialID",
+			member.full_name as "MemberName", attendee.meal_option as "MealOption", attendee.shirt_size as "ShirtSize"
 			from
-			`tabPRULIA Event` event
-			where
-			""", as_list=1)
-
-	# return frappe.db.sql("""select event.name as "Event ID", event.event_name as "Event Name", member.prudential_id as "Prudential ID",
-	# 		member.full_name as "Member Name", event.shirt_size as "Shirt Size", event.meal_option as "Meal Option"
-	# 		from
-	# 		`tabPRULIA Event` event,`tabPRULIA Member` member
-	# 		where
-	# 		event.member = member.name %s""" ,conditions, as_list=1)
+			`tabPRULIA Attendee` attendee
+			left join `tabPRULIA Event` event on attendee.parent = event.name
+			left join `tabPRULIA Member` member on attendee.member = member.name
+			where attendee.parent is not null %s""" % conditions, as_list=1)
 
 def get_conditions(filters):
 	conditions = ""
-	# if filters.get("month"):
-	# 	month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
-	# 		"Dec"].index(filters["month"]) + 1
-	# 	conditions += " and month(date_of_birth) = '%s'" % month
+	if filters.get("Event"):
+		conditions += "and attendee.parent = '%s'" % filters["Event"]
 
-	# if filters.get("company"): conditions += " and company = '%s'" % \
-	# 	filters["company"].replace("'", "\\'")
+	if filters.get("Member"):
+		conditions += "and attendee.member = '%s'" % filters["Member"]
 
+	if filters.get("Meal Option"):
+		conditions += "and attendee.meal_option = '%s'" % filters["Meal Option"]
+
+	if filters.get("Shirt Size"):
+		conditions += "and attendee.shirt_size = '%s'" % filters["Shirt Size"]
 	return conditions

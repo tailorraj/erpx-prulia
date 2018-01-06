@@ -17,7 +17,6 @@ def add_attendance(member, member_name, event, meal, shirt):
 	event.append("attendee", {
 		"member": member,
 		"member_name" : member_name,
-		"event": event.name,
 		"shirt_size": shirt,
 		"meal_option" : meal
 	})

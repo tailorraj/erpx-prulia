@@ -18,7 +18,7 @@
  "is_standard": 1, 
  "login_required": 0, 
  "max_attachment_size": 25, 
- "modified": "2018-01-03 08:39:12.246959", 
+ "modified": "2018-01-06 19:48:48.866605", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "member-registration", 
@@ -80,17 +80,6 @@
    "max_length": 0, 
    "max_value": 0, 
    "options": "Gender", 
-   "read_only": 0, 
-   "reqd": 1
-  }, 
-  {
-   "fieldname": "region", 
-   "fieldtype": "Link", 
-   "hidden": 0, 
-   "label": "Region", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "options": "PRULIA Region", 
    "read_only": 0, 
    "reqd": 1
   }, 
