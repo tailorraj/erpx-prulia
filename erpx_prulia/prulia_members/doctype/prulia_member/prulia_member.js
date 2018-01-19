@@ -10,11 +10,12 @@ frappe.ui.form.on('PRULIA Member', {
 		'<label class="control-label" style="padding-right: 0px;">Prudential ID</label></div><div class="control-input-wrapper"><div class="control-input" style="display: none;">'+
 		'</div><div class="control-value like-disabled-input bold" style="">'+frm.doc.prudential_id+'</div><p class="help-box small text-muted hidden-xs"></p></div></div></div>')
 
+		if(frappe.boot.user.roles.indexOf("PRULIA Member Administrator") < 0){
+			frm.toggle_enable('user_status', false);
+		}
+
 		// cur_frm.toggle_display("remarks", frappe.boot.user.roles.indexOf("PRULIA Member Administrator") > 0);
 		// cur_frm.toggle_display("resigned_method", frappe.boot.user.roles.indexOf("PRULIA Member Administrator") > 0 && doc.resigned_year > 0);
-	},
-	branch: function(frm){
-		
 	}
 });
 
