@@ -3,10 +3,11 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-import frappe
+import frappe, json
 from frappe import throw, _
 from frappe.utils import getdate, validate_email_add, today
 from frappe.model.document import Document
+from collections import namedtuple
 
 
 class PRULIAMember(Document):
@@ -55,7 +56,7 @@ class PRULIAMember(Document):
 		
 		#sync userid with email and owner
 		if self.user_id:
-			self.update_user()
+			# self.update_user()
 			# frappe.throw(_("User {0} email {1}").format(self.user_id, self.email ))
 			if(self.user_id is not self.email):
 				self.email = self.user_id
@@ -104,11 +105,11 @@ class PRULIAMember(Document):
 		user = frappe.get_doc("User", self.user_id)
 		user.flags.ignore_permissions = True
 
-		if "PRULIA Member" not in user.get("roles"):
+		if "PRULIA Member" not in [user_role.role for user_role in user.get("roles")]:
 			user.add_roles("PRULIA Member")
 
 		# copy details like Fullname, DOB and Image to User
-		if self.full_name:
+		if self.full_name :
 			user.first_name = self.full_name
 
 		if self.date_of_birth:
@@ -137,16 +138,16 @@ class PRULIAMember(Document):
 				user.send_password_update_notification = self.__send_password_update_notification
 			if self.__logout_all_sessions:
 				user.logout_all_sessions = self.__logout_all_sessions
-
 		user.save()
 
 	def activateUser(self, userid = None, activate = True):
 		# add employee role if missing
 		if(frappe.db.exists("User", userid)):
 			user = frappe.get_doc("User", userid)
-			user.flags.ignore_permissions = True
-			user.enabled = activate
-			user.save()
+			if user.enabled != activate:
+				user.flags.ignore_permissions = True
+				user.enabled = activate
+				user.save()
 
 
 	def create_user(self, member, user = None):
@@ -212,3 +213,33 @@ def update_password(new_password, key=None, old_password=None):
 			return "/desk"
 		else:
 			return redirect_url if redirect_url else "/"
+
+@frappe.whitelist()
+def mobile_member_login():
+	member_name = frappe.db.sql_list("""select name from `tabPRULIA Member` where
+			user_id=%s and user_status='Active'""", (frappe.session.user))
+	if not member_name:
+		throw(_("Unable to find member profile for {0}").format(
+			frappe.session.user), frappe.DoesNotExistError)
+	else:
+		member = frappe.get_doc('PRULIA Member', member_name[0])
+ 	return member;
+
+@frappe.whitelist()
+def update_member_pref(data):
+	dat = json.loads(data)
+	doc = frappe.get_doc('PRULIA Member', dat.get('name'))
+	if doc.user_id == frappe.session.user:
+		doc.flags.ignore_permissions = True
+		doc.meal_option = dat.get('meal_option')
+		doc.shirt_size = dat.get('shirt_size')
+		doc.save()
+		return doc
+	else:
+		throw(_("Unable to find member profile for {0}").format(
+			frappe.session.user), frappe.DoesNotExistError)
+
+@frappe.whitelist()
+def get_main_page_content():
+	main_page = {}
+	return main_page

@@ -3,8 +3,9 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-import frappe
+import frappe, json, datetime
 from frappe.model.document import Document
+from frappe.utils import getdate
 
 class PRULIAEvent(Document):
 	pass
@@ -57,3 +58,36 @@ def del_attendance(member, event):
 	if not check_exist:
 		throw (_("Record not found"))
 	
+@frappe.whitelist()
+def get_event_list(member_name):
+	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'open_for_registration'], 
+		filters=[('PRULIA Event', "start_date_time", ">=", datetime.date.today())],
+		order_by='start_date_time desc')
+
+	
+	for event in events:
+		registration = frappe.get_all('PRULIA Attendee', filters={'member': member_name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option'])
+		if registration:
+			event.register = True
+			event.attendee_name = registration[0].name
+			event.shirt_size = registration[0].shirt_size
+			event.meal_option = registration[0].meal_option
+		else:
+			event.register = False
+	# 	event.start_date_time = getdate(event.start_date_time)
+	# 	event.end_date_time = getdate(event.end_date_time)
+	# for event in events:
+
+	return events
+
+@frappe.whitelist()
+def update_event_attendee(data):
+	attendee = json.loads(data)
+	attendee_rec = frappe.get_doc("PRULIA Attendee", attendee.get('attendee_name'))
+	if attendee_rec:
+		attendee_rec.flags.ignore_permissions = True
+		attendee_rec.meal_option = attendee.get('meal_option')
+		attendee_rec.shirt_size = attendee.get('shirt_size')
+		attendee_rec.save()
+		return "success"
+
