@@ -1,1 +1,1 @@
-erp_prulia.patches.v1_0_6.new_prulia_news_role
+erp_prulia.patches.v1_0_6.new_prulia_news_role 
