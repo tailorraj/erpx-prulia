@@ -18,7 +18,7 @@
  "is_standard": 1, 
  "login_required": 0, 
  "max_attachment_size": 25, 
- "modified": "2018-01-06 19:48:48.866605", 
+ "modified": "2018-03-10 11:56:57.751747", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "member-registration", 
@@ -156,6 +156,27 @@
    "max_length": 0, 
    "max_value": 0, 
    "options": "Active\nTerminated\nRetired\nResigned\nDeceased\nPending Approval", 
+   "read_only": 0, 
+   "reqd": 1
+  }, 
+  {
+   "fieldname": "", 
+   "fieldtype": "Section Break", 
+   "hidden": 0, 
+   "label": "Acknowledgement", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "description": "I declare that the information given herein are correct to the best of my knowledge and belief.\n<br> \nI agree to be govern by the rules and regulations of PRULIA as they now exist as they may hereafter be altered.\n<br>\nI hereby authorize Prudential Assurance Malaysia Berhad to debit by commission account for the registration of the event", 
+   "fieldname": "register_acknowledgement", 
+   "fieldtype": "Check", 
+   "hidden": 0, 
+   "label": "I hereby acknowledge the following:", 
+   "max_length": 0, 
+   "max_value": 0, 
    "read_only": 0, 
    "reqd": 1
   }

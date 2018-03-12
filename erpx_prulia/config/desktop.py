@@ -34,6 +34,12 @@ def get_data():
 			"type": "list",
 			"link": "List/PRULIA Event",
 			"label": _("PRULIA Event")
-		}
+		},{
+			"module_name": "PRULIA News",
+			"color": "red",
+			"icon": "octicon octicon-rss",
+			"type": "module",
+			"label": _("PRULIA News")
+		},
 					
 	]

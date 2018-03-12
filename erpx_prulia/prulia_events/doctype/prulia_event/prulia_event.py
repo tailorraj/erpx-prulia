@@ -5,7 +5,7 @@
 from __future__ import unicode_literals
 import frappe, json, datetime
 from frappe.model.document import Document
-from frappe.utils import getdate
+from frappe.utils import now_datetime
 
 class PRULIAEvent(Document):
 	pass
@@ -60,12 +60,16 @@ def del_attendance(member, event):
 	
 @frappe.whitelist()
 def get_event_list(member_name):
-	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'open_for_registration'], 
-		filters=[('PRULIA Event', "start_date_time", ">=", datetime.date.today())],
+	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'open_for_registration', 'position_restriction', 'event_image'], 
+		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date())],
 		order_by='start_date_time desc')
+	member = frappe.get_doc("PRULIA Member", member_name);
 
-	
+	event_result = []
 	for event in events:
+		if (event.position_restriction and event.position_restriction != member.position) :
+			continue 
+
 		registration = frappe.get_all('PRULIA Attendee', filters={'member': member_name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option'])
 		if registration:
 			event.register = True
@@ -74,11 +78,8 @@ def get_event_list(member_name):
 			event.meal_option = registration[0].meal_option
 		else:
 			event.register = False
-	# 	event.start_date_time = getdate(event.start_date_time)
-	# 	event.end_date_time = getdate(event.end_date_time)
-	# for event in events:
-
-	return events
+		event_result.append(event)
+	return event_result
 
 @frappe.whitelist()
 def update_event_attendee(data):
