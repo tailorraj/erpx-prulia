@@ -19,8 +19,8 @@ class PRULIAMember(Document):
 		self.validate_email()
 		self.validate_branch()
 		self.update_region()
-		if self.register_acknowledgement != 1:
-			throw(_("You did not click the 'Acknowledgement' checkbox. If you do agree to the terms and conditions, please ensure you check the box before continuing. "))
+		# if self.register_acknowledgement != 1:
+		# 	throw(_("You did not click the 'Acknowledgement' checkbox. If you do agree to the terms and conditions, please ensure you check the box before continuing. "))
 		
 		if self.user_id:
 			self.validate_duplicate_user_id()			
