@@ -28,7 +28,7 @@ def add_attendance(member, member_name, event, meal, shirt):
 def check_registration(member, event):
 	event = frappe.get_doc("PRULIA Event", event)
 	validate = frappe._dict()
-	if event.open_for_registration == 1:
+	if event.event_status == "Open For Registration":
 		validate.register = True
 		validate.cancel = False
 
@@ -60,8 +60,8 @@ def del_attendance(member, event):
 	
 @frappe.whitelist()
 def get_event_list(member_name):
-	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'open_for_registration', 'position_restriction', 'event_image'], 
-		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date())],
+	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image'], 
+		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
 	member = frappe.get_doc("PRULIA Member", member_name);
 
