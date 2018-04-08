@@ -12,14 +12,15 @@ class PRULIAEvent(Document):
 
 
 @frappe.whitelist()
-def add_attendance(member, member_name, event, meal, shirt):
+def add_attendance(member, member_name, event, meal, shirt, accomodation):
 	event = frappe.get_doc("PRULIA Event", event)
 	event.flags.ignore_permissions = True
 	event.append("attendee", {
 		"member": member,
 		"member_name" : member_name,
 		"shirt_size": shirt,
-		"meal_option" : meal
+		"meal_option" : meal,
+		"accomodation": accomodation
 	})
 	event.save()
 	frappe.msgprint("Your attendance is confirmed")
@@ -60,7 +61,7 @@ def del_attendance(member, event):
 	
 @frappe.whitelist()
 def get_event_list(member_name):
-	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image'], 
+	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'display_accomodation_option'], 
 		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
 	member = frappe.get_doc("PRULIA Member", member_name);
@@ -70,12 +71,13 @@ def get_event_list(member_name):
 		if (event.position_restriction and event.position_restriction != member.position) :
 			continue 
 
-		registration = frappe.get_all('PRULIA Attendee', filters={'member': member_name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option'])
+		registration = frappe.get_all('PRULIA Attendee', filters={'member': member_name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
 		if registration:
 			event.register = True
 			event.attendee_name = registration[0].name
 			event.shirt_size = registration[0].shirt_size
 			event.meal_option = registration[0].meal_option
+			event.accomodation = registration[0].accomodation
 		else:
 			event.register = False
 		event_result.append(event)
