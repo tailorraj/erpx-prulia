@@ -22,7 +22,7 @@ class PRULIABanner(Document):
 
 @frappe.whitelist()
 def get_banner():
-	banners = frappe.get_all('PRULIA Banner', fields=['name', 'banner_name','image','published'], 
+	banners = frappe.get_all('PRULIA Banner', fields=['name', 'banner_name','image','published', 'type', 'link', 'content'], 
 						filters=[('PRULIA Banner', "published", "=", 1)],
 						order_by='name')
 	return banners
