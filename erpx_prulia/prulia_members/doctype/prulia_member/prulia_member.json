@@ -71,7 +71,7 @@
    "report_hide": 0, 
    "reqd": 1, 
    "search_index": 0, 
-   "set_only_once": 1, 
+   "set_only_once": 0, 
    "translatable": 0, 
    "unique": 1
   }, 
@@ -134,7 +134,7 @@
    "report_hide": 0, 
    "reqd": 0, 
    "search_index": 0, 
-   "set_only_once": 1, 
+   "set_only_once": 0, 
    "translatable": 0, 
    "unique": 0
   }, 
@@ -195,7 +195,7 @@
    "report_hide": 0, 
    "reqd": 1, 
    "search_index": 0, 
-   "set_only_once": 1, 
+   "set_only_once": 0, 
    "translatable": 0, 
    "unique": 0
   }, 
@@ -1617,7 +1617,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2018-03-10 11:46:25.250361", 
+ "modified": "2018-04-16 21:42:21.749766", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "PRULIA Member", 
