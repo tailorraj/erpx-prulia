@@ -15,7 +15,7 @@ def send_login_mail(self, subject, template, add_args, now=None):
 		args = {
 			'first_name': self.first_name or self.last_name or "user",
 			'user': self.name,
-			'userid': self.userid,
+			'userid': self.username,
 			'title': title,
 			'login_url': get_url(),
 			'user_fullname': full_name

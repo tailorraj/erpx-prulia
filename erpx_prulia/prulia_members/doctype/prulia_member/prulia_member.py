@@ -37,7 +37,7 @@ class PRULIAMember(Document):
 		self.new_password = ""
 
 		self.__send_password_update_notification = self.send_password_update_notification
-		self.send_password_update_notification = ""
+		self.send_password_update_notification = 0
 
 		self.__logout_all_sessions = self.logout_all_sessions
 		self.logout_all_sessions = ""
@@ -58,8 +58,7 @@ class PRULIAMember(Document):
 		
 		#sync userid with email and owner
 		if self.user_id:
-			# self.update_user()
-			# frappe.throw(_("User {0} email {1}").format(self.user_id, self.email ))
+			self.update_user()
 			if(self.user_id is not self.email):
 				self.email = self.user_id
 
