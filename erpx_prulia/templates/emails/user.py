@@ -18,7 +18,8 @@ def send_login_mail(self, subject, template, add_args, now=None):
 			'userid': self.username,
 			'title': title,
 			'login_url': get_url(),
-			'user_fullname': full_name
+			'user_fullname': full_name,
+			'password': self.__new_password
 		}
 
 		args.update(add_args)

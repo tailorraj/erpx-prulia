@@ -59,11 +59,14 @@ class PRULIAMember(Document):
 		#sync userid with email and owner
 		if self.user_id:
 			self.update_user()
-			if(self.user_id is not self.email):
-				self.email = self.user_id
+			if(self.user_status == 'Active'):
+				if(self.user_id is not self.email):
+					self.email = self.user_id
 
-			if(self.user_id is not self.owner):
-				self.owner = self.user_id
+				if(self.user_id is not self.owner):
+					self.owner = self.user_id
+			else:
+				self.user_id = ""
 		self.db_update()
 
 	def validate_date(self):
@@ -106,39 +109,43 @@ class PRULIAMember(Document):
 		user = frappe.get_doc("User", self.user_id)
 		user.flags.ignore_permissions = True
 
-		if "PRULIA Member" not in [user_role.role for user_role in user.get("roles")]:
-			user.add_roles("PRULIA Member")
+		if(self.user_status != "Active"):
+			user.enabled = 0
+		else:
+			user.enabled = 1
+			if "PRULIA Member" not in [user_role.role for user_role in user.get("roles")]:
+				user.add_roles("PRULIA Member")
 
-		# copy details like Fullname, DOB and Image to User
-		if self.full_name :
-			user.first_name = self.full_name
+			# copy details like Fullname, DOB and Image to User
+			if self.full_name :
+				user.first_name = self.full_name
 
-		if self.date_of_birth:
-			user.birth_date = self.date_of_birth
+			if self.date_of_birth:
+				user.birth_date = self.date_of_birth
 
-		if self.gender:
-			user.gender = self.gender
+			if self.gender:
+				user.gender = self.gender
 
-		if self.profile_photo:
-			if not user.user_image:
-				user.user_image = self.profile_photo
-				try:
-					frappe.get_doc({
-						"doctype": "File",
-						"file_name": self.profile_photo,
-						"attached_to_doctype": "User",
-						"attached_to_name": self.user_id
-					}).insert()
-				except frappe.DuplicateEntryError:
-					# already exists
-					pass
+			if self.profile_photo:
+				if not user.user_image:
+					user.user_image = self.profile_photo
+					try:
+						frappe.get_doc({
+							"doctype": "File",
+							"file_name": self.profile_photo,
+							"attached_to_doctype": "User",
+							"attached_to_name": self.user_id
+						}).insert()
+					except frappe.DuplicateEntryError:
+						# already exists
+						pass
 
-		if self.__new_password:
-			user.new_password = self.__new_password
-			if self.__send_password_update_notification:
-				user.send_password_update_notification = self.__send_password_update_notification
-			if self.__logout_all_sessions:
-				user.logout_all_sessions = self.__logout_all_sessions
+			if self.__new_password:
+				user.new_password = self.__new_password
+				if self.__send_password_update_notification:
+					user.send_password_update_notification = self.__send_password_update_notification
+				if self.__logout_all_sessions:
+					user.logout_all_sessions = self.__logout_all_sessions
 		user.save()
 
 	def activateUser(self, userid = None, activate = True):
@@ -171,6 +178,9 @@ class PRULIAMember(Document):
 					user.send_password_update_notification = self.__send_password_update_notification
 				if self.__logout_all_sessions:
 					user.logout_all_sessions = self.__logout_all_sessions
+		else:
+			from frappe.utils import random_string
+			user.new_password = random_string(10)
 		user.insert(ignore_permissions=True)
 		user.add_roles("PRULIA Member")
 		return user.name
@@ -214,6 +224,31 @@ def update_password(new_password, key=None, old_password=None):
 			return "/desk"
 		else:
 			return redirect_url if redirect_url else "/"
+
+@frappe.whitelist(allow_guest=True)
+def forget_password(data):
+	dat = json.loads(data)
+	doc = frappe.get_doc('PRULIA Member', dat.get('prulia_id'))
+	if doc.nric_number == dat.get('nric_number'):
+		if doc.user_status == 'Active':
+			doc.flags.ignore_permissions = True
+			from frappe.utils import random_string
+			doc.new_password = random_string(10)
+			doc.send_password_update_notification = True
+			doc.save()
+			return "Please check your email for your temporary login credential'"
+		elif doc.user_status == 'Pending Activation':
+			doc.flags.ignore_permissions = True
+			doc.user_status = 'Active'
+			doc.save()
+			return 'Your account is activated, please check your email for your temporary login credential'
+		elif doc.user_status == 'Pending Approval':
+			return 'Your application is still pending for approval'
+		else:
+			return "Your account is inactive, please contact PRULIA App Admin to reactivate"
+	else:
+		return _("PRULIA Member {0} not found").format(dat.get('prulia_id'))
+
 
 @frappe.whitelist()
 def mobile_member_login():
