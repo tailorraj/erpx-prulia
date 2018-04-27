@@ -18,7 +18,7 @@
  "is_standard": 1, 
  "login_required": 0, 
  "max_attachment_size": 25, 
- "modified": "2018-04-16 21:47:35.857691", 
+ "modified": "2018-04-27 19:03:45.773623", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "member-registration", 
@@ -63,8 +63,9 @@
    "reqd": 1
   }, 
   {
+   "description": "NRIC Number without dash (0101700111111)", 
    "fieldname": "nric_number", 
-   "fieldtype": "Data", 
+   "fieldtype": "Int", 
    "hidden": 0, 
    "label": "NRIC Number", 
    "max_length": 0, 
@@ -106,6 +107,26 @@
    "reqd": 1
   }, 
   {
+   "fieldname": "date_contracted", 
+   "fieldtype": "Date", 
+   "hidden": 0, 
+   "label": "Date Contracted as Agent", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "fieldname": "agency_address", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Agency Address", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
    "fieldname": "cell_number", 
    "fieldtype": "Data", 
    "hidden": 0, 
@@ -114,6 +135,67 @@
    "max_value": 0, 
    "read_only": 0, 
    "reqd": 1
+  }, 
+  {
+   "fieldname": "home_phone", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Home Phone", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "fieldname": "office_number", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Office Number", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "fieldname": "fax_number", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Fax Number", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "fieldname": "school", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "School/Collage/University", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "fieldname": "field_of_study", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Field of Study", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "fieldname": "highest_qualification", 
+   "fieldtype": "Select", 
+   "hidden": 0, 
+   "label": "Highest Qualification", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "options": "SPM\nSTPM\nCollege\nUniversity\nOther", 
+   "read_only": 0, 
+   "reqd": 0
   }, 
   {
    "fieldname": "shirt_size", 
