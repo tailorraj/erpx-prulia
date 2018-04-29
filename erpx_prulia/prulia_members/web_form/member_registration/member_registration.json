@@ -18,7 +18,7 @@
  "is_standard": 1, 
  "login_required": 0, 
  "max_attachment_size": 25, 
- "modified": "2018-04-27 19:03:45.773623", 
+ "modified": "2018-04-29 23:10:28.278720", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "member-registration", 
@@ -111,6 +111,26 @@
    "fieldtype": "Date", 
    "hidden": 0, 
    "label": "Date Contracted as Agent", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "fieldname": "name_of_agency_leader", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Name of Agency Leader", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0
+  }, 
+  {
+   "fieldname": "quality_leader_code", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Quality Leader's Code", 
    "max_length": 0, 
    "max_value": 0, 
    "read_only": 0, 
@@ -230,7 +250,7 @@
    "reqd": 0
   }, 
   {
-   "description": "I declare that the information given herein are correct to the best of my knowledge and belief.\n<br> \nI agree to be govern by the rules and regulations of PRULIA as they now exist as they may hereafter be altered.\n<br>\nI hereby authorize Prudential Assurance Malaysia Berhad to debit by commission account for the registration of the event", 
+   "description": "I declare that the information given herein are correct to the best of my knowledge and belief.\n<br> \nI agree to be govern by the rules and regulations of PRULIA as they now exist as they may hereafter be altered.\n<br>\nI hereby authorize Prudential Assurance Malaysia Berhad to debit by commission account for the annual subscription", 
    "fieldname": "register_acknowledgement", 
    "fieldtype": "Check", 
    "hidden": 0, 
