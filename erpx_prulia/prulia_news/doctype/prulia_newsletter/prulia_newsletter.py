@@ -12,13 +12,12 @@ class PRULIANewsletter(Document):
 	pass
 
 
-@frappe.whitelist()
-def get_newsletter_list(member_name):
+@frappe.whitelist(allow_guest=True)
+def get_newsletter_list():
 	# return 'here'
 	newsletters = frappe.get_all('PRULIA Newsletter', fields=['name', 'title', 'type', 'link', 'content', 'publish_date', 'news_image'], 
 		filters=[('PRULIA Newsletter', "publish_date", "<=", now_datetime().date()), ('PRULIA Newsletter', "publish_date", ">=", frappe.utils.data.add_months(datetime.date.today(), -3)), ('PRULIA Newsletter', "publish_news", "=", 1)],
 		order_by='publish_date desc')
-	member = frappe.get_doc("PRULIA Member", member_name);
 	return newsletters
 	# event_result = []
 	# for event in events:
