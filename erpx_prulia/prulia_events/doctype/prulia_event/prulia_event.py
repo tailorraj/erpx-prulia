@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 import frappe, json, datetime
 from frappe.model.document import Document
 from frappe.utils import now_datetime
+from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 
 class PRULIAEvent(Document):
 	pass
@@ -91,6 +92,37 @@ def update_event_attendee(data):
 		attendee_rec.flags.ignore_permissions = True
 		attendee_rec.meal_option = attendee.get('meal_option')
 		attendee_rec.shirt_size = attendee.get('shirt_size')
+		attendee_rec.accomodation = attendee.get('accomodation')
 		attendee_rec.save()
 		return "success"
+
+@frappe.whitelist(allow_guest=True)
+def get_event_list_web():
+	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option'], 
+		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
+		order_by='start_date_time desc')
+
+	if frappe.session.user != 'Guest': 
+		member = mobile_member_login()
+		for event in events:
+			registration = frappe.get_all('PRULIA Attendee', filters={'member': member.name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
+			if registration:
+				event.register = True
+				event.attendee_name = registration[0].name
+				event.shirt_size = registration[0].shirt_size
+				event.meal_option = registration[0].meal_option
+				event.accomodation = registration[0].accomodation
+			else:
+				event.register = False
+			if (event.position_restriction and event.position_restriction == member.position) :
+				event.can_register = True
+			elif event.position_restriction == None:
+				event.can_register = True
+			else:
+				event.can_register = False
+	else: 
+		for event in events:
+			event.register = False
+
+	return events
 

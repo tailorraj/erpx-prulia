@@ -259,7 +259,7 @@ def mobile_member_login():
 			frappe.session.user), frappe.DoesNotExistError)
 	else:
 		member = frappe.get_doc('PRULIA Member', member_name[0])
- 	return member;
+ 		return member
 
 @frappe.whitelist()
 def update_member_pref(data):
