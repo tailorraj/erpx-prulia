@@ -22,13 +22,15 @@ def get_columns():
 		_("Email") + ":Data:220", _("Gender") + ":Data:120", _("Race") + ":Data:80", _("Position") + ":Data:80", _("Promotion Year") + ":Data:120",
 		_("User status") + ":Data:80", _("Mailing Address") + ":Data:400", _("Membership Fee") + ":Data:80", _("Resign Year") + ":Data:80",
 		_("Resign Method") + ":Data:120", _("Rejoined") + ":Data:120", _("PWP Change Branch") + ":Data:120", _("2017 Deduction") + ":Data:120", _("Remarks") + ":Data:120",
-		_("Meal Option") + ":Data:120", _("Shirt Size") + ":Data:120"
+		_("Meal Option") + ":Data:120", _("Shirt Size") + ":Data:120", _("Agency No") + ":Data:120", _("Personal Accident Status") + ":Data:120", _("Professional Indemnity Status") + ":Data:120",
+		_("Maxis Status") + ":Data:120"
 	]
 
 def get_members(filters):
 	conditions = get_conditions(filters)
 	return frappe.db.sql("""select nric_number,full_name, prudential_id, ql_code, branch, region, cell_number, office_number, fax_number, assistant_name, email, gender, race,
-			position, promo_year, user_status, mailing_address, membership_fee, resign_year, resign_method, rejoined, pwp_change_branch, 2017_deduction, remarks, meal_option, shirt_size
+			position, promo_year, user_status, mailing_address, membership_fee, resign_year, resign_method, rejoined, pwp_change_branch, 2017_deduction, remarks, meal_option, shirt_size,
+			agency_no, pa_status, pi_status, maxis_status
 			from `tabPRULIA Member`
 			where name is not null %s""" % conditions, as_list=1)
 
@@ -60,5 +62,8 @@ def get_conditions(filters):
 
 	if filters.get("Shirt Size"):
 		conditions += "and shirt_size = '%s'" % filters["Shirt Size"]
+
+	if filters.get("Agency No"):
+		conditions += "and agency_no = '%s'" % filters["Agency No"]
 	return conditions
 
