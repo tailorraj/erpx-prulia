@@ -34,6 +34,7 @@
 								backgroundColorShade="ShadeA"
 								titleAlignment="Left"
 								title="Dear Prulians,">
+							<VBox>
 							<Text text="I am privileged to take this opportunity to thank and congratulate all the members who have contributed throughout these 30 years’ successful journey of PRULIA. The trust, confidence and adherence that you have in PRULIA is what have advanced us thus far.&#xA;&#xA;"/>
 							<Text text="This year is a ‘metamorphosis’ year for us as we transform from our 20s to 30s. Transformation or change is a permanent phenomenon of this universe and we are not an exception to this. What has been constant in PRULIA in the last 30 years is change and progress is impossible without change. Therefore, we must recognize the need to adapt the changing competitive environment.&#xA;&#xA;" />
 							<Text text="BNM highlighted in its 6th Malaysian Insurance Summit, that Malaysia’s insurance sector is following an ‘S-curve’ trajectory. Although the industry’s growth potential remains significant but it must be accepted that the industry is ripe for transformation to a new growth trajectory. &#xA;&#xA;"/>
@@ -49,7 +50,8 @@
 							<Text text="The combined results of several people working together is often much more effective than could be that of an individual working alone. The unique perspectives of each one of us fosters creativity and effective solutions. This inevitably contributes to enhance our strength. &#xA;&#xA;"/>
 							<Text text="Coming together is a beginning, keeping together is progress, working together is success. So let’s stay united and grow stronger in alliance.&#xA;&#xA;"/>
 							<Text text="Mani Raja Chandran"/>
-							<Text text="President&#xA;&#xA;"/>
+							<Text text="President"/>
+							</VBox>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
