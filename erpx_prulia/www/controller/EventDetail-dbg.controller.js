@@ -101,6 +101,8 @@ sap.ui.define([
 				oNewRegisterEntry.meal_option = Login.getMemberModel().getProperty("/meal_option");
 		        oNewRegisterEntry.shirt_size = Login.getMemberModel().getProperty("/shirt_size");
 		      	oNewRegisterEntry.accomodation = true;
+		      	oNewRegisterEntry.acknowlegement = false;
+		      	oNewRegisterEntry.showAcknowlegementError = false;
 				Event.getInstance().openEventPreferenceDialog(this, true, oNewRegisterEntry, Login.getMemberModel());
 			}
 		},

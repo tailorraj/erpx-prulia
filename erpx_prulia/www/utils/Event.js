@@ -7,14 +7,16 @@ sap.ui.define([
   "sap/m/Button",
   "sap/m/Select",
   "sap/m/Switch",
+  "sap/m/CheckBox",
   "sap/m/MessageStrip",
   "sap/m/MessageToast",
+  "sap/m/Text",
   "sap/ui/core/Item",
   "sap/ui/layout/form/SimpleForm",
   "com/erpx/site/prulia/PRULIA/utils/Config",
   "com/erpx/site/prulia/PRULIA/utils/ErrorHandler",
   "com/erpx/site/prulia/PRULIA/utils/Login"
-], function(Object, JSONModel, Dialog, VBox, Label, Button, Select, Switch, MessageStrip, MessageToast, Item, SimpleForm, Config, ErrorHandler, Login) {
+], function(Object, JSONModel, Dialog, VBox, Label, Button, Select, Switch, CheckBox, MessageStrip, MessageToast, Text, Item, SimpleForm, Config, ErrorHandler, Login) {
   "use strict";
   var oInstance;
   var oNews = Object.extend("com.erpx.site.prulia.PRULIA.utils.Event",{
@@ -81,13 +83,13 @@ sap.ui.define([
           stretch: oController.getOwnerComponent().getModel("device").getProperty("/system/phone"),      
           content: new VBox({
             items: [ 
-              // new MessageStrip({
-              //   text:additionalMsg,
-              //   enableFormattedText:true,
-              //   type: "Information",
-              //   showIcon: true,
-              //   visible: additionalMsg ? true : false 
-              // }).addStyleClass("sapUiResponsiveMargin"),
+               new MessageStrip("idAcknowledgeMsgStrip" , {
+                 text:"Please kindly acknowledge the declaration by clicking the checkbox in the form",
+                 enableFormattedText:true,
+                 type: "Error",
+                 showIcon: true,
+                 visible: "{=${/showAcknowlegementError}?true:false}" 
+               }).addStyleClass("sapUiResponsiveMargin"),
               new SimpleForm({
                 editable: true,
                 layout:"ResponsiveGridLayout",
@@ -155,51 +157,79 @@ sap.ui.define([
                     customTextOff:"No",
                     state: "{/accomodation}",
                     visible: "{=${/display_accomodation_option} === 1}"
-                  })
+                  }),
+                  
                 ]
-              })
+              }),
+              new Text({
+              	text:"I declare that the information given herein are correct to the best of my knowledge and belief.",
+	        	visible: bCreate ? true:false	
+              }).addStyleClass("sapUiSmallMarginBeginEnd"),
+              new Text({
+              	text:"I agree to be govern by the rules and regulations of PRULIA as they now exist as they may hereafter be altered.",
+	        	visible: bCreate ? true:false	
+              }).addStyleClass("sapUiSmallMarginBeginEnd"),
+              new Text({
+              	text:"I hereby authorize Prudential Assurance Malaysia Berhad to debit by commission account for the registration of the event.",
+	        	visible: bCreate ? true:false	
+              }).addStyleClass("sapUiSmallMarginBeginEnd"),
+              new CheckBox("idAcknowledgementCheck", {
+	          		selected:"{/acknowlegement}",
+	          		visible: bCreate ? true:false,
+	          		text: "I agree the statement above",
+	        		errorState:"{=${/showAcknowlegementError}?'Error':'None'}",
+	        		select: function(oEvent){
+	        			if(oEvent.getParameter("selected") && oBindingModel.getProperty("/showAcknowlegementError")){
+	        				oBindingModel.setProperty("/showAcknowlegementError", false);
+	        			}
+	        		}.bind(this)
+	          })
             ]
           }),
           beginButton: new Button({
             text: bCreate ? 'Register' : "Update",
             press: function (oEvent) {
-              oController.getOwnerComponent().getModel("appParam").setProperty("/busy", true);
-              this.createAttendance(bCreate, this.eventPrefDialog.getModel(), oMemberModel).done(
-                  function(data, status, xhr){
-                    if(data.message === "success"){
-                      MessageToast.show("Perferences was update successfully");
-                    } else {
-                      MessageToast.show(JSON.parse(JSON.parse(data._server_messages)[0]).message);
-                    }
-                    
-                  }
-              ).fail(
-                  function(error){
-                    ErrorHandler.handleAjaxError(error);
-                  }
-              ).always(function(){
-                this.updateEventModel(function(){
-                  oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
-                }, function(){
-                  oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
-                });
-              }.bind(this));
-              // this.login(
-              //   sap.ui.getCore().byId("memberLogin-Username").getValue(), 
-              //   sap.ui.getCore().byId("memberLogin-Password").getValue(), 
-              //   function(){
-              //     Event.getInstance().updateEventModel(function(){
-              //       MessageToast.show("Member successfully login");
-              //       oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
-              //     }.bind(this),
-              //     function(){
-              //       oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
-              //     }.bind(this))
-                  
-              //   }.bind(this), function(){
-              //     oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
-              //   }.bind(this));
-              this.eventPrefDialog.close();
+            	if(oBindingModel.getProperty("/acknowlegement") || !bCreate){
+	              oController.getOwnerComponent().getModel("appParam").setProperty("/busy", true);
+	              this.createAttendance(bCreate, this.eventPrefDialog.getModel(), oMemberModel).done(
+	                  function(data, status, xhr){
+	                    if(data.message === "success"){
+	                      MessageToast.show("Perferences was update successfully");
+	                    } else {
+	                      MessageToast.show(JSON.parse(JSON.parse(data._server_messages)[0]).message);
+	                    }
+	                    
+	                  }
+	              ).fail(
+	                  function(error){
+	                    ErrorHandler.handleAjaxError(error);
+	                  }
+	              ).always(function(){
+	                this.updateEventModel(function(){
+	                  oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+	                }, function(){
+	                  oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+	                });
+	              }.bind(this));
+	              // this.login(
+	              //   sap.ui.getCore().byId("memberLogin-Username").getValue(), 
+	              //   sap.ui.getCore().byId("memberLogin-Password").getValue(), 
+	              //   function(){
+	              //     Event.getInstance().updateEventModel(function(){
+	              //       MessageToast.show("Member successfully login");
+	              //       oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+	              //     }.bind(this),
+	              //     function(){
+	              //       oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+	              //     }.bind(this))
+	                  
+	              //   }.bind(this), function(){
+	              //     oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+	              //   }.bind(this));
+	              this.eventPrefDialog.close();
+            	} else {
+	            	oBindingModel.setProperty("/showAcknowlegementError", true);
+	            }
               // MessageToast.show("User successful login");
             }.bind(this)
           }),

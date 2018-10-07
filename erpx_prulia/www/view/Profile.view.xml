@@ -55,6 +55,8 @@
 									<Text text="{member>/branch}" />
 									<Label text="Region" />
 									<Text text="{member>/region}" />
+									<Label text="Agency No" />
+									<Text text="{member>/agency_no}" />
 								</form:content>
 							</form:SimpleForm>
 						</uxap:blocks>
@@ -70,13 +72,10 @@
 					  			labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 					  			maxContainerCols="2" layout="ResponsiveGridLayout" width="100%" singleContainerFullSize="false">
 								<form:content>
-									<Label text="Personal Accident/Professional Indemnity" />
-									<Text text="{ parts : [ 'member>/papi_status' ], formatter: '.smartPartnerStatusFormatter' }" />
 									<Label text="Personal Accident" />
 									<Text text="{ parts : [ 'member>/pa_status' ], formatter: '.smartPartnerStatusFormatter' }" />
 									<Label text="Professional Indemnity" />
 									<Text text="{ parts : [ 'member>/pi_status' ], formatter: '.smartPartnerStatusFormatter' }" />
-									<Title text="" />
 									<Label text="Maxis" />
 									<Text text="{ parts : [ 'member>/maxis_status' ], formatter: '.smartPartnerStatusFormatter' }" />
 								</form:content>

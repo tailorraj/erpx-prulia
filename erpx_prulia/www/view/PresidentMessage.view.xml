@@ -9,7 +9,7 @@
 								backgroundColorSet="ColorSet10" 
 								backgroundColorShade="ShadeA"
 								titleAlignment="Left"
-								title="President's Message">
+								title="The welfare of our members is our priority">
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
@@ -33,20 +33,23 @@
 								backgroundColorSet="ColorSet10" 
 								backgroundColorShade="ShadeA"
 								titleAlignment="Left"
-								title="Dear Members,">
-							<Text text="1st July 2017, marks the first day the newly elected Committee and I, begin our service to you and for you for the next 2 years. This would also mean that Mdm Emily officially ends her term as the President and remain in the new Committee as the Immediate Past President. On behalf of all the members of PRULIA, I would like to record a sincere thanks to the Outgoing President, Mdm Emily Ngok as well as her Outgoing Committee for a job well done. Emily had served us as President, for 3 consecutive terms, a record of sort and did a fine job in leading PRULIA to achieve things that many thought impossible to achieve. Kudos and Thank you Emily.&#xA;&#xA;"/>
-							<Text text="Since the AGM and election on May 11th, the new Committee in its 2 meetings, focused primarily on planning, and undertaking of portfolios as well as identifying and prioritizing of issues that need to be pursued for the next 2 years. I am pleased with the enthusiasm shown by the newly elected Committee members and I am sure with their commitment and dedication coupled with your support we will have a productive term ahead.&#xA;&#xA;" />
-							<Text text="2018 will mark the beginning of a new era in the financial services industry. Market Liberalization, partially at first, in 2018, and Full Liberalization, which is expected to take place in the year 2019 onwards will change the financial landscape. And Changes will always present new CHALLENGES and together with it, NEW OPPORTUNITY. And with many other challenges that we have faced together, this will be no difference. We need to stay united and continue to speak with one voice to ensure we reap maximum benefits from the opportunity presented before us.&#xA;&#xA;"/>
+								title="Dear Prulians,">
+							<Text text="I am privileged to take this opportunity to thank and congratulate all the members who have contributed throughout these 30 years’ successful journey of PRULIA. The trust, confidence and adherence that you have in PRULIA is what have advanced us thus far.&#xA;&#xA;"/>
+							<Text text="This year is a ‘metamorphosis’ year for us as we transform from our 20s to 30s. Transformation or change is a permanent phenomenon of this universe and we are not an exception to this. What has been constant in PRULIA in the last 30 years is change and progress is impossible without change. Therefore, we must recognize the need to adapt the changing competitive environment.&#xA;&#xA;" />
+							<Text text="BNM highlighted in its 6th Malaysian Insurance Summit, that Malaysia’s insurance sector is following an ‘S-curve’ trajectory. Although the industry’s growth potential remains significant but it must be accepted that the industry is ripe for transformation to a new growth trajectory. &#xA;&#xA;"/>
+							<Text text="In March 2016, BNM had introduced the phased liberalisation before transitioning to a fully liberalised market. The implications of the reform are much wider than just an adjustment to premium levels. It will pave the way for a new wave of product innovation, significantly expanding choices for consumers.&#xA;&#xA;"/>
+							<Text text="On the other hand, the introduction of the balanced score card is expected to improve the productivity and professionalism of insurance agents, and in turn will also further enhanced the brand image and the attractiveness of the insurance industry. It must be understood that BSC is a holistic performance management tool rather than simply a performance grading tables for the agents.&#xA;&#xA;"/>
+							<Text text="Having stated that, the changes does come with a price for the agents. New competition will subsequently emerge as a result of the above changes. The pinching of agents is expected to intensify among composite insurers and takaful players. At this juncture, I would like to stress that trouble only comes when we believe in the myth the grass is always greener on the other side of the fence. It is my responsibility to remind everyone at this point that Prudential is a leading insurance company and will always remain as one. Being a part of this entity will ensure prosperous future and this is where PRULIA plays its vital role in not only in protecting the members interest but also to enhance it. The welfare of our members is our priority.&#xA;&#xA;"/>
 							<Text text="As we face these challenges together, we are guided by the objectives stated in our constitution, amongst it include:&#xA;&#xA;"/>
-							<Text text="1.To make representations to the Prudential management and any relevant authority or organizations on issues which affects the members eg: product development, payment of commissions. Rights and ethics, Operations etc.&#xA;&#xA;"/>
-							<Text text="2.To promote professional advancement and improvement of the Agency Force for betterment of our image and to serve our clients better.&#xA;&#xA;"/>
-							<Text text="3.To foster communication and Unity amongst us.&#xA;&#xA;"/>
-							<Text text="4.To undertake activities to enhance image of members in the eyes of the public.&#xA;&#xA;"/>
-							<Text text="5.And many others&#xA;&#xA;"/>
-							<Text text="The Committee and I look forward to your continuous support and to stay united under the umbrella of PRULIA because UNITY is STRENGTH. Thank you and best wishes for Q3.&#xA;&#xA;"/>
-							<Text text="MANI RAJA CHANDRAN&#xA;PRESIDENT OF PRULIA"/>
-							
-							
+							<Text text="1. To make representations to the Prudential management and any relevant authority or organizations on issues which affects the members eg: product development, payment of commissions. Rights and ethics, Operations etc.&#xA;&#xA;"/>
+							<Text text="2. To promote professional advancement and improvement of the Agency Force for betterment of our image and to serve our clients better.&#xA;&#xA;"/>
+							<Text text="3. To foster communication and Unity amongst us.&#xA;&#xA;"/>
+							<Text text="4. To undertake activities to enhance image of members in the eyes of the public.&#xA;&#xA;"/>
+							<Text text="5. And many others&#xA;&#xA;"/>
+							<Text text="The combined results of several people working together is often much more effective than could be that of an individual working alone. The unique perspectives of each one of us fosters creativity and effective solutions. This inevitably contributes to enhance our strength. &#xA;&#xA;"/>
+							<Text text="Coming together is a beginning, keeping together is progress, working together is success. So let’s stay united and grow stronger in alliance.&#xA;&#xA;"/>
+							<Text text="Mani Raja Chandran"/>
+							<Text text="President&#xA;&#xA;"/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
