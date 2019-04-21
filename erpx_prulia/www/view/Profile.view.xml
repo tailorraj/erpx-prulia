@@ -5,14 +5,13 @@
 		showTitleInHeaderContent="true"
 		showFooter="{profileParam>/editPersonal}">
 		<uxap:headerTitle>
-			<uxap:ObjectPageHeader objectImageURI="{member>profile_photo}"
-							  objectTitle="{member>full_name}"
-							  objectImageShape="Circle"
-							  objectImageAlt="{member>full_name}"
-							  isObjectIconAlwaysVisible="false"
-							  isObjectTitleAlwaysVisible="false"
-							  isObjectSubtitleAlwaysVisible="false"
-							  objectSubtitle="{member>prudential_id}">
+			<uxap:ObjectPageHeader id="profileObject"
+								   objectImageURI="{member>profile_photo}"
+								   objectTitle="{member>full_name}"
+								   objectImageShape="Circle"
+								   objectImageAlt="{member>full_name}"
+								   isObjectIconAlwaysVisible="false"
+								   isObjectTitleAlwaysVisible="false">
 			</uxap:ObjectPageHeader>
 		</uxap:headerTitle>
 		<uxap:sections>
@@ -49,13 +48,15 @@
 					  			labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 					  			maxContainerCols="2" layout="ResponsiveGridLayout" width="100%" singleContainerFullSize="false">
 								<form:content>
+									<Label text="Agent ID" />
+									<Text text="{member>/prudential_id}" />
 									<Label text="Position" />
 									<Text text="{member>/position}" />
 									<Label text="Branch" />
 									<Text text="{member>/branch}" />
 									<Label text="Region" />
 									<Text text="{member>/region}" />
-									<Label text="Agency No" />
+									<Label text="Agency Code" />
 									<Text text="{member>/agency_no}" />
 								</form:content>
 							</form:SimpleForm>

@@ -18,7 +18,7 @@
 					</layoutData>
 				</Button>
 				<ToolbarSpacer width="20px" />
-				<Button icon="css/images/PruliaImage.png" iconDensityAware="false" type="Transparent" press="handleHomeSelect"/>
+				<Button icon="css/images/PRULIA_PRULIA logo.jpg" iconDensityAware="false" type="Transparent" press="handleHomeSelect"/>
 				<Button text="News" type="Transparent" visible="{=${device>/system/phone}!==true &amp;&amp; ${login>/memberLogon}===true}" press="handleNewsSelect">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="Low" />

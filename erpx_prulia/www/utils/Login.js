@@ -355,11 +355,5 @@ sap.ui.define([
 			}
 			this.loginDialog.open();
 		},
-
-
-
-
-
-
 	};
 });

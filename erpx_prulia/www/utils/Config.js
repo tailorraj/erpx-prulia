@@ -3,8 +3,8 @@ sap.ui.define([
 	"use strict";
 
 	return {
-		serverURL : ""
-		// serverURL : "http://127.0.0.1:8080"
+		 serverURL : ""
+		//serverURL : "http://167.99.77.197:8000"
 
 	};
 });
