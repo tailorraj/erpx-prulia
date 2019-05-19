@@ -64,11 +64,6 @@ sap.ui.define([
 		        fontFamily : "public-font-icons",
 		        content : "EB99" 
     		});
-		},
-		toggleMap: function (oEvent) {
-			var showMap = this.getOwnerComponent().getModel("appParam").getProperty("/showMap");
-
-			this.getOwnerComponent().getModel("appParam").setProperty("/showMap", !showMap);
-        }
+		}
 	});
 });

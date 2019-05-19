@@ -142,6 +142,37 @@
     font-size: 18px;
 }
 
+.menuItem.presidentMenu:hover {
+    background-image: url('images/mainItems/PRULIA_IconPresidentMessageHover.jpg') !important;
+}
+
+.menuItem.committeeMenu:hover {
+    background-image: url('images/mainItems/PRULIA_IconCommitteeHover.jpg') !important;
+}
+
+.menuItem.memberMenu:hover {
+    background-image: url('images/mainItems/PRULIA_IconMemberHover.jpg') !important;
+}
+
+.menuItem.achievementMenu:hover {
+    background-image: url('images/mainItems/PRULIA_IconAchievementsHover.jpg') !important;
+}
+
+.menuItem.trainingMenu:hover {
+    background-image: url('images/mainItems/PRULIA_IconTrainingHover.jpg') !important;
+}
+
+.menuItem.eventMenu:hover {
+    background-image: url('images/mainItems/PRULIA_IconEventHover.jpg') !important;
+}
+
+.menuItem.photoMenu:hover {
+    background-image: url('images/mainItems/PRULIA_IconPhotoHover.jpg') !important;
+}
+.menuItem.newsMenu:hover {
+    background-image: url('images/mainItems/PRULIA_IconNewsHover.jpg') !important;
+}
+
 .usefulLink .sapUiBlockLayoutCell{
     background-color: #F0E9D9;
 }
@@ -378,7 +409,8 @@
 }
 
 .newsTitle, .pruliaMain .usefulLink .sapMGTSubHdrTxt {
-    font-family: "Open Sans", "Adobe Blank"
+    font-family: "Open Sans", "Adobe Blank";
+    font-size: .8em !important;
 }
 
 .genericTileImage {
@@ -500,8 +532,8 @@
 }
 
 .sapFAvatarXL.menuItem {
-    height: 12rem;
-    width: 12rem;
+    height: 10rem;
+    width: 10rem;
 }
 
 @media (max-width: 1024px) {

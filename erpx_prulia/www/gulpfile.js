@@ -6,7 +6,7 @@ var _gulp = require('gulp'),
 
 _gulp.task('buildui5', buildUI5);
 
-_gulp.task('watchUI5', function () {
+_gulp.task('default', function () {
     _gulp.watch(['**/**', '!node_modules', '!Component-preload.js'], buildUI5);
 });
 

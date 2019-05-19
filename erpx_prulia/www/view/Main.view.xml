@@ -16,24 +16,30 @@
 							<l:BlockLayoutRow class="mainMenu">
 								<l:BlockLayoutCell 
 										class="mainPageContent sapUiNoContentPadding">
-									<l:Grid defaultSpan="L4 M6 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
+									<l:Grid defaultSpan="L3 M6 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
 										<VBox alignItems="Center">
-											<fiori:Avatar press="handlePresidentMessagePress" class="menuItem" src="css/images/mainItems/PRULIA_IconPresidentMessage.jpg" displaySize="XL"/>
+											<fiori:Avatar press="handlePresidentMessagePress" class="menuItem presidentMenu" src="css/images/mainItems/PRULIA_IconPresidentMessage.jpg" displaySize="XL"/>
 										</VBox>
 										<VBox alignItems="Center">
-											<fiori:Avatar press="handleCommitteePress" class="menuItem" src="css/images/mainItems/PRULIA_IconCommittee.jpg" displaySize="XL"/>
+											<fiori:Avatar press="handleCommitteePress" class="menuItem committeeMenu" src="css/images/mainItems/PRULIA_IconCommittee.jpg" displaySize="XL"/>
 										</VBox>
 										<VBox alignItems="Center">
-											<fiori:Avatar press="handleMembershipPress" class="menuItem" src="css/images/mainItems/PRULIA_IconMember.jpg" displaySize="XL"/>
+											<fiori:Avatar press="handleMembershipPress" class="menuItem memberMenu" src="css/images/mainItems/PRULIA_IconMember.jpg" displaySize="XL"/>
 										</VBox>
 										<VBox alignItems="Center">
-											<fiori:Avatar press="handleTrainingPress" class="menuItem" src="css/images/mainItems/PRULIA_IconTraining.jpg" displaySize="XL"/>
+											<fiori:Avatar press="handleAchievementPress" class="menuItem achievementMenu" src="css/images/mainItems/PRULIA_IconAchievements.jpg" displaySize="XL"/>
 										</VBox>
 										<VBox alignItems="Center">
-											<fiori:Avatar press="handleEventPress" class="menuItem" src="css/images/mainItems/PRULIA_IconEvent.jpg" displaySize="XL"/>
+											<fiori:Avatar press="handleTrainingPress" class="menuItem trainingMenu" src="css/images/mainItems/PRULIA_IconTraining.jpg" displaySize="XL"/>
 										</VBox>
 										<VBox alignItems="Center">
-											<fiori:Avatar press="handlePhotoAlbumPress" class="menuItem" src="css/images/mainItems/PRULIA_IconPhoto.jpg" displaySize="XL"/>
+											<fiori:Avatar press="handleEventPress" class="menuItem eventMenu" src="css/images/mainItems/PRULIA_IconEvent.jpg" displaySize="XL"/>
+										</VBox>
+										<VBox alignItems="Center">
+											<fiori:Avatar press="handlePhotoAlbumPress" class="menuItem photoMenu" src="css/images/mainItems/PRULIA_IconPhoto.jpg" displaySize="XL"/>
+										</VBox>
+										<VBox alignItems="Center">
+											<fiori:Avatar press="handleNewsPress" class="menuItem newsMenu" src="css/images/mainItems/PRULIA_IconNews.jpg" displaySize="XL"/>
 										</VBox>
 
 										<!--<GenericTile-->
