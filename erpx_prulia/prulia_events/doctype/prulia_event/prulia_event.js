@@ -89,8 +89,13 @@ frappe.ui.form.on('PRULIA Event', {
 });
 
 cur_frm.add_fetch('member','full_name','member_name');
+cur_frm.add_fetch('member','nric_number','nric_number');
+cur_frm.add_fetch('member','email','email');
+cur_frm.add_fetch('member','region','region');
+cur_frm.add_fetch('member','branch','branch');
 cur_frm.add_fetch('member','shirt_size','shirt_size');
 cur_frm.add_fetch('member','meal_option','meal_option');
+cur_frm.add_fetch('member','agency_no','agency_no');
 
 cur_frm.cscript.get_input_field = function(label, text){
 		return '<div class="frappe-control input-max-width" data-fieldtype="Data" data-fieldname="registration_status"><div class="form-group"><div class="clearfix">'+

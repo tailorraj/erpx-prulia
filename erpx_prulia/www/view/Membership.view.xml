@@ -2,30 +2,53 @@
 	controllerName="com.erpx.site.prulia.PRULIA.controller.Membership" xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page showHeader="false">
 		<content>
-			<l:VerticalLayout class="mainContent">
-				<l:BlockLayout>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="Membership">
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>
-				</l:BlockLayout>
-			</l:VerticalLayout>
-			<l:VerticalLayout class="fullBanner">
-				<l:BlockLayout>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								titleAlignment="Left"
-								title="Membership"
-								class="membershipBannerImage startingText">
-							<Text text="Membership Details &amp; Benefits" class="startingText" />
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>
-				</l:BlockLayout>
-			</l:VerticalLayout>
+			<!--<l:VerticalLayout class="mainContent">-->
+				<!--<l:BlockLayout>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left"-->
+								<!--title="Membership">-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+				<!--</l:BlockLayout>-->
+			<!--</l:VerticalLayout>-->
+			<l:BlockLayout>
+				<l:BlockLayoutRow >
+					<l:BlockLayoutCell class="memberImage imageCell startingText"></l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="footerBack">
+					<l:BlockLayoutCell
+							titleAlignment="Center"
+							title="Membership">
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="gradientBack">
+					<l:BlockLayoutCell
+							titleAlignment="Center"
+							title="Membership Details &amp; Benefits">
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="row-center">
+					<l:BlockLayoutCell class="red-text"
+							titleAlignment="Center"
+							title="We are the voice of Prudential agency force representing more than 10.000 Prudential agency members">
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+			</l:BlockLayout>
+			<!--<l:VerticalLayout class="fullBanner">-->
+				<!--<l:BlockLayout>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--titleAlignment="Left"-->
+								<!--title="Membership"-->
+								<!--class="membershipBannerImage startingText">-->
+							<!--<Text text="Membership Details &amp; Benefits" class="startingText" />-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+				<!--</l:BlockLayout>-->
+			<!--</l:VerticalLayout>-->
 			<l:VerticalLayout class="mainContent">
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
@@ -81,14 +104,85 @@
 								title="Membership Benefits">
 							<Image src="css/images/benefits.jpg" width="100%"/>
 						</l:BlockLayoutCell>	
-					</l:BlockLayoutRow>	
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell>
-							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
-						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
 			</l:VerticalLayout>
+			<l:BlockLayout>
+				<l:BlockLayoutRow class="contactRow ">
+					<l:BlockLayoutCell
+								titleAlignment="Left"
+								title="Contact Us"
+								backgroundColorSet="ColorSet2"
+								backgroundColorShade="ShadeA"
+								class="contactCell startingText mainPageContent">
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="contactRow">
+					<l:BlockLayoutCell class="mainPageContentLeft">
+						<FlexBox
+							direction="Column"
+							alignItems="Start">
+							<items>
+								<FlexBox direction="Row" fitContainer="true">
+									<core:Icon size="1.5rem" src="sap-icon://call" color="#F8D474"></core:Icon>
+									<Text class="contactLabel" text="P"></Text>
+									<Text class="contactText" text="03-7727 6382"></Text>
+								</FlexBox>
+								<FlexBox direction="Row" fitContainer="true">
+									<core:Icon size="1.5rem" src="sap-icon://fax-machine" color="#F8D474"></core:Icon>
+									<Text class="contactLabel" text="F"></Text>
+									<Text class="contactText" text="03-7727 6384"></Text>
+								</FlexBox>
+								<FlexBox direction="Row" fitContainer="true">
+									<core:Icon size="1.5rem" src="sap-icon://email" color="#F8D474"></core:Icon>
+									<Text class="contactLabel" text="E"></Text>
+									<Text class="contactText" text="prulia@yahoo.com"></Text>
+								</FlexBox>
+							</items>
+						</FlexBox>
+					</l:BlockLayoutCell>
+					<l:BlockLayoutCell class="mainPageContentRight">
+						<FlexBox
+							direction="Column"
+							alignItems="Start">
+							<items>
+								<FlexBox direction="Row" fitContainer="true">
+									<Text class="contactText" text="Unit No. 531, 5th Floor, Block A, Lobby 8"></Text>
+								</FlexBox>
+								<FlexBox direction="Row" fitContainer="true">
+									<Text class="contactText" text="Damansara Intan, No. 1 Jalan SS20/27, 47400"></Text>
+								</FlexBox>
+								<FlexBox direction="Row" fitContainer="true">
+									<Text class="contactText" text="Petaling Jaya, Selangor Darul Ehsan"></Text>
+								</FlexBox>
+							</items>
+						</FlexBox>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="contactRow">
+					<l:BlockLayoutCell
+							titleAlignment="Center"
+							class="mainPageContent">
+						<HBox width="100%" justifyContent="Center">
+							<Link class="whiteLink" visible="{= !${appParam>/showMap}}" text="VIEW MAP" press="toggleMap"></Link>
+							<Link class="whiteLink" visible="{appParam>/showMap}" text="HIDE MAP" press="toggleMap"></Link>
+						</HBox>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="contactRow" visible="{appParam>/showMap}">
+					<l:BlockLayoutCell
+							backgroundColorSet="ColorSet2"
+							backgroundColorShade="ShadeA"
+							class="sapUiNoContentPadding mainPageContent">
+							<Image src="css/images/LocationMap.png" densityAware="false" width="100%"/>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow>
+					<l:BlockLayoutCell class="footerBack">
+						<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+			</l:BlockLayout>
 		</content>
 	</Page>
 </mvc:View>

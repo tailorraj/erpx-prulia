@@ -9,30 +9,43 @@ controllerName="com.erpx.site.prulia.PRULIA.controller.About"
 	<!--</MessagePage>-->
 	<Page showHeader="false" class="aboutPage">
 		<content>
-			<l:VerticalLayout class="mainContent">
-				<l:BlockLayout>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="About PRULIA">
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>
-				</l:BlockLayout>
-			</l:VerticalLayout>
-			<l:VerticalLayout class="fullBanner">
-				<l:BlockLayout>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								titleAlignment="Left"
-								title="PRULIA"
-								class="aboutBannerImage startingText">
-							<Text text="Prudential Life Insurance Agency Association" class="startingText"/>
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>
-				</l:BlockLayout>
-			</l:VerticalLayout>
+			<!--<l:VerticalLayout class="mainContent">-->
+				<!--<l:BlockLayout>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left"-->
+								<!--title="About PRULIA">-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+				<!--</l:BlockLayout>-->
+			<!--</l:VerticalLayout>-->
+			<!--<l:VerticalLayout class="fullBanner">-->
+				<!--<l:BlockLayout>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--titleAlignment="Left"-->
+								<!--title="PRULIA"-->
+								<!--class="aboutBannerImage startingText">-->
+							<!--<Text text="Prudential Life Insurance Agency Association" class="startingText"/>-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+				<!--</l:BlockLayout>-->
+			<!--</l:VerticalLayout>-->
+			<l:BlockLayout>
+				<l:BlockLayoutRow >
+					<l:BlockLayoutCell
+							class="aboutImage imageCell startingText">
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow>
+					<l:BlockLayoutCell class="red-text"
+							titleAlignment="Center"
+							title="About PRULIA">
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+			</l:BlockLayout>
 			<l:VerticalLayout class="mainContent">
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
@@ -55,7 +68,7 @@ controllerName="com.erpx.site.prulia.PRULIA.controller.About"
 								backgroundColorShade="ShadeA">
 							<Text text="Prudential Life Insurance Agency Association (PRULIA), was formed in 1989 to protect the interest of the Prudential Agency Force. As the financial landscape evolves, changes are inevitable. As it was evident in the 1st Financial Master Plan in 1996, there was a drastic change in compensation and structure of the insurance fraternity.&#xA;&#xA;"/>
 							<Text text="Moving forward, the imminent Bank Negara Malaysia Life Insurance and Family Takaful Framework will be implemented soon by the regulators.&#xA;&#xA;"/>
-							<Text class="blockquote text-bold" text='It is very important that every agent or leader of Prudential should be a member of PRULIA to be united and stand together as one, to be the united "Voice of the Agency".&#xA;&#xA;'/>
+							<Text class="red-text text-bold" text='It is very important that every agent or leader of Prudential should be a member of PRULIA to be united and stand together as one, to be the united "Voice of the Agency".&#xA;&#xA;'/>
 							<Text text="Currently we have over 10,000 members from all over Malaysia and we expect the numbers to grow. Throughout the years, PRULIA has had 10 Past Presidents that served with the Association and currently the Presidency is helmed by Mr.Maniraja Chandran.&#xA;&#xA;" />
 							<Text text="Come and be a part of the PRULIA family today!!!"/>
 						</l:BlockLayoutCell>
@@ -66,40 +79,48 @@ controllerName="com.erpx.site.prulia.PRULIA.controller.About"
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow class="vision-mission">
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet11" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="">
-							<VBox
-								width="100%"
-								height="90%"
-								class="quote-box vision-box blockquote">
-								<items>
-									<Text text='“' class="quotation-mark"/>
-									<Text text="Premier association in delivering comprehensive needs for esteemed members." class="quote-text"/>
-									<core:HTML content='&lt;hr&gt;' />
-									<Text text='Vision of PRULIA' />
-								</items>
-							</VBox>
+						<l:BlockLayoutCell class="vision-container">
+							<Text text='VISION OF PRULIA' class="red-text vision-header"/>
+							<Text text='Premier association in delivering comprehensive needs for esteemed members.' class="vision-text"/>
 						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet11" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="">
-							<VBox
-								width="100%"
-								height="90%"
-								class="quote-box mission-box blockquote">
-								<items>
-									<Text text='“' class="quotation-mark"/>
-									<Text text="Safeguarding members’ interest and welfare.&#xA;&#xA;" class="quote-text"/>
-									<core:HTML content='&lt;hr&gt;' />
-									<Text text='Mission of PRULIA' />
-								</items>
-							</VBox>
+						<l:BlockLayoutCell class="mission-container">
+							<Text text='MISSION OF PRULIA' class="red-text mission-header"/>
+							<Text text='Safeguarding members interest&apos; and welfare.' class="mission-text"/>
 						</l:BlockLayoutCell>
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet11"-->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left"-->
+								<!--title="">-->
+							<!--<VBox-->
+								<!--width="100%"-->
+								<!--height="90%"-->
+								<!--class="quote-box vision-box blockquote">-->
+								<!--<items>-->
+									<!--<Text text='“' class="quotation-mark"/>-->
+									<!--<Text text="Premier association in delivering comprehensive needs for esteemed members." class="quote-text"/>-->
+									<!--<core:HTML content='&lt;hr&gt;' />-->
+									<!--<Text text='Vision of PRULIA' />-->
+								<!--</items>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet11"-->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left"-->
+								<!--title="">-->
+							<!--<VBox-->
+								<!--width="100%"-->
+								<!--height="90%"-->
+								<!--class="quote-box mission-box blockquote">-->
+								<!--<items>-->
+									<!--<Text text='“' class="quotation-mark"/>-->
+									<!--<Text text="Safeguarding members’ interest and welfare.&#xA;&#xA;" class="quote-text"/>-->
+									<!--<core:HTML content='&lt;hr&gt;' />-->
+									<!--<Text text='Mission of PRULIA' />-->
+								<!--</items>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell
@@ -172,13 +193,84 @@ controllerName="com.erpx.site.prulia.PRULIA.controller.About"
 							</HBox>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell>
-							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>
 				</l:BlockLayout>
 			</l:VerticalLayout>
+			<l:BlockLayout>
+				<l:BlockLayoutRow class="contactRow ">
+					<l:BlockLayoutCell
+								titleAlignment="Left"
+								title="Contact Us"
+								backgroundColorSet="ColorSet2"
+								backgroundColorShade="ShadeA"
+								class="contactCell startingText mainPageContent">
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="contactRow">
+					<l:BlockLayoutCell class="mainPageContentLeft">
+						<FlexBox
+							direction="Column"
+							alignItems="Start">
+							<items>
+								<FlexBox direction="Row" fitContainer="true">
+									<core:Icon size="1.5rem" src="sap-icon://call" color="#F8D474"></core:Icon>
+									<Text class="contactLabel" text="P"></Text>
+									<Text class="contactText" text="03-7727 6382"></Text>
+								</FlexBox>
+								<FlexBox direction="Row" fitContainer="true">
+									<core:Icon size="1.5rem" src="sap-icon://fax-machine" color="#F8D474"></core:Icon>
+									<Text class="contactLabel" text="F"></Text>
+									<Text class="contactText" text="03-7727 6384"></Text>
+								</FlexBox>
+								<FlexBox direction="Row" fitContainer="true">
+									<core:Icon size="1.5rem" src="sap-icon://email" color="#F8D474"></core:Icon>
+									<Text class="contactLabel" text="E"></Text>
+									<Text class="contactText" text="prulia@yahoo.com"></Text>
+								</FlexBox>
+							</items>
+						</FlexBox>
+					</l:BlockLayoutCell>
+					<l:BlockLayoutCell class="mainPageContentRight">
+						<FlexBox
+							direction="Column"
+							alignItems="Start">
+							<items>
+								<FlexBox direction="Row" fitContainer="true">
+									<Text class="contactText" text="Unit No. 531, 5th Floor, Block A, Lobby 8"></Text>
+								</FlexBox>
+								<FlexBox direction="Row" fitContainer="true">
+									<Text class="contactText" text="Damansara Intan, No. 1 Jalan SS20/27, 47400"></Text>
+								</FlexBox>
+								<FlexBox direction="Row" fitContainer="true">
+									<Text class="contactText" text="Petaling Jaya, Selangor Darul Ehsan"></Text>
+								</FlexBox>
+							</items>
+						</FlexBox>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="contactRow">
+					<l:BlockLayoutCell
+							titleAlignment="Center"
+							class="mainPageContent">
+						<HBox width="100%" justifyContent="Center">
+							<Link class="whiteLink" visible="{= !${appParam>/showMap}}" text="VIEW MAP" press="toggleMap"></Link>
+							<Link class="whiteLink" visible="{appParam>/showMap}" text="HIDE MAP" press="toggleMap"></Link>
+						</HBox>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow class="contactRow" visible="{appParam>/showMap}">
+					<l:BlockLayoutCell
+							backgroundColorSet="ColorSet2"
+							backgroundColorShade="ShadeA"
+							class="sapUiNoContentPadding mainPageContent">
+							<Image src="css/images/LocationMap.png" densityAware="false" width="100%"/>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+				<l:BlockLayoutRow>
+					<l:BlockLayoutCell class="footerBack">
+						<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+			</l:BlockLayout>
 		</content>
 	</Page>
 </mvc:View>

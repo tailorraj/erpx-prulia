@@ -6,8 +6,9 @@ sap.ui.define([
 	"sap/m/Dialog",
 	"sap/ui/unified/FileUploader",
 	"sap/m/Button",
+	"sap/ui/core/ValueState",
 	"com/erpx/site/prulia/PRULIA/utils/Login"
-], function (Controller, JSONModel, DateFormat, MessageToast, Dialog, FileUploader, Button, Login) {
+], function (Controller, JSONModel, DateFormat, MessageToast, Dialog, FileUploader, Button, ValueState, Login) {
 	"use strict";
 
 	return Controller.extend("com.erpx.site.prulia.PRULIA.controller.Profile", {
@@ -71,16 +72,27 @@ sap.ui.define([
 					oDialog.setTitle('Upload image');
 
 					oUploader = new FileUploader({
-						uploadUrl: '/',
 						maximumFileSize: 2,
 						fileType: ['jpg', 'png', 'bmp', 'gif'],
 						uploadOnChange: true,
-						uploadStart: function () {
+						uploadStart: function (oEvent) {
+							var oParams = oEvent.getParameters();
+
+							console.log(oParams);
 							oDialog.close();
                         },
-						uploadComplete: function () {
+						uploadComplete: function (oEvent) {
 							//change profile picture
-						}
+							var oParams = oEvent.getParameters();
+
+							console.log(oParams);
+						},
+						fileSizeExceed: function () {
+							MessageToast.show("File limit size is 2MB");
+                        },
+						typeMissmatch: function () {
+							MessageToast.show("Invalid file type provided. Supported file type (jpg, png, bmp, gif)");
+                        }
 					}).addStyleClass('Uploader');
 
 					oCancel = new Button({
@@ -108,15 +120,27 @@ sap.ui.define([
 		changeEditMode: function(){
 			var oModel = this.getView().getModel("profileParam");
 
+			//reset model
+			if (oModel.getProperty("/editPersonal")) {
+				this.getView().getModel('member').setJSON(this._oUserJSON);
+			}
+			else {
+				this._oUserJSON = this.getView().getModel('member').getJSON();
+				this._oUserJSON = JSON.parse(JSON.stringify(this._oUserJSON));
+			}
+
 			oModel.setProperty("/editPersonal", !oModel.getProperty("/editPersonal"))
 		},
 
 		updateEventPref: function(){
+			var oModel = this.getView().getModel("profileParam");
+
 			this.getOwnerComponent().getModel("appParam").setProperty("/busy", true);
 
 			Login.updateMemberDetails(function(){
 				MessageToast.show("Perferences was update successfully");
-				this.changeEditMode();
+				oModel.setProperty("/editPersonal", !oModel.getProperty("/editPersonal"))
+				// this.changeEditMode();
 				this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
 			}.bind(this), function(){
 				this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
@@ -134,8 +158,15 @@ sap.ui.define([
 
 				return oDateTimeFormat.format(oDate);
 			}
-		}
+		},
+		checkInput: function (oEvent) {
+			var val = oEvent.getParameter("newValue").trim();
 
+			if (!val) {
+				oEvent.getSource().setValueState(ValueState.Error);
+			}
+			else { oEvent.getSource().setValueState(ValueState.None); }
+        }
 	});
 
 });

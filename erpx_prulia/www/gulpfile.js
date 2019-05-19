@@ -4,7 +4,13 @@ var _gulp = require('gulp'),
     _prettydata = require('gulp-pretty-data'),
     _if = require('gulp-if');
 
-_gulp.task('buildui5', function () {
+_gulp.task('buildui5', buildUI5);
+
+_gulp.task('watchUI5', function () {
+    _gulp.watch(['**/**', '!node_modules', '!Component-preload.js'], buildUI5);
+});
+
+function buildUI5() {
     return _gulp.src([
         './**/**.+(js|xml)',
         './i18n/i18n.properties',
@@ -19,4 +25,4 @@ _gulp.task('buildui5', function () {
     .pipe(_if('**/*.xml', _prettydata({ type: 'minify' })))
     .pipe(_ui5({ base: './', namespace: 'com.erpx.site.prulia.PRULIA' }))
     .pipe(_gulp.dest('./'));
-});
+}

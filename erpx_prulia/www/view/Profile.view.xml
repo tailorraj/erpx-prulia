@@ -5,13 +5,16 @@
 		showTitleInHeaderContent="true"
 		showFooter="{profileParam>/editPersonal}">
 		<uxap:headerTitle>
-			<uxap:ObjectPageHeader id="profileObject"
+			<uxap:ObjectPageHeader class="profileAvatar" id="profileObject"
 								   objectImageURI="{member>profile_photo}"
 								   objectTitle="{member>full_name}"
 								   objectImageShape="Circle"
 								   objectImageAlt="{member>full_name}"
 								   isObjectIconAlwaysVisible="false"
 								   isObjectTitleAlwaysVisible="false">
+				<uxap:actions>
+					<uxap:ObjectPageHeaderActionButton icon="sap-icon://edit" type="Emphasized" press="changeEditMode" visible="{=${profileParam>/editPersonal}!==true}"/>
+				</uxap:actions>
 			</uxap:ObjectPageHeader>
 		</uxap:headerTitle>
 		<uxap:sections>
@@ -20,19 +23,42 @@
 					<uxap:ObjectPageSubSection title="" >
 						<uxap:blocks>
 							<form:SimpleForm
-								editable="false"
+								editable="{profileParam>/editPersonal}"
 								labelSpanL="4" labelSpanM="4"
 					  			labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 					  			maxContainerCols="2" layout="ResponsiveGridLayout" width="100%" singleContainerFullSize="false">
 								<form:content>
+									<Label text="Name"/>
+									<Input liveChange="checkInput" value="{member>/full_name}" visible="{=${profileParam>/editPersonal}}"/>
+
+									<Label text="NRIC Number"/>
+									<MaskInput description="(eg: 880809-07-8888)" liveChange="checkInput" mask="CCCCCC-CC-CCCC" value="{member>/nric_number}" visible="{=${profileParam>/editPersonal}}">
+										<rules>
+											<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
+										</rules>
+									</MaskInput>
 									<Label text="NRIC Number" />
-									<Text text="{member>/nric_number}" />
+									<Text text="{member>/nric_number}" visible="{=${profileParam>/editPersonal}!==true}"/>
+
+									<Label text="Gender"/>
+									<Select selectedKey="{member>/gender}" visible="{profileParam>/editPersonal}">
+										<items>
+											<core:Item key="Male" text="Male" />
+											<core:Item key="Female" text="Female" />
+										</items>
+									</Select>
 									<Label text="Gender" />
-									<Text text="{member>/gender}" />
+									<Text text="{member>/gender}" visible="{=${profileParam>/editPersonal}!==true}"/>
+
+									<Label text="Mobile No"/>
+									<Input description="(eg: 601x xxx xxxx)" liveChange="checkInput" type="number" value="{member>/cell_number}" visible="{=${profileParam>/editPersonal}}"/>
 									<Label text="Mobile No" />
-									<Text text="{member>/cell_number}" />
+									<Text text="{member>/cell_number}" visible="{=${profileParam>/editPersonal}!==true}"/>
+
+									<Label text="Email"/>
+									<Input liveChange="checkInput" type="email" value="{member>/email}" visible="{=${profileParam>/editPersonal}}"/>
 									<Label text="Email" />
-									<Text text="{member>/email}" />
+									<Text text="{member>/email}" visible="{=${profileParam>/editPersonal}!==true}"/>
 								</form:content>
 							</form:SimpleForm>
 						</uxap:blocks>
@@ -48,7 +74,7 @@
 					  			labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 					  			maxContainerCols="2" layout="ResponsiveGridLayout" width="100%" singleContainerFullSize="false">
 								<form:content>
-									<Label text="Agent ID" />
+									<Label text="Agent ID (eg: 1234567)" />
 									<Text text="{member>/prudential_id}" />
 									<Label text="Position" />
 									<Text text="{member>/position}" />
@@ -56,7 +82,7 @@
 									<Text text="{member>/branch}" />
 									<Label text="Region" />
 									<Text text="{member>/region}" />
-									<Label text="Agency Code" />
+									<Label text="Agency Code (eg: ABC12345)" />
 									<Text text="{member>/agency_no}" />
 								</form:content>
 							</form:SimpleForm>
@@ -122,7 +148,7 @@
 										</Select>
 									</form:content>
 								</form:SimpleForm>
-								<Button text="Update" press="changeEditMode" visible="{=${profileParam>/editPersonal}!==true}"/>
+								<!--<Button text="Update" press="changeEditMode" visible="{=${profileParam>/editPersonal}!==true}"/>-->
 							</VBox>
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
@@ -136,7 +162,7 @@
 				<Button text="Cancel" press="changeEditMode">
 					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow" /></layoutData>
 				</Button>
-				<Button type="Emphasized" text="Update Event Perferences" press="updateEventPref">
+				<Button type="Emphasized" text="Update Profile" press="updateEventPref">
 					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow" /></layoutData>
 				</Button>
 			</OverflowToolbar>

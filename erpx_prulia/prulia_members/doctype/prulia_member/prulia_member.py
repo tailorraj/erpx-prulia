@@ -267,6 +267,11 @@ def update_member_pref(data):
 	doc = frappe.get_doc('PRULIA Member', dat.get('name'))
 	if doc.user_id == frappe.session.user:
 		doc.flags.ignore_permissions = True
+		doc.full_name = dat.get('full_name')
+		doc.nric_number = dat.get('nric_number')
+		doc.gender = dat.get('gender')
+		doc.cell_number = dat.get('cell_number')
+		doc.email = dat.get('email')
 		doc.meal_option = dat.get('meal_option')
 		doc.shirt_size = dat.get('shirt_size')
 		doc.save()

@@ -32,8 +32,12 @@
     width: 100%
 }
 
+.mainPageContentLeft {
+    border-right: none;
+}
 @media (min-width: 1024px) {
     .mainPageContent, .mainPageContentLeft {
+        border-right: 1px solid #fff;
         padding-left: calc((100% - 1024px) / 2)
     }
 
@@ -48,20 +52,11 @@
 }
 
 .startingImage {
-    background-image: url(images/WelcomeBanner.jpg);
+    background-image: url(images/PRULIA_BannerMain.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 25rem
-}
-
-.imageCell .sapUiBlockCellContent .sapUiBlockCellTitle {
-    padding-top: 7rem;
-    font-size: 3rem;
-    text-align: center;
-    font-family: "Open Sans", "Adobe Blank";
-    font-weight: 600;
-    font-style: normal
+    min-height: 19rem;
 }
 
 .sap-phone .startingImage {
@@ -73,10 +68,45 @@
     font-size: 1.75rem
 }
 
+.eventImage {
+    background-image: url(images/PRULIA_BannerStrength.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 25rem;
+}
+
+.memberImage {
+    background-image: url(images/PRULIA_BannerMembership.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 35rem;
+}
+
+.aboutImage {
+    background-image: url(images/PRULIA_BannerAbout.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 35rem;
+}
+
+.imageCell .sapUiBlockCellContent .sapUiBlockCellTitle {
+    padding-top: 7rem;
+    font-size: 3rem;
+    text-align: center;
+    font-family: "Open Sans", "Adobe Blank";
+    font-weight: 600;
+    font-style: normal
+}
+
 .startingText {
     text-shadow: 2px 2px 8px #000;
     color: #fff;
-    text-align: left
+    text-align: center !important;
+    font-size: 1.5rem;
+    width: 70%;
 }
 
 .pruliaMain .mainMenu .sapMGTHdrContent, .startingMiddleText {
@@ -104,6 +134,18 @@
     color: #ff4238
 }
 
+.mainMenu .eventBox {
+    margin: 0 10px;
+}
+
+.mainMenu .eventBox .sapMTextLineClamp {
+    font-size: 18px;
+}
+
+.usefulLink .sapUiBlockLayoutCell{
+    background-color: #F0E9D9;
+}
+
 .fullBanner, .genericTile .sapMNwC, .pruliaMain .usefulLink .sapMGT.OneByOne, .videoWrapper iframe {
     width: 100%
 }
@@ -127,8 +169,8 @@
     background-position: center top
 }
 
-.aboutImage {
-    background-image: url(https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=b3cbc5d8d6aa9eb8113100ee6931b5b0&w=2048);
+.voiceImage {
+    background-image: url(images/PRULIA_BannerVoice.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -153,8 +195,12 @@
     text-align: right !important
 }
 
+.contactRow {
+    background: linear-gradient(90deg, #ff6961 0%, #ff6961 50%, #F3B047 100%);
+}
+
 .contactRow .sapUiBlockLayoutCellColor2A {
-    background-color: #ff3f46
+    background: none;
 }
 
 .contactCell .sapUiBlockCellContent .sapUiBlockCellTitle {
@@ -171,16 +217,18 @@
 }
 
 .presidentBannerImage {
-    background-image: url(images/PRULIAPresidentbanner.png);
+    background-image: url(images/PRULIA_BannerPresident.jpg);
     background-position: right;
     min-height: 100px
 }
 
 @media (min-width: 1024px) {
     .presidentBannerImage {
-        background-image: url(images/PRULIAPresidentbannerMax.png);
+        background-image: url(images/PRULIA_BannerPresident.jpg);
         background-position: center;
-        min-height: 150px
+        -webkit-background-size: contain;
+        background-size: contain;
+        min-height: 450px
     }
 
     .fullBanner .sapUiBlockCellContent {
@@ -245,11 +293,13 @@
 }
 
 .vision-box {
-    background-color: #5b731a
+    background-color: #F8D474;
+    color: #000;
 }
 
 .mission-box {
-    background-color: #4974bc
+    background-color: #9DC7D8;
+    color: #000;
 }
 
 .quotation-mark {
@@ -268,8 +318,12 @@
     font-size: 19px
 }
 
-.red-text {
-    color: #ff4238
+.red-text, .red-text .sapUiBlockCellTitle, .red-text.sapMText {
+    color: #F1646B !important;
+}
+
+.text-bold {
+    font-weight: bold;
 }
 
 .usefulLinkBannerImage {
@@ -330,7 +384,8 @@
 .genericTileImage {
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: top
+    background-position: top;
+    margin: 0 10px;
 }
 
 .genericTile .sapMGTHdrContent {
@@ -344,6 +399,10 @@
 
 .genericTile .sapMNwCCTxt, .genericTile .sapMTileCnt.sapMFrameTypeAuto {
     max-width: 100%
+}
+
+.genericTile .sapMTextLineClamp {
+    font-size: 20px;
 }
 
 .newsTitle {
@@ -370,22 +429,24 @@
     text-align: left;
     position: absolute;
     top: 0;
-    right: 0;
+    right: -10px;
     z-index: 9999;
-    padding: 1rem;
-    color: #fff
+    padding: .5rem;
+    color: #000;
+    font-size: 15px;
+    opacity: 0.9;
 }
 
 .eventOpenRegistration {
-    background-color: #49A15A
+    background-color: #99CD6F;
 }
 
 .eventRegistered {
-    background-color: #448AF8
+    background-color: #F8D474;
 }
 
 .eventClosedRegistration {
-    background-color: #ff6961
+    background-color: #F1646B;
 }
 
 .imageMaxHeight {
@@ -401,14 +462,18 @@
 }
 
 .pruliaMain .usefulLink .sapMGT {
-    padding-top: 1.5rem;
-    background: #f4f4f6
+    background: transparent;
+    height: 2.5rem;
+    border: 1px solid #333;
 }
 
-@media (max-width: 1024px) {
-    .pruliaMain .usefulLink .sapMGT {
-        padding-top: .75rem
-    }
+.pruliaMain .usefulLink .sapMGT:hover {
+    background-color: #F1646B;
+    border: 1px solid #F1646B;
+}
+
+.pruliaMain .usefulLink .sapMGT:hover .sapMGTSubHdrTxt{
+    color: #fff !important;
 }
 
 .pruliaMain .usefulLink .sapMGTHdrIconImage {
@@ -429,15 +494,145 @@
     float: right;
     margin-right: 20px;
 }
-/*.sapContrast .sapTntToolHeader.sapMTB, .sapTntToolHeader.sapMTB.sapContrast {*/
-    /*background-color: #fff !important;*/
-    /*border: 1px solid #fff !important;*/
-/*}*/
 
-/*.sapTntToolHeader.sapMTB .sapMBtnTransparent {*/
-    /*color: #42494F !important;*/
-/*}*/
+.mainTitleRed .sapUiBlockCellTitle {
+    color: #F1646B !important;
+}
 
-/*.sapTntToolHeader.sapMTB .sapMImg{*/
-    /*width: 88px !important;*/
-/*}*/
+.sapFAvatarXL.menuItem {
+    height: 12rem;
+    width: 12rem;
+}
+
+@media (max-width: 1024px) {
+    .sapFAvatarXL.menuItem {
+        height: 10rem;
+        width: 10rem;
+    }
+}
+
+.row-center {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.row-center .red-text {
+    font-size: 2rem !important;
+}
+
+.sapMImg{
+    cursor: pointer;
+}
+
+.gradientBack, .gradientBack.sapTntToolHeader {
+    background: linear-gradient(90deg, #ff6961 0%, #ff6961 50%, #F3B047 100%);
+	border: none !important;
+}
+
+.footerBack {
+    background-color: #42494F;
+}
+
+.footerBack .sapMText, .footerBack .sapUiBlockCellTitle {
+    color: #fff;
+}
+
+.btnDarkBg .sapMBtnContent, .btnDarkBg .sapMBtnText{
+    color: #000;
+    text-shadow: none;
+}
+
+.blueBack {
+    background-color: #9DC7D8;
+}
+
+.sapMLnk.whiteLink {
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.sapMLnk.whiteLink:hover {
+    color: #fff;
+}
+
+.sapMLnk.darkLink {
+    cursor: pointer;
+    color: #42494F;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.sapMLnk.darkLink:hover {
+    color: #42494F;
+}
+
+.sapMText.yellowQuote {
+    color: #F8D474;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+
+.mainPageContentLeft .contactLabel.sapMText {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.mainPageContentLeft .contactText.sapMText {
+    font-size: 1rem;
+    color: #fff;
+    margin-left: 1rem;
+    line-height: 1.5rem;
+}
+
+.mainPageContentRight .contactText.sapMText {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.contactMap {
+    padding-top: 1rem;
+}
+
+.vision-container {
+    background-color: #F8D474;
+}
+
+.mission-container {
+    background-color: #9DC7D8;
+}
+
+.vision-mission .vision-header, .vision-mission .mission-header {
+    font-weight: 600;
+    font-size: 2em !important;
+    margin-bottom: 1em;
+}
+
+.vision-mission .vision-text, .vision-mission .mission-text {
+    font-size: 2em !important;
+}
+
+.red-row .sapUiBlockLayoutCell {
+    background-color: #F1646B;
+}
+
+.red-row .sapMText {
+    color: #42494F;
+}
+
+.dark-row .sapUiBlockLayoutCell{
+    background-color: #42494F;
+}
+
+.dark-row .sapMText {
+    color: #F1646B;
+}

@@ -12,8 +12,9 @@ sap.ui.define([
 	"sap/m/Button",
 	"sap/m/MessageBox",
 	"com/erpx/site/prulia/PRULIA/utils/Event",
-	"sap/m/MessageStrip"
-], function (Config, ErrorHandler, JSONModel, MessageToast, Dialog, Title, VBox, SimpleForm, Label, Input, Button, MessageBox, Event, MessageStrip) {
+	"sap/m/MessageStrip",
+	"sap/m/Text"
+], function (Config, ErrorHandler, JSONModel, MessageToast, Dialog, Title, VBox, SimpleForm, Label, Input, Button, MessageBox, Event, MessageStrip, Text) {
 	"use strict";
 
 	return {
@@ -225,6 +226,30 @@ sap.ui.define([
 			}.bind(this));
 		},
 		setMemberModel: function(memberData){
+			var dialog;
+
+			//set a yearly reminder for updating profile
+			if (memberData && ((new Date() - new Date(memberData.modified)) / (1000*60*60*24)) > 10) {
+				dialog = new Dialog({
+					title: 'Yearly reminder',
+					type: 'Message',
+					state: 'Warning',
+					content: new Text({
+						text: 'Reminder : Kindly update your personal profile if you have not done so'
+					}),
+					beginButton: new Button({
+						text: 'OK',
+						press: function () {
+							dialog.close();
+						}
+					}),
+					afterClose: function() {
+						dialog.destroy();
+					}
+				});
+				dialog.open();
+			}
+
 			this._loginModel.setProperty("/memberLogon", true);
 			if(memberData.profile_photo !== undefined && memberData.profile_photo.indexOf("/files/") === 0){
 				if(Config.serverURL === "http://127.0.0.1:8080"){
@@ -242,9 +267,7 @@ sap.ui.define([
 			  	data: this._memberModel.getJSON(),
 			  	success: function(data, status, xhr){
 			  		this.setMemberModel(data.message);
-			  		if(fnSuccess){
-						fnSuccess();
-					}
+			  		if(fnSuccess){ fnSuccess(); }
 			  		// this.readMemberDetails(fnSuccess, fnError);
 					// var cookie_source = xhr.getResponseHeader('Set-Cookie');
 					// this.readMemberDetails(function(){

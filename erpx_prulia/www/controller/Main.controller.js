@@ -9,10 +9,10 @@ sap.ui.define([
 	return Controller.extend("com.erpx.site.prulia.PRULIA.controller.Main", {
 		
 		onInit: function(){
-			
-			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("Main").attachPatternMatched(this._onObjectMatched, this);
+
+			this.getOwnerComponent().getModel("appParam").setProperty("/showMap", false);
 		},
 		_onObjectMatched: function (oEvent) {
 			this.getOwnerComponent().getModel("appParam").setProperty("/showBack", false);
@@ -83,6 +83,11 @@ sap.ui.define([
 					newsid: oNewsTileObject.name
 				});
 			}
-		}
+		},
+		toggleMap: function (oEvent) {
+			var showMap = this.getOwnerComponent().getModel("appParam").getProperty("/showMap");
+
+			this.getOwnerComponent().getModel("appParam").setProperty("/showMap", !showMap);
+        }
 	});
 });

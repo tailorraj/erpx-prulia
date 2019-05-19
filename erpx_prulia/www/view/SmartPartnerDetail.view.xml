@@ -30,7 +30,7 @@
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
-						<l:BlockLayoutCell class="mainPageContent">
+						<l:BlockLayoutCell class="mainPageContent footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>

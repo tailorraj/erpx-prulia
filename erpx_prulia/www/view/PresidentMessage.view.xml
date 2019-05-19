@@ -6,10 +6,11 @@
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
+								backgroundColorSet="ColorSet10"
 								backgroundColorShade="ShadeA"
 								titleAlignment="Left"
 								title="The welfare of our members is our priority">
+
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
@@ -42,11 +43,11 @@
 							<Text text="On the other hand, the introduction of the balanced score card is expected to improve the productivity and professionalism of insurance agents, and in turn will also further enhanced the brand image and the attractiveness of the insurance industry. It must be understood that BSC is a holistic performance management tool rather than simply a performance grading tables for the agents.&#xA;&#xA;"/>
 							<Text text="Having stated that, the changes does come with a price for the agents. New competition will subsequently emerge as a result of the above changes. The pinching of agents is expected to intensify among composite insurers and takaful players. At this juncture, I would like to stress that trouble only comes when we believe in the myth the grass is always greener on the other side of the fence. It is my responsibility to remind everyone at this point that Prudential is a leading insurance company and will always remain as one. Being a part of this entity will ensure prosperous future and this is where PRULIA plays its vital role in not only in protecting the members interest but also to enhance it. The welfare of our members is our priority.&#xA;&#xA;"/>
 							<Text text="As we face these challenges together, we are guided by the objectives stated in our constitution, amongst it include:&#xA;&#xA;"/>
-							<Text text="1. To make representations to the Prudential management and any relevant authority or organizations on issues which affects the members eg: product development, payment of commissions. Rights and ethics, Operations etc.&#xA;&#xA;"/>
-							<Text text="2. To promote professional advancement and improvement of the Agency Force for betterment of our image and to serve our clients better.&#xA;&#xA;"/>
-							<Text text="3. To foster communication and Unity amongst us.&#xA;&#xA;"/>
-							<Text text="4. To undertake activities to enhance image of members in the eyes of the public.&#xA;&#xA;"/>
-							<Text text="5. And many others&#xA;&#xA;"/>
+							<Text class="red-text" text="1. To make representations to the Prudential management and any relevant authority or organizations on issues which affects the members eg: product development, payment of commissions. Rights and ethics, Operations etc.&#xA;&#xA;"/>
+							<Text class="red-text" text="2. To promote professional advancement and improvement of the Agency Force for betterment of our image and to serve our clients better.&#xA;&#xA;"/>
+							<Text class="red-text" text="3. To foster communication and Unity amongst us.&#xA;&#xA;"/>
+							<Text class="red-text" text="4. To undertake activities to enhance image of members in the eyes of the public.&#xA;&#xA;"/>
+							<Text class="red-text" text="5. And many others&#xA;&#xA;"/>
 							<Text text="The combined results of several people working together is often much more effective than could be that of an individual working alone. The unique perspectives of each one of us fosters creativity and effective solutions. This inevitably contributes to enhance our strength. &#xA;&#xA;"/>
 							<Text text="Coming together is a beginning, keeping together is progress, working together is success. So let’s stay united and grow stronger in alliance.&#xA;&#xA;"/>
 							<Text text="Mani Raja Chandran"/>
@@ -55,7 +56,7 @@
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
-						<l:BlockLayoutCell>
+						<l:BlockLayoutCell class="footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>

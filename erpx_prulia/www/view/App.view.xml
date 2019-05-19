@@ -2,7 +2,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:tnt="sap.tnt">
 	<tnt:ToolPage id="toolPage" sideExpanded="false" busy="{appParam>/busy}" busyIndicatorDelay="1">
 		<tnt:header>
-			<tnt:ToolHeader width="100%">
+			<tnt:ToolHeader class="gradientBack" width="100%">
 				<Button id="sideNavigationToggleButton"
 						icon="sap-icon://menu2"
 						type="Transparent"
@@ -18,7 +18,7 @@
 					</layoutData>
 				</Button>
 				<ToolbarSpacer width="20px" />
-				<Button icon="css/images/PRULIA_PRULIA logo.jpg" iconDensityAware="false" type="Transparent" press="handleHomeSelect"/>
+				<Button icon="css/images/PruliaImage.png" iconDensityAware="false" type="Transparent" press="handleHomeSelect"/>
 				<Button text="News" type="Transparent" visible="{=${device>/system/phone}!==true &amp;&amp; ${login>/memberLogon}===true}" press="handleNewsSelect">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="Low" />
@@ -40,13 +40,13 @@
 						<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px" />
 					</layoutData>
 				</ToolbarSpacer>
-				<Button icon="sap-icon://fa/facebook" type="Transparent" press="handleFacebookPress" visible="{=!${device>/system/phone}}"></Button>
-				<Button text="Member Login" visible="{=!${login>/memberLogon}}" type="Transparent" press="handleLoginPress" >
+				<Button class="fb-social" icon="sap-icon://fa/facebook" type="Transparent" press="handleFacebookPress" visible="{=!${device>/system/phone}}"></Button>
+				<Button class="btnDarkBg" text="Member Login" visible="{=!${login>/memberLogon}}" type="Transparent" press="handleLoginPress" >
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
 					</layoutData>
 				</Button>
-				<Button text="Welcome, {member>/full_name}" visible="{=!${device>/system/phone} &amp;&amp; ${login>/memberLogon}===true}" type="Transparent" press="handleUserNamePress" >
+				<Button class="btnDarkBg" text="Welcome, {member>/full_name}" visible="{=!${device>/system/phone} &amp;&amp; ${login>/memberLogon}===true}" type="Transparent" press="handleUserNamePress" >
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
 					</layoutData>

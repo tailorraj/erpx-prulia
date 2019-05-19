@@ -28,7 +28,8 @@ sap.ui.define([
 			this.getView().setModel(Login.getMemberModel(), "member");
 			this.getOwnerComponent().getModel("appParam").setData({
 				busy: true,
-				showBack: false
+				showBack: false,
+				showMap: false
 			});
 
 			Login.check_if_cookie_valid(function(){

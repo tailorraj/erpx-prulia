@@ -1,489 +1,440 @@
-/* Enter your custom styles here */
-@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans:400,600|Raleway|Roboto');
+@import url(https://fonts.googleapis.com/css?family=Lato|Open+Sans:400,600|Raleway|Roboto);
 
 /*!
  * Font Awesome Free 5.1.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
-  font-family: 'FontAwesome';
-  font-style: normal;
-  font-weight: normal;
-  src: url("fonts/fa-brands-400.eot");
-  src: url("fonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("fonts/fa-brands-400.woff2") format("woff2"), url("fonts/fa-brands-400.woff") format("woff"), url("fonts/fa-brands-400.ttf") format("truetype"), url("fonts/fa-brands-400.svg#fontawesome") format("svg"); }
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: 400;
+    src: url(fonts/fa-brands-400.eot);
+    src: url(fonts/fa-brands-400.eot?#iefix) format("embedded-opentype"), url(fonts/fa-brands-400.woff2) format("woff2"), url(fonts/fa-brands-400.woff) format("woff"), url(fonts/fa-brands-400.ttf) format("truetype"), url(fonts/fa-brands-400.svg#fontawesome) format("svg")
+}
 
-@font-face{
-    font-family:public-font-icons;
-    src:url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.eot);
-    src:url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.eot#iefixhlochz) format('embedded-opentype'),url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.woff) format('woff'),url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.ttf) format('truetype'),url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.svg#font) format('svg');
-    font-weight:400;
-    font-style:normal
+@font-face {
+    font-family: public-font-icons;
+    src: url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.eot);
+    src: url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.eot#iefixhlochz) format('embedded-opentype'), url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.woff) format('woff'), url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.ttf) format('truetype'), url(//webzaitest.blob.core.windows.net/assets/icons/201610060849567328/webzai-icons.svg#font) format('svg');
+    font-weight: 400;
+    font-style: normal
 }
 
 .fab {
-  font-family: 'Font Awesome 5 Brands'; }
-  
-/*hide branding bar*/
-.sapMShellBrandingBar{
-	visibility: hidden;
+    font-family: 'Font Awesome 5 Brands'
+}
+
+.sapMShellBrandingBar {
+    visibility: hidden
 }
 
 .mainContent {
-	width: 100%;
+    width: 100%
 }
 
 @media (min-width: 1024px) {
-	.mainContent {
-		width: 1024px;
-		margin-left: calc((100% - 1024px) / 2);
-	}
-	.mainPageContent {
-		/*width: 1024px;*/
-		padding-left: calc((100% - 1024px) / 2);
-		padding-right: calc((100% - 1024px) / 2);
-	}
+    .mainPageContent, .mainPageContentLeft {
+        padding-left: calc((100% - 1024px) / 2)
+    }
 
-	.mainPageContentLeft {
-		/*width: 1024px;*/
-		padding-left: calc((100% - 1024px) / 2);
-	}
+    .mainPageContent, .mainPageContentRight {
+        padding-right: calc((100% - 1024px) / 2)
+    }
 
-	.mainPageContentRight {
-		/*width: 1024px;*/
-		padding-right: calc((100% - 1024px) / 2);
-	}
-
+    .mainContent {
+        width: 1024px;
+        margin-left: calc((100% - 1024px) / 2)
+    }
 }
 
-/*Banner*/
-.startingImage{
-	background-image: url("images/WelcomeBanner.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center; 
-	min-height: 25rem;
+.startingImage {
+    background-image: url(images/PRULIA_BannerMain.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 25rem
 }
 
-.imageCell .sapUiBlockCellContent .sapUiBlockCellTitle{
-	padding-top: 7rem;
-	font-size: 3rem;
-	text-align: center;
-	font-family: "Open Sans", "Adobe Blank";
-    font-weight: 600;
-    font-style: normal;
-}
-
-/*.startingImage .sapMBtnContent, .startingImage .sapMBtnIcon {*/
-/*	color:#ffffff !important;*/
-/*}*/
-
-.sap-phone .startingImage{
-	min-height: 10rem;
-}
-.sap-phone .startingImage .sapUiBlockCellContent .sapUiBlockCellTitle{
-		padding-top: 2rem;
-		font-size: 1.75rem;
-}
-
-/*Main Banner Text*/
-
-
-.startingText{
-	text-shadow: 2px 2px 8px #000000;
-	color: #fff;
-	text-align: left;
-}
-
-.startingMiddleText{
-	text-align: center;
-}
-
-.startingText .sapUiBlockCellContent{
-	color: #fff;
-}
-
-/*Main Menu*/
-.pruliaMain .mainMenu .sapMGTHdrIconImage{
-	float: inherit;
-}
-
-.pruliaMain .mainMenu .sapMGTHdrContent{
-	text-align: center;
-}
-
-.pruliaMain .mainMenu .sapMGT{
-	padding-top:1.5rem;
-	background: rgb(244, 244, 246);
-    /*background: radial-gradient(#ffffff, #c6c6c6);*/
-} 
-
-.pruliaMain .mainMenu .sapMGT.OneByOne{
-	width:100%;
-}
-
-.pruliaMain .mainMenu .sapMGTHdrIconImage{
-	width: 3.5rem;
-    min-height: 3.5rem;
-    font-size: 3.5rem;
-    color: #ff4238;
-}
-
-
-.pruliaMain .mainMenu .sapMGTSubHdrTxt{
-	font-weight:400;
-	/*overflow: initial;*/
-	white-space: inherit;
-	font-family: "Open Sans", "Adobe Blank";
-	word-wrap: break-word;
-}
-
-
-.pruliaMain .mainImageTile{
-	background-size:     contain;
-    background-repeat:   no-repeat;
-    background-position: center top;
-}
-
-.aboutImage{
-	background-image: url("https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=b3cbc5d8d6aa9eb8113100ee6931b5b0&w=2048");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center; 
-	min-height: 25rem;
-}
-
-/*Login Section*/
-.login-font-heading{
+.imageCell .sapUiBlockCellContent .sapUiBlockCellTitle {
+    padding-top: 7rem;
+    font-size: 3rem;
+    text-align: center;
     font-family: "Open Sans", "Adobe Blank";
     font-weight: 600;
-    font-style: normal;
-    text-align: right;
-    color: #ff3f46;
+    font-style: normal
 }
 
-.login-font-heading-title{
-    font-size: 48px;
+.sap-phone .startingImage {
+    min-height: 10rem
 }
 
-.login-font-heading-content{
-    text-align: right !important;
+.sap-phone .startingImage .sapUiBlockCellContent .sapUiBlockCellTitle {
+    padding-top: 2rem;
+    font-size: 1.75rem
 }
 
-/*Contact*/
-.contactRow .sapUiBlockLayoutCellColor2A {
-    background-color: #ff3f46;
+.startingText {
+    text-shadow: 2px 2px 8px #000;
+    color: #fff;
+    text-align: left
 }
 
-.contactCell .sapUiBlockCellContent .sapUiBlockCellTitle{
-	font-size: 3rem;
-	text-align: center;
-	font-family: "Open Sans", "Adobe Blank";
+.pruliaMain .mainMenu .sapMGTHdrContent, .startingMiddleText {
+    text-align: center
+}
+
+.startingText .sapUiBlockCellContent {
+    color: #fff
+}
+
+.pruliaMain .mainMenu .sapMGT {
+    padding-top: 1.5rem;
+    background: #f4f4f6
+}
+
+.pruliaMain .mainMenu .sapMGT.OneByOne {
+    width: 100%
+}
+
+.pruliaMain .mainMenu .sapMGTHdrIconImage {
+    float: inherit;
+    width: 3.5rem;
+    min-height: 3.5rem;
+    font-size: 3.5rem;
+    color: #ff4238
+}
+
+.pruliaMain .mainMenu .eventBox {
+    margin: 0 10px;
+}
+
+.fullBanner, .genericTile .sapMNwC, .pruliaMain .usefulLink .sapMGT.OneByOne, .videoWrapper iframe {
+    width: 100%
+}
+
+.pruliaMain .mainMenu .sapMGTSubHdrTxt {
+    font-weight: 400;
+    white-space: inherit;
+    font-family: "Open Sans", "Adobe Blank";
+    word-wrap: break-word
+}
+
+.contactCell .sapUiBlockCellContent .sapUiBlockCellTitle, .login-font-heading {
+    font-family: "Open Sans", "Adobe Blank";
     font-weight: 600;
-    font-style: normal;
+    font-style: normal
 }
 
-/*Hide Nav sidebar*/
-.sap-desktop .sapTntToolPageAsideCollapsed .sapTntToolPageAside, .sap-tablet .sapTntToolPageAsideCollapsed .sapTntToolPageAside{
-	display:none;
+.pruliaMain .mainImageTile {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top
 }
 
-.sap-desktop .sapTntToolPageAsideCollapsed .sapTntToolPageMain, .sap-tablet .sapTntToolPageAsideCollapsed .sapTntToolPageMain{
-	padding-left: 0 !important;
+.aboutImage {
+    background-image: url(https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=b3cbc5d8d6aa9eb8113100ee6931b5b0&w=2048);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 25rem
 }
 
-/*President Banner*/
-.presidentBannerImage{
-	background-image: url("images/PRULIAPresidentbanner.png");
-	background-repeat: no-repeat;
-	background-size: auto 100%;
-	background-position: right; 
-	min-height:100px;
+.aboutBannerImage, .membershipBannerImage, .presidentBannerImage, .usefulLinkBannerImage {
+    background-size: auto 100%;
+    background-repeat: no-repeat
 }
+
+.login-font-heading {
+    text-align: right;
+    color: #ff3f46
+}
+
+.login-font-heading-title {
+    font-size: 48px
+}
+
+.login-font-heading-content {
+    text-align: right !important
+}
+
+.contactRow .sapUiBlockLayoutCellColor2A {
+    background-color: #ff3f46
+}
+
+.contactCell .sapUiBlockCellContent .sapUiBlockCellTitle {
+    font-size: 3rem;
+    text-align: center
+}
+
+.sap-desktop .sapTntToolPageAsideCollapsed .sapTntToolPageAside, .sap-tablet .sapTntToolPageAsideCollapsed .sapTntToolPageAside {
+    display: none
+}
+
+.sap-desktop .sapTntToolPageAsideCollapsed .sapTntToolPageMain, .sap-tablet .sapTntToolPageAsideCollapsed .sapTntToolPageMain {
+    padding-left: 0 !important
+}
+
+.presidentBannerImage {
+    background-image: url(images/PRULIAPresidentbanner.png);
+    background-position: right;
+    min-height: 100px
+}
+
 @media (min-width: 1024px) {
-	.presidentBannerImage{
-		background-image: url("images/PRULIAPresidentbannerMax.png");
-		background-position: center;
-		min-height:150px;
-	}
-	
-	.fullBanner .sapUiBlockCellContent {
-		margin-left: calc((100% - 1024px) / 2);
-		margin-right: calc((100% - 1024px) / 2);;
-	}
+    .presidentBannerImage {
+        background-image: url(images/PRULIAPresidentbannerMax.png);
+        background-position: center;
+        min-height: 150px
+    }
+
+    .fullBanner .sapUiBlockCellContent {
+        margin-left: calc((100% - 1024px) / 2);
+        margin-right: calc((100% - 1024px) / 2)
+    }
 }
 
 .fullBanner {
-	background-color:#ff6961;
-	width: 100%;
+    background-color: #ff6961
 }
 
-.bannerCell .sapUiBlockCellContent{
-	padding: 0 !important;
+.bannerCell .sapUiBlockCellContent {
+    padding: 0 !important
 }
 
 .videoWrapper {
-	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
-	padding-top: 25px;
-	height: 0;
-}
-.videoWrapper iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0
 }
 
-/*Vision*/
-.aboutBannerImage{
-	background-image: url("images/PRULIAAboutbanner.png");
-	background-repeat: no-repeat;
-	background-size: auto 100%;
-	background-position: right; 
-	min-height:100px;
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%
+}
+
+.aboutBannerImage {
+    background-image: url(images/PRULIAAboutbanner.png);
+    background-position: right;
+    min-height: 100px
 }
 
 @media (min-width: 1024px) {
-	.aboutBannerImage{
-		background-image: url("images/PRULIAAboutbannerMax.png");
-		background-position: center;
-		min-height:150px;
-	}
+    .aboutBannerImage {
+        background-image: url(images/PRULIAAboutbannerMax.png);
+        background-position: center;
+        min-height: 150px
+    }
 }
 
 .blockquote {
     padding: 10px 20px;
     margin: 0 0 20px;
     font-size: 17.5px;
-    border-left: 5px solid #ff6961;
-}
-.vision-mission .blockquote {
-    border-left: 0;
+    border-left: 5px solid #ff6961
 }
 
-.quote-box{
+.vision-mission .blockquote {
+    border-left: 0
+}
+
+.quote-box {
     overflow: hidden;
     border-radius: 17px;
     margin-top: 25px;
-    color:white;
-    box-shadow: 2px 2px 2px 2px #E0E0E0;
+    color: #fff;
+    box-shadow: 2px 2px 2px 2px #E0E0E0
 }
 
-.vision-box{
-	background-color: #5b731a;	
+.vision-box {
+    background-color: #5b731a
 }
 
-.mission-box{
-	background-color: #4974bc;
+.mission-box {
+    background-color: #4974bc
 }
-.quotation-mark{
+
+.quotation-mark {
     margin-top: -10px;
-    font-weight: bold;
-    font-size:100px;
-    color:white;
-    font-family: "Times New Roman", Georgia, Serif;
-    
-}
-.quote-text{
-    font-size: 19px;
-    /*margin-top: -65px;*/
+    font-weight: 700;
+    font-size: 100px;
+    color: #fff;
+    font-family: "Times New Roman", Georgia, Serif
 }
 
-
-.red-text{
-	color:#ff4238;
+.contactEmailText, .idText, .nameText {
+    font-family: Roboto, "Adobe Blank"
 }
 
-/*Useful Link*/
-.usefulLinkBannerImage{
-	background-image: url("images/UsefulLinkBanner.png");
-	background-repeat: no-repeat;
-	background-size: auto 100%;
-	background-position: right; 
-	min-height:100px;
+.quote-text {
+    font-size: 19px
 }
 
-@media (min-width: 1024px) {
-	.usefulLinkBannerImage{
-		background-position: center;
-		min-height:150px;
-	}
+.red-text {
+    color: #ff4238
 }
 
-.committeeRow .sapUiBlockCellContent{
-	padding: 2rem 0.5rem !important;
-}
-
-/*Membership*/
-.membershipBannerImage{
-	background-image: url("images/MembershipBanner.jpg");
-	background-repeat: no-repeat;
-	background-size: auto 100%;
-	background-position: right; 
-	min-height:100px;
+.usefulLinkBannerImage {
+    background-image: url(images/UsefulLinkBanner.png);
+    background-position: right;
+    min-height: 100px
 }
 
 @media (min-width: 1024px) {
-	.membershipBannerImage{
-		background-position: right;
-		min-height:150px;
-		margin-left: calc((100% - 1024px) / 2);
-		margin-right: calc((100% - 1024px) / 2);
-	}
+    .usefulLinkBannerImage {
+        background-position: center;
+        min-height: 150px
+    }
 }
 
-/*Profile*/
-.nameText{
-	font-family: "Roboto", "Adobe Blank";
+.committeeRow .sapUiBlockCellContent {
+    padding: 2rem .5rem !important
+}
+
+.membershipBannerImage {
+    background-image: url(images/MembershipBanner.jpg);
+    background-position: right;
+    min-height: 100px
+}
+
+@media (min-width: 1024px) {
+    .membershipBannerImage {
+        background-position: right;
+        min-height: 150px;
+        margin-left: calc((100% - 1024px) / 2);
+        margin-right: calc((100% - 1024px) / 2)
+    }
+}
+
+.nameText {
     font-weight: 700;
     font-style: normal;
-    font-size: 2.5rem;
+    font-size: 2.5rem
 }
 
-.idText{
-	font-color: #d3d3d3;
-	font-family: "Roboto", "Adobe Blank";
-	font-weight: 300;
-    font-style: italic;
+.idText {
+    font-color: #d3d3d3;
+    font-weight: 300;
+    font-style: italic
 }
 
-/*contact us section*/
-.contactEmailText{
-	font-family: "Roboto", "Adobe Blank";
+.contactEmailText {
     font-weight: 700;
     font-style: normal;
     font-size: 1.5rem;
-    color: white;
+    color: #fff
 }
 
-/*News Section*/
-/*:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon, :not(.sapMBtnDisabled) .sapMBtnGhost>.sapMBtnIcon{*/
-/*	color: #fff;*/
-/*}*/
+.newsTitle, .pruliaMain .usefulLink .sapMGTSubHdrTxt {
+    font-family: "Open Sans", "Adobe Blank"
+}
 
-/*News Tile*/
-/*.pruliaMain .sapMST.TwoByOne{*/
-/*	width: 100%;*/
-/*}*/
-.genericTileImage{
-	background-size: contain;
+.genericTileImage {
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: top;
-}
-.genericTile .sapMGTHdrContent{
-	height:8rem;
-}
-.genericTile .sapMNwC{
-	width: 100%;
+    background-position: top
 }
 
-.genericTile .sapMGT.TwoByOne{
-	width:100%;
-	height:14.35rem;
-} 
-
-.genericTile .sapMTileCnt.sapMFrameTypeAuto{
-	max-width: 100%;
+.genericTile .sapMGTHdrContent {
+    height: 8rem
 }
 
-.genericTile .sapMNwCCTxt{
-	max-width: 100%;
+.genericTile .sapMGT.TwoByOne {
+    width: 100%;
+    height: 14.35rem
 }
 
+.genericTile .sapMNwCCTxt, .genericTile .sapMTileCnt.sapMFrameTypeAuto {
+    max-width: 100%
+}
 
-.newsTitle{
-	font-size: 2rem !important;
-	font-family: "Open Sans", "Adobe Blank";
+.newsTitle {
+    font-size: 2rem !important;
     font-weight: 600;
-    font-style: normal;
+    font-style: normal
 }
 
-.contentHeight{
-	min-height: calc( 100vh - 14.0625rem );
+.contentHeight {
+    min-height: calc(100vh - 14.0625rem)
 }
 
-.noItemMessageIcon{
-	color: #878787;
-	font-size: 8rem;
+.noItemMessageIcon {
+    color: #878787;
+    font-size: 8rem
 }
 
-.noItemMessageText{
-	color: #333333;
-    font-size: 1.375rem;
+.noItemMessageText {
+    color: #333;
+    font-size: 1.375rem
 }
 
-.eventStatus{
-	text-align: left;
+.eventStatus {
+    text-align: left;
     position: absolute;
     top: 0;
     right: 0;
     z-index: 9999;
     padding: 1rem;
-    color: #fff;
+    color: #fff
 }
 
-.eventOpenRegistration{
-	background-color: #49A15A;
+.eventOpenRegistration {
+    background-color: #49A15A
 }
 
-.eventRegistered{
-	background-color: #448AF8;
+.eventRegistered {
+    background-color: #448AF8
 }
 
-.eventClosedRegistration{
-	background-color: #ff6961;
+.eventClosedRegistration {
+    background-color: #ff6961
 }
 
-.imageMaxHeight{
-	max-height: 40vh;
+.imageMaxHeight {
+    max-height: 40vh
 }
 
-.titleContent .sapMText{
-	font-size: 1rem !important;
+.titleContent .sapMText, .titleContent .sapUiIcon {
+    font-size: 1rem !important
 }
 
-.titleContent .sapUiIcon{
-	font-size: 1rem !important;
+.pruliaMain .usefulLink .sapMGTHdrContent {
+    text-align: center
 }
 
-/*UsefulLink*/
-.pruliaMain .usefulLink .sapMGTHdrIconImage{
-	float: inherit;
+.pruliaMain .usefulLink .sapMGT {
+    padding-top: 1.5rem;
+    background: #f4f4f6
 }
-
-.pruliaMain .usefulLink .sapMGTHdrContent{
-	text-align: center;
-}
-
-.pruliaMain .usefulLink .sapMGT{
-	padding-top:1.5rem;
-	background: rgb(244, 244, 246);
-    /*background: radial-gradient(#ffffff, #c6c6c6);*/
-} 
 
 @media (max-width: 1024px) {
-	.pruliaMain .usefulLink .sapMGT{
-		padding-top: 0.75rem;
-	}
+    .pruliaMain .usefulLink .sapMGT {
+        padding-top: .75rem
+    }
 }
 
-.pruliaMain .usefulLink .sapMGT.OneByOne{
-	width:100%;
-}
-
-.pruliaMain .usefulLink .sapMGTHdrIconImage{
-	width: 5rem;
+.pruliaMain .usefulLink .sapMGTHdrIconImage {
+    float: inherit;
+    width: 5rem;
     min-height: 3.5rem;
     font-size: 3.5rem;
-    color: #ff4238;
+    color: #ff4238
 }
 
+.pruliaMain .usefulLink .sapMGTSubHdrTxt {
+    font-weight: 400;
+    white-space: inherit;
+    word-wrap: break-word
+}
 
-.pruliaMain .usefulLink .sapMGTSubHdrTxt{
-	font-weight:400;
-	/*overflow: initial;*/
-	white-space: inherit;
-	font-family: "Open Sans", "Adobe Blank";
-	word-wrap: break-word;
+.Uploader {
+    float: right;
+    margin-right: 20px;
+}
+
+.gradientBack.sapTntToolHeader {
+	background: linear-gradient(45deg, #ff6961 0%, #F3B047 100%) !important;
+	border: none !important;
 }

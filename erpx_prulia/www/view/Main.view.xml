@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.erpx.site.prulia.PRULIA.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+<mvc:View controllerName="com.erpx.site.prulia.PRULIA.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:fiori="sap.f"
 	displayBlock="true" xmlns="sap.m" xmlns:custom="com.erpx.site.prulia.PRULIA.custom" xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
 			<Page showHeader="false" class="pruliaMain">
 				<content>
@@ -17,34 +17,53 @@
 								<l:BlockLayoutCell 
 										class="mainPageContent sapUiNoContentPadding">
 									<l:Grid defaultSpan="L4 M6 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
-										<GenericTile
-											frameType="OneByOne" press="handlePresidentMessagePress" headerImage="sap-icon://pu/president" header="&#xA;" subheader="President's message">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleCommitteePress" headerImage="sap-icon://pu/committee" header="&#xA;" subheader="Committee 2017-2019">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleMembershipPress" headerImage="sap-icon://pu/membership" header="&#xA;" subheader="Membership">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleTrainingPress" headerImage="sap-icon://pu/training" header="&#xA;" subheader="Training">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleEventPress" headerImage="sap-icon://pu/event" header="&#xA;" subheader="Event" >
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handlePhotoAlbumPress" headerImage="sap-icon://picture" header="&#xA;" subheader="Photo Album">
-										</GenericTile>
+										<VBox alignItems="Center">
+											<fiori:Avatar press="handlePresidentMessagePress" class="menuItem" src="css/images/mainItems/PRULIA_IconPresidentMessage.jpg" displaySize="XL"/>
+										</VBox>
+										<VBox alignItems="Center">
+											<fiori:Avatar press="handleCommitteePress" class="menuItem" src="css/images/mainItems/PRULIA_IconCommittee.jpg" displaySize="XL"/>
+										</VBox>
+										<VBox alignItems="Center">
+											<fiori:Avatar press="handleMembershipPress" class="menuItem" src="css/images/mainItems/PRULIA_IconMember.jpg" displaySize="XL"/>
+										</VBox>
+										<VBox alignItems="Center">
+											<fiori:Avatar press="handleTrainingPress" class="menuItem" src="css/images/mainItems/PRULIA_IconTraining.jpg" displaySize="XL"/>
+										</VBox>
+										<VBox alignItems="Center">
+											<fiori:Avatar press="handleEventPress" class="menuItem" src="css/images/mainItems/PRULIA_IconEvent.jpg" displaySize="XL"/>
+										</VBox>
+										<VBox alignItems="Center">
+											<fiori:Avatar press="handlePhotoAlbumPress" class="menuItem" src="css/images/mainItems/PRULIA_IconPhoto.jpg" displaySize="XL"/>
+										</VBox>
+
+										<!--<GenericTile-->
+											<!--frameType="OneByOne" press="handlePresidentMessagePress" headerImage="sap-icon://pu/president" header="&#xA;" subheader="President's message">-->
+										<!--</GenericTile>-->
+										<!--<GenericTile-->
+											<!--frameType="OneByOne" press="handleCommitteePress" headerImage="sap-icon://pu/committee" header="&#xA;" subheader="Committee 2017-2019">-->
+										<!--</GenericTile>-->
+										<!--<GenericTile-->
+											<!--frameType="OneByOne" press="handleMembershipPress" headerImage="sap-icon://pu/membership" header="&#xA;" subheader="Membership">-->
+										<!--</GenericTile>-->
+										<!--<GenericTile-->
+											<!--frameType="OneByOne" press="handleTrainingPress" headerImage="sap-icon://pu/training" header="&#xA;" subheader="Training">-->
+										<!--</GenericTile>-->
+										<!--<GenericTile-->
+											<!--frameType="OneByOne" press="handleEventPress" headerImage="sap-icon://pu/event" header="&#xA;" subheader="Event" >-->
+										<!--</GenericTile>-->
+										<!--<GenericTile-->
+											<!--frameType="OneByOne" press="handlePhotoAlbumPress" headerImage="sap-icon://picture" header="&#xA;" subheader="Photo Album">-->
+										<!--</GenericTile>-->
 									</l:Grid>
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
 							<l:BlockLayoutRow>
 								<l:BlockLayoutCell
-										titleAlignment="Left"
+										titleAlignment="Center"
 										title="Latest News" 
-										backgroundColorSet="ColorSet10" 
+										backgroundColorSet="ColorSet10"
 										backgroundColorShade="ShadeD"
-										class="mainPageContent sapUiTinyMarginTop">
+										class="mainPageContent sapUiTinyMarginTop blueBack">
 									
 									<HeaderContainer id="newsContainer" scrollStep="200" showDividers="false" content="{News>/}">
 										<GenericTile
@@ -65,10 +84,10 @@
 											</TileContent>
 										</GenericTile>
 									</HeaderContainer>
-									<HBox width="100%" justifyContent="End">
-										<Button icon="sap-icon://navigation-right-arrow" text="More News" type="Transparent" press="handleNewsPress"></Button>
+									<HBox width="100%" justifyContent="Center">
+										<!--<Button icon="sap-icon://navigation-right-arrow" text="Read more" type="Transparent" press="handleNewsPress"></Button>-->
+										<Link class="whiteLink" text="READ MORE" press="handleNewsPress"></Link>
 									</HBox>
-									
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
 							<!--<l:BlockLayoutRow class="contactRow">-->
@@ -94,21 +113,59 @@
 								<l:BlockLayoutCell
 										titleAlignment="Left"
 										title="About PRULIA"
-										class="aboutImage imageCell startingText startingMiddleText">
+										class="voiceImage imageCell startingText startingMiddleText">
 									<VBox>
 										<items>
-											<Text text="Prudential Life Insurance Agency Association (PRULIA), was formed in 1989 to protect the interest of Prudential Agency Force" class="startingText "/>
-											<Button text="Learn More about PRULIA" icon="sap-icon://navigation-right-arrow" iconFirst="false" class="sapUiTinyMarginTopBottom" press="handleAboutPress"></Button>
+											<Text text="It is very important that every agent or leader of Prudential should be a member of PRULIA to be united and stand together as one, to be the united" class="startingText "/>
+											<Text text="&quot;Voice of the Agency&quot;" class="yellowQuote"/>
+											<!--<Button text="Read more" icon="sap-icon://navigation-right-arrow" iconFirst="false" class="sapUiTinyMarginTopBottom" press="handleAboutPress"></Button>-->
+											<Link class="whiteLink" text="READ MORE" press="handleAboutPress"></Link>
 										</items>
 									</VBox>
 									
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
+							<l:BlockLayoutRow class="usefulLink">
+								<l:BlockLayoutCell
+										titleAlignment="Center"
+										title="Useful Link"
+										backgroundColorSet="ColorSet10"
+										backgroundColorShade="ShadeD"
+										class="mainPageContent mainTitleRed">
+									<Image src="css/images/UsefulLinkBanner.png" width="100%" mode="Background" densityAware="false"/>
+									<l:Grid defaultSpan="L3 M4 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
+										<GenericTile
+											frameType="OneByOne linkTile" press="handleUsefulLinkPress" subheader="Prudential Malaysia" customData:openUrl="http://www.prudential.com.my/">
+										</GenericTile>
+										<GenericTile
+											frameType="OneByOne" press="handleUsefulLinkPress"  subheader="Eastspring Investments" customData:openUrl="http://www.eastspringinvestments.com.my/">
+										</GenericTile>
+										<GenericTile
+											frameType="OneByOne" press="handleUsefulLinkPress"  subheader="Prudential BSN Takaful" customData:openUrl="https://www.prubsn.com.my/">
+										</GenericTile>
+										<GenericTile
+											frameType="OneByOne" press="handleUsefulLinkPress"  subheader="NAMLIFA" customData:openUrl="http://namlifa.org.my/">
+										</GenericTile>
+										<GenericTile
+											frameType="OneByOne" press="handleUsefulLinkPress"  subheader="Bank Negara Malaysia" customData:openUrl="http://www.bnm.gov.my/">
+										</GenericTile>
+										<GenericTile
+											frameType="OneByOne" press="handleUsefulLinkPress"  subheader="MII" customData:openUrl="http://www.insurance.com.my/">
+										</GenericTile>
+										<GenericTile
+											frameType="OneByOne" press="handleUsefulLinkPress"  subheader="Securities Commission" customData:openUrl="http://www.sc.com.my/">
+										</GenericTile>
+										<GenericTile
+											frameType="OneByOne" press="handleUsefulLinkPress"  subheader="Malaysia Takaful Association" customData:openUrl="http://www.malaysiantakaful.com.my/">
+										</GenericTile>
+									</l:Grid>
+								</l:BlockLayoutCell>
+							</l:BlockLayoutRow>
 							<l:BlockLayoutRow>
 								<l:BlockLayoutCell
-										titleAlignment="Left"
+										titleAlignment="Center"
 										title="Smart Partners" 
-										class="mainPageContent">
+										class="mainPageContent mainTitleRed">
 									<!-- <l:Grid defaultSpan="L2 M4 S6" class="sapUiNoContentPadding sapUiSmallMarginTop"> -->
 									<FlexBox
 										width="100%"
@@ -162,8 +219,9 @@
 										<Image src="css/icons/qbe-grey.png" densityAware="false" width="100%" />
 										<Image src="css/icons/toptravel-grey.png" densityAware="false" width="100%"/>
 									</l:Grid>
-									<HBox width="100%" justifyContent="End" visible="{login>/memberLogon}">
-										<Button icon="sap-icon://navigation-right-arrow" text="Smart Partners Details" type="Transparent" press="handleSmartPartnerPress"></Button>
+									<HBox width="100%" justifyContent="Center" visible="{login>/memberLogon}">
+										<Link class="darkLink" text="Smart Partners Details" press="handleSmartPartnerPress"></Link>
+										<!--<Button icon="sap-icon://navigation-right-arrow" text="Smart Partners Details" type="Transparent" press="handleSmartPartnerPress"></Button>-->
 									</HBox>
 									<!-- <HeaderContainer id="partnerContainer" scrollStep="200" showDividers="false" content="{News>/}">
 										<GenericTile
@@ -175,79 +233,99 @@
 											</TileContent>
 										</GenericTile>
 									</HeaderContainer> -->
-									
-								</l:BlockLayoutCell>
-							</l:BlockLayoutRow>
-							<l:BlockLayoutRow class="usefulLink">
-								<l:BlockLayoutCell
-										titleAlignment="Left"
-										title="Useful Link" 
-										backgroundColorSet="ColorSet10" 
-										backgroundColorShade="ShadeD"
-										class="mainPageContent">
-									<Image src="css/images/UsefulLinkBanner.png" width="100%" mode="Background" densityAware="false"/>
-									<l:Grid defaultSpan="L3 M4 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
-										<GenericTile
-											frameType="OneByOne" press="handleUsefulLinkPress" headerImage="css/icons/prudential.png" subheader="Prudential Malaysia" customData:openUrl="http://www.prudential.com.my/">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleUsefulLinkPress" headerImage="css/icons/eastspring.gif" subheader="Eastspring Investments" customData:openUrl="http://www.eastspringinvestments.com.my/">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleUsefulLinkPress" headerImage="css/icons/PruBSN.png" subheader="Prudential BSN Takaful" customData:openUrl="https://www.prubsn.com.my/">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleUsefulLinkPress" headerImage="css/icons/namlifa.png" subheader="NAMLIFA" customData:openUrl="http://namlifa.org.my/">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleUsefulLinkPress" headerImage="css/icons/bnm.png" subheader="Bank Negara Malaysia" customData:openUrl="http://www.bnm.gov.my/">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleUsefulLinkPress" headerImage="css/icons/mii.gif" subheader="MII" customData:openUrl="http://www.insurance.com.my/">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleUsefulLinkPress" headerImage="css/icons/sc.png" subheader="Securities Commission" customData:openUrl="http://www.sc.com.my/">
-										</GenericTile>
-										<GenericTile
-											frameType="OneByOne" press="handleUsefulLinkPress" headerImage="css/icons/mta.png" subheader="Malaysia Takaful Association" customData:openUrl="http://www.malaysiantakaful.com.my/">
-										</GenericTile>
-									</l:Grid>
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
 							<l:BlockLayoutRow class="contactRow ">
 								<l:BlockLayoutCell
 										titleAlignment="Left"
-										title="Contact"
+										title="Contact Us"
 										backgroundColorSet="ColorSet2" 
 										backgroundColorShade="ShadeA"
 										class="contactCell startingText mainPageContent">
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
 							<l:BlockLayoutRow class="contactRow">
-								<l:BlockLayoutCell 
-										backgroundColorSet="ColorSet2" 
-										backgroundColorShade="ShadeA"
-										class="mainPageContentLeft">
-									<FlexBox direction="Row" fitContainer="true"
-										alignItems="Start" justifyContent="Start">
-										<core:Icon src="sap-icon://call" size="3rem" class="sapUiSmallMarginEnd" />
-										<Text text="Phone : 03-7727 6382&#xA;Fax   : 03-7727 6384&#xA;Email : prulia@yahoo.com" />
+								<l:BlockLayoutCell class="mainPageContentLeft">
+									<FlexBox
+										direction="Column"
+										alignItems="Start">
+										<items>
+											<FlexBox direction="Row" fitContainer="true">
+												<core:Icon size="1.5rem" src="sap-icon://call" color="#F8D474"></core:Icon>
+												<Text class="contactLabel" text="P"></Text>
+												<Text class="contactText" text="03-7727 6382"></Text>
+											</FlexBox>
+											<FlexBox direction="Row" fitContainer="true">
+												<core:Icon size="1.5rem" src="sap-icon://fax-machine" color="#F8D474"></core:Icon>
+												<Text class="contactLabel" text="F"></Text>
+												<Text class="contactText" text="03-7727 6384"></Text>
+											</FlexBox>
+											<FlexBox direction="Row" fitContainer="true">
+												<core:Icon size="1.5rem" src="sap-icon://email" color="#F8D474"></core:Icon>
+												<Text class="contactLabel" text="E"></Text>
+												<Text class="contactText" text="prulia@yahoo.com"></Text>
+											</FlexBox>
+										</items>
 									</FlexBox>
-									
 								</l:BlockLayoutCell>
-								<l:BlockLayoutCell 
-										backgroundColorSet="ColorSet2" 
-										backgroundColorShade="ShadeA"
-										class="mainPageContentRight">
-									<FlexBox direction="Row" fitContainer="true"
-										alignItems="Start" justifyContent="Start">
-										<core:Icon src="sap-icon://building" size="3rem" class="sapUiSmallMarginEnd" />
-										<Text text="Unit No. 531, 5th Floor, Block A, Lobby8,&#xA;Damansara Intan,&#xA;No. 1 Jalan SS20/27,&#xA;47400 Petaling Jaya,&#xA;Selangor Darul Ehsan." />
+								<l:BlockLayoutCell class="mainPageContentRight">
+									<FlexBox
+										direction="Column"
+										alignItems="Start">
+										<items>
+											<FlexBox direction="Row" fitContainer="true">
+												<Text class="contactText" text="Unit No. 531, 5th Floor, Block A, Lobby 8"></Text>
+											</FlexBox>
+											<FlexBox direction="Row" fitContainer="true">
+												<Text class="contactText" text="Damansara Intan, No. 1 Jalan SS20/27, 47400"></Text>
+											</FlexBox>
+											<FlexBox direction="Row" fitContainer="true">
+												<Text class="contactText" text="Petaling Jaya, Selangor Darul Ehsan"></Text>
+											</FlexBox>
+										</items>
 									</FlexBox>
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
-							<l:BlockLayoutRow class="contactRow ">
-								<l:BlockLayoutCell 
+							<!--<l:BlockLayoutRow class="contactRow">-->
+								<!--<l:BlockLayoutCell-->
+										<!--class="mainPageContentLeft">-->
+									<!--<FlexBox direction="Row" fitContainer="true"-->
+										<!--alignItems="Start" justifyContent="Start">-->
+										<!--<core:Icon src="sap-icon://call" size="3rem" class="sapUiSmallMarginEnd" />-->
+										<!--<Text text="Phone : 03-7727 6382&#xA;Fax   : 03-7727 6384&#xA;Email : prulia@yahoo.com" />-->
+									<!--</FlexBox>-->
+								<!--</l:BlockLayoutCell>-->
+								<!--<l:BlockLayoutCell-->
+										<!--class="mainPageContentRight">-->
+									<!--<FlexBox direction="Row" fitContainer="true"-->
+										<!--alignItems="Start" justifyContent="Start">-->
+										<!--<core:Icon src="sap-icon://building" size="3rem" class="sapUiSmallMarginEnd" />-->
+										<!--<Text text="Unit No. 531, 5th Floor, Block A, Lobby8,&#xA;Damansara Intan,&#xA;No. 1 Jalan SS20/27,&#xA;47400 Petaling Jaya,&#xA;Selangor Darul Ehsan." />-->
+									<!--</FlexBox>-->
+								<!--</l:BlockLayoutCell>-->
+							<!--</l:BlockLayoutRow>-->
+							<l:BlockLayoutRow class="contactRow">
+								<l:BlockLayoutCell
+										titleAlignment="Center"
+										class="mainPageContent">
+									<HBox width="100%" justifyContent="Center">
+										<Link class="whiteLink" visible="{= !${appParam>/showMap}}" text="VIEW MAP" press="toggleMap"></Link>
+										<Link class="whiteLink" visible="{appParam>/showMap}" text="HIDE MAP" press="toggleMap"></Link>
+									</HBox>
+									<!-- <HeaderContainer id="partnerContainer" scrollStep="200" showDividers="false" content="{News>/}">
+										<GenericTile
+											backgroundImage="{News>image}"
+											frameType="TwoByOne" press="handleAboutMessagePress" class="mainImageTile">
+											<TileContent footer="{News>date}">
+												<NewsContent
+													contentText="{News>title}"/>
+											</TileContent>
+										</GenericTile>
+									</HeaderContainer> -->
+								</l:BlockLayoutCell>
+							</l:BlockLayoutRow>
+							<l:BlockLayoutRow class="contactRow" visible="{appParam>/showMap}">
+								<l:BlockLayoutCell
 										backgroundColorSet="ColorSet2" 
 										backgroundColorShade="ShadeA"
 										class="sapUiNoContentPadding mainPageContent">
@@ -255,7 +333,7 @@
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
 							<l:BlockLayoutRow>
-								<l:BlockLayoutCell>
+								<l:BlockLayoutCell class="footerBack">
 									<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>

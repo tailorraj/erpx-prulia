@@ -2,21 +2,35 @@
 	controllerName="com.erpx.site.prulia.PRULIA.controller.Event" xmlns:html="http://www.w3.org/1999/xhtml" >
 	<Page showHeader="false" displayBlock="true">
 		<content>
-			<l:VerticalLayout class="mainContent">
+			<!--<l:VerticalLayout class="mainContent">-->
 				<l:BlockLayout>
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left"-->
+								<!--title="Event">-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+					<l:BlockLayoutRow >
+						<l:BlockLayoutCell
+								titleAlignment="Center"
+								title="Strength"
+								class="eventImage imageCell startingText">
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="Event">
+								class="red-text"
+								titleAlignment="Center"
+								title="Events">
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow class="mainMenu" visible="{=${Event>/}.length > 0}">
 						<l:BlockLayoutCell 
 								class="mainPageContent genericTile sapUiNoContentPadding contentHeight">
 							<l:Grid defaultSpan="L4 M6 S12" class="sapUiNoContentPadding sapUiSmallMarginTop" content="{Event>/}" hSpacing="0">
-								<VBox>
+								<VBox class="eventBox">
 									<Text class="eventStatus eventRegistered" text="Registered" visible="{Event>register}"/>
 									<Text class="eventStatus eventOpenRegistration" text="Ready for Registration" visible="{=${Event>register} === false &amp;&amp; (${Event>event_status} === 'Open For Registration' || (${Event>event_status} === 'Publish' &amp;&amp; ${Event>show_open_for_registration} === 1))}"/>
 									<Text class="eventStatus eventClosedRegistration" text="Registration Closed" visible="{=${Event>register} === false &amp;&amp; ${Event>event_status} === 'Registration Closed'}"/>
@@ -47,12 +61,12 @@
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
-						<l:BlockLayoutCell>
+						<l:BlockLayoutCell class="footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
-			</l:VerticalLayout>
+			<!--</l:VerticalLayout>-->
 		</content>
 	</Page>
 </mvc:View>

@@ -20,12 +20,16 @@
 							</FlexBox>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
-					<l:BlockLayoutRow class="contactRow">
-						<l:BlockLayoutCell class="mainPageContent"
-							backgroundColorSet="ColorSet2" 
-							backgroundColorShade="ShadeA">
-							<VBox >
+					<l:BlockLayoutRow class="dark-row">
+						<l:BlockLayoutCell class="mainPageContent">
+							<VBox>
 								<Text text="{Event>event_name}" class="newsTitle sapUiSmallMarginBottom"/>
+							</VBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow class="red-row">
+						<l:BlockLayoutCell class="mainPageContent">
+							<VBox>
 								<HBox class="titleContent">
 									<core:Icon src="sap-icon://history" class="sapUiMediumMarginBottom sapUiSmallMarginEnd" />
 									<Text text="{ parts : [ 'Event>start_date_time', 'Event>end_date_time' ], formatter: '.eventDateFormatter' }" />
@@ -34,8 +38,6 @@
 									<core:Icon src="sap-icon://map-2" class="sapUiSmallMarginEnd" />
 									<Text text="{Event>venue}" class=""/>
 								</HBox>
-								
-								
 							</VBox>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
@@ -63,8 +65,8 @@
 								justifyContent="End" visible="{= ${Event>can_register} &amp;&amp; ${Event>event_status} === 'Open For Registration'}">
 								<items>
 									<Button visible="{=${Event>register} === false &amp;&amp; ${Event>event_status} === 'Open For Registration' &amp;&amp; ${Event>can_register}}" text="Register Event" press="handleRegisterEvent"/>
-									<Button visible="{=${Event>register} &amp;&amp; ${Event>event_status} === 'Open For Registration'}" text="Change Perference" press="handleChangeEvent"/>
-									<Button visible="{=${Event>register} &amp;&amp; ${Event>event_status} === 'Open For Registration'}" text="Withdraw Registration" press="handleDeleteEvent"/>
+									<Button visible="{=${Event>register} &amp;&amp; ${Event>event_status} === 'Open For Registration'}" text="Change Preference" press="handleChangeEvent"/>
+									<!--<Button visible="{=${Event>register} &amp;&amp; ${Event>event_status} === 'Open For Registration'}" text="Withdraw Registration" press="handleDeleteEvent"/>-->
 								</items>
 							</FlexBox>
 							<FlexBox
@@ -85,7 +87,7 @@
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
-						<l:BlockLayoutCell class="mainPageContent">
+						<l:BlockLayoutCell class="mainPageContent footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>

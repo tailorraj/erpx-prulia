@@ -14,8 +14,8 @@
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow class="mainMenu">
 						<l:BlockLayoutCell 
-								class="mainPageContent genericTile sapUiNoContentPadding">
-							<l:Grid defaultSpan="L4 M6 S12" class="sapUiNoContentPadding sapUiSmallMarginTop" content="{SmartPartner>/}" hSpacing="0">
+								class="mainPageContent genericTile">
+							<l:Grid defaultSpan="L4 M6 S12" class="sapUiSmallMarginTop" content="{SmartPartner>/}" hSpacing="0">
 								<GenericTile
 									frameType="TwoByOne" press="handleSmartPartnerTilePress" backgroundImage="{SmartPartner>image}" class="genericTileImage">
 									<TileContent>
@@ -27,7 +27,7 @@
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
-						<l:BlockLayoutCell>
+						<l:BlockLayoutCell class="footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>

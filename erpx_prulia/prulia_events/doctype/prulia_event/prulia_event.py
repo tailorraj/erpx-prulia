@@ -14,14 +14,21 @@ class PRULIAEvent(Document):
 
 @frappe.whitelist()
 def add_attendance(member, member_name, event, meal, shirt, accomodation):
+	member_data = frappe.get_doc("PRULIA Member", member)
 	event = frappe.get_doc("PRULIA Event", event)
 	event.flags.ignore_permissions = True
 	event.append("attendee", {
 		"member": member,
-		"member_name" : member_name,
+		"member_name": member_name,
+		"nric_number": member_data.nric_number,
+		"cell_number": member_data.cell_number,
+		"email": member_data.email,
+		"region": member_data.region,
+		"branch": member_data.branch,
 		"shirt_size": shirt,
 		"meal_option" : meal,
-		"accomodation": accomodation
+		"accomodation": accomodation,
+		"agency_no": member_data.agency_no
 	})
 	event.save()
 	frappe.msgprint("Your attendance is confirmed")
@@ -65,7 +72,7 @@ def get_event_list(member_name):
 	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option'], 
 		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
-	member = frappe.get_doc("PRULIA Member", member_name);
+	member = frappe.get_doc("PRULIA Member", member_name)
 
 	event_result = []
 	for event in events:
