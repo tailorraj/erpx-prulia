@@ -532,8 +532,8 @@
 }
 
 .sapFAvatarXL.menuItem {
-    height: 10rem;
-    width: 10rem;
+    height: 12rem;
+    width: 12rem;
 }
 
 @media (max-width: 1024px) {
