@@ -128,7 +128,20 @@
 											<Link class="whiteLink" text="READ MORE" press="handleAboutPress"></Link>
 										</items>
 									</VBox>
-									
+
+								</l:BlockLayoutCell>
+							</l:BlockLayoutRow>
+                            <l:BlockLayoutRow>
+								<l:BlockLayoutCell
+										titleAlignment="Left"
+										title="Recommended books to read"
+										class="bookImage red-text imageCell startingText startingMiddleText">
+									<VBox>
+										<items>
+											<Link class="darkLink" text="FIND OUT MORE" press=""></Link>
+										</items>
+									</VBox>
+
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
 							<l:BlockLayoutRow class="usefulLink">

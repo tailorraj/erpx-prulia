@@ -89,16 +89,28 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    min-height: 30rem;
+}
+
+.aboutValuesImage {
+    background-image: url(images/PRULIA_AboutValues.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     min-height: 35rem;
 }
 
 .imageCell .sapUiBlockCellContent .sapUiBlockCellTitle {
-    padding-top: 7rem;
     font-size: 3rem;
     text-align: center;
     font-family: "Open Sans", "Adobe Blank";
     font-weight: 600;
-    font-style: normal
+    font-style: normal;
+    text-shadow: none;
+}
+
+.imageCell.voiceImage .sapUiBlockCellContent .sapUiBlockCellTitle {
+    padding-top: 7rem;
 }
 
 .startingText {
@@ -206,6 +218,18 @@
     background-size: cover;
     background-position: center;
     min-height: 25rem
+}
+
+.bookImage {
+    background-image: url(images/PRULIA_BannerBook.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 25rem
+}
+
+.bookImage .darkLink {
+    margin-top: 8em;
 }
 
 .aboutBannerImage, .membershipBannerImage, .presidentBannerImage, .usefulLinkBannerImage {
