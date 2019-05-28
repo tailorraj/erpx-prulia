@@ -20,6 +20,14 @@
     font-style: normal
 }
 
+.sapMTileCnt.News {
+    background-color: rgba(241,100,107,.85);
+}
+
+.paddingTop10 {
+    padding-top: 2em;
+}
+
 .fab {
     font-family: 'Font Awesome 5 Brands'
 }

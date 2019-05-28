@@ -90,7 +90,7 @@
 									</HeaderContainer>
 									<HBox width="100%" justifyContent="Center">
 										<!--<Button icon="sap-icon://navigation-right-arrow" text="Read more" type="Transparent" press="handleNewsPress"></Button>-->
-										<Link class="whiteLink" text="READ MORE" press="handleNewsPress"></Link>
+										<Link class="whiteLink paddingTop10" text="READ MORE" press="handleNewsPress"></Link>
 									</HBox>
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
