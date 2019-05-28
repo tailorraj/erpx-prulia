@@ -37,6 +37,11 @@ sap.ui.define([
 			this.getView().getModel("appParam").setProperty("/busy", false);
 		},
 
+		toggleMap: function (oEvent) {
+			var showMap = this.getOwnerComponent().getModel("appParam").getProperty("/showMap");
+
+			this.getOwnerComponent().getModel("appParam").setProperty("/showMap", !showMap);
+        }
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.erpx.site.prulia.PRULIA.view.PresidentMessage

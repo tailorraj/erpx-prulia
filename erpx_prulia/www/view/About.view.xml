@@ -150,12 +150,12 @@ controllerName="com.erpx.site.prulia.PRULIA.controller.About"
 			<l:BlockLayout>
 				<l:BlockLayoutRow class="vision-mission">
 					<l:BlockLayoutCell class="vision-container">
-						<Text text='VISION OF PRULIA' class="red-text vision-header"/>
-						<Text text='Premier association in delivering comprehensive needs for esteemed members.' class="vision-text"/>
+						<Text text='VISION OF PRULIA' textAlign="Center" class="red-text vision-header"/>
+						<Text text='Premier association in delivering comprehensive needs for esteemed members.' textAlign="Center" class="vision-text"/>
 					</l:BlockLayoutCell>
 					<l:BlockLayoutCell class="mission-container">
-						<Text text='MISSION OF PRULIA' class="red-text mission-header"/>
-						<Text text='Safeguarding members interest&apos; and welfare.' class="mission-text"/>
+						<Text text='MISSION OF PRULIA' class="red-text mission-header" textAlign="Center"/>
+						<Text text='Safeguarding members interest&apos; and welfare.' textAlign="Center" class="mission-text"/>
 					</l:BlockLayoutCell>
 				</l:BlockLayoutRow>
 				<l:BlockLayoutRow>

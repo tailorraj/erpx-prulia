@@ -2,12 +2,22 @@ var _gulp = require('gulp'),
     _ui5 = require('gulp-ui5-preload'),
     _uglify = require('gulp-uglify'),
     _prettydata = require('gulp-pretty-data'),
-    _if = require('gulp-if');
+    _if = require('gulp-if'),
+    _process = require('child_process');
+
 
 _gulp.task('buildui5', buildUI5);
 
 _gulp.task('default', function () {
     _gulp.watch(['**/**', '!node_modules', '!Component-preload.js'], buildUI5);
+});
+
+_gulp.task('localhost', function () {
+    return new Promise(function (resolve) {
+        _process.exec('http-server .', function () {
+            resolve();
+        });
+    });
 });
 
 function buildUI5() {

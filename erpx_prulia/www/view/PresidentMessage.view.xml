@@ -2,27 +2,13 @@
 	controllerName="com.erpx.site.prulia.PRULIA.controller.PresidentMessage" xmlns:html="http://www.w3.org/1999/xhtml" >
 	<Page showHeader="false" displayBlock="true" class="presidentPage">
 		<content>
-			<l:VerticalLayout class="mainContent">
+			<l:VerticalLayout id="bannerLayout" width="100%">
 				<l:BlockLayout>
-					<l:BlockLayoutRow>
+					<l:BlockLayoutRow >
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10"
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="The welfare of our members is our priority">
-
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>
-				</l:BlockLayout>
-			</l:VerticalLayout>
-			<l:VerticalLayout class="fullBanner">
-				<l:BlockLayout>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								titleAlignment="Left"
-								title="Mani Raja Chandran"
-								class="presidentBannerImage startingText">
-							<Text text="President of PRULIA" class="startingText"/>
+								titleAlignment="Center"
+								class="presidentBannerImage imageCell">
+							<!--<Button text="Learn More about PRULIA" type="Transparent" icon="sap-icon://navigation-right-arrow" iconFirst="false" press="handleAboutMessagePress"></Button>-->
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
@@ -31,18 +17,16 @@
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
 								titleAlignment="Left"
-								title="Dear Prulians,">
+								title="Dear Prulians," class="text-bold">
 							<VBox>
-							<Text text="I am privileged to take this opportunity to thank and congratulate all the members who have contributed throughout these 30 years’ successful journey of PRULIA. The trust, confidence and adherence that you have in PRULIA is what have advanced us thus far.&#xA;&#xA;"/>
+							<Text class="text-bold" text="I am privileged to take this opportunity to thank and congratulate all the members who have contributed throughout these 30 years’ successful journey of PRULIA. The trust, confidence and adherence that you have in PRULIA is what have advanced us thus far.&#xA;&#xA;"/>
 							<Text text="This year is a ‘metamorphosis’ year for us as we transform from our 20s to 30s. Transformation or change is a permanent phenomenon of this universe and we are not an exception to this. What has been constant in PRULIA in the last 30 years is change and progress is impossible without change. Therefore, we must recognize the need to adapt the changing competitive environment.&#xA;&#xA;" />
 							<Text text="BNM highlighted in its 6th Malaysian Insurance Summit, that Malaysia’s insurance sector is following an ‘S-curve’ trajectory. Although the industry’s growth potential remains significant but it must be accepted that the industry is ripe for transformation to a new growth trajectory. &#xA;&#xA;"/>
 							<Text text="In March 2016, BNM had introduced the phased liberalisation before transitioning to a fully liberalised market. The implications of the reform are much wider than just an adjustment to premium levels. It will pave the way for a new wave of product innovation, significantly expanding choices for consumers.&#xA;&#xA;"/>
 							<Text text="On the other hand, the introduction of the balanced score card is expected to improve the productivity and professionalism of insurance agents, and in turn will also further enhanced the brand image and the attractiveness of the insurance industry. It must be understood that BSC is a holistic performance management tool rather than simply a performance grading tables for the agents.&#xA;&#xA;"/>
 							<Text text="Having stated that, the changes does come with a price for the agents. New competition will subsequently emerge as a result of the above changes. The pinching of agents is expected to intensify among composite insurers and takaful players. At this juncture, I would like to stress that trouble only comes when we believe in the myth the grass is always greener on the other side of the fence. It is my responsibility to remind everyone at this point that Prudential is a leading insurance company and will always remain as one. Being a part of this entity will ensure prosperous future and this is where PRULIA plays its vital role in not only in protecting the members interest but also to enhance it. The welfare of our members is our priority.&#xA;&#xA;"/>
-							<Text text="As we face these challenges together, we are guided by the objectives stated in our constitution, amongst it include:&#xA;&#xA;"/>
+							<Text class="text-bold" text="As we face these challenges together, we are guided by the objectives stated in our constitution, amongst it include:&#xA;&#xA;"/>
 							<Text class="red-text" text="1. To make representations to the Prudential management and any relevant authority or organizations on issues which affects the members eg: product development, payment of commissions. Rights and ethics, Operations etc.&#xA;&#xA;"/>
 							<Text class="red-text" text="2. To promote professional advancement and improvement of the Agency Force for betterment of our image and to serve our clients better.&#xA;&#xA;"/>
 							<Text class="red-text" text="3. To foster communication and Unity amongst us.&#xA;&#xA;"/>
@@ -50,9 +34,92 @@
 							<Text class="red-text" text="5. And many others&#xA;&#xA;"/>
 							<Text text="The combined results of several people working together is often much more effective than could be that of an individual working alone. The unique perspectives of each one of us fosters creativity and effective solutions. This inevitably contributes to enhance our strength. &#xA;&#xA;"/>
 							<Text text="Coming together is a beginning, keeping together is progress, working together is success. So let’s stay united and grow stronger in alliance.&#xA;&#xA;"/>
-							<Text text="Mani Raja Chandran"/>
+							<Text class="text-bold" text="Mani Raja Chandran"/>
 							<Text text="President"/>
 							</VBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</l:VerticalLayout>
+			<l:VerticalLayout width="100%">
+				<l:BlockLayout>
+					<l:BlockLayoutRow class="contactRow ">
+						<l:BlockLayoutCell
+								titleAlignment="Left"
+								title="Contact Us"
+								backgroundColorSet="ColorSet2"
+								backgroundColorShade="ShadeA"
+								class="contactCell startingText mainPageContent">
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow class="contactRow">
+						<l:BlockLayoutCell class="mainPageContentLeft">
+							<FlexBox
+								direction="Column"
+								alignItems="Start">
+								<items>
+									<FlexBox direction="Row" fitContainer="true">
+										<core:Icon size="1.5rem" src="sap-icon://call" color="#F8D474"></core:Icon>
+										<Text class="contactLabel" text="P"></Text>
+										<Text class="contactText" text="03-7727 6382"></Text>
+									</FlexBox>
+									<FlexBox direction="Row" fitContainer="true">
+										<core:Icon size="1.5rem" src="sap-icon://fax-machine" color="#F8D474"></core:Icon>
+										<Text class="contactLabel" text="F"></Text>
+										<Text class="contactText" text="03-7727 6384"></Text>
+									</FlexBox>
+									<FlexBox direction="Row" fitContainer="true">
+										<core:Icon size="1.5rem" src="sap-icon://email" color="#F8D474"></core:Icon>
+										<Text class="contactLabel" text="E"></Text>
+										<Text class="contactText" text="prulia@yahoo.com"></Text>
+									</FlexBox>
+								</items>
+							</FlexBox>
+						</l:BlockLayoutCell>
+						<l:BlockLayoutCell class="mainPageContentRight">
+							<FlexBox
+								direction="Column"
+								alignItems="Start">
+								<items>
+									<FlexBox direction="Row" fitContainer="true">
+										<Text class="contactText" text="Unit No. 531, 5th Floor, Block A, Lobby 8"></Text>
+									</FlexBox>
+									<FlexBox direction="Row" fitContainer="true">
+										<Text class="contactText" text="Damansara Intan, No. 1 Jalan SS20/27, 47400"></Text>
+									</FlexBox>
+									<FlexBox direction="Row" fitContainer="true">
+										<Text class="contactText" text="Petaling Jaya, Selangor Darul Ehsan"></Text>
+									</FlexBox>
+								</items>
+							</FlexBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow class="contactRow">
+						<l:BlockLayoutCell
+								titleAlignment="Center"
+								class="mainPageContent">
+							<HBox width="100%" justifyContent="Center">
+								<Link class="whiteLink" visible="{= !${appParam>/showMap}}" text="VIEW MAP" press="toggleMap"></Link>
+								<Link class="whiteLink" visible="{appParam>/showMap}" text="HIDE MAP" press="toggleMap"></Link>
+							</HBox>
+							<!-- <HeaderContainer id="partnerContainer" scrollStep="200" showDividers="false" content="{News>/}">
+								<GenericTile
+									backgroundImage="{News>image}"
+									frameType="TwoByOne" press="handleAboutMessagePress" class="mainImageTile">
+									<TileContent footer="{News>date}">
+										<NewsContent
+											contentText="{News>title}"/>
+									</TileContent>
+								</GenericTile>
+							</HeaderContainer> -->
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow class="contactRow" visible="{appParam>/showMap}">
+						<l:BlockLayoutCell
+								backgroundColorSet="ColorSet2"
+								backgroundColorShade="ShadeA"
+								class="sapUiNoContentPadding mainPageContent">
+								<Image src="css/images/LocationMap.png" densityAware="false" width="100%"/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>

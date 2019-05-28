@@ -56,7 +56,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 19rem;
+    min-height: 30rem;
 }
 
 .sap-phone .startingImage {
@@ -82,6 +82,10 @@
     background-size: cover;
     background-position: center;
     min-height: 35rem;
+}
+
+.memberItem {
+    width: 100%;
 }
 
 .aboutImage {
@@ -131,7 +135,7 @@
 
 .pruliaMain .mainMenu .sapMGT {
     padding-top: 1.5rem;
-    background: #f4f4f6
+    background: #f4f4f6;
 }
 
 .pruliaMain .mainMenu .sapMGT.OneByOne {
@@ -185,8 +189,12 @@
     background-image: url('images/mainItems/PRULIA_IconNewsHover.jpg') !important;
 }
 
-.usefulLink .sapUiBlockLayoutCell{
+.skinBack .sapUiBlockLayoutCell{
     background-color: #F0E9D9;
+}
+
+.whiteBack .sapUiBlockLayoutCell{
+    background-color: #FFF;
 }
 
 .fullBanner, .genericTile .sapMNwC, .pruliaMain .usefulLink .sapMGT.OneByOne, .videoWrapper iframe {
@@ -273,17 +281,19 @@
 
 .presidentBannerImage {
     background-image: url(images/PRULIA_BannerPresident.jpg);
-    background-position: right;
-    min-height: 100px
+    background-position: top;
+    -webkit-background-size: contain;
+    background-size: contain;
+    min-height: 12rem;
 }
 
 @media (min-width: 1024px) {
     .presidentBannerImage {
         background-image: url(images/PRULIA_BannerPresident.jpg);
-        background-position: center;
-        -webkit-background-size: contain;
-        background-size: contain;
-        min-height: 450px
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        min-height: 30rem;
     }
 
     .fullBanner .sapUiBlockCellContent {
@@ -377,7 +387,7 @@
     color: #F1646B !important;
 }
 
-.text-bold {
+.text-bold, .text-bold .sapUiBlockCellTitle {
     font-weight: bold;
 }
 
@@ -665,6 +675,10 @@
 
 .mission-container {
     background-color: #9DC7D8;
+}
+
+.vision-mission {
+    text-align: center;
 }
 
 .vision-mission .vision-header, .vision-mission .mission-header {

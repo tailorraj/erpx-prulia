@@ -4,6 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
+    "browser-sync": "^2.26.5",
     "gulp": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-less": "^4.0.1",

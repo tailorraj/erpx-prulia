@@ -51,59 +51,111 @@
 			<!--</l:VerticalLayout>-->
 			<l:VerticalLayout class="mainContent">
 				<l:BlockLayout>
-					<l:BlockLayoutRow>
+					<l:BlockLayoutRow class="mainMenu">
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeB"
-								titleAlignment="Left">
-							<Image src="css/images/ForMembership.jpeg" width="100%"/>
-						</l:BlockLayoutCell>	
+								class="mainPageContent sapUiNoContentPadding">
+							<l:Grid defaultSpan="L3 M3 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
+								<VBox alignItems="Center">
+									<Image class="memberItem" src="css/images/memberItems/PRULIA_MemberIcon_1.png"/>
+								</VBox>
+								<VBox alignItems="Center">
+									<Image class="memberItem" src="css/images/memberItems/PRULIA_MemberIcon_2.png"/>
+								</VBox>
+								<VBox alignItems="Center">
+									<Image class="memberItem" src="css/images/memberItems/PRULIA_MemberIcon_3.png"/>
+								</VBox>
+								<VBox alignItems="Center">
+									<Image class="memberItem" src="css/images/memberItems/PRULIA_MemberIcon_4.png"/>
+								</VBox>
+							</l:Grid>
+						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="Types of Membership">
-							<Text text="Quality Agent - A person who holds a full-time or part-time contract with Prudential Assurance Malaysia Berhad and registered as a PRULIA Member. Such Quality Agents are allowed to vote at any meeting of the association or hold any office.&#xA;&#xA;"/>
-							<Text text="Quality Leader - A person who holds a full-time Agent contract with Prudential Assurance Malaysia Berhad and is in a position of UM1, UM2, AM or SAM. Such Quality Leaders are allowed to vote at any meeting of the association or hold any office." />
-						</l:BlockLayoutCell>	
+
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell class="mainPageContent genericTile sapUiNoContentPadding contentHeight">-->
+							<!--<l:Grid defaultSpan="L4 M4 S4" class="sapUiNoContentPadding sapUiSmallMarginTop" hSpacing="0">-->
+								<!--<VBox>-->
+									<!--<Image src="css/images/memberItems/PRULIA_MemberIcon1.png"></Image>-->
+								<!--</VBox>-->
+								<!--<VBox>-->
+									<!--<Image src="css/images/memberItems/PRULIA_MemberIcon1.png"></Image>-->
+								<!--</VBox>-->
+								<!--<VBox>-->
+									<!--<Image src="css/images/memberItems/PRULIA_MemberIcon1.png"></Image>-->
+								<!--</VBox>-->
+								<!--<VBox>-->
+									<!--<Image src="css/images/memberItems/PRULIA_MemberIcon1.png"></Image>-->
+								<!--</VBox>-->
+							<!--</l:Grid>-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeB"-->
+								<!--titleAlignment="Left">-->
+							<!--<Image src="css/images/ForMembership.jpeg" width="100%"/>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left"-->
+								<!--title="Types of Membership">-->
+							<!--<Text text="Quality Agent - A person who holds a full-time or part-time contract with Prudential Assurance Malaysia Berhad and registered as a PRULIA Member. Such Quality Agents are allowed to vote at any meeting of the association or hold any office.&#xA;&#xA;"/>-->
+							<!--<Text text="Quality Leader - A person who holds a full-time Agent contract with Prudential Assurance Malaysia Berhad and is in a position of UM1, UM2, AM or SAM. Such Quality Leaders are allowed to vote at any meeting of the association or hold any office." />-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeB"-->
+								<!--titleAlignment="Left"-->
+								<!--title="Membership Application">-->
+							<!--<Text text="Every application for membership shall be forwarded to the Secretary who shall at the first convenient opportunity submit it to the Committee for approval. Committee may at its discretion reject any application without assigning any reason therefore."/>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>	-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeC"-->
+								<!--titleAlignment="Left"-->
+								<!--title="Membership Fees, Subscriptions and Votes">-->
+							<!--<Text text="Every applicant whose application has been approved as aforesaid shall upon payment of the entrance fee and the yearly subscription be admitted as a member of the Association and shall be entitled to all privileges of the appropriate membership and shall be bound by the provisions of the of the Rules of the of the Committee then enforce or which may thereafter be implemented from time to time."/>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>	-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeD"-->
+								<!--titleAlignment="Left"-->
+								<!--title="Membership Fee">-->
+							<!--<Text text="The annual membership fee shall be payable by applicants for admission as follows:&#xA;&#xA;Quality Leader: RM 100.00&#xA;Quality Agent: RM 50.00"/>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>	-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeC"-->
+								<!--titleAlignment="Left"-->
+								<!--title="Membership Benefits">-->
+							<!--<Image src="css/images/benefits.jpg" width="100%"/>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>-->
+				</l:BlockLayout>
+			</l:VerticalLayout>
+			<l:VerticalLayout width="100%">
+				<l:BlockLayout>
+					<l:BlockLayoutRow class="whiteBack">
+						<l:BlockLayoutCell titleAlignment="Center" class="mainPageContent sapUiTinyMarginTop">
+                            <Image class="memberItem" src="css/images/PRULIA_MemberDetails.png"/>
+						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeB"
-								titleAlignment="Left"
-								title="Membership Application">
-							<Text text="Every application for membership shall be forwarded to the Secretary who shall at the first convenient opportunity submit it to the Committee for approval. Committee may at its discretion reject any application without assigning any reason therefore."/>
-						</l:BlockLayoutCell>	
-					</l:BlockLayoutRow>	
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeC"
-								titleAlignment="Left"
-								title="Membership Fees, Subscriptions and Votes">
-							<Text text="Every applicant whose application has been approved as aforesaid shall upon payment of the entrance fee and the yearly subscription be admitted as a member of the Association and shall be entitled to all privileges of the appropriate membership and shall be bound by the provisions of the of the Rules of the of the Committee then enforce or which may thereafter be implemented from time to time."/>
-						</l:BlockLayoutCell>	
-					</l:BlockLayoutRow>	
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeD"
-								titleAlignment="Left"
-								title="Membership Fee">
-							<Text text="The annual membership fee shall be payable by applicants for admission as follows:&#xA;&#xA;Quality Leader: RM 100.00&#xA;Quality Agent: RM 50.00"/>
-						</l:BlockLayoutCell>	
-					</l:BlockLayoutRow>	
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeC"
-								titleAlignment="Left"
-								title="Membership Benefits">
-							<Image src="css/images/benefits.jpg" width="100%"/>
-						</l:BlockLayoutCell>	
+					<l:BlockLayoutRow class="skinBack">
+						<l:BlockLayoutCell titleAlignment="Center" class="mainPageContent sapUiTinyMarginTop">
+                            <Image class="memberItem" src="css/images/PRULIA_MemberBenefits.png"/>
+						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
 			</l:VerticalLayout>

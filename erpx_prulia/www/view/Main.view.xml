@@ -7,9 +7,7 @@
 							<l:BlockLayoutRow >
 								<l:BlockLayoutCell
 										titleAlignment="Center"
-										title="Together We Grow"
-										class="startingImage imageCell startingText startingMiddleText">
-									<Text text="Prudential Life Insurance Agency Association" class="startingText startingMiddleText"/>
+										class="startingImage imageCell">
 									<!--<Button text="Learn More about PRULIA" type="Transparent" icon="sap-icon://navigation-right-arrow" iconFirst="false" press="handleAboutMessagePress"></Button>-->
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
@@ -144,7 +142,7 @@
 
 								</l:BlockLayoutCell>
 							</l:BlockLayoutRow>
-							<l:BlockLayoutRow class="usefulLink">
+							<l:BlockLayoutRow class="skinBack usefulLink">
 								<l:BlockLayoutCell
 										titleAlignment="Center"
 										title="Useful Link"
