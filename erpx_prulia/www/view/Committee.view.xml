@@ -2,400 +2,226 @@
 	controllerName="com.erpx.site.prulia.PRULIA.controller.Committee" xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page showHeader="false">
 		<content>
-			<l:VerticalLayout class="mainContent">
+			<l:VerticalLayout width="100%">
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="Committee 2017-2019">
+								titleAlignment="Center"
+								title="Committee 2017-2019"
+								class="committeeImage">
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
 			</l:VerticalLayout>
-			<l:VerticalLayout class="fullBanner">
+
+			<l:VerticalLayout class="mainContent">
 				<l:BlockLayout>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell class="bannerCell">
+					<l:BlockLayoutRow class="mainMenu">
+						<l:BlockLayoutCell class="mainPageContent sapUiNoContentPadding">
+							<l:Grid defaultSpan="L6 M12 S12" class="sapUiNoContentPadding sapUiSmallMarginTop">
+								<VBox alignItems="Center" class="committeeMember">
+									<Title text="President" class="main-title text-bold blue-text"/>
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="blue-border"/>
+									<Title text="Maniraja Chandran" class="text-bold blue-text"/>
+									<Title text="019-2115977" />
+									<Title text="maniraja.c@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember">
+									<Title text="Immediate Past President" class="main-title text-bold blue-text"/>
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="blue-border"/>
+									<Title text="Emily Ngok" class="text-bold blue-text"/>
+									<Title text="012-2839999" />
+									<Title text="emilyngok@yahoo.com" />
+								</VBox>
+
+								<VBox alignItems="Center" class="committeeMember">
+									<Title text="1st Vice President" class="main-title text-bold red-text"/>
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Title text="Kam Chee Meng" class="text-bold red-text"/>
+									<Title text="019-9399928" />
+									<Title text="kcm.prudential@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember">
+									<Title text="2nd Vice President" class="main-title text-bold red-text"/>
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Title text="Lim Sook Kwan" class="text-bold red-text"/>
+									<Title text="019-6519982" />
+									<Title text="limsookkwan@yahoo.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember">
+									<Title text="Secretary General" class="main-title text-bold red-text"/>
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Title text="Shereen Lim Chooi Chin" class="text-bold red-text"/>
+									<Title text="012-9155571" />
+									<Title text="shereen.prulia@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember">
+									<Title text="Assistant Secretary General" class="main-title text-bold red-text"/>
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Title text="Steven Lee Kim Huat" class="text-bold red-text"/>
+									<Title text="012-2938891" />
+									<Title text="khoee998@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember">
+									<Title text="Treasurer" class="main-title text-bold red-text"/>
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Title text="Wooi Yu Thong" class="text-bold red-text"/>
+									<Title text="019-4106028" />
+									<Title text="ytwooi@hotmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember">
+									<Title text="Assistant Treasurer" class="main-title text-bold red-text"/>
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Title text="Steven Lee Kim Huat" class="text-bold red-text"/>
+									<Title text="012-2991628" />
+									<Title text="justineng2628@gmail.com" />
+								</VBox>
+							</l:Grid>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</l:VerticalLayout>
+
+			<l:VerticalLayout width="100%">
+				<l:BlockLayout>
+					<l:BlockLayoutRow class="skinBack">
+						<l:BlockLayoutCell title="Committee" titleAlignment="Center" class="green-text sapUiTinyMarginTop">
+							<l:Grid defaultSpan="L3 M6 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
+								<VBox alignItems="Center" class="committeeMember2">
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember2">
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember2">
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember2">
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember2">
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember2">
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember2">
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
+								</VBox>
+								<VBox alignItems="Center" class="committeeMember2">
+									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
+								</VBox>
+							</l:Grid>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</l:VerticalLayout>
+
+			<l:VerticalLayout width="100%">
+				<l:BlockLayout>
+					<l:BlockLayoutRow class="contactRow ">
+						<l:BlockLayoutCell
+								titleAlignment="Left"
+								title="Contact Us"
+								backgroundColorSet="ColorSet2"
+								backgroundColorShade="ShadeA"
+								class="contactCell startingText mainPageContent">
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow class="contactRow">
+						<l:BlockLayoutCell class="mainPageContentLeft">
 							<FlexBox
-								alignItems="Center"
-								justifyContent="Center">
+								direction="Column"
+								alignItems="Start">
 								<items>
-									<Image src="https://admin.prulia.org.my/files/committee1.jpg" width="100%" densityAware="false"/>
+									<FlexBox direction="Row" fitContainer="true">
+										<core:Icon size="1.5rem" src="sap-icon://call" color="#F8D474"></core:Icon>
+										<Text class="contactLabel" text="P"></Text>
+										<Text class="contactText" text="03-7727 6382"></Text>
+									</FlexBox>
+									<FlexBox direction="Row" fitContainer="true">
+										<core:Icon size="1.5rem" src="sap-icon://fax-machine" color="#F8D474"></core:Icon>
+										<Text class="contactLabel" text="F"></Text>
+										<Text class="contactText" text="03-7727 6384"></Text>
+									</FlexBox>
+									<FlexBox direction="Row" fitContainer="true">
+										<core:Icon size="1.5rem" src="sap-icon://email" color="#F8D474"></core:Icon>
+										<Text class="contactLabel" text="E"></Text>
+										<Text class="contactText" text="prulia@yahoo.com"></Text>
+									</FlexBox>
 								</items>
 							</FlexBox>
-							
+						</l:BlockLayoutCell>
+						<l:BlockLayoutCell class="mainPageContentRight">
+							<FlexBox
+								direction="Column"
+								alignItems="Start">
+								<items>
+									<FlexBox direction="Row" fitContainer="true">
+										<Text class="contactText" text="Unit No. 531, 5th Floor, Block A, Lobby 8"></Text>
+									</FlexBox>
+									<FlexBox direction="Row" fitContainer="true">
+										<Text class="contactText" text="Damansara Intan, No. 1 Jalan SS20/27, 47400"></Text>
+									</FlexBox>
+									<FlexBox direction="Row" fitContainer="true">
+										<Text class="contactText" text="Petaling Jaya, Selangor Darul Ehsan"></Text>
+									</FlexBox>
+								</items>
+							</FlexBox>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
-				</l:BlockLayout>
-			</l:VerticalLayout>
-			<l:VerticalLayout class="mainContent">
-				<l:BlockLayout>
-					<l:BlockLayoutRow>
+					<l:BlockLayoutRow class="contactRow">
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="President" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/President.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Maniraja Chandran" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="019-2115977" href="tel:0192115977"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="maniraja.c@gmail.com" href="mailto:maniraja.c@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Immediate Past President" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Emily_Nyok.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Emily Ngok" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="012-2839999" href="tel:0122839999"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="emilyngok@yahoo.com" href="mailto:emilyngok@yahoo.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>	
-					</l:BlockLayoutRow>	
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeC"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="1st Vice President" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Kam_Chee_Mengdf57a7.png"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Kam Chee Meng" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="019-9399928" href="tel:0199399928"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="kcm.prudential@gmail.com" href="mailto:kcm.prudential@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeC"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="2nd Vice President" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Lim_Sook_Kwan.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Lim Sook Kwan" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="019-6519982" href="tel:0196519982"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="limsookkwan@yahoo.com" href="mailto:limsookkwan@yahoo.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>	
-					</l:BlockLayoutRow>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeB"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Secretary General" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/ShereenLim.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Shereen Lim Chooi Chin" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="012-9155571" href="tel:0129155571"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="shereen.prulia@gmail.com" href="mailto:shereen.prulia@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeB"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Assistant Secretary General" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Steven_Lee.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Steven Lee Kim Huat" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="012-2938891" href="tel:0122938891"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="khoee998@gmail.com" href="mailto:khoee998@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>	
-					</l:BlockLayoutRow>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeD"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Treasurer" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Wooi198fd00.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Wooi Yu Thong" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="019-4106028" href="tel:0194106028"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="ytwooi@hotmail.com" href="mailto:ytwooi@hotmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeD"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Assistant Treasurer" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Justine_Ng.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Steven Lee Kim Huat" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="012-2991628" href="tel:0122991628"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="justineng2628@gmail.com" href="mailto:justineng2628@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>	
-					</l:BlockLayoutRow>
-					<l:BlockLayoutRow class="committeeRow">
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Committee" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Alan_Lim.png"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Alan Lim Peng Boon" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="0126350035" href="tel:0126350035"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="alanlim2u@gmail.com" href="mailto:alanlim2u@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Committee" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Nur_Ayesha.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Nur Ayesha" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="012-6579794" href="tel:0126579794"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="pearlsha49@gmail.com" href="mailto:pearlsha49@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Committee" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Mohd_Haniff.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Mohd Haniff" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="012-2927938" href="tel:0122927938"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="hanifframza@gmail.com" href="mailto:hanifframza@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Committee" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Raja559c6c.jpeg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Raja Zainal" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="012-4750470" href="tel:0124750470"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="rajazainal.prudential@gmail.com" href="mailto:rajazainal.prudential@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
+								titleAlignment="Center"
+								class="mainPageContent">
+							<HBox width="100%" justifyContent="Center">
+								<Link class="whiteLink" visible="{= !${appParam>/showMap}}" text="VIEW MAP" press="toggleMap"></Link>
+								<Link class="whiteLink" visible="{appParam>/showMap}" text="HIDE MAP" press="toggleMap"></Link>
+							</HBox>
+							<!-- <HeaderContainer id="partnerContainer" scrollStep="200" showDividers="false" content="{News>/}">
+								<GenericTile
+									backgroundImage="{News>image}"
+									frameType="TwoByOne" press="handleAboutMessagePress" class="mainImageTile">
+									<TileContent footer="{News>date}">
+										<NewsContent
+											contentText="{News>title}"/>
+									</TileContent>
+								</GenericTile>
+							</HeaderContainer> -->
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
-					<l:BlockLayoutRow class="committeeRow">
+					<l:BlockLayoutRow class="contactRow" visible="{appParam>/showMap}">
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
+								backgroundColorSet="ColorSet2"
 								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Committee" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Koh_Mei_Mei.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Koh Mei Mei" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="012-6113008" href="tel:0126113008"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="kohmeimei@gmail.com" href="mailto:kohmeimei@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
+								class="sapUiNoContentPadding mainPageContent">
+								<Image src="css/images/LocationMap.png" densityAware="false" width="100%"/>
 						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Committee" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Lim_Sin_Siong.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Lim Sin Siong" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="019-7755555" href="tel:0197755555"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="limsinsiong@yahoo.com" href="mailto:limsinsiong@yahoo.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Committee" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Fauziah.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Fauziah Khalid" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="019-7779430" href="tel:0197779430"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="fauziahkhalid@prupartner.com.my" href="mailto:fauziahkhalid@prupartner.com.my"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left">
-							<VBox
-								alignItems="Center">
-								<Title text="Committee" />
-								<f:Avatar
-									src="https://admin.prulia.org.my/files/Mohd_Fuziad8769.jpg"
-									displaySize="XL">
-								</f:Avatar>
-								<Title text="Mohd Fuzi Dol" class="sapUiSmallMarginTop" />
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="019-3122277" href="tel:0193122277"/>
-								</l:HorizontalLayout>
-								<l:HorizontalLayout>
-									<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>
-									<Link text="drzifu@gmail.com" href="mailto:drzifu@gmail.com"/>
-								</l:HorizontalLayout>
-							</VBox>
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>	
+					</l:BlockLayoutRow>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell class="footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
@@ -403,6 +229,396 @@
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
 			</l:VerticalLayout>
+
+			<!--<l:VerticalLayout class="fullBanner">-->
+				<!--<l:BlockLayout>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell class="bannerCell">-->
+							<!--<FlexBox-->
+								<!--alignItems="Center"-->
+								<!--justifyContent="Center">-->
+								<!--<items>-->
+									<!--<Image src="https://admin.prulia.org.my/files/committee1.jpg" width="100%" densityAware="false"/>-->
+								<!--</items>-->
+							<!--</FlexBox>-->
+							<!---->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+				<!--</l:BlockLayout>-->
+			<!--</l:VerticalLayout>-->
+			<!--<l:VerticalLayout class="mainContent">-->
+				<!--<l:BlockLayout>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="President" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/President.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Maniraja Chandran" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="019-2115977" href="tel:0192115977"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="maniraja.c@gmail.com" href="mailto:maniraja.c@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Immediate Past President" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Emily_Nyok.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Emily Ngok" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="012-2839999" href="tel:0122839999"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="emilyngok@yahoo.com" href="mailto:emilyngok@yahoo.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>	-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeC"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="1st Vice President" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Kam_Chee_Mengdf57a7.png"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Kam Chee Meng" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="019-9399928" href="tel:0199399928"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="kcm.prudential@gmail.com" href="mailto:kcm.prudential@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeC"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="2nd Vice President" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Lim_Sook_Kwan.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Lim Sook Kwan" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="019-6519982" href="tel:0196519982"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="limsookkwan@yahoo.com" href="mailto:limsookkwan@yahoo.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeB"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Secretary General" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/ShereenLim.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Shereen Lim Chooi Chin" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="012-9155571" href="tel:0129155571"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="shereen.prulia@gmail.com" href="mailto:shereen.prulia@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeB"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Assistant Secretary General" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Steven_Lee.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Steven Lee Kim Huat" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="012-2938891" href="tel:0122938891"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="khoee998@gmail.com" href="mailto:khoee998@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeD"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Treasurer" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Wooi198fd00.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Wooi Yu Thong" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="019-4106028" href="tel:0194106028"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="ytwooi@hotmail.com" href="mailto:ytwooi@hotmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeD"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Assistant Treasurer" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Justine_Ng.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Steven Lee Kim Huat" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="012-2991628" href="tel:0122991628"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="justineng2628@gmail.com" href="mailto:justineng2628@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>	-->
+					<!--</l:BlockLayoutRow>-->
+					<!--<l:BlockLayoutRow class="committeeRow">-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Committee" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Alan_Lim.png"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Alan Lim Peng Boon" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="0126350035" href="tel:0126350035"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="alanlim2u@gmail.com" href="mailto:alanlim2u@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Committee" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Nur_Ayesha.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Nur Ayesha" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="012-6579794" href="tel:0126579794"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="pearlsha49@gmail.com" href="mailto:pearlsha49@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Committee" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Mohd_Haniff.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Mohd Haniff" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="012-2927938" href="tel:0122927938"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="hanifframza@gmail.com" href="mailto:hanifframza@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Committee" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Raja559c6c.jpeg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Raja Zainal" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="012-4750470" href="tel:0124750470"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="rajazainal.prudential@gmail.com" href="mailto:rajazainal.prudential@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+					<!--<l:BlockLayoutRow class="committeeRow">-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Committee" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Koh_Mei_Mei.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Koh Mei Mei" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="012-6113008" href="tel:0126113008"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="kohmeimei@gmail.com" href="mailto:kohmeimei@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Committee" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Lim_Sin_Siong.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Lim Sin Siong" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="019-7755555" href="tel:0197755555"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="limsinsiong@yahoo.com" href="mailto:limsinsiong@yahoo.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Committee" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Fauziah.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Fauziah Khalid" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="019-7779430" href="tel:0197779430"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="fauziahkhalid@prupartner.com.my" href="mailto:fauziahkhalid@prupartner.com.my"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left">-->
+							<!--<VBox-->
+								<!--alignItems="Center">-->
+								<!--<Title text="Committee" />-->
+								<!--<f:Avatar-->
+									<!--src="https://admin.prulia.org.my/files/Mohd_Fuziad8769.jpg"-->
+									<!--displaySize="XL">-->
+								<!--</f:Avatar>-->
+								<!--<Title text="Mohd Fuzi Dol" class="sapUiSmallMarginTop" />-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://phone" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="019-3122277" href="tel:0193122277"/>-->
+								<!--</l:HorizontalLayout>-->
+								<!--<l:HorizontalLayout>-->
+									<!--<core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd"></core:Icon>-->
+									<!--<Link text="drzifu@gmail.com" href="mailto:drzifu@gmail.com"/>-->
+								<!--</l:HorizontalLayout>-->
+							<!--</VBox>-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>	-->
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell class="footerBack">-->
+							<!--<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+				<!--</l:BlockLayout>-->
+			<!--</l:VerticalLayout>-->
 		</content>
 	</Page>
 </mvc:View>

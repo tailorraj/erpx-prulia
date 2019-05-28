@@ -59,7 +59,15 @@
     min-height: 30rem;
 }
 
-.sap-phone .startingImage {
+.committeeImage {
+    background-image: url(images/PRULIA_BannerCommittee.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 30rem;
+}
+
+.sap-phone .startingImage, .sap-phone .committeeImage {
     min-height: 10rem
 }
 
@@ -387,6 +395,14 @@
     color: #F1646B !important;
 }
 
+.blue-text, .blue-text .sapUiBlockCellTitle, .blue-text.sapMText {
+    color: #9DC7D8 !important;
+}
+
+.green-text, .green-text .sapUiBlockCellTitle, .green-text.sapMText {
+    color: #779152 !important;
+}
+
 .text-bold, .text-bold .sapUiBlockCellTitle {
     font-weight: bold;
 }
@@ -406,6 +422,36 @@
 
 .committeeRow .sapUiBlockCellContent {
     padding: 2rem .5rem !important
+}
+
+.committeeImage .sapUiBlockCellTitle {
+    font-size: 2rem !important;
+    padding-top: 23rem;
+    color: white;
+}
+
+.committeeMember .main-title{
+    font-size: 2rem;
+}
+
+.committeeMember .sapMImg{
+    width: 15em;
+}
+
+.committeeMember2 .sapMImg{
+    width: 12em;
+}
+
+.committeeMember .blue-border {
+    border-top: 0.8em #9DC7D8 solid;
+}
+
+.committeeMember .red-border {
+    border-top: 0.8em #F1646B solid;
+}
+
+.committeeMember2 .green-border {
+    border-top: 0.8em #779152 solid;
 }
 
 .membershipBannerImage {

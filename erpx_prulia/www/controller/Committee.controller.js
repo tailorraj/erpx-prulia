@@ -16,7 +16,12 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			this.getView().getModel("appParam").setProperty("/showBack", true);
-		}
+		},
+		toggleMap: function (oEvent) {
+			var showMap = this.getOwnerComponent().getModel("appParam").getProperty("/showMap");
+
+			this.getOwnerComponent().getModel("appParam").setProperty("/showMap", !showMap);
+        }
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
