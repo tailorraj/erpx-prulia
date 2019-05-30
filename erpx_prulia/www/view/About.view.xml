@@ -57,7 +57,7 @@ controllerName="com.erpx.site.prulia.PRULIA.controller.About"
 								alignItems="Center"
 								justifyContent="Center">
 								<items>
-									<Image src="css/images/img-about.png" densityAware="false" width="100%"></Image>
+									<Image src="css/images/PRULIA_LogoBig.png" densityAware="false" width="100%"></Image>
 								</items>
 							</FlexBox>
 						</l:BlockLayoutCell>
