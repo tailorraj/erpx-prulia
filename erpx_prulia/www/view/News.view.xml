@@ -2,6 +2,16 @@
 	controllerName="com.erpx.site.prulia.PRULIA.controller.News" xmlns:html="http://www.w3.org/1999/xhtml" >
 	<Page showHeader="false" displayBlock="true">
 		<content>
+			<l:VerticalLayout width="100%">
+				<l:BlockLayout>
+					<l:BlockLayoutRow>
+						<l:BlockLayoutCell
+								titleAlignment="Center"
+								class="newsImage imageCell">
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</l:VerticalLayout>
 			<l:VerticalLayout class="mainContent">
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
@@ -51,6 +61,11 @@
 							</FlexBox>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</l:VerticalLayout>
+
+			<l:VerticalLayout width="100%">
+				<l:BlockLayout>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell class="footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
@@ -58,6 +73,7 @@
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
 			</l:VerticalLayout>
+
 		</content>
 	</Page>
 </mvc:View>

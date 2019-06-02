@@ -2,16 +2,19 @@
 	controllerName="com.erpx.site.prulia.PRULIA.controller.SmartPartner" xmlns:html="http://www.w3.org/1999/xhtml" >
 	<Page showHeader="false" displayBlock="true">
 		<content>
-			<l:VerticalLayout class="mainContent">
+			<l:VerticalLayout width="100%">
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="Smart Partners">
+								titleAlignment="Center"
+								class="smartPartnerImage imageCell">
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</l:VerticalLayout>
+
+			<l:VerticalLayout class="mainContent">
+				<l:BlockLayout>
 					<l:BlockLayoutRow class="mainMenu">
 						<l:BlockLayoutCell 
 								class="mainPageContent genericTile">
@@ -26,6 +29,11 @@
 							</l:Grid>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</l:VerticalLayout>
+
+			<l:VerticalLayout width="100%">
+				<l:BlockLayout>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell class="footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>

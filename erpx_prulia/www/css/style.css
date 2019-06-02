@@ -75,6 +75,22 @@
     min-height: 30rem;
 }
 
+.newsImage {
+    background-image: url(images/PRULIA_BannerNews.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 30rem;
+}
+
+.smartPartnerImage {
+    background-image: url(images/PRULIA_BannerSmartPartner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 30rem;
+}
+
 .sap-phone .startingImage, .sap-phone .committeeImage {
     min-height: 10rem
 }
