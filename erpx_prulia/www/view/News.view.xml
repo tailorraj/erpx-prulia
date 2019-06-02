@@ -14,14 +14,6 @@
 			</l:VerticalLayout>
 			<l:VerticalLayout class="mainContent">
 				<l:BlockLayout>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell
-								backgroundColorSet="ColorSet10" 
-								backgroundColorShade="ShadeA"
-								titleAlignment="Left"
-								title="News">
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>
 					<l:BlockLayoutRow class="mainMenu " visible="{=${News>/}.length > 0}">
 						<l:BlockLayoutCell 
 								class="mainPageContent genericTile sapUiNoContentPadding">
