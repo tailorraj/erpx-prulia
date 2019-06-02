@@ -20,10 +20,6 @@
     font-style: normal
 }
 
-.sapMTileCnt.News {
-    background-color: rgba(241,100,107,.85);
-}
-
 .paddingTop10 {
     padding-top: 2em;
 }
@@ -38,6 +34,10 @@
 
 .mainContent {
     width: 100%
+}
+
+.align-center {
+    text-align: center;
 }
 
 .mainPageContentLeft {
@@ -163,7 +163,12 @@
     width: 3.5rem;
     min-height: 3.5rem;
     font-size: 3.5rem;
-    color: #ff4238
+    color: #F1646B
+}
+
+.sapMIBar.sapMFooter-CTX, .sapMIBar.sapMFooter-CTX.sapContrast {
+    background-color: #F1646B !important;
+    border-top: 1px solid #ff7c75;
 }
 
 .mainMenu .eventBox {
@@ -231,7 +236,7 @@
 }
 
 .pruliaMain .mainImageTile {
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center top
 }
@@ -263,7 +268,7 @@
 
 .login-font-heading {
     text-align: right;
-    color: #ff3f46
+    color: #F1646B
 }
 
 .login-font-heading-title {
@@ -517,11 +522,26 @@
     height: 14.35rem
 }
 
+.sapMTileCnt.News .sapMTileCntFtrTxt, .sapMTileCnt.News .sapMTextLineClamp {
+    color: #fff;
+    text-shadow: 0 0 0.125rem #000;
+    text-align: center;
+}
+
+.sapMTileCnt.News {
+    background-color: rgba(157,199,216,.95);
+
+}
+
+.TwoByOne:hover .sapMTileCnt.News {
+    background-color: rgba(241,100,107,.85);
+}
+
 .genericTile .sapMNwCCTxt, .genericTile .sapMTileCnt.sapMFrameTypeAuto {
     max-width: 100%
 }
 
-.genericTile .sapMTextLineClamp {
+.mainTile .sapMTextLineClamp, .genericTile .sapMTextLineClamp {
     font-size: 20px;
 }
 
@@ -601,7 +621,7 @@
     width: 5rem;
     min-height: 3.5rem;
     font-size: 3.5rem;
-    color: #ff4238
+    color: #F1646B
 }
 
 .pruliaMain .usefulLink .sapMGTSubHdrTxt {

@@ -22,7 +22,7 @@
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow class="dark-row">
 						<l:BlockLayoutCell class="mainPageContent">
-							<VBox>
+							<VBox class="align-center">
 								<Text text="{Event>event_name}" class="newsTitle sapUiSmallMarginBottom"/>
 							</VBox>
 						</l:BlockLayoutCell>
@@ -39,6 +39,11 @@
 									<Text text="{Event>venue}" class=""/>
 								</HBox>
 							</VBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow>
+						<l:BlockLayoutCell class="mainPageContent">
+							<core:HTML content="&lt;div&gt;{Event>description}&lt;/div&gt;" />
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow >
@@ -81,11 +86,8 @@
 							</FlexBox>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
-					<l:BlockLayoutRow>
-						<l:BlockLayoutCell class="mainPageContent">
-							<core:HTML content="&lt;div&gt;{Event>description}&lt;/div&gt;" />
-						</l:BlockLayoutCell>
-					</l:BlockLayoutRow>
+
+
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell class="mainPageContent footerBack">
 							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
