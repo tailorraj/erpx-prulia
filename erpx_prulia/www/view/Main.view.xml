@@ -121,7 +121,7 @@
 									<VBox>
 										<items>
 											<Text text="It is very important that every agent or leader of Prudential should be a member of PRULIA to be united and stand together as one, to be the united" class="startingText "/>
-											<Text text="&quot;Voice of the Agency&quot;" class="yellowQuote"/>
+											<Text text="&quot;Voice of the Agency&quot;" class="redQuote"/>
 											<!--<Button text="Read more" icon="sap-icon://navigation-right-arrow" iconFirst="false" class="sapUiTinyMarginTopBottom" press="handleAboutPress"></Button>-->
 											<Link class="whiteLink" text="READ MORE" press="handleAboutPress"></Link>
 										</items>
