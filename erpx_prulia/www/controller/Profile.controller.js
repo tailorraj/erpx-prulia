@@ -3,12 +3,12 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/format/DateFormat",
 	"sap/m/MessageToast",
-	"sap/m/Dialog",
 	"sap/ui/unified/FileUploader",
+	"sap/m/Dialog",
 	"sap/m/Button",
 	"sap/ui/core/ValueState",
 	"com/erpx/site/prulia/PRULIA/utils/Login"
-], function (Controller, JSONModel, DateFormat, MessageToast, Dialog, FileUploader, Button, ValueState, Login) {
+], function (Controller, JSONModel, DateFormat, MessageToast, FileUploader, Dialog, Button, ValueState, Login) {
 	"use strict";
 
 	return Controller.extend("com.erpx.site.prulia.PRULIA.controller.Profile", {
@@ -59,6 +59,9 @@ sap.ui.define([
 		 * @memberOf com.erpx.site.prulia.PRULIA.view.Profile
 		 */
 		onAfterRendering: function() {
+			var self = this,
+				oModel = this.getView().getModel("profileParam");
+
 			this.getView().attachBrowserEvent('click', function (e) {
 				var oTarget = e.target,
 					$target,
@@ -74,19 +77,43 @@ sap.ui.define([
 					oUploader = new FileUploader({
 						maximumFileSize: 2,
 						fileType: ['jpg', 'png', 'bmp', 'gif'],
-						uploadOnChange: true,
-						uploadStart: function (oEvent) {
-							var oParams = oEvent.getParameters();
+						uploadOnChange: false,
+						change: function (oEvent) {
+							var oParams = oEvent.getParameters(),
+								reader = new FileReader(),
+								file = oParams.files[0];
 
-							console.log(oParams);
+							reader.onload = function (e) {
+								var split = file.name.split('.'),
+									ext,
+									filename,
+									target = e.target,
+									result = target.result.split('base64,').pop(); //base64
+
+								ext = split.pop();
+								filename = split.join('') + '_' + file.lastModified + '.' + ext;
+
+								Login.updateMemberPic({
+										filename: filename,
+										filedata: result,
+										size: file.size
+									},
+									function() {
+										MessageToast.show("Perferences was update successfully");
+										// this.changeEditMode();
+										this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+									}.bind(self),
+									function(){
+										this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+									}.bind(self)
+								);
+							};
+
+							reader.onerror = function (err) { MessageToast.show(err); };
+							reader.readAsDataURL(oParams.files[0]);
+
 							oDialog.close();
                         },
-						uploadComplete: function (oEvent) {
-							//change profile picture
-							var oParams = oEvent.getParameters();
-
-							console.log(oParams);
-						},
 						fileSizeExceed: function () {
 							MessageToast.show("File limit size is 2MB");
                         },
@@ -94,6 +121,8 @@ sap.ui.define([
 							MessageToast.show("Invalid file type provided. Supported file type (jpg, png, bmp, gif)");
                         }
 					}).addStyleClass('Uploader');
+
+					oUploader.upload();
 
 					oCancel = new Button({
 						text: 'Cancel',

@@ -266,7 +266,7 @@ sap.ui.define([
 			  	url: Config.serverURL+'/api/method/erpx_prulia.prulia_members.doctype.prulia_member.prulia_member.update_member_pref',
 			  	data: this._memberModel.getJSON(),
 			  	success: function(data, status, xhr){
-			  		this.setMemberModel(data.message);
+			 		this.setMemberModel(data.message);
 			  		if(fnSuccess){ fnSuccess(); }
 			  		// this.readMemberDetails(fnSuccess, fnError);
 					// var cookie_source = xhr.getResponseHeader('Set-Cookie');
@@ -286,6 +286,40 @@ sap.ui.define([
 				}.bind(this)
 			})
 		},
+		updateMemberPic: function (data, fnSuccess, fnError) {
+			var memberData = JSON.parse(this._memberModel.getJSON());
+
+			$.ajax({
+				type: "POST",
+				url: Config.serverURL,
+				data: {
+					'from_form': 1,
+					'cmd': 'uploadfile',
+					'docname': memberData.name,
+					'doctype': 'PRULIA Member',
+					'is_private': 0,
+					'filename': memberData.name + '_' + data.filename,
+					'file_url': '',
+					'filedata': data.filedata,
+					'file_size': data.size
+				},
+				success: function (data, status, xhr) {
+					var msg = data.message;
+
+					memberData.profile_photo = msg.file_url;
+					this._memberModel.setData(memberData);
+					this.updateMemberDetails(fnSuccess, fnError);
+                }.bind(this),
+				error: function(error) {
+					// debugger;
+					this.readMemberDetails();
+					if(fnError){
+						fnError();
+					}
+					ErrorHandler.handleAjaxError(error);
+				}.bind(this)
+			});
+        },
 		changePassword: function(currentPassword, newPassword, fnSuccess, fnError){
 			/*Setup Frappe Cookie*/
 			

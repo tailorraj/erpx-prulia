@@ -274,6 +274,7 @@ def update_member_pref(data):
 		doc.email = dat.get('email')
 		doc.meal_option = dat.get('meal_option')
 		doc.shirt_size = dat.get('shirt_size')
+		doc.profile_photo = dat.get('profile_photo')
 		doc.save()
 		return doc
 	else:
