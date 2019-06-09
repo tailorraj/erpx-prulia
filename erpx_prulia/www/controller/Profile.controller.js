@@ -70,6 +70,8 @@ sap.ui.define([
 					oUploader;
 
 				if ($(oTarget).hasClass('sapMImg')) { //click on image
+					if (self._imgMode) { return; }
+					self._imgMode = true;
 					$target = $(oTarget);
 					oDialog = new Dialog();
 					oDialog.setTitle('Upload image');
@@ -112,13 +114,18 @@ sap.ui.define([
 							reader.onerror = function (err) { MessageToast.show(err); };
 							reader.readAsDataURL(oParams.files[0]);
 
+							self._imgMode = false;
 							oDialog.close();
                         },
 						fileSizeExceed: function () {
 							MessageToast.show("File limit size is 2MB");
+							self._imgMode = false;
+							oDialog.close();
                         },
 						typeMissmatch: function () {
 							MessageToast.show("Invalid file type provided. Supported file type (jpg, png, bmp, gif)");
+							self._imgMode = false;
+							oDialog.close();
                         }
 					}).addStyleClass('Uploader');
 
@@ -127,6 +134,7 @@ sap.ui.define([
 					oCancel = new Button({
 						text: 'Cancel',
 						press: function(){
+							self._imgMode = false;
 							oDialog.close();
 						}
 					})

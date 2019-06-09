@@ -22,6 +22,8 @@ sap.ui.define([
 			oRouter.getRoute("EventDetail").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
+			$('.event-qr').empty();
+
 			this.getOwnerComponent().getModel("appParam").setProperty("/showBack", true);
 			this.getOwnerComponent().getModel("appParam").setProperty("/busy", true);
 			var eventID = oEvent.getParameter("arguments").eventid;

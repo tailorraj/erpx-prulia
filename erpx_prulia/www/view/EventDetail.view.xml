@@ -41,7 +41,7 @@
 								</HBox>
 							</VBox>
 						</l:BlockLayoutCell>
-						<l:BlockLayoutCell>
+						<l:BlockLayoutCell visible="{Event>register}">
 							<core:HTML content="&lt;div class='event-qr'&gt;&lt;/div&gt;" />
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
