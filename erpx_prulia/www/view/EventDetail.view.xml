@@ -35,7 +35,7 @@
 									<Text text="{ parts : [ 'Event>start_date_time', 'Event>end_date_time' ], formatter: '.eventDateFormatter' }" />
 								</HBox>
 								<HBox class="titleContent">
-									<core:Icon src="sap-icon://map-2" class="sapUiSmallMarginEnd" />
+									<core:Icon src="sap-icon://map" class="sapUiSmallMarginEnd" />
 									<Text text="{Event>venue}" class=""/>
 								</HBox>
 							</VBox>
