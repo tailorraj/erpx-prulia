@@ -61,11 +61,11 @@
 					  			editable="false" visible="{Event>register}">
 								<form:content>
 									<Title text="Registration Details" class="event-reg-title red-text"/>
-									<Label textAlign="Left" text="Meal Option" />
+									<Label textAlign="Begin" text="Meal Option" />
 									<Text text="{Event>meal_option}"/>
-									<Label textAlign="Left" text="Shirt Size" visible="{=${Event>display_shirt_option} === 1}"/>
+									<Label textAlign="Begin" text="Shirt Size" visible="{=${Event>display_shirt_option} === 1}"/>
 									<Text text="{Event>shirt_size}" visible="{=${Event>display_shirt_option} === 1}"/>
-									<Label textAlign="Left" text="Accomodation" visible="{=${Event>display_accomodation_option} === 1}"/>
+									<Label textAlign="Begin" text="Accomodation" visible="{=${Event>display_accomodation_option} === 1}"/>
 									<Text text="{Event>accomodation}" visible="{=${Event>display_accomodation_option} === 1}"/>
 								</form:content>
 							</form:SimpleForm>
