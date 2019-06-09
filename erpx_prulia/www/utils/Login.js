@@ -294,10 +294,10 @@ sap.ui.define([
 				url: Config.serverURL,
 				data: {
 					'from_form': 1,
-					'cmd': 'uploadfile',
-					'docname': memberData.name,
-					'doctype': 'PRULIA Member',
 					'is_private': 0,
+					'cmd': 'uploadfile',
+					'doctype': 'PRULIA Member',
+					'docname': memberData.name,
 					'filename': memberData.name + '_' + data.filename,
 					'file_url': '',
 					'filedata': data.filedata,

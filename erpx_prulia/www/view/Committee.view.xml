@@ -21,58 +21,57 @@
 							<l:Grid defaultSpan="L6 M12 S12" class="sapUiNoContentPadding sapUiSmallMarginTop">
 								<VBox alignItems="Center" class="committeeMember">
 									<Title text="President" class="main-title text-bold blue-text"/>
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="blue-border"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-88.jpg"/>
 									<Title text="Maniraja Chandran" class="text-bold blue-text"/>
 									<Title text="019-2115977" />
 									<Title text="maniraja.c@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember">
 									<Title text="Immediate Past President" class="main-title text-bold blue-text"/>
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="blue-border"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-89.jpg"/>
 									<Title text="Emily Ngok" class="text-bold blue-text"/>
 									<Title text="012-2839999" />
 									<Title text="emilyngok@yahoo.com" />
 								</VBox>
-
 								<VBox alignItems="Center" class="committeeMember">
-									<Title text="1st Vice President" class="main-title text-bold red-text"/>
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
-									<Title text="Kam Chee Meng" class="text-bold red-text"/>
-									<Title text="019-9399928" />
-									<Title text="kcm.prudential@gmail.com" />
+									<Title text="Vice President" class="main-title text-bold red-text"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-90.jpg"/>
+									<Title text="Lim Sook Kwan" class="text-bold red-text"/>
+									<Title text="019-6519982" />
+									<Title text="limsookkwan@yahoo.com" />
 								</VBox>
-								<VBox alignItems="Center" class="committeeMember">
-									<Title text="2nd Vice President" class="main-title text-bold red-text"/>
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+                                <VBox alignItems="Center" class="committeeMember transparent">
+									<Title text="Vice President" class="main-title text-bold red-text"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-90.jpg"/>
 									<Title text="Lim Sook Kwan" class="text-bold red-text"/>
 									<Title text="019-6519982" />
 									<Title text="limsookkwan@yahoo.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember">
 									<Title text="Secretary General" class="main-title text-bold red-text"/>
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-91.jpg"/>
 									<Title text="Shereen Lim Chooi Chin" class="text-bold red-text"/>
 									<Title text="012-9155571" />
 									<Title text="shereen.prulia@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember">
 									<Title text="Assistant Secretary General" class="main-title text-bold red-text"/>
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-92.jpg"/>
 									<Title text="Steven Lee Kim Huat" class="text-bold red-text"/>
 									<Title text="012-2938891" />
 									<Title text="khoee998@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember">
 									<Title text="Treasurer" class="main-title text-bold red-text"/>
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-93.jpg"/>
 									<Title text="Wooi Yu Thong" class="text-bold red-text"/>
 									<Title text="019-4106028" />
 									<Title text="ytwooi@hotmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember">
 									<Title text="Assistant Treasurer" class="main-title text-bold red-text"/>
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="red-border"/>
-									<Title text="Steven Lee Kim Huat" class="text-bold red-text"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-94.jpg"/>
+									<Title text="Justine Ng" class="text-bold red-text"/>
 									<Title text="012-2991628" />
 									<Title text="justineng2628@gmail.com" />
 								</VBox>
@@ -88,52 +87,52 @@
 						<l:BlockLayoutCell title="Committee" titleAlignment="Center" class="green-text sapUiTinyMarginTop">
 							<l:Grid defaultSpan="L3 M6 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
+									<Image src="css/images/committeeItems/PRULIA images Committee-95.jpg"/>
 									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
 									<Title text="0126350035" />
 									<Title text="alanlim2u@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
-									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
-									<Title text="0126350035" />
-									<Title text="alanlim2u@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-96.jpg"/>
+									<Title text="Nur Ayesha" class="text-bold green-text"/>
+									<Title text="012-6579794" />
+									<Title text="pearlsha49@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
-									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
-									<Title text="0126350035" />
-									<Title text="alanlim2u@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-97.jpg"/>
+									<Title text="Mohd Haniff" class="text-bold green-text"/>
+									<Title text="012-2927938" />
+									<Title text="hanifframza@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
-									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
-									<Title text="0126350035" />
-									<Title text="alanlim2u@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-98.jpg"/>
+									<Title text="Raja Zainal" class="text-bold green-text"/>
+									<Title text="012-4750470" />
+									<Title text="rajazainal.prudential@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
-									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
-									<Title text="0126350035" />
-									<Title text="alanlim2u@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-99.jpg"/>
+									<Title text="Koh Mei Mei" class="text-bold green-text"/>
+									<Title text="012-6113008" />
+									<Title text="kohmeimei@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
-									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
-									<Title text="0126350035" />
-									<Title text="alanlim2u@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-100.jpg"/>
+									<Title text="Lim Sin Siong" class="text-bold green-text"/>
+									<Title text="019-7755555" />
+									<Title text="limsinsiong@yahoo.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
-									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
-									<Title text="0126350035" />
-									<Title text="alanlim2u@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-101.jpg"/>
+									<Title text="Fauziah Khalid" class="text-bold green-text"/>
+									<Title text="019-7779430" />
+									<Title text="fauziahkhalid@prupartner.com.my" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/PRULIA_CommitteeSample.png" class="green-border"/>
-									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
-									<Title text="0126350035" />
-									<Title text="alanlim2u@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-102.jpg"/>
+									<Title text="Mohd Fuzi Dol" class="text-bold green-text"/>
+									<Title text="019-3122277" />
+									<Title text="drzifu@gmail.com" />
 								</VBox>
 							</l:Grid>
 						</l:BlockLayoutCell>

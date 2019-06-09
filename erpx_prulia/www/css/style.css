@@ -20,6 +20,10 @@
     font-style: normal
 }
 
+.transparent {
+    opacity: 0 !important;
+}
+
 .paddingTop10 {
     padding-top: 2em;
 }
