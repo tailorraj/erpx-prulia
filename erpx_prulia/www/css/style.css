@@ -140,6 +140,14 @@
     min-height: 35rem;
 }
 
+.booksImage {
+    background-image: url(images/PRULIA_BannerBooks.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 30rem;
+}
+
 .imageCell .sapUiBlockCellContent .sapUiBlockCellTitle {
     font-size: 3rem;
     text-align: center;

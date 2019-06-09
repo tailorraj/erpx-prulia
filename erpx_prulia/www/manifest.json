@@ -148,6 +148,11 @@
           "pattern": "smartPartnerDetail/{smartpartnerid}",
           "name": "SmartPartnerDetail",
           "target": "SmartPartnerDetail"
+        },
+        {
+          "pattern": "books",
+          "name": "Books",
+          "target": "Books"
         }
       ],
       "targets": {
@@ -274,6 +279,16 @@
         "SmartPartnerDetail": {
           "viewType": "XML",
           "viewName": "SmartPartnerDetail",
+          "routerClass": "sap.m.routing.Router",
+          "async": true,
+          "viewPath": "com.erpx.site.prulia.PRULIA.view",
+          "controlAggregation": "pages",
+          "controlId": "idAppControl",
+          "clearControlAggregation": false
+        },
+        "Books": {
+          "viewType": "XML",
+          "viewName": "Books",
           "routerClass": "sap.m.routing.Router",
           "async": true,
           "viewPath": "com.erpx.site.prulia.PRULIA.view",

@@ -136,7 +136,7 @@
 										class="bookImage red-text imageCell startingText startingMiddleText">
 									<VBox>
 										<items>
-											<Link class="darkLink" text="FIND OUT MORE" press=""></Link>
+											<Link class="darkLink" text="FIND OUT MORE" press="handleBooksPress"></Link>
 										</items>
 									</VBox>
 

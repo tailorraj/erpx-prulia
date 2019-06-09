@@ -39,6 +39,9 @@ sap.ui.define([
 		handleAboutPress: function(event){
 			sap.ui.core.UIComponent.getRouterFor(this).navTo("About");
 		},
+		handleBooksPress: function (event) {
+			sap.ui.core.UIComponent.getRouterFor(this).navTo("Books");
+        },
 		handleMembershipPress: function(event){
 			sap.ui.core.UIComponent.getRouterFor(this).navTo("Membership");
 		},
