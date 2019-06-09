@@ -621,6 +621,10 @@
     background-color: #F1646B;
 }
 
+.event-reg-title {
+    font-size: 1.5rem !important;
+}
+
 .imageMaxHeight {
     max-height: 40vh
 }
