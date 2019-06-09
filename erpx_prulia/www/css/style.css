@@ -195,7 +195,7 @@
     margin: 0 10px;
 }
 
-.mainMenu .eventBox .sapMTextLineClamp {
+.mainMenu .eventBox .sapMTextLineClamp, .mainImageTile .sapMTextLineClamp {
     font-size: 18px;
 }
 
@@ -549,13 +549,16 @@
 }
 
 .sapMTileCnt.News {
-    height: 4.125rem !important;
-    margin-top: 2.3125rem !important;
     background-color: rgba(157,199,216,.95);
 }
 
 .TwoByOne:hover .sapMTileCnt.News {
     background-color: rgba(241,100,107,.85);
+
+}
+
+.TwoByOne:hover .sapMTextLineClamp, .TwoByOne:hover .sapMTileCntFtrTxt {
+    color: #fff !important;
 }
 
 .genericTile .sapMNwCCTxt, .genericTile .sapMTileCnt.sapMFrameTypeAuto {
