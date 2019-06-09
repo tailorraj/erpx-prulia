@@ -56,7 +56,7 @@
 					  			maxContainerCols="1" layout="ResponsiveGridLayout" width="100%" singleContainerFullSize="false"
 					  			editable="false" visible="{Event>register}">
 								<form:content>
-									<Title text="Registration Details" />
+									<Title text="Registration Details" class="event-reg-title red-text"/>
 									<Label text="Meal Option" />
 									<Text text="{Event>meal_option}"/>
 									<Label text="Shirt Size" visible="{=${Event>display_shirt_option} === 1}"/>
