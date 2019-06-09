@@ -27,9 +27,18 @@ sap.ui.define([
 			var eventID = oEvent.getParameter("arguments").eventid;
 			Event.getInstance().getModel().then(
 				function(oModel){
+					var oMemberData = Login.getMemberModel().getData();
+
 					this.getView().setModel(oModel,"Event");
 					for(var i = 0; i < oModel.getProperty("/").length; i++){
 						if(oModel.getProperty("/")[i].name === eventID){
+							//set qr code
+							console.log(oMemberData);
+							new QRCode($('.event-qr')[0], {
+								text: [eventID, oMemberData.prudential_id, oMemberData.agency_no].join('/'),
+								width: 200,
+								height: 200
+							});
 							break;
 						}
 					}

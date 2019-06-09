@@ -47,6 +47,7 @@
 .mainPageContentLeft {
     border-right: none;
 }
+
 @media (min-width: 1024px) {
     .mainPageContent, .mainPageContentLeft {
         border-right: 1px solid #fff;
@@ -234,15 +235,16 @@
 .menuItem.photoMenu:hover {
     background-image: url('images/mainItems/PRULIA_IconPhotoHover.jpg') !important;
 }
+
 .menuItem.newsMenu:hover {
     background-image: url('images/mainItems/PRULIA_IconNewsHover.jpg') !important;
 }
 
-.skinBack .sapUiBlockLayoutCell{
+.skinBack .sapUiBlockLayoutCell {
     background-color: #F0E9D9;
 }
 
-.whiteBack .sapUiBlockLayoutCell{
+.whiteBack .sapUiBlockLayoutCell {
     background-color: #FFF;
 }
 
@@ -471,15 +473,15 @@
     color: white;
 }
 
-.committeeMember .main-title{
+.committeeMember .main-title {
     font-size: 2rem;
 }
 
-.committeeMember .sapMImg{
+.committeeMember .sapMImg {
     width: 15em;
 }
 
-.committeeMember2 .sapMImg{
+.committeeMember2 .sapMImg {
     width: 12em;
 }
 
@@ -557,11 +559,11 @@
 }
 
 .sapMTileCnt.News {
-    background-color: rgba(157,199,216,.95);
+    background-color: rgba(157, 199, 216, .95);
 }
 
 .TwoByOne:hover .sapMTileCnt.News {
-    background-color: rgba(241,100,107,.85);
+    background-color: rgba(241, 100, 107, .85);
 
 }
 
@@ -625,6 +627,30 @@
     font-size: 1.5rem !important;
 }
 
+.event-qr {
+    text-align: center;
+}
+
+.event-qr img {
+    padding: 10px;
+    margin: auto;
+    background-color: #fff;
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
 .imageMaxHeight {
     max-height: 40vh
 }
@@ -648,7 +674,7 @@
     border: 1px solid #F1646B;
 }
 
-.pruliaMain .usefulLink .sapMGT:hover .sapMGTSubHdrTxt{
+.pruliaMain .usefulLink .sapMGT:hover .sapMGTSubHdrTxt {
     color: #fff !important;
 }
 
@@ -696,13 +722,13 @@
     font-size: 2rem !important;
 }
 
-.sapMImg{
+.sapMImg {
     cursor: pointer;
 }
 
 .gradientBack, .gradientBack.sapTntToolHeader {
     background: linear-gradient(90deg, #ff6961 0%, #ff6961 50%, #F3B047 100%);
-	border: none !important;
+    border: none !important;
 }
 
 .footerBack {
@@ -713,7 +739,7 @@
     color: #fff;
 }
 
-.btnDarkBg .sapMBtnContent, .btnDarkBg .sapMBtnText{
+.btnDarkBg .sapMBtnContent, .btnDarkBg .sapMBtnText {
     color: #000;
     text-shadow: none;
 }
@@ -816,7 +842,7 @@
     color: #42494F;
 }
 
-.dark-row .sapUiBlockLayoutCell{
+.dark-row .sapUiBlockLayoutCell {
     background-color: #42494F;
 }
 

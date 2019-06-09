@@ -229,7 +229,7 @@ sap.ui.define([
 			var dialog;
 
 			//set a yearly reminder for updating profile
-			if (memberData && ((new Date() - new Date(memberData.modified)) / (1000*60*60*24)) > 10) {
+			if (memberData && ((new Date() - new Date(memberData.modified)) / (1000*60*60*24)) > 365) {
 				dialog = new Dialog({
 					title: 'Yearly reminder',
 					type: 'Message',
