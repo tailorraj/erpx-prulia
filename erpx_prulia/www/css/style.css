@@ -543,14 +543,15 @@
 }
 
 .sapMTileCnt.News .sapMTileCntFtrTxt, .sapMTileCnt.News .sapMTextLineClamp {
-    color: #fff;
-    text-shadow: 0 0 0.125rem #000;
+    color: #000;
+    text-shadow: none;
     text-align: center;
 }
 
 .sapMTileCnt.News {
+    height: 4.125rem !important;
+    margin-top: 2.3125rem !important;
     background-color: rgba(157,199,216,.95);
-
 }
 
 .TwoByOne:hover .sapMTileCnt.News {
