@@ -35,12 +35,13 @@ sap.ui.define([
 					for(var i = 0; i < oModel.getProperty("/").length; i++){
 						if(oModel.getProperty("/")[i].name === eventID){
 							//set qr code
-							console.log(oMemberData);
-							new QRCode($('.event-qr')[0], {
-								text: [eventID, oMemberData.prudential_id, oMemberData.agency_no].join('/'),
-								width: 200,
-								height: 200
-							});
+							setTimeout(function () {
+								new QRCode($('.event-qr')[0], {
+									text: [eventID, oMemberData.prudential_id, oMemberData.agency_no].join('/'),
+									width: 200,
+									height: 200
+								});
+                            }, 1000);
 							break;
 						}
 					}
@@ -82,16 +83,15 @@ sap.ui.define([
 		 * @memberOf com.erpx.site.prulia.PRULIA.view.NewsDetail
 		 */
 		// onAfterRendering: function() {
-			
 		// },
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.erpx.site.prulia.PRULIA.view.NewsDetail
 		 */
-		//	onExit: function() {
+		// onExit: function() {
 		//
-		//	}
+		// },
 
 		eventDateFormatter: function(start_date, end_date){
 			var oDateTimeFormat = DateFormat.getDateInstance({pattern : "dd MMM yyyy, h:mm a" });
