@@ -20,8 +20,28 @@
     font-style: normal
 }
 
-.transparent {
+.sapContrast.sapMIBar-CTX .sapMBtn:hover>.sapMBtnHoverable:not(.sapMBtnActive),
+.sapContrast .sapMIBar-CTX .sapMBtn:hover>.sapMBtnHoverable:not(.sapMBtnActive),
+.sapContrast.sapMBtn:hover>.sapMBtnTransparent.sapMBtnHoverable,
+.sapContrast .sapMBtn:hover>.sapMBtnTransparent.sapMBtnHoverable {
+    background-color: rgba(255, 57, 46, 0.6) !important;
+    color: #cae4fb !important;
+}
+
+.sapMBtnInner.sapMBtnEmphasized {
+    border-color: #F1646B !important;
+    background-color: #F1646B !important;
+    color: #cae4fb !important;
+}
+
+.placeholder-vbox {
     opacity: 0 !important;
+}
+
+@media only screen and (max-width: 1024px) {
+    .placeholder-vbox {
+        display: none !important;
+    }
 }
 
 .paddingTop10 {

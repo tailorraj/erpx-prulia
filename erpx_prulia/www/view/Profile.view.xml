@@ -1,6 +1,6 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"  xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:uxap="sap.uxap" controllerName="com.erpx.site.prulia.PRULIA.controller.Profile"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-	<uxap:ObjectPageLayout id="ObjectPageLayout" 
+	<uxap:ObjectPageLayout id="ObjectPageLayout"
 		enableLazyLoading="false"
 		showTitleInHeaderContent="true"
 		showFooter="{profileParam>/editPersonal}">
