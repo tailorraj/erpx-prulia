@@ -849,3 +849,8 @@
 .dark-row .sapMText {
     color: #F1646B;
 }
+
+.center-block {
+    margin: 0 auto;
+    display: block;
+}
