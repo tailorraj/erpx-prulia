@@ -59,8 +59,8 @@
 			<l:VerticalLayout width="100%">
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
-						<l:BlockLayoutCell class="footerBack">
-							<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
+						<l:BlockLayoutCell class="align-center footerBack">
+							<Text textAlign="Center" text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>

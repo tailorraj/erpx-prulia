@@ -154,7 +154,7 @@
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow class="skinBack">
 						<l:BlockLayoutCell titleAlignment="Center" class="mainPageContent sapUiTinyMarginTop">
-                            <Image class="memberItem" src="css/images/PRULIA_MemberBenefits.png"/>
+                            <Image class="memberItem" src="css/images/PRULIA_MemberBenefits.jpg"/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
@@ -230,8 +230,8 @@
 					</l:BlockLayoutCell>
 				</l:BlockLayoutRow>
 				<l:BlockLayoutRow>
-					<l:BlockLayoutCell class="footerBack">
-						<Text text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
+					<l:BlockLayoutCell class="align-center footerBack">
+						<Text textAlign="Center" text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
 					</l:BlockLayoutCell>
 				</l:BlockLayoutRow>
 			</l:BlockLayout>
