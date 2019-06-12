@@ -28,7 +28,9 @@ def add_attendance(member, member_name, event, meal, shirt, accomodation):
 		"shirt_size": shirt,
 		"meal_option" : meal,
 		"accomodation": accomodation,
-		"agency_no": member_data.agency_no
+		"agency_no": member_data.agency_no,
+		"reg_datetime": now_datetime(),
+		"fees": event.early_fees if event.early_fees else event.fees
 	})
 	event.save()
 	frappe.msgprint("Your attendance is confirmed")
@@ -105,7 +107,7 @@ def update_event_attendee(data):
 
 @frappe.whitelist(allow_guest=True)
 def get_event_list_web():
-	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option'], 
+	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option', 'fees', 'early_fees'],
 		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
 
