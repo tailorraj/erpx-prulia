@@ -40,7 +40,7 @@
 									<Title text="019-6519982" />
 									<Title text="limsookkwan@yahoo.com" />
 								</VBox>
-                                <VBox alignItems="Center" class="committeeMember transparent">
+                                <VBox alignItems="Center" class="committeeMember placeholder-vbox">
 									<Title text="Vice President" class="main-title text-bold red-text"/>
 									<Image src="css/images/committeeItems/PRULIA images Committee-90.jpg"/>
 									<Title text="Lim Sook Kwan" class="text-bold red-text"/>
@@ -49,10 +49,10 @@
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember">
 									<Title text="Secretary General" class="main-title text-bold red-text"/>
-									<Image src="css/images/committeeItems/PRULIA images Committee-91.jpg"/>
-									<Title text="Shereen Lim Chooi Chin" class="text-bold red-text"/>
-									<Title text="012-9155571" />
-									<Title text="shereen.prulia@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-95.jpg"/>
+									<Title text="Alan Lim Peng Boon" class="text-bold red-text"/>
+									<Title text="0126350035" />
+									<Title text="alanlim2u@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember">
 									<Title text="Assistant Secretary General" class="main-title text-bold red-text"/>
@@ -87,10 +87,10 @@
 						<l:BlockLayoutCell title="Committee" titleAlignment="Center" class="green-text sapUiTinyMarginTop">
 							<l:Grid defaultSpan="L3 M6 S6" class="sapUiNoContentPadding sapUiSmallMarginTop">
 								<VBox alignItems="Center" class="committeeMember2">
-									<Image src="css/images/committeeItems/PRULIA images Committee-95.jpg"/>
-									<Title text="Alan Lim Peng Boon" class="text-bold green-text"/>
-									<Title text="0126350035" />
-									<Title text="alanlim2u@gmail.com" />
+									<Image src="css/images/committeeItems/PRULIA images Committee-91.jpg"/>
+									<Title text="Shereen Lim Chooi Chin" class="text-bold green-text"/>
+									<Title text="012-9155571" />
+									<Title text="shereen.prulia@gmail.com" />
 								</VBox>
 								<VBox alignItems="Center" class="committeeMember2">
 									<Image src="css/images/committeeItems/PRULIA images Committee-96.jpg"/>
