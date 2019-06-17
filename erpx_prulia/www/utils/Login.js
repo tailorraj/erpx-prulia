@@ -158,7 +158,7 @@ sap.ui.define([
 			  		if(data.message.indexOf('not found')> -1){
 			  			MessageBox.show("Noticed that you are new in PRULIA, please click OK to proceed with membership registration",
 							{
-								icon: sap.m.MessageBox.Icon.WARNING,
+								icon: sap.m.MessageBox.Icon.INFO,
           						title: "Info",
           						actions: [sap.m.MessageBox.Action.CANCEL, sap.m.MessageBox.Action.OK],
           						onClose: function(oAction){
@@ -186,8 +186,8 @@ sap.ui.define([
 					if(error.responseJSON && error.responseJSON._server_messages && JSON.parse(error.responseJSON._server_messages)[0] && JSON.parse(JSON.parse(error.responseJSON._server_messages)[0]).message.indexOf('not found')> -1){
 						MessageBox.show("Noticed that you are new in PRULIA, please click OK to proceed with membership registration",
 							{
-								icon: sap.m.MessageBox.Icon.WARNING,
-          						title: "Warning",
+								icon: sap.m.MessageBox.Icon.INFO,
+          						title: "Info",
           						actions: [sap.m.MessageBox.Action.CANCEL, sap.m.MessageBox.Action.OK],
           						onClose: function(oAction){
           							if(oAction === "OK"){
