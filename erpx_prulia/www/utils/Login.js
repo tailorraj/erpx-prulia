@@ -159,7 +159,7 @@ sap.ui.define([
 			  			MessageBox.show("Noticed that you are new in PRULIA, please click OK to proceed with membership registration",
 							{
 								icon: sap.m.MessageBox.Icon.WARNING,
-          						title: "Warning",
+          						title: "Info",
           						actions: [sap.m.MessageBox.Action.CANCEL, sap.m.MessageBox.Action.OK],
           						onClose: function(oAction){
 									window.open(Config.serverURL+"/member-registration/")

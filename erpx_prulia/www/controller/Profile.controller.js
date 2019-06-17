@@ -101,7 +101,7 @@ sap.ui.define([
 										size: file.size
 									},
 									function() {
-										MessageToast.show("Perferences was update successfully");
+										MessageToast.show("Preferences was update successfully");
 										// this.changeEditMode();
 										this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
 									}.bind(self),
