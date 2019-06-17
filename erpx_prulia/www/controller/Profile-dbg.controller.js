@@ -71,7 +71,7 @@ sap.ui.define([
 		updateEventPref: function(){
 			this.getOwnerComponent().getModel("appParam").setProperty("/busy", true);
 			Login.updateMemberDetails(function(){
-				MessageToast.show("Perferences was update successfully");
+				MessageToast.show("Preferences was update successfully");
 				this.changeEditMode();
 				this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
 			}.bind(this), function(){

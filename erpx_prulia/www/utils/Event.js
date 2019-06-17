@@ -194,7 +194,7 @@ sap.ui.define([
 	              this.createAttendance(bCreate, this.eventPrefDialog.getModel(), oMemberModel).done(
 	                  function(data, status, xhr){
 	                    if(data.message === "success"){
-	                      MessageToast.show("Perferences was update successfully");
+	                      MessageToast.show("Preferences was update successfully");
 	                    } else {
 	                      MessageToast.show(JSON.parse(JSON.parse(data._server_messages)[0]).message);
 	                    }
