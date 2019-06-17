@@ -111,7 +111,7 @@
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
-			<uxap:ObjectPageSection title="Event Perferences" titleUppercase="false">
+			<uxap:ObjectPageSection title="Event Preferences" titleUppercase="false">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection>
 						<uxap:blocks>
