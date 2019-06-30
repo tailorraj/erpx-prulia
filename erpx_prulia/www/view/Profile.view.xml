@@ -32,7 +32,7 @@
 									<Input liveChange="checkInput" value="{member>/full_name}" visible="{=${profileParam>/editPersonal}}"/>
 
 									<Label text="NRIC Number"/>
-									<MaskInput description="(eg: 880809-07-8888)" liveChange="checkInput" mask="CCCCCC-CC-CCCC" value="{member>/nric_number}" visible="{=${profileParam>/editPersonal}}">
+									<MaskInput description="(eg: 880809-07-8888)" mask="CCCCCC-CC-CCCC" value="{member>/nric_number}" visible="{=${profileParam>/editPersonal}}">
 										<rules>
 											<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
 										</rules>
@@ -51,7 +51,12 @@
 									<Text text="{member>/gender}" visible="{=${profileParam>/editPersonal}!==true}"/>
 
 									<Label text="Mobile No"/>
-									<Input description="(eg: 601x xxx xxxx)" liveChange="checkInput" type="number" value="{member>/cell_number}" visible="{=${profileParam>/editPersonal}}"/>
+									<MaskInput description="(eg: 601x xxx xxxx)" mask="60CC CCC CCCCC" value="{member>/cell_number}" visible="{=${profileParam>/editPersonal}}">
+										<rules>
+											<MaskInputRule maskFormatSymbol="C" regex="[0-9]"/>
+										</rules>
+									</MaskInput>
+									<!--<Input description="(eg: 601x xxx xxxx)" liveChange="checkInput" type="number" value="{member>/cell_number}" visible="{=${profileParam>/editPersonal}}"/>-->
 									<Label text="Mobile No" />
 									<Text text="{member>/cell_number}" visible="{=${profileParam>/editPersonal}!==true}"/>
 
