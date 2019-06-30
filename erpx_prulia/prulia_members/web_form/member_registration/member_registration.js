@@ -34,4 +34,38 @@ frappe.ready(function() {
 			}
 		}
     });
-})
+
+	loadScript('https://unpkg.com/imask').then(function () {
+		var $nric_input = $('input[name="nric_number"]'),
+			$cell_number = $('input[name="cell_number"]');
+
+		IMask($nric_input[0], {
+			mask: '0000-00-0000'
+		});
+
+		IMask($cell_number[0], {
+			mask: '{6\\0}00 000 00000'
+		});
+	});
+});
+
+function loadScript(url){
+    var script = document.createElement("script")
+    script.type = "text/javascript";
+
+    return new Promise(function (resolve) {
+        if (script.readyState){  //IE
+            script.onreadystatechange = function(){
+                if (script.readyState == "loaded" || script.readyState == "complete"){
+                    script.onreadystatechange = null;
+                    resolve();
+                }
+            };
+        } else {  //Others
+            script.onload = resolve;
+        }
+
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
+    });
+}
