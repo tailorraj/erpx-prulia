@@ -145,6 +145,10 @@
     width: 100%;
 }
 
+.memberItemLink {
+    margin-left: 18em;
+}
+
 .aboutImage {
     background-image: url(images/PRULIA_BannerAbout.jpg);
     background-repeat: no-repeat;

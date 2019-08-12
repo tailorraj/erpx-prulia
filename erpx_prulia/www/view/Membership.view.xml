@@ -149,12 +149,19 @@
 				<l:BlockLayout>
 					<l:BlockLayoutRow class="whiteBack">
 						<l:BlockLayoutCell titleAlignment="Center" class="mainPageContent sapUiTinyMarginTop">
-                            <Image class="memberItem" src="css/images/PRULIA_MemberDetails.png"/>
+							<Image class="memberItem" src="css/images/PRULIA_MemberDetails1.png"/>
+							<Image class="memberItem" src="css/images/PRULIA_MemberDetailsSep.png"/>
+                            <Image class="memberItem" src="css/images/PRULIA_MemberDetails2.png"/>
+							<Link class="memberItemLink" target="_blank" text="Membership Registration Form" href="/files/PRULIA_Membership_Form.pdf"/>
+							<Image class="memberItem" src="css/images/PRULIA_MemberDetailsSep.png"/>
+							<Image class="memberItem" src="css/images/PRULIA_MemberDetails3.png"/>
+							<Image class="memberItem" src="css/images/PRULIA_MemberDetailsSep.png"/>
+							<Image class="memberItem" src="css/images/PRULIA_MemberDetails4.png"/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow class="skinBack">
 						<l:BlockLayoutCell titleAlignment="Center" class="mainPageContent sapUiTinyMarginTop">
-                            <Image class="memberItem" src="css/images/PRULIA_MemberBenefits.jpg"/>
+                            <Image class="memberItem" src="css/images/PRULIA_MemberBenefits.png"/>
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
