@@ -214,11 +214,11 @@
 													<FlexItemData growFactor="1" />
 												</layoutData>
 											</Image>
-											<Image src="css/icons/qbe-grey.png" densityAware="false" width="100%">
-												<layoutData>
-													<FlexItemData growFactor="1" />
-												</layoutData>
-											</Image>
+											<!--<Image src="css/icons/qbe-grey.png" densityAware="false" width="100%">-->
+												<!--<layoutData>-->
+													<!--<FlexItemData growFactor="1" />-->
+												<!--</layoutData>-->
+											<!--</Image>-->
 											<Image src="css/icons/toptravel-grey.png" densityAware="false" width="100%">
 												<layoutData>
 													<FlexItemData growFactor="1" />
@@ -233,7 +233,7 @@
 										<Image src="css/icons/bmw-grey.png" densityAware="false" width="100%" />
 										<Image src="css/icons/volvo-grey.png" densityAware="false" width="100%" />
 										<Image src="css/icons/chubb-grey.png" densityAware="false" width="100%" />
-										<Image src="css/icons/qbe-grey.png" densityAware="false" width="100%" />
+										<!--<Image src="css/icons/qbe-grey.png" densityAware="false" width="100%" />-->
 										<Image src="css/icons/toptravel-grey.png" densityAware="false" width="100%"/>
 									</l:Grid>
 									<HBox width="100%" justifyContent="Center" visible="{login>/memberLogon}">
