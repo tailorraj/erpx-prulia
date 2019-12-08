@@ -222,7 +222,8 @@ sap.ui.define([
 				if(fnError){
 					fnError();
 				}
-				ErrorHandler.handleAjaxError(error);
+				ErrorHandler.showErrorMessage('Please login your member account to continue', JSON.stringify(error), true);
+				// ErrorHandler.handleAjaxError();
 			}.bind(this));
 		},
 		setMemberModel: function(memberData){
