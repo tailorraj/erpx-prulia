@@ -222,7 +222,7 @@ sap.ui.define([
 				if(fnError){
 					fnError();
 				}
-				ErrorHandler.showErrorMessage('Please login your member account to continue', JSON.stringify(error), true);
+				ErrorHandler.showErrorMessage('Please login your member account to continue', undefined, true);
 				// ErrorHandler.handleAjaxError();
 			}.bind(this));
 		},
