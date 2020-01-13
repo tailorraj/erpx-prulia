@@ -8,15 +8,15 @@ frappe.ready(function() {
             },
 			nric_number: function (val) {
 				if (/\d{6}-\d{2}-\d{4}/.test(val)) {
-					return 'Invalid value for NRIC number'
+					return true;
 				}
-				else { return true; }
+				else { return 'Invalid value for NRIC number' }
             },
 			cell_number: function (val) {
 				if (/60\d{9,}/.test(val)) {
-					return 'Invalid value for Mobile number'
+					return true;
 				}
-				else { return true; }
+				else { return 'Invalid value for Mobile number' }
             }
 		};
 
@@ -29,7 +29,6 @@ frappe.ready(function() {
 			valid = validation[field]($input.val(), $input);
 			if (valid !== true) {
 				frappe.msgprint(valid);
-				$input.val('');
 				$input.closest('.form-group').addClass('has-error');
 			}
 		}
@@ -40,7 +39,7 @@ frappe.ready(function() {
 			$cell_number = $('input[name="cell_number"]');
 
 		IMask($nric_input[0], {
-			mask: '0000-00-0000'
+			mask: '000000-00-0000'
 		});
 
 		IMask($cell_number[0], {

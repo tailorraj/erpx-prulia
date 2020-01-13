@@ -35,6 +35,21 @@ def get_data():
 			"link": "List/PRULIA Event",
 			"label": _("PRULIA Event")
 		},{
+			"module_name": "PRULIA Trainings",
+			"color": "tomato",
+			"icon": "octicon octicon-calendar",
+			"type": "module",
+			"label": _("PRULIA Trainings"),
+			"hidden": 1
+		},{
+			"module_name": "PRULIA Training",
+			"color": "tomato",
+			"icon": "octicon octicon-bookmark",
+			"_doctype": "PRULIA Training",
+			"type": "list",
+			"link": "List/PRULIA Training",
+			"label": _("PRULIA Training")
+		},{
 			"module_name": "PRULIA News",
 			"color": "red",
 			"icon": "octicon octicon-rss",

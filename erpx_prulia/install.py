@@ -11,7 +11,7 @@ def after_install():
 	
 
 def add_prulia_roles():
-	roles = ["PRULIA Member", "PRULIA Member Administrator", "PRULIA Event Administrator"]
+	roles = ["PRULIA Member", "PRULIA Member Administrator", "PRULIA Event Administrator", "PRULIA Training Administrator"]
 
 	for role in roles:
 		if not frappe.db.exists("Role", role):

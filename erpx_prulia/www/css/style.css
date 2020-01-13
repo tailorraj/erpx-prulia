@@ -785,6 +785,16 @@
     text-shadow: none;
 }
 
+.btnDarkBg.sapMLnk,
+.btnDarkBg.sapMLnk:active,
+.btnDarkBg.sapMLnk:focus,
+.btnDarkBg.sapMLnk:hover,
+.btnDarkBg.sapMLnk:visited {
+    color: #000 !important;
+    text-shadow: none !important;
+    text-decoration: none !important;
+}
+
 .blueBack {
     background-color: #9DC7D8;
 }

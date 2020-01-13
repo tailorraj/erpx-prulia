@@ -229,23 +229,26 @@ def update_password(new_password, key=None, old_password=None):
 def forget_password(data):
 	dat = json.loads(data)
 	doc = frappe.get_doc('PRULIA Member', dat.get('prulia_id'))
-	if doc.nric_number == dat.get('nric_number'):
-		if doc.user_status == 'Active':
-			doc.flags.ignore_permissions = True
-			from frappe.utils import random_string
-			doc.new_password = random_string(10)
-			doc.send_password_update_notification = True
-			doc.save()
-			return "Please check your email for your temporary login credential'"
-		elif doc.user_status == 'Pending Activation':
-			doc.flags.ignore_permissions = True
-			doc.user_status = 'Active'
-			doc.save()
-			return 'Your account is activated, please check your email for your temporary login credential'
-		elif doc.user_status == 'Pending Approval':
-			return 'Your application is still pending for approval'
+	if doc:
+		if doc.nric_number == dat.get('nric_number'):
+			if doc.user_status == 'Active':
+				doc.flags.ignore_permissions = True
+				from frappe.utils import random_string
+				doc.new_password = random_string(10)
+				doc.send_password_update_notification = True
+				doc.save()
+				return "Please check your email for your temporary login credential'"
+			elif doc.user_status == 'Pending Activation':
+				doc.flags.ignore_permissions = True
+				doc.user_status = 'Active'
+				doc.save()
+				return 'Your account is activated, please check your email for your temporary login credential'
+			elif doc.user_status == 'Pending Approval':
+				return 'Your application is still pending for approval'
+			else:
+				return "Your account is inactive, please contact PRULIA App Admin to reactivate"
 		else:
-			return "Your account is inactive, please contact PRULIA App Admin to reactivate"
+			return _("Wrong NRIC Number given for PRULIA Member {0}").format(dat.get('prulia_id'))
 	else:
 		return _("PRULIA Member {0} not found").format(dat.get('prulia_id'))
 

@@ -1,0 +1,72 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:custom="com.erpx.site.prulia.PRULIA.custom"
+	controllerName="com.erpx.site.prulia.PRULIA.controller.Training" xmlns:html="http://www.w3.org/1999/xhtml" >
+	<Page showHeader="false" displayBlock="true">
+		<content>
+			<!--<l:VerticalLayout class="mainContent">-->
+				<l:BlockLayout>
+					<!--<l:BlockLayoutRow>-->
+						<!--<l:BlockLayoutCell-->
+								<!--backgroundColorSet="ColorSet10" -->
+								<!--backgroundColorShade="ShadeA"-->
+								<!--titleAlignment="Left"-->
+								<!--title="Training">-->
+						<!--</l:BlockLayoutCell>-->
+					<!--</l:BlockLayoutRow>-->
+					<l:BlockLayoutRow >
+						<l:BlockLayoutCell
+								titleAlignment="Center"
+								title="Strength"
+								class="eventImage imageCell startingText">
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow>
+						<l:BlockLayoutCell
+								class="red-text"
+								titleAlignment="Center"
+								title="Trainings">
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow class="mainMenu" visible="{=${Training>/}.length > 0}">
+						<l:BlockLayoutCell
+								class="mainPageContent genericTile sapUiNoContentPadding contentHeight">
+							<l:Grid defaultSpan="L4 M6 S12" class="sapUiNoContentPadding sapUiSmallMarginTop" content="{Training>/}" hSpacing="0">
+								<VBox class="eventBox">
+									<Text class="eventStatus eventRegistered" text="Registered" visible="{Training>register}"/>
+									<Text class="eventStatus eventOpenRegistration" text="Ready for Registration" visible="{=${Training>register} === false &amp;&amp; (${Training>training_status} === 'Open For Registration' || (${Training>training_status} === 'Publish' &amp;&amp; ${Training>show_open_for_registration} === 1))}"/>
+									<Text class="eventStatus eventClosedRegistration" text="Registration Closed" visible="{=${Training>register} === false &amp;&amp; ${Training>training_status} === 'Registration Closed'}"/>
+									<GenericTile
+									frameType="TwoByOne" press="handleTrainingTilePress" backgroundImage="{Training>training_image}" class="genericTileImage">
+										<TileContent footer="{ parts : [ 'Training>start_date_time', 'Training>end_date_time' ], formatter: '.eventDateFormatter' }">
+											<NewsContent contentText="{Training>training_name}"/>
+										</TileContent>
+									</GenericTile>
+								</VBox>
+
+							</l:Grid>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow visible="{=${Training>/}.length === 0}">
+						<l:BlockLayoutCell
+								class="mainPageContent sapUiNoContentPadding contentHeight">
+							<FlexBox
+								fitContainer="true"
+								direction="Column"
+								alignItems="Center"
+								justifyContent="Center">
+								<items>
+									<core:Icon src="sap-icon://post" class="noItemMessageIcon sapUiMediumMarginBottom" />
+									<Title text="Opps, no latest training available :(" class="noItemMessageText" />
+								</items>
+							</FlexBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow>
+						<l:BlockLayoutCell class="align-center footerBack">
+							<Text textAlign="Center" text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			<!--</l:VerticalLayout>-->
+		</content>
+	</Page>
+</mvc:View>

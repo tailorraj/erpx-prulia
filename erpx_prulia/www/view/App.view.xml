@@ -41,6 +41,7 @@
 					</layoutData>
 				</ToolbarSpacer>
 				<Button class="fb-social" icon="sap-icon://fa/facebook" type="Transparent" press="handleFacebookPress" visible="{=!${device>/system/phone}}"></Button>
+				<Link class="btnDarkBg" text="New Registration" href="/member-registration" type="Transparent" visible="{=!${login>/memberLogon}}"></Link>
 				<Button class="btnDarkBg" text="Member Login" visible="{=!${login>/memberLogon}}" type="Transparent" press="handleLoginPress" >
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />

@@ -74,6 +74,9 @@ sap.ui.define([
 		handleEventPress: function(){
 			sap.ui.core.UIComponent.getRouterFor(this).navTo("Event");
 		},
+		handleTrainingPress: function () {
+			sap.ui.core.UIComponent.getRouterFor(this).navTo("Training");
+        },
 		handleSmartPartnerPress: function(){
 			sap.ui.core.UIComponent.getRouterFor(this).navTo("SmartPartner");
 		},

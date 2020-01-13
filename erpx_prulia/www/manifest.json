@@ -140,6 +140,16 @@
           "target": "EventDetail"
         },
         {
+          "pattern": "training",
+          "name": "Training",
+          "target": "Training"
+        },
+        {
+          "pattern": "training/{trainingid}",
+          "name": "TrainingDetail",
+          "target": "TrainingDetail"
+        },
+        {
           "pattern": "smartPartner",
           "name": "SmartPartner",
           "target": "SmartPartner"
@@ -259,6 +269,26 @@
         "EventDetail": {
           "viewType": "XML",
           "viewName": "EventDetail",
+          "routerClass": "sap.m.routing.Router",
+          "async": true,
+          "viewPath": "com.erpx.site.prulia.PRULIA.view",
+          "controlAggregation": "pages",
+          "controlId": "idAppControl",
+          "clearControlAggregation": false
+        },
+        "Training": {
+          "viewType": "XML",
+          "viewName": "Training",
+          "routerClass": "sap.m.routing.Router",
+          "async": true,
+          "viewPath": "com.erpx.site.prulia.PRULIA.view",
+          "controlAggregation": "pages",
+          "controlId": "idAppControl",
+          "clearControlAggregation": false
+        },
+        "TrainingDetail": {
+          "viewType": "XML",
+          "viewName": "TrainingDetail",
           "routerClass": "sap.m.routing.Router",
           "async": true,
           "viewPath": "com.erpx.site.prulia.PRULIA.view",

@@ -152,9 +152,7 @@ sap.ui.define([
 			  	data: JSON.stringify({prulia_id: prulia_id, nric_number: nric_number}),
 			  	xhrFields: { withCredentials: true },
 			  	success: function(data, status, xhr){
-			  		if(fnSuccess){
-						fnSuccess();
-					}
+			  		if(fnSuccess){ fnSuccess(); }
 			  		if(data.message.indexOf('not found')> -1){
 			  			MessageBox.show("Noticed that you are new in PRULIA, please click OK to proceed with membership registration",
 							{
@@ -175,14 +173,12 @@ sap.ui.define([
 					// this.readMemberDetails(function(){
 					// 	MessageToast.show("Member successfully login");
 					// });
-					}.bind(this),
+				}.bind(this),
 			  	dataType: 'json',
 			  	contentType: 'application/json',
 			  	error: function(error) {
 					// debugger;
-					if(fnError){
-						fnError();
-					}
+					if(fnError){ fnError(); }
 					if(error.responseJSON && error.responseJSON._server_messages && JSON.parse(error.responseJSON._server_messages)[0] && JSON.parse(JSON.parse(error.responseJSON._server_messages)[0]).message.indexOf('not found')> -1){
 						MessageBox.show("Noticed that you are new in PRULIA, please click OK to proceed with membership registration",
 							{
@@ -363,7 +359,7 @@ sap.ui.define([
 									new Input("memberLogin-Password", {
 										type:"Password"
 									}),
-									new sap.m.Link({text:"First & Forgot Password", press: function(){
+									new sap.m.Link({text:"Forgot Password", press: function(){
 											this.loginDialog.close();
 											this.open_forget_password_dialog(oController);
 										}.bind(this)
