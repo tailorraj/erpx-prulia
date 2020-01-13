@@ -72,7 +72,7 @@ def del_attendance(member, event):
 @frappe.whitelist()
 def get_event_list(member_name):
 	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option'], 
-		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
+		filters=[('PRULIA Event', "end_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
 	member = frappe.get_doc("PRULIA Member", member_name)
 
@@ -108,7 +108,7 @@ def update_event_attendee(data):
 @frappe.whitelist(allow_guest=True)
 def get_event_list_web():
 	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option', 'fees', 'early_fees'],
-		filters=[('PRULIA Event', "start_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
+		filters=[('PRULIA Event', "end_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
 
 	if frappe.session.user != 'Guest': 

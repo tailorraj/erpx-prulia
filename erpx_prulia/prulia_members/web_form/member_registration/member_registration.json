@@ -125,27 +125,7 @@
    "max_value": 0, 
    "read_only": 0, 
    "reqd": 0
-  }, 
-  {
-   "fieldname": "quality_leader_code", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "Quality Leader's Code", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 0
-  }, 
-  {
-   "fieldname": "agency_address", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "Agency Address", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 0
-  }, 
+  },
   {
    "fieldname": "cell_number", 
    "fieldtype": "Data", 

@@ -3,14 +3,14 @@ sap.ui.define([
 ], function(MessageBox) {
   "use strict";
   return {
-    showErrorMessage: function(sMessage, sDetails) {
+    showErrorMessage: function(sMessage, sDetails, info) {
       var sLMessage = sMessage;
       if(sLMessage === null || sLMessage.length === 0){
         sLMessage = "Opps, there is a system error. Please contact PRULIA Admin for assistance"
       }
       MessageBox.show(sLMessage, {
-        icon: MessageBox.Icon.ERROR,
-        title: "Error",
+        icon: info ? MessageBox.Icon.INFORMATION : MessageBox.Icon.ERROR,
+        title: info? "Info" : "Error",
         actions: [sap.m.MessageBox.Action.CLOSE],
         details: sDetails,
         contentWidth: "100px"
