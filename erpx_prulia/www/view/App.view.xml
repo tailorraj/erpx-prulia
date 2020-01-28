@@ -29,6 +29,11 @@
 						<OverflowToolbarLayoutData priority="Low" />
 					</layoutData>
 				</Button>
+				<Button text="Training" type="Transparent" visible="{=${device>/system/phone}!==true &amp;&amp; ${login>/memberLogon}===true}" press="handleTrainingSelect">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low" />
+					</layoutData>
+				</Button>
 				<Button text="Smart Partners" type="Transparent" visible="{=${device>/system/phone}!==true &amp;&amp; ${login>/memberLogon}===true}" press="handleSmartPartnerSelect">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="Low" />

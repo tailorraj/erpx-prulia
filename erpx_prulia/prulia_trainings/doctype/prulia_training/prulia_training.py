@@ -3,7 +3,7 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-import frappe
+import frappe, json, datetime
 from frappe.model.document import Document
 from frappe.utils import now_datetime
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
@@ -12,11 +12,11 @@ class PRULIATraining(Document):
 	pass
 
 @frappe.whitelist()
-def add_attendance(member, member_name, training, meal, shirt, accomodation):
+def add_attendance(member, member_name, event, meal, shirt, accomodation):
 	member_data = frappe.get_doc("PRULIA Member", member)
-	training = frappe.get_doc("PRULIA Training", training)
-	training.flags.ignore_permissions = True
-	training.append("trainee", {
+	event = frappe.get_doc("PRULIA Training", event)
+	event.flags.ignore_permissions = True
+	event.append("trainee", {
 		"member": member,
 		"member_name": member_name,
 		"nric_number": member_data.nric_number,
@@ -29,9 +29,9 @@ def add_attendance(member, member_name, training, meal, shirt, accomodation):
 		"accomodation": accomodation,
 		"agency_no": member_data.agency_no,
 		"reg_datetime": now_datetime(),
-		"fees": training.early_fees if training.early_fees else training.fees
+		"fees": event.early_fees if event.early_fees else event.fees
 	})
-	training.save()
+	event.save()
 	frappe.msgprint("Your attendance is confirmed")
 
 
@@ -77,7 +77,7 @@ def get_training_list(member_name):
 							fields=['name', 'training_name', 'description', 'start_date_time', 'end_date_time', 'venue',
 									'training_status', 'position_restriction', 'training_image', 'show_open_for_registration',
 									'display_accomodation_option', 'display_shirt_option'],
-							filters=[('PRULIA Training', "start_date_time", ">=", now_datetime().date()),
+							filters=[('PRULIA Training', "end_date_time", ">=", now_datetime().date()),
 									 ('PRULIA Training', "training_status", "!=", "Draft")],
 							order_by='start_date_time desc')
 	member = frappe.get_doc("PRULIA Member", member_name)
@@ -103,14 +103,15 @@ def get_training_list(member_name):
 
 @frappe.whitelist()
 def update_training_trainee(data):
-	trainee = json.loads(data)
-	trainee_rec = frappe.get_doc("PRULIA Trainee", trainee.get('trainee_name'))
-	if trainee_rec:
-		trainee_rec.flags.ignore_permissions = True
-		trainee_rec.meal_option = trainee.get('meal_option')
-		trainee_rec.shirt_size = trainee.get('shirt_size')
-		trainee_rec.accomodation = trainee.get('accomodation')
-		trainee_rec.save()
+	print(data)
+	attendee = json.loads(data)
+	attendee_rec = frappe.get_doc("PRULIA Trainee", attendee.get('trainee_name'))
+	if attendee_rec:
+		attendee_rec.flags.ignore_permissions = True
+		attendee_rec.meal_option = attendee.get('meal_option')
+		attendee_rec.shirt_size = attendee.get('shirt_size')
+		attendee_rec.accomodation = attendee.get('accomodation')
+		attendee_rec.save()
 		return "success"
 
 

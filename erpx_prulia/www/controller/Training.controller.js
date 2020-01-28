@@ -61,7 +61,7 @@ sap.ui.define([
 		handleTrainingTilePress: function(oEvent){
 			var oEventTileObject = oEvent.getSource().getBindingContext("Training").getObject();
 			sap.ui.core.UIComponent.getRouterFor(this).navTo("TrainingDetail", {
-				eventid: oEventTileObject.name
+				trainingid: oEventTileObject.name
 			});
 		},
 

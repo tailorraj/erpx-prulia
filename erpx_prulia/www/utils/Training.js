@@ -28,7 +28,7 @@ sap.ui.define([
             if(that._eventModel !== undefined){
               resolve(that._eventModel)
             } else {
-              that.updateEventModel(function(){
+              that.updateTrainingModel(function(){
                 resolve(that._eventModel)
               }, function(){
                 reject()
@@ -36,13 +36,13 @@ sap.ui.define([
             }
           })
     },
-    updateEventModel: function(fnSuccess, fnError){
+    updateTrainingModel: function(fnSuccess, fnError){
       $.get(Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.get_training_list_web', function(data, status, xhr){
           var oEventItem = [];
           if(data.message !== undefined){
             oEventItem = data.message;
           }
-          this._manageEventImage(oEventItem);
+          this._manageTrainingImage(oEventItem);
           if(this._eventModel === undefined){
             this._eventModel = new JSONModel(oEventItem);
           } else {
@@ -56,7 +56,7 @@ sap.ui.define([
         }.bind(this));
     },
 
-    _manageEventImage: function(aEvent){
+    _manageTrainingImage: function(aEvent){
       for(var i = 0; i < aEvent.length; i++){
           if(aEvent[i].event_image === undefined || aEvent[i].event_image === null){
             aEvent[i].event_image = 'css/images/PruliaImage.png';
@@ -73,7 +73,7 @@ sap.ui.define([
         }
     },
 
-    openEventPreferenceDialog: function(oController, bCreate, oBindingObject, oMemberModel){
+    openTrainingPreferenceDialog: function(oController, bCreate, oBindingObject, oMemberModel){
       var that = this;
       var oBindingModel = new JSONModel(oBindingObject);
       // var oMemberModel = Login.getMemberModel();
@@ -95,9 +95,11 @@ sap.ui.define([
                 layout:"ResponsiveGridLayout",
                 content: [
                   new Label({
-                    text: "Meal Option"
+                    text: "Meal Option",
+                    visible: "{=${/display_food_option} === 1}",
                   }),
                   new Select({
+                    visible: "{=${/display_food_option} === 1}",
                     selectedKey: "{/meal_option}",
                     items:[
                       new Item({
@@ -205,7 +207,7 @@ sap.ui.define([
 	                    ErrorHandler.handleAjaxError(error);
 	                  }
 	              ).always(function(){
-	                this.updateEventModel(function(){
+	                this.updateTrainingModel(function(){
 	                  oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
 	                }, function(){
 	                  oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
@@ -215,7 +217,7 @@ sap.ui.define([
 	              //   sap.ui.getCore().byId("memberLogin-Username").getValue(),
 	              //   sap.ui.getCore().byId("memberLogin-Password").getValue(),
 	              //   function(){
-	              //     Event.getInstance().updateEventModel(function(){
+	              //     Training.getInstance().updateTrainingModel(function(){
 	              //       MessageToast.show("Member successfully login");
 	              //       oController.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
 	              //     }.bind(this),
@@ -251,42 +253,42 @@ sap.ui.define([
       this.eventPrefDialog.open();
     },
 
-    createAttendance: function(bCreate, oEventRegistration, oMemberModel) {
+    createAttendance: function(bCreate, oTrainingRegistration, oMemberModel) {
       if(bCreate){
         var oPostData = {
           "member": oMemberModel.getProperty("/name"),
           "member_name": oMemberModel.getProperty("/full_name"),
-          "event": oEventRegistration.getProperty("/name"),
-          "meal": oEventRegistration.getProperty("/meal_option"),
-          "shirt": oEventRegistration.getProperty("/shirt_size"),
-          "accomodation" : oEventRegistration.getProperty("/accomodation") === true ? "Yes" : "No"
+          "event": oTrainingRegistration.getProperty("/name"),
+          "meal": oTrainingRegistration.getProperty("/meal_option"),
+          "shirt": oTrainingRegistration.getProperty("/shirt_size"),
+          "accomodation" : oTrainingRegistration.getProperty("/accomodation") === true ? "Yes" : "No"
         };
-        return $.post(Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_trainings.add_attendance', oPostData);
+        return $.post(Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.add_attendance', oPostData);
       } else {
         var oPostData = {
-          "attendee_name": oEventRegistration.getProperty("/attendee_name"),
-          "meal_option": oEventRegistration.getProperty("/meal_option"),
-          "shirt_size": oEventRegistration.getProperty("/shirt_size"),
-          "accomodation" : oEventRegistration.getProperty("/accomodation") === true ? "Yes" : "No"
+          "trainee_name": oTrainingRegistration.getProperty("/trainee_name"),
+          "meal_option": oTrainingRegistration.getProperty("/meal_option"),
+          "shirt_size": oTrainingRegistration.getProperty("/shirt_size"),
+          "accomodation" : oTrainingRegistration.getProperty("/accomodation") === true ? "Yes" : "No"
         };
         return $.ajax({
           type: "POST",
-          url: Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.update_training_attendee',
+          url: Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.update_training_trainee',
           data: JSON.stringify(oPostData),
           dataType: 'json',
           contentType: 'application/json'
         });
 
-        // return $.post(Config.serverURL + '/api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.update_event_attendee', JSON.stringify(oPostData));
+        // return $.post(Config.serverURL + '/api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.update_training_trainee', JSON.stringify(oPostData));
       }
 
 
     },
-    deleteEventRegistration: function(oEventRegistration, oMember){
+    deleteTrainingRegistration: function(oTrainingRegistration, oMember){
       return $.ajax({
         type: "POST",
         url: Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.del_attendance',
-        data: JSON.stringify({member: oMember.getProperty("/name") , event: oEventRegistration.getObject().name}),
+        data: JSON.stringify({member: oMember.getProperty("/name") , event: oTrainingRegistration.getObject().name}),
         dataType: 'json',
         contentType: 'application/json'
       });

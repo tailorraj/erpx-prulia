@@ -160,6 +160,13 @@ sap.ui.define([
 			toolPage.setSideExpanded(false);
 		},
 
+		handleTrainingSelect: function(){
+			sap.ui.core.UIComponent.getRouterFor(this).navTo("Training");
+			var viewId = this.getView().getId();
+			var toolPage = sap.ui.getCore().byId(viewId + "--toolPage");
+			toolPage.setSideExpanded(false);
+		},
+
 		onSideNavButtonPress: function(oEvent){
 			var viewId = this.getView().getId();
 			var toolPage = sap.ui.getCore().byId(viewId + "--toolPage");

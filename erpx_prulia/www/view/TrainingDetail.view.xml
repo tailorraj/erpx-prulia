@@ -1,0 +1,104 @@
+<!--QR Code = Training ID + Agent ID + Agency Code-->
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:custom="com.erpx.site.prulia.PRULIA.custom" xmlns:form="sap.ui.layout.form"
+	controllerName="com.erpx.site.prulia.PRULIA.controller.TrainingDetail" xmlns:html="http://www.w3.org/1999/xhtml" >
+	<Page showHeader="false" displayBlock="true">
+		<content>
+			<l:VerticalLayout width="100%">
+				<l:BlockLayout>
+					<l:BlockLayoutRow>
+						<l:BlockLayoutCell class="bannerCell">
+							<Text class="eventStatus eventRegistered" text="Registered" visible="{Training>register}"/>
+							<Text class="eventStatus eventOpenRegistration" text="Ready for Registration   " visible="{=${Training>register} === false &amp;&amp; (${Training>training_status} === 'Open For Registration' || (${Training>training_status} === 'Publish' &amp;&amp; ${Training>show_open_for_registration} === 1))}"/>
+							<Text class="eventStatus eventClosedRegistration" text="Registration Closed" visible="{=${Training>register} === false &amp;&amp; ${Training>training_status} === 'Registration Closed'}"/>
+							<FlexBox
+								alignItems="Center"
+								direction="Column"
+								justifyContent="Center" class="imageMaxHeight">
+								<items>
+
+									<Image src="{Training>training_image}" width="100%" densityAware="false" />
+								</items>
+							</FlexBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow class="dark-row">
+						<l:BlockLayoutCell class="mainPageContent">
+							<VBox class="align-center">
+								<Text text="{Training>training_name}" class="newsTitle sapUiSmallMarginBottom"/>
+							</VBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow class="red-row">
+						<l:BlockLayoutCell class="mainPageContent">
+							<VBox>
+								<HBox class="titleContent">
+									<core:Icon src="sap-icon://history" class="sapUiMediumMarginBottom sapUiSmallMarginEnd" />
+									<Text text="{ parts : [ 'Training>start_date_time', 'Training>end_date_time' ], formatter: '.eventDateFormatter' }" />
+								</HBox>
+								<HBox class="titleContent">
+									<core:Icon src="sap-icon://map" class="sapUiSmallMarginEnd" />
+									<Text text="{Training>venue}" class=""/>
+								</HBox>
+							</VBox>
+						</l:BlockLayoutCell>
+						<l:BlockLayoutCell visible="{Training>register}">
+							<core:HTML content="&lt;div class='training-qr'&gt;&lt;/div&gt;" />
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow>
+						<l:BlockLayoutCell class="mainPageContent">
+							<core:HTML content="&lt;div&gt;{Training>description}&lt;/div&gt;" />
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow >
+						<l:BlockLayoutCell class="mainPageContent"
+							backgroundColorSet="ColorSet10"
+							backgroundColorShade="ShadeA">
+							<form:SimpleForm
+								labelSpanL="4" labelSpanM="4"
+					  			labelSpanS="5" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+					  			maxContainerCols="1" layout="ResponsiveGridLayout" width="100%" singleContainerFullSize="false"
+					  			editable="false" visible="{=${Training>register} &amp;&amp; (${Training>display_food_option} === 1 || ${Training>display_shirt_option} === 1)}">
+								<form:content>
+									<Title text="Registration Details" class="event-reg-title red-text"/>
+									<Label textAlign="Begin" text="Meal Option" visible="{=${Training>display_food_option} === 1}"/>
+									<Text text="{Training>meal_option}" visible="{=${Training>display_food_option} === 1}"/>
+									<Label textAlign="Begin" text="Shirt Size" visible="{=${Training>display_shirt_option} === 1}"/>
+									<Text text="{Training>shirt_size}" visible="{=${Training>display_shirt_option} === 1}"/>
+									<Label textAlign="Begin" text="Accomodation" visible="{=${Training>display_accomodation_option} === 1}"/>
+									<Text text="{Training>accomodation}" visible="{=${Training>display_accomodation_option} === 1}"/>
+								</form:content>
+							</form:SimpleForm>
+							<FlexBox
+								alignItems="Center"
+								justifyContent="End" visible="{= ${Training>can_register} &amp;&amp; ${Training>training_status} === 'Open For Registration'}">
+								<items>
+									<Button visible="{=${Training>register} === false &amp;&amp; ${Training>training_status} === 'Open For Registration' &amp;&amp; ${Training>can_register}}" text="Register Training" press="handleRegisterTraining"/>
+									<Button visible="{=${Training>register} &amp;&amp; ${Training>training_status} === 'Open For Registration' &amp;&amp; (${Training>display_food_option} === 1 || ${Training>display_shirt_option} === 1)}" text="Change Preference" press="handleChangeTraining"/>
+									<!--<Button visible="{=${Training>register} &amp;&amp; ${Training>training_status} === 'Open For Registration'}" text="Withdraw Registration" press="handleDeleteTraining"/>-->
+								</items>
+							</FlexBox>
+							<FlexBox
+								alignItems="Center"
+								justifyContent="Center" visible="{= !${Training>can_register} &amp;&amp; ${Training>position_restriction} !== null}">
+								<MessageStrip
+									text="Only {Training>position_restriction} members can register for this training"
+									type="Warning"
+									showIcon="true"
+									customIcon="sap-icon://locked">
+								</MessageStrip>
+							</FlexBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+
+
+					<l:BlockLayoutRow>
+						<l:BlockLayoutCell class="mainPageContent footerBack">
+							<Text textAlign="Center" text="Copyright © 2018 Prudential Life Insurance Agency Association. All rights reserved."/>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</l:VerticalLayout>
+		</content>
+	</Page>
+</mvc:View>

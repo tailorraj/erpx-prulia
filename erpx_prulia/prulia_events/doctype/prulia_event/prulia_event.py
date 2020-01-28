@@ -95,6 +95,7 @@ def get_event_list(member_name):
 
 @frappe.whitelist()
 def update_event_attendee(data):
+	print(data)
 	attendee = json.loads(data)
 	attendee_rec = frappe.get_doc("PRULIA Attendee", attendee.get('attendee_name'))
 	if attendee_rec:

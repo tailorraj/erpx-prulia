@@ -651,11 +651,11 @@
     font-size: 1.5rem !important;
 }
 
-.event-qr {
+.event-qr, .training-qr {
     text-align: center;
 }
 
-.event-qr img, .event-qr canvas {
+.event-qr img, .event-qr canvas, .training-qr img, .training-qr canvas {
     padding: 10px;
     margin: auto;
     background-color: #fff;
@@ -908,4 +908,8 @@
 .center-block {
     margin: 0 auto;
     display: block;
+}
+
+#greetingDialog-header {
+    display: none;
 }
