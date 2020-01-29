@@ -13,7 +13,7 @@ frappe.ready(function() {
 				else { return 'Invalid value for NRIC number' }
             },
 			cell_number: function (val) {
-				if (/60\d{9,}/.test(val)) {
+				if (/60[\d ]{9,}/.test(val)) {
 					return true;
 				}
 				else { return 'Invalid value for Mobile number' }
@@ -39,7 +39,7 @@ frappe.ready(function() {
 			$cell_number = $('input[name="cell_number"]');
 
 		IMask($nric_input[0], {
-			mask: '000000-00-0000'
+			mask: '000000\-00\-0000'
 		});
 
 		IMask($cell_number[0], {
