@@ -46,6 +46,9 @@ frappe.ready(function() {
 			mask: '{6\\0}00 000 00000'
 		});
 	});
+
+	//hide login
+	$('.btn-login-area, #website-post-login').hide();
 });
 
 function loadScript(url){
