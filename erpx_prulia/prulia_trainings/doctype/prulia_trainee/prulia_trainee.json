@@ -41,7 +41,7 @@
    "reqd": 1, 
    "search_index": 0, 
    "set_only_once": 0, 
-   "unique": 0
+   "unique": 1
   }, 
   {
    "allow_bulk_edit": 0, 
@@ -481,7 +481,7 @@
  "issingle": 0, 
  "istable": 1, 
  "max_attachments": 0, 
- "modified": "2020-01-27 17:13:03.463115", 
+ "modified": "2020-02-05 21:08:02.450065", 
  "modified_by": "Administrator", 
  "module": "PRULIA Trainings", 
  "name": "PRULIA Trainee", 

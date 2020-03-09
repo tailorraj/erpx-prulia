@@ -22,7 +22,7 @@ def get_columns():
 		_("Email") + ":Data:220", _("Gender") + ":Data:120", _("Race") + ":Data:80", _("Position") + ":Data:80", _("Promotion Year") + ":Data:120",
 		_("User status") + ":Data:80", _("Mailing Address") + ":Data:400", _("Membership Fee") + ":Data:80", _("Resign Year") + ":Data:80",
 		_("Resign Method") + ":Data:120", _("Rejoined") + ":Data:120", _("PWP Change Branch") + ":Data:120", _("2017 Deduction") + ":Data:120", _("Remarks") + ":Data:120",
-		_("Meal Option") + ":Data:120", _("Shirt Size") + ":Data:120", _("Agency No") + ":Data:120", _("Personal Accident Status") + ":Data:120", _("Professional Indemnity Status") + ":Data:120",
+		_("Meal Option") + ":Data:120", _("Shirt Size") + ":Data:120", _("Agency Code") + ":Data:120", _("Personal Accident Status") + ":Data:120", _("Professional Indemnity Status") + ":Data:120",
 		_("Maxis Status") + ":Data:120"
 	]
 
@@ -63,7 +63,7 @@ def get_conditions(filters):
 	if filters.get("Shirt Size"):
 		conditions += "and shirt_size = '%s'" % filters["Shirt Size"]
 
-	if filters.get("Agency No"):
-		conditions += "and agency_no = '%s'" % filters["Agency No"]
+	if filters.get("Agency Code"):
+		conditions += "and agency_no = '%s'" % filters["Agency Code"]
 	return conditions
 

@@ -13,7 +13,7 @@ class PRULIAEventScans(Document):
 	def validate(self):
 		roles = get_roles(frappe.session.user)
 		if 'PRULIA Event Administrator' in roles:
-			event = get_doc('PRULIA Event', self.event)
+			event = get_doc('PRULIA Event', self.event)-
 			if event:
 				scanner = get_doc('PRULIA Member', self.scanner)
 				if scanner:
@@ -21,7 +21,7 @@ class PRULIAEventScans(Document):
 					if attendee:
 						registered = False
 						for at in event.attendee:
-							if (at.member == attendee):
+							if at.member == attendee:
 								registered = True
 								break
 
