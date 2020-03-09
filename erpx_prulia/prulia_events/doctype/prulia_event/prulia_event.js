@@ -3,6 +3,10 @@
 
 frappe.ui.form.on('PRULIA Event', {
 	refresh: function(frm) {
+		var $scan_button = $('[data-fieldname="scanning_button"]');
+
+		$scan_button;
+
 		var me = this;
 		var tempFrm = frm;
 		if(!frm.doc.__islocal && typeof(frappe.boot.prulia_member) !== undefined) {

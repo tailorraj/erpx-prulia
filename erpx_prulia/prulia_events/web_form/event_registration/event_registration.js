@@ -9,10 +9,11 @@ frappe.ready(function() {
     if (event_id) {
         //check permission
         frappe.has_permission('PRULIA Event', event_id, 'write', function (perm) {
-            $msg.empty();
 
-            //load scanning library when clicked
-            $action.show().text('Scan').off('click').one('click', function (e) {
+            $msg.empty();
+            if (perm && perm.message && perm.message.has_permission) {
+                //load scanning library when clicked
+                $action.show().text('Scan').off('click').one('click', function (e) {
                 Promise.all([
                     loadScript('https://webrtc.github.io/adapter/adapter-latest.js'),
                     loadScript('/lib/instascan.min.js'),
@@ -91,6 +92,10 @@ frappe.ready(function() {
                     });
                 });
             });
+            }
+            else {
+                $msg.text('You are not allowed to scan');
+            }
         });
     }
     else {
