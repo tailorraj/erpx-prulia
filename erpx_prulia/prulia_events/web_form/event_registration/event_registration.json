@@ -18,7 +18,7 @@
  "is_standard": 1, 
  "login_required": 0, 
  "max_attachment_size": 0, 
- "modified": "2020-03-05 08:58:45.468557", 
+ "modified": "2020-03-10 00:22:47.980894", 
  "modified_by": "Administrator", 
  "module": "PRULIA Events", 
  "name": "event-registration", 
@@ -30,5 +30,17 @@
  "sidebar_items": [], 
  "success_url": "", 
  "title": "Event Registration", 
- "web_form_fields": []
+ "web_form_fields": [
+  {
+   "fieldname": "", 
+   "fieldtype": "HTML", 
+   "hidden": 0, 
+   "label": "Scanning History", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "options": "<a href=\"/desk#List/PRULIA%20Event%20Scans/List\" style=\"color: #fff; background-color: #ff5858; padding: 3px 7px; border-radius: 3px; text-decoration: none;\" target=\"_blank\">Attendance History</a>", 
+   "read_only": 0, 
+   "reqd": 0
+  }
+ ]
 }

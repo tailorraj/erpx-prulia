@@ -13,7 +13,7 @@ frappe.ready(function() {
             $msg.empty();
             if (perm && perm.message && perm.message.has_permission) {
                 //load scanning library when clicked
-                $action.show().text('Scan').off('click').one('click', function (e) {
+                $action.eq(0).show().text('Scan').off('click').one('click', function (e) {
                 Promise.all([
                     loadScript('https://webrtc.github.io/adapter/adapter-latest.js'),
                     loadScript('/lib/instascan.min.js'),
@@ -134,27 +134,70 @@ function registerAttendance(content) {
                     }
                     else { //registering attendee
                         frappe.call({
-                            method: 'frappe.client.set_value',
-                            freeze: true,
+                            method:"frappe.client.get_list",
                             args: {
-                                doctype: 'PRULIA Attendee',
-                                name: attendee.name,
-                                fieldname: {
-                                    attendance: 'Yes',
-                                }
+                                doctype:"PRULIA Member",
+                                fields: ['name'],
+                                filters: {
+                                    user_id: frappe.session.user
+                                },
                             },
-                            callback: function (e) {
-                                if (e.message) {
-                                    toastr.success(
-                                        'Agent ' + attendee.member_name + ' has registered attendance',
-                                        'Registration success'
-                                    );
+                            callback: function(r) {
+                                var docs = r.message,
+                                    scanner;
+
+                                if (docs && docs.length) {
+                                    scanner = docs[0].name;
+
+                                    //save in scanning history
+                                    return frappe.call({
+                                        method: 'frappe.client.insert',
+                                        freeze: true,
+                                        args: {
+                                            doc: {
+                                                doctype: 'PRULIA Event Scans',
+                                                event: event_id,
+                                                attendee: agent_id,
+                                                scanner: scanner
+                                            }
+                                        },
+                                        callback: function (e) {
+                                            if (e.message) {
+                                                //set attendance in event
+                                                return frappe.call({
+                                                    method: 'frappe.client.set_value',
+                                                    freeze: true,
+                                                    args: {
+                                                        doctype: 'PRULIA Event',
+                                                        name: attendee.name,
+                                                        fieldname: {
+                                                            attendance: 'Yes',
+                                                        }
+                                                    },
+                                                    callback: function (e) {
+                                                        if (e.message) {
+                                                            toastr.success(
+                                                                'Agent ' + attendee.member_name + ' has registered attendance',
+                                                                'Registration success'
+                                                            );
+                                                        }
+                                                        else {
+                                                            toastr.error('Please try again', 'Registration failed');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                            else {
+                                                toastr.error('Please try again', 'Registration failed');
+                                            }
+                                        }
+                                    });
                                 }
-                                else {
-                                    toastr.error('Please try again', 'Registration failed');
-                                }
+                                else { toastr.error('Access denied', 'You are not allowed to scan'); }
                             }
-                        });
+                        })
+
+
                     }
                 }
                 else { //Agent not found in attendee list
