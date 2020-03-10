@@ -255,7 +255,7 @@ function getBackCamera(cameras) {
     var camera;
 
     cameras.forEach(function (el) {
-        if (el && el.name.indexOf('back') > -1) { camera = el }
+        if (el && (el.name.indexOf('back') > -1 || el.name.indexOf('Back') > -1)) { camera = el; }
     })
     if (!camera) { camera = cameras[0]; }
 
