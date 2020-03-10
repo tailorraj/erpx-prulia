@@ -3,7 +3,8 @@ frappe.ready(function() {
         $event = $('select[data-label="Event"]'),
         $event_name = $('input[data-fieldname="event_name"]'),
         $action = $('.btn-form-submit'),
-        $scan = $action.eq(0);event_id = frappe.utils.get_query_params()['event'];
+        $scan = $action.eq(0),
+        event_id = frappe.utils.get_query_params()['event'];
 
     $('head').append('<meta name="apple-mobile-web-app-capable" content="yes">');
 
