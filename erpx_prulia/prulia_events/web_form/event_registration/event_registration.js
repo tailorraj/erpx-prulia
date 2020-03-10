@@ -1,105 +1,144 @@
 frappe.ready(function() {
-    var $action = $('.btn-form-submit'),
-        $msg = $('#msg\\.prulia'),
-        event_id = frappe.utils.get_query_params()['event'];
+    var $msg = $('#msg\\.prulia'),
+        $event = $('select[data-label="Event"]'),
+        $event_name = $('input[data-fieldname="event_name"]'),
+        $action = $('.btn-form-submit'),
+        $scan = $action.eq(0);event_id = frappe.utils.get_query_params()['event'];
 
     $('head').append('<meta name="apple-mobile-web-app-capable" content="yes">');
 
     //check event
     if (event_id) {
+        startScan(event_id);
+    }
+    else {
+        $msg.text('Select an event below!');
+
+        $event.on('change', function () {
+            return frappe.call({
+                method: 'frappe.client.get_value',
+                freeze: true,
+                args: {
+                    doctype: 'PRULIA Event',
+                    filters: {
+                        name: $event.val()
+                    },
+                    fieldname: ['event_name']
+                },
+                callback: function (e) {
+                    var data;
+
+                    if (e.message) {
+                        data = e.message;
+                        $event_name.val(data.event_name);
+                        event_id = $event.val();
+                    }
+                    else {
+                        $event_name.val('');
+                        event_id = undefined;
+                    }
+                    startScan(event_id);
+                }
+            });
+        });
+    }
+
+    function startScan(event_id) {
+        if (!event_id) {
+            $scan.hide();
+            return;
+        }
+
         //check permission
         frappe.has_permission('PRULIA Event', event_id, 'write', function (perm) {
 
             $msg.empty();
             if (perm && perm.message && perm.message.has_permission) {
                 //load scanning library when clicked
-                $action.eq(0).show().text('Scan').off('click').one('click', function (e) {
-                Promise.all([
-                    loadScript('https://webrtc.github.io/adapter/adapter-latest.js'),
-                    loadScript('/lib/instascan.min.js'),
-                    loadScript('/lib/toastr.min.js'),
-                    loadStyle('/lib/toastr.css')
-                ]).then(function () {
-                    var $video = $('#preview\\.prulia'),
-                        scanner;
+                $scan.show().text('Scan').off('click').one('click', function (e) {
+                    Promise.all([
+                        loadScript('https://webrtc.github.io/adapter/adapter-latest.js'),
+                        loadScript('/lib/instascan.min.js'),
+                        loadScript('/lib/toastr.min.js'),
+                        loadStyle('/lib/toastr.css')
+                    ]).then(function () {
+                        var $video = $('#preview\\.prulia'),
+                            scanner;
 
-                    $action.hide();
+                        $action.hide();
 
-                    //toast message options
-                    toastr.options = {
-                        "progressBar": true,
-                        "preventDuplicates": true,
-                        "newestOnTop": true,
-                        "positionClass": "toast-bottom-right",
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "onclick": null,
-                    };
+                        //toast message options
+                        toastr.options = {
+                            "progressBar": true,
+                            "preventDuplicates": true,
+                            "newestOnTop": true,
+                            "positionClass": "toast-bottom-right",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "onclick": null,
+                        };
 
-                    //init scanner
-                    Instascan.Camera.getCameras().then(function (cameras) {
-                        var camera;
+                        //init scanner
+                        Instascan.Camera.getCameras().then(function (cameras) {
+                            var camera;
 
-                        if (cameras.length >= 1) {
-                            camera = getBackCamera(cameras);
-                            $video.attr('playsinline','').show();
+                            if (cameras.length >= 1) {
+                                camera = getBackCamera(cameras);
+                                $video.attr('playsinline','').show();
 
-                            scanner = new Instascan.Scanner({
-                                video: $video[0],
-                                mirror: false,
-                                continuous: true,
-                                scanPeriod: 10
-                            });
+                                scanner = new Instascan.Scanner({
+                                    video: $video[0],
+                                    mirror: false,
+                                    continuous: true,
+                                    scanPeriod: 10
+                                });
 
-                            scanner.addListener('scan', function (content) {
-                                var split;
+                                scanner.addListener('scan', function (content) {
+                                    var split;
 
-                                if (content) {
-                                    split = content.split('/');
-                                    if (split.length === 3 && split[0] === event_id) {
-                                        registerAttendance(content);
-                                        // scanner.stop();
-                                        // $video.hide();
-                                        // $msg.show().html('<div><b>Agent ID: </b>' + split[1] +'</div>' +
-                                        //     '<br/><button type="submit" class="btn btn-primary" ' +
-                                        //     'onclick="registerAttendance(\'' + content + '\')">Register</button>');
-                                        //
-                                        // $action.text('Rescan').show().one('click', function () {
-                                        //     $video.show();
-                                        //     $action.hide();
-                                        //     $msg.hide();
-                                        //     scanner.start(camera);
-                                        // });
+                                    if (content) {
+                                        split = content.split('/');
+                                        if (split.length === 3 && split[0] === event_id) {
+                                            registerAttendance(content);
+                                            // scanner.stop();
+                                            // $video.hide();
+                                            // $msg.show().html('<div><b>Agent ID: </b>' + split[1] +'</div>' +
+                                            //     '<br/><button type="submit" class="btn btn-primary" ' +
+                                            //     'onclick="registerAttendance(\'' + content + '\')">Register</button>');
+                                            //
+                                            // $action.text('Rescan').show().one('click', function () {
+                                            //     $video.show();
+                                            //     $action.hide();
+                                            //     $msg.hide();
+                                            //     scanner.start(camera);
+                                            // });
+                                        }
+                                        else {
+                                            toastr.error('Invalid QR code');
+                                        }
                                     }
                                     else {
                                         toastr.error('Invalid QR code');
                                     }
-                                }
-                                else {
-                                    toastr.error('Invalid QR code');
-                                }
-                            });
+                                });
 
-                            scanner.start(camera);
-                        }
-                        else {
+                                scanner.start(camera);
+                            }
+                            else {
+                                $msg.text('No camera found');
+                            }
+                        }).catch(function (reason) {
                             $msg.text('No camera found');
-                        }
-                    }).catch(function (reason) {
-                        $msg.text('No camera found');
+                        });
                     });
                 });
-            });
             }
             else {
                 $msg.text('You are not allowed to scan');
             }
         });
-    }
-    else {
-        $msg.text('Invalid event');
     }
 });
 
@@ -168,7 +207,7 @@ function registerAttendance(content) {
                                                     method: 'frappe.client.set_value',
                                                     freeze: true,
                                                     args: {
-                                                        doctype: 'PRULIA Event',
+                                                        doctype: 'PRULIA Attendee',
                                                         name: attendee.name,
                                                         fieldname: {
                                                             attendance: 'Yes',

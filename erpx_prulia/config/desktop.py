@@ -35,6 +35,13 @@ def get_data():
 			"link": "List/PRULIA Event",
 			"label": _("PRULIA Event")
 		},{
+			"module_name": "PRULIA Event",
+			"color": "orange",
+			"icon": "fa fa-qrcode",
+			"type": "page",
+			"link": "/event-registration",
+			"label": _("PRULIA Event Scan")
+		},{
 			"module_name": "PRULIA Trainings",
 			"color": "tomato",
 			"icon": "octicon octicon-calendar",
