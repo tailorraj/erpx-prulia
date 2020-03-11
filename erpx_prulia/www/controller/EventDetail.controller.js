@@ -27,21 +27,24 @@ sap.ui.define([
 			this.getOwnerComponent().getModel("appParam").setProperty("/showBack", true);
 			this.getOwnerComponent().getModel("appParam").setProperty("/busy", true);
 			var eventID = oEvent.getParameter("arguments").eventid;
-			Event.getInstance().getModel().then(
-				function(oModel){
-					var oMemberData = Login.getMemberModel().getData();
 
+			Event.getInstance().getModel().then(function (oModel) {
+					var oMemberData = Login.getMemberModel().getData(),
+						attendee = [];
+					
 					this.getView().setModel(oModel,"Event");
 					for(var i = 0; i < oModel.getProperty("/").length; i++){
 						if(oModel.getProperty("/")[i].name === eventID){
-							//set qr code
-							setTimeout(function () {
-								new QRCode($('.event-qr')[0], {
-									text: [eventID, oMemberData.prudential_id, oMemberData.agency_no].join('/'),
-									width: 200,
-									height: 200
-								});
-                            }, 1000);
+							if (oModel.getProperty("/")[i].attendance !== 'Yes') {
+								//set qr code
+								setTimeout(function () {
+									new QRCode($('.event-qr')[0], {
+										text: [eventID, oMemberData.prudential_id, oMemberData.agency_no].join('/'),
+										width: 200,
+										height: 200
+									});
+								}, 1000);
+							}
 							break;
 						}
 					}

@@ -115,13 +115,14 @@ def get_event_list_web():
 	if frappe.session.user != 'Guest': 
 		member = mobile_member_login()
 		for event in events:
-			registration = frappe.get_all('PRULIA Attendee', filters={'member': member.name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
+			registration = frappe.get_all('PRULIA Attendee', filters={'member': member.name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation', 'attendance'])
 			if registration:
 				event.register = True
 				event.attendee_name = registration[0].name
 				event.shirt_size = registration[0].shirt_size
 				event.meal_option = registration[0].meal_option
 				event.accomodation = registration[0].accomodation
+				event.attendance = registration[0].attendance
 			else:
 				event.register = False
 			if (event.position_restriction and event.position_restriction == member.position) :

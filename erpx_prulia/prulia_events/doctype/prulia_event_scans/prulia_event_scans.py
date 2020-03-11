@@ -4,15 +4,14 @@
 
 from __future__ import unicode_literals
 import frappe
-from frappe import _, throw, get_doc, get_roles, get_all
+from frappe import _, throw, get_doc, get_roles, get_all, has_permission
 from frappe.utils import now_datetime
 from frappe.model.document import Document
 import json
 
 class PRULIAEventScans(Document):
 	def validate(self):
-		roles = get_roles(frappe.session.user)
-		if 'PRULIA Event Administrator' in roles:
+		if has_permission('PRULIA Event Scans', '', 'write'):
 			event = get_doc('PRULIA Event', self.event)
 			if event:
 
@@ -49,3 +48,15 @@ class PRULIAEventScans(Document):
 		attendee = get_doc('PRULIA Member', self.attendee)
 		self.attendee_name = attendee.full_name
 		self.db_update()
+
+
+@frappe.whitelist()
+def scan(doc=None):
+	'''Insert a document
+
+	:param doc: JSON or dict object to be inserted'''
+	if isinstance(doc, string_types):
+		doc = json.loads(doc)
+
+		doc = frappe.get_doc(doc).insert()
+		return doc.as_dict()

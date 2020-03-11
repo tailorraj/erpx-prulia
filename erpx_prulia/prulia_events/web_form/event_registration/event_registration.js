@@ -50,96 +50,177 @@ frappe.ready(function() {
             return;
         }
 
-        //check permission
-        frappe.has_permission('PRULIA Event', event_id, 'write', function (perm) {
+        //load scanning library when clicked
+        $scan.show().text('Scan').off('click').one('click', function (e) {
+            Promise.all([
+                loadScript('https://webrtc.github.io/adapter/adapter-latest.js'),
+                loadScript('/lib/instascan.min.js'),
+                loadScript('/lib/toastr.min.js'),
+                loadStyle('/lib/toastr.css')
+            ]).then(function () {
+                var $video = $('#preview\\.prulia'),
+                    scanner;
 
-            $msg.empty();
-            if (perm && perm.message && perm.message.has_permission) {
-                //load scanning library when clicked
-                $scan.show().text('Scan').off('click').one('click', function (e) {
-                    Promise.all([
-                        loadScript('https://webrtc.github.io/adapter/adapter-latest.js'),
-                        loadScript('/lib/instascan.min.js'),
-                        loadScript('/lib/toastr.min.js'),
-                        loadStyle('/lib/toastr.css')
-                    ]).then(function () {
-                        var $video = $('#preview\\.prulia'),
-                            scanner;
+                $action.hide();
 
-                        $action.hide();
+                //toast message options
+                toastr.options = {
+                    "progressBar": true,
+                    "preventDuplicates": true,
+                    "newestOnTop": true,
+                    "positionClass": "toast-bottom-right",
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "onclick": null,
+                };
 
-                        //toast message options
-                        toastr.options = {
-                            "progressBar": true,
-                            "preventDuplicates": true,
-                            "newestOnTop": true,
-                            "positionClass": "toast-bottom-right",
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "onclick": null,
-                        };
+                //init scanner
+                Instascan.Camera.getCameras().then(function (cameras) {
+                    var camera;
 
-                        //init scanner
-                        Instascan.Camera.getCameras().then(function (cameras) {
-                            var camera;
+                    if (cameras.length >= 1) {
+                        camera = getBackCamera(cameras);
+                        $video.attr('playsinline','').show();
 
-                            if (cameras.length >= 1) {
-                                camera = getBackCamera(cameras);
-                                $video.attr('playsinline','').show();
+                        scanner = new Instascan.Scanner({
+                            video: $video[0],
+                            mirror: false,
+                            continuous: true,
+                            scanPeriod: 10
+                        });
 
-                                scanner = new Instascan.Scanner({
-                                    video: $video[0],
-                                    mirror: false,
-                                    continuous: true,
-                                    scanPeriod: 10
-                                });
+                        scanner.addListener('scan', function (content) {
+                            var split;
 
-                                scanner.addListener('scan', function (content) {
-                                    var split;
-
-                                    if (content) {
-                                        split = content.split('/');
-                                        if (split.length === 3 && split[0] === event_id) {
-                                            registerAttendance(content);
-                                            // scanner.stop();
-                                            // $video.hide();
-                                            // $msg.show().html('<div><b>Agent ID: </b>' + split[1] +'</div>' +
-                                            //     '<br/><button type="submit" class="btn btn-primary" ' +
-                                            //     'onclick="registerAttendance(\'' + content + '\')">Register</button>');
-                                            //
-                                            // $action.text('Rescan').show().one('click', function () {
-                                            //     $video.show();
-                                            //     $action.hide();
-                                            //     $msg.hide();
-                                            //     scanner.start(camera);
-                                            // });
-                                        }
-                                        else {
-                                            toastr.error('Invalid QR code');
-                                        }
-                                    }
-                                    else {
-                                        toastr.error('Invalid QR code');
-                                    }
-                                });
-
-                                scanner.start(camera);
+                            if (content) {
+                                split = content.split('/');
+                                if (split.length === 3 && split[0] === event_id) {
+                                    registerAttendance(content);
+                                    // scanner.stop();
+                                    // $video.hide();
+                                    // $msg.show().html('<div><b>Agent ID: </b>' + split[1] +'</div>' +
+                                    //     '<br/><button type="submit" class="btn btn-primary" ' +
+                                    //     'onclick="registerAttendance(\'' + content + '\')">Register</button>');
+                                    //
+                                    // $action.text('Rescan').show().one('click', function () {
+                                    //     $video.show();
+                                    //     $action.hide();
+                                    //     $msg.hide();
+                                    //     scanner.start(camera);
+                                    // });
+                                }
+                                else {
+                                    toastr.error('Invalid QR code');
+                                }
                             }
                             else {
-                                $msg.text('No camera found');
+                                toastr.error('Invalid QR code');
                             }
-                        }).catch(function (reason) {
-                            $msg.text('No camera found');
                         });
-                    });
+
+                        scanner.start(camera);
+                    }
+                    else {
+                        $msg.text('No camera found');
+                    }
+                }).catch(function (reason) {
+                    $msg.text('No camera found');
                 });
-            }
-            else {
-                $msg.text('You are not allowed to scan');
-            }
+            });
         });
+
+        // //check permission
+        // frappe.has_permission('PRULIA Event', event_id, 'write', function (perm) {
+        //
+        //     $msg.empty();
+        //     if (perm && perm.message && perm.message.has_permission) {
+        //         //load scanning library when clicked
+        //         $scan.show().text('Scan').off('click').one('click', function (e) {
+        //             Promise.all([
+        //                 loadScript('https://webrtc.github.io/adapter/adapter-latest.js'),
+        //                 loadScript('/lib/instascan.min.js'),
+        //                 loadScript('/lib/toastr.min.js'),
+        //                 loadStyle('/lib/toastr.css')
+        //             ]).then(function () {
+        //                 var $video = $('#preview\\.prulia'),
+        //                     scanner;
+        //
+        //                 $action.hide();
+        //
+        //                 //toast message options
+        //                 toastr.options = {
+        //                     "progressBar": true,
+        //                     "preventDuplicates": true,
+        //                     "newestOnTop": true,
+        //                     "positionClass": "toast-bottom-right",
+        //                     "showDuration": "300",
+        //                     "hideDuration": "1000",
+        //                     "timeOut": "5000",
+        //                     "extendedTimeOut": "1000",
+        //                     "onclick": null,
+        //                 };
+        //
+        //                 //init scanner
+        //                 Instascan.Camera.getCameras().then(function (cameras) {
+        //                     var camera;
+        //
+        //                     if (cameras.length >= 1) {
+        //                         camera = getBackCamera(cameras);
+        //                         $video.attr('playsinline','').show();
+        //
+        //                         scanner = new Instascan.Scanner({
+        //                             video: $video[0],
+        //                             mirror: false,
+        //                             continuous: true,
+        //                             scanPeriod: 10
+        //                         });
+        //
+        //                         scanner.addListener('scan', function (content) {
+        //                             var split;
+        //
+        //                             if (content) {
+        //                                 split = content.split('/');
+        //                                 if (split.length === 3 && split[0] === event_id) {
+        //                                     registerAttendance(content);
+        //                                     // scanner.stop();
+        //                                     // $video.hide();
+        //                                     // $msg.show().html('<div><b>Agent ID: </b>' + split[1] +'</div>' +
+        //                                     //     '<br/><button type="submit" class="btn btn-primary" ' +
+        //                                     //     'onclick="registerAttendance(\'' + content + '\')">Register</button>');
+        //                                     //
+        //                                     // $action.text('Rescan').show().one('click', function () {
+        //                                     //     $video.show();
+        //                                     //     $action.hide();
+        //                                     //     $msg.hide();
+        //                                     //     scanner.start(camera);
+        //                                     // });
+        //                                 }
+        //                                 else {
+        //                                     toastr.error('Invalid QR code');
+        //                                 }
+        //                             }
+        //                             else {
+        //                                 toastr.error('Invalid QR code');
+        //                             }
+        //                         });
+        //
+        //                         scanner.start(camera);
+        //                     }
+        //                     else {
+        //                         $msg.text('No camera found');
+        //                     }
+        //                 }).catch(function (reason) {
+        //                     $msg.text('No camera found');
+        //                 });
+        //             });
+        //         });
+        //     }
+        //     else {
+        //         $msg.text('You are not allowed to scan');
+        //     }
+        // });
     }
 });
 
@@ -202,6 +283,7 @@ function registerAttendance(content) {
                                             }
                                         },
                                         callback: function (e) {
+                                          console.log(e);
                                             if (e.message) {
                                                 //set attendance in event
                                                 return frappe.call({

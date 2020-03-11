@@ -7,8 +7,10 @@
 				<l:BlockLayout>
 					<l:BlockLayoutRow>
 						<l:BlockLayoutCell class="bannerCell">
-							<Text class="eventStatus eventRegistered" text="Registered" visible="{Event>register}"/>
-							<Text class="eventStatus eventOpenRegistration" text="Ready for Registration   " visible="{=${Event>register} === false &amp;&amp; (${Event>event_status} === 'Open For Registration' || (${Event>event_status} === 'Publish' &amp;&amp; ${Event>show_open_for_registration} === 1))}"/>
+							<Text class="eventStatus eventRegistered" text="Attended" visible="{=${Event>register} === true &amp;&amp; ${Event>attendance} === 'Yes'}"/>
+							<Text class="eventStatus eventRegistered" text="Registered" visible="{=${Event>register} === true &amp;&amp; ${Event>attendance} !== 'Yes'}"/>
+							<!--<Text class="eventStatus eventRegistered" text="Registered" visible="{Event>register}"/>-->
+							<Text class="eventStatus eventOpenRegistration" text="Ready for Registration" visible="{=${Event>register} === false &amp;&amp; (${Event>event_status} === 'Open For Registration' || (${Event>event_status} === 'Publish' &amp;&amp; ${Event>show_open_for_registration} === 1))}"/>
 							<Text class="eventStatus eventClosedRegistration" text="Registration Closed" visible="{=${Event>register} === false &amp;&amp; ${Event>event_status} === 'Registration Closed'}"/>
 							<FlexBox
 								alignItems="Center"

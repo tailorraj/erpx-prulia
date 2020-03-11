@@ -24,10 +24,9 @@ def get_data():
 			"color": "orange",
 			"icon": "octicon octicon-calendar",
 			"type": "module",
-			"label": _("PRULIA Events"),
-			"hidden": 1
+			"label": _("PRULIA Events")
 		},{
-			"module_name": "PRULIA Event",
+			"module_name": "PRULIA Event2",
 			"color": "orange",
 			"icon": "octicon octicon-bookmark",
 			"_doctype": "PRULIA Event",
@@ -35,7 +34,7 @@ def get_data():
 			"link": "List/PRULIA Event",
 			"label": _("PRULIA Event")
 		},{
-			"module_name": "PRULIA Event",
+			"module_name": "PRULIA Events",
 			"color": "orange",
 			"icon": "fa fa-qrcode",
 			"type": "page",
