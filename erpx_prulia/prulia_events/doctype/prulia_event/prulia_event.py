@@ -13,7 +13,7 @@ class PRULIAEvent(Document):
 
 
 @frappe.whitelist()
-def add_attendance(member, member_name, event, meal, shirt, accomodation):
+def add_attendance(member, member_name, event, meal, shirt, accomodation, pref_lang):
 	member_data = frappe.get_doc("PRULIA Member", member)
 	event = frappe.get_doc("PRULIA Event", event)
 	event.flags.ignore_permissions = True
@@ -30,7 +30,8 @@ def add_attendance(member, member_name, event, meal, shirt, accomodation):
 		"accomodation": accomodation,
 		"agency_no": member_data.agency_no,
 		"reg_datetime": now_datetime(),
-		"fees": event.early_fees if event.early_fees else event.fees
+		"fees": event.early_fees if event.early_fees else event.fees,
+		"pref_lang": pref_lang
 	})
 	event.save()
 	frappe.msgprint("Your attendance is confirmed")
@@ -71,7 +72,7 @@ def del_attendance(member, event):
 	
 @frappe.whitelist()
 def get_event_list(member_name):
-	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option'], 
+	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option', 'fees', 'early_fees', 'break_up_session'],
 		filters=[('PRULIA Event', "end_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
 	member = frappe.get_doc("PRULIA Member", member_name)
@@ -81,13 +82,15 @@ def get_event_list(member_name):
 		if (event.position_restriction and event.position_restriction != member.position) :
 			continue 
 
-		registration = frappe.get_all('PRULIA Attendee', filters={'member': member_name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
+		registration = frappe.get_all('PRULIA Attendee', filters={'member': member_name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation', 'attendance', 'pref_lang'])
 		if registration:
 			event.register = True
 			event.attendee_name = registration[0].name
 			event.shirt_size = registration[0].shirt_size
 			event.meal_option = registration[0].meal_option
 			event.accomodation = registration[0].accomodation
+			event.attendance = registration[0].attendance
+			event.pref_lang = registration[0].pref_lang
 		else:
 			event.register = False
 		event_result.append(event)
@@ -95,7 +98,6 @@ def get_event_list(member_name):
 
 @frappe.whitelist()
 def update_event_attendee(data):
-	print(data)
 	attendee = json.loads(data)
 	attendee_rec = frappe.get_doc("PRULIA Attendee", attendee.get('attendee_name'))
 	if attendee_rec:
@@ -103,19 +105,22 @@ def update_event_attendee(data):
 		attendee_rec.meal_option = attendee.get('meal_option')
 		attendee_rec.shirt_size = attendee.get('shirt_size')
 		attendee_rec.accomodation = attendee.get('accomodation')
+		attendee_rec.pref_lang = attendee.get('pref_lang')
 		attendee_rec.save()
 		return "success"
 
 @frappe.whitelist(allow_guest=True)
 def get_event_list_web():
-	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option', 'fees', 'early_fees'],
+	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option', 'fees', 'early_fees', 'break_up_session'],
 		filters=[('PRULIA Event', "end_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
 
 	if frappe.session.user != 'Guest': 
 		member = mobile_member_login()
 		for event in events:
-			registration = frappe.get_all('PRULIA Attendee', filters={'member': member.name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation', 'attendance'])
+			if event.break_up_session == 1 and event.position_restriction is not None:
+				event._lang = frappe.get_all('PRULIA Event Languages', filters = { 'position_restriction': event.position_restriction }, fields=['language'])
+			registration = frappe.get_all('PRULIA Attendee', filters={'member': member.name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation', 'attendance', 'pref_lang'])
 			if registration:
 				event.register = True
 				event.attendee_name = registration[0].name
@@ -123,6 +128,7 @@ def get_event_list_web():
 				event.meal_option = registration[0].meal_option
 				event.accomodation = registration[0].accomodation
 				event.attendance = registration[0].attendance
+				event.pref_lang = registration[0].pref_lang
 			else:
 				event.register = False
 			if (event.position_restriction and event.position_restriction == member.position) :
@@ -137,3 +143,14 @@ def get_event_list_web():
 
 	return events
 
+@frappe.whitelist()
+def get_lang(data):
+	res = json.loads(data)
+	position = res.get('position')
+
+	if position is None:
+		docs = frappe.get_all('PRULIA Event Languages', fields = ['language'])
+	else:
+		docs = frappe.get_all('PRULIA Event Languages', filters = { 'position_restriction': position }, fields=['language'])
+
+	return docs
