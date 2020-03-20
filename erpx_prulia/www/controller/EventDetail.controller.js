@@ -31,32 +31,44 @@ sap.ui.define([
 			Event.getInstance().getModel().then(function (oModel) {
 					var oMemberData = Login.getMemberModel().getData(),
 						attendee = [];
-					
-					this.getView().setModel(oModel,"Event");
-					for(var i = 0; i < oModel.getProperty("/").length; i++){
-						if(oModel.getProperty("/")[i].name === eventID){
-							if (oModel.getProperty("/")[i].attendance !== 'Yes') {
-								//set qr code
-								setTimeout(function () {
-									new QRCode($('.event-qr')[0], {
-										text: [eventID, oMemberData.prudential_id, oMemberData.agency_no].join('/'),
-										width: 200,
-										height: 200
-									});
-								}, 1000);
-							}
-							break;
-						}
-					}
-					this.getView().bindElement({
-						path: "/" + i,
-						model: "Event",
-						events : {
-							change: this._onBindingChange.bind(this),
-						}
-					});
 
-					this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+					if (Object.keys(oMemberData).length) {
+						initEvent.call(this);
+					}
+					else {
+						Login.readMemberDetails(initEvent.bind(this));
+					}
+
+					function initEvent() {
+						oMemberData = Login.getMemberModel().getData()
+						console.log(oMemberData);
+						this.getView().setModel(oModel,"Event");
+
+						for(var i = 0; i < oModel.getProperty("/").length; i++){
+							if(oModel.getProperty("/")[i].name === eventID){
+								if (oModel.getProperty("/")[i].attendance !== 'Yes') {
+									//set qr code
+									setTimeout(function () {
+										new QRCode($('.event-qr')[0], {
+											text: [eventID, oMemberData.prudential_id, oMemberData.agency_no].join('/'),
+											width: 200,
+											height: 200
+										});
+									}, 1000);
+								}
+								break;
+							}
+						}
+						this.getView().bindElement({
+							path: "/" + i,
+							model: "Event",
+							events : {
+								change: this._onBindingChange.bind(this),
+							}
+						});
+
+						this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+                    }
 				}.bind(this),
 				function(error){
 					this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);

@@ -33,10 +33,12 @@ frappe.ready(function() {
                         data = e.message;
                         $event_name.val(data.event_name);
                         event_id = $event.val();
+                        $msg.text('');
                     }
                     else {
                         $event_name.val('');
                         event_id = undefined;
+                        $msg.text('Select an event below!');
                     }
                     startScan(event_id);
                 }
@@ -52,6 +54,7 @@ frappe.ready(function() {
 
         //load scanning library when clicked
         $scan.show().text('Scan').off('click').one('click', function (e) {
+            $scan.hide();
             Promise.all([
                 loadScript('https://webrtc.github.io/adapter/adapter-latest.js'),
                 loadScript('/lib/instascan.min.js'),

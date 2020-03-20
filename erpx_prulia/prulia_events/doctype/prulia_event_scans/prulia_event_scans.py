@@ -11,32 +11,24 @@ import json
 
 class PRULIAEventScans(Document):
 	def validate(self):
-		if has_permission('PRULIA Event Scans', '', 'write'):
-			event = get_doc('PRULIA Event', self.event)
-			if event:
-
-				if self.scanner:
-					scanner = get_doc('PRULIA Member', self.scanner)
-					if scanner:
-						pass
-					else:
-						throw(_('Scanner not found'))
+		event = get_doc('PRULIA Event', self.event)
+		if event:
+			if self.scanner:
+				scanner = get_doc('PRULIA Member', self.scanner)
+				if scanner:
+					pass
 				else:
 					throw(_('Scanner not found'))
-
-				attendee = get_doc('PRULIA Member', self.attendee)
-				if attendee:
-					docs = get_all('PRULIA Event Scans', filters={ 'event': event, 'attendee': self.attendee }, fields=['name'], as_list=True)
-					if len(docs) > 0:
-						throw(_('Attendee has registered'))
-					else:
-						pass
-				else:
-					throw(_('Attendee not found'))
 			else:
-				throw(_('Event not found'))
+				throw(_('Scanner not found'))
+
+			attendee = get_doc('PRULIA Member', self.attendee)
+			if attendee:
+				pass
+			else:
+				throw(_('Attendee not found'))
 		else:
-			throw(_('Access denied'))
+			throw(_('Event not found'))
 
 	def run_post_save_methods(self):
 		self.scanned_time = now_datetime()
