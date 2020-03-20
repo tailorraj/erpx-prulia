@@ -3,14 +3,65 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-import frappe, json, datetime
+import frappe, json, datetime, requests
 from frappe.model.document import Document
-from frappe.utils import now_datetime
+from frappe.utils import now_datetime, get_url
+from frappe import _, throw
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 
 class PRULIAEvent(Document):
-	pass
+	def validate(self):
+		old_doc = frappe.get_doc("PRULIA Event", self.name)
+		status = 'open For Registration'
+		if self.event_status == 'Publish':
+			status = 'published'
+		if old_doc.event_status != self.event_status and (self.event_status == 'Publish' or self.event_status == 'Open For Registration'):
 
+			# set image
+			big_image = (self.event_image or '')
+			if big_image:
+				big_image = get_url() + self.event_image
+			else:
+				throw(_('Please provide an image'))
+
+			# set tags to restrict to QL only
+			filters = []
+			if self.position_restriction == 'QL':
+				filters = [
+					{ 'field': 'tag', 'key': 'position', 'relation': '=', 'value': self.position_restriction }
+				]
+
+			push_noti('A new event {} is now {}'.format(self.event_name, status), big_image, filters)
+		else:
+			pass
+
+def push_noti(content, image, filters = []):
+	url = "https://onesignal.com/api/v1/notifications"
+	one_signal_api_key = frappe.local.conf.get('one_signal_api_key')
+	one_signal_app_id = frappe.local.conf.get('one_signal_app_id')
+
+	if len(filters) > 0:
+		payload = {
+			"app_id": one_signal_app_id,
+			"filters": filters,
+			"contents": {"en": content},
+			"big_picture": image
+		}
+	else:
+		payload = {
+			"app_id": one_signal_app_id,
+			"included_segments": ["All"],
+			"contents": {"en": content},
+			"big_picture": image
+		}
+
+	headers = {
+		'content-type': "application/json",
+		'authorization': "Basic {}".format(one_signal_api_key),
+		'cache-control': "no-cache"
+	}
+
+	requests.request("POST", url, data=json.dumps(payload), headers=headers)
 
 @frappe.whitelist()
 def add_attendance(member, member_name, event, meal, shirt, accomodation, pref_lang):

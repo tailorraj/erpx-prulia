@@ -175,7 +175,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2020-03-15 17:29:50.802296", 
+ "modified": "2020-03-16 11:39:43.862529", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "PRULIA Feedback", 
@@ -250,6 +250,7 @@
  "show_name_in_global_search": 0, 
  "sort_field": "modified", 
  "sort_order": "DESC", 
+ "title_field": "member_name", 
  "track_changes": 1, 
  "track_seen": 0
 }

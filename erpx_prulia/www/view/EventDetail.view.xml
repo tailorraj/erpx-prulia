@@ -69,6 +69,8 @@
 									<Text text="{Event>shirt_size}" visible="{=${Event>display_shirt_option} === 1}"/>
 									<Label textAlign="Begin" text="Accomodation" visible="{=${Event>display_accomodation_option} === 1}"/>
 									<Text text="{Event>accomodation}" visible="{=${Event>display_accomodation_option} === 1}"/>
+									<Label textAlign="Begin" text="Break Up Session Preferred language " visible="{=${Event>break_up_session} === 1}"/>
+									<Text text="{Event>pref_lang}" visible="{=${Event>break_up_session} === 1}"/>
 								</form:content>
 							</form:SimpleForm>
 							<FlexBox

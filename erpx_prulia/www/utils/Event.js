@@ -176,7 +176,7 @@ sap.ui.define([
                     visible: "{=${/display_accomodation_option} === 1}"
                   }),
                   new Label({
-                    text: "Preferred Language",
+                    text: "Break Up Session Preferred language",
                     visible: "{=${/break_up_session} === 1}",
                   }),
                   new Select({
