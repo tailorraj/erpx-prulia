@@ -44,6 +44,13 @@ sap.ui.define([
           }
           this._manageEventImage(oEventItem); 
           if(this._eventModel === undefined){
+            oEventItem = (oEventItem || []).map(function (event) {
+              if (event._lang && event._lang.length) {
+                event.pref_lang = event._lang[0].language;
+              }
+
+              return event;
+            });
             this._eventModel = new JSONModel(oEventItem);
           } else {
             this._eventModel.setData(oEventItem);
@@ -74,8 +81,18 @@ sap.ui.define([
     },
 
     openEventPreferenceDialog: function(oController, bCreate, oBindingObject, oMemberModel){
-      var that = this;
-      var oBindingModel = new JSONModel(oBindingObject);
+      var that = this,
+          oBindingModel = new JSONModel(oBindingObject),
+          lang_items = [];
+
+      //init lang
+      (oBindingModel.oData._lang || []).forEach(function (lang) {
+        lang_items.push(new Item({
+            key: lang.language,
+            text: lang.language
+        }));
+      });
+
       // var oMemberModel = Login.getMemberModel();
       if (!this.eventPrefDialog) {
         this.eventPrefDialog = new Dialog({
@@ -158,7 +175,15 @@ sap.ui.define([
                     state: "{/accomodation}",
                     visible: "{=${/display_accomodation_option} === 1}"
                   }),
-                  
+                  new Label({
+                    text: "Preferred Language",
+                    visible: "{=${/break_up_session} === 1}",
+                  }),
+                  new Select({
+                      selectedKey: '{/pref_lang}',
+                      visible: "{=${/break_up_session} === 1}",
+                      items: lang_items
+                  })
                 ]
               }),
               new Text({
@@ -252,6 +277,8 @@ sap.ui.define([
     },
 
     createAttendance: function(bCreate, oEventRegistration, oMemberModel) {
+      console.log(oEventRegistration.getProperty("/pref_lang"));
+
       if(bCreate){
         var oPostData = {
           "member": oMemberModel.getProperty("/name"),
@@ -259,7 +286,8 @@ sap.ui.define([
           "event": oEventRegistration.getProperty("/name"),
           "meal": oEventRegistration.getProperty("/meal_option"),
           "shirt": oEventRegistration.getProperty("/shirt_size"),
-          "accomodation" : oEventRegistration.getProperty("/accomodation") === true ? "Yes" : "No"
+          "accomodation" : oEventRegistration.getProperty("/accomodation") === true ? "Yes" : "No",
+          "pref_lang": oEventRegistration.getProperty("/pref_lang") || '',
         };
         return $.post(Config.serverURL+'/api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.add_attendance', oPostData);
       } else {
@@ -267,7 +295,8 @@ sap.ui.define([
           "attendee_name": oEventRegistration.getProperty("/attendee_name"),
           "meal_option": oEventRegistration.getProperty("/meal_option"),
           "shirt_size": oEventRegistration.getProperty("/shirt_size"),
-          "accomodation" : oEventRegistration.getProperty("/accomodation") === true ? "Yes" : "No"
+          "accomodation" : oEventRegistration.getProperty("/accomodation") === true ? "Yes" : "No",
+          "pref_lang": oEventRegistration.getProperty("/pref_lang"),
         };
         return $.ajax({
           type: "POST",
