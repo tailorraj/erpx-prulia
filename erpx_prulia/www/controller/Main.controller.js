@@ -4,41 +4,21 @@ sap.ui.define([
 	"com/erpx/site/prulia/PRULIA/utils/Login",
 	"com/erpx/site/prulia/PRULIA/utils/News",
 	"sap/m/Dialog",
-	"sap/m/Image",
 	"sap/m/Button"
-], function (Controller, MessageToast, Login, News, Dialog, Image, Button) {
+], function (Controller, MessageToast, Login, News, Dialog, Button) {
 	"use strict";
 
 	return Controller.extend("com.erpx.site.prulia.PRULIA.controller.Main", {
-		
+
 		onInit: function(){
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this),
-				greetingDialog,
 				d = new Date();
 
 			oRouter.getRoute("Main").attachPatternMatched(this._onObjectMatched, this);
 
 			this.getOwnerComponent().getModel("appParam").setProperty("/showMap", false);
 
-			//show greeting dialog
-			if (d.getFullYear() === 2020 && (d.getMonth() + 1) === 1 && d.getDate() <= 28) {
-					greetingDialog = new Dialog({
-					id: 'greetingDialog',
-					contentWidth: "80%",
-					content: new Image({
-						src: "css/images/CNY-2020.jpg",
-						width: "100%"
-					}),
-					endButton: new Button({
-						text: "Close",
-						press: function () {
-							greetingDialog.close();
-						}
-					})
-				});
-
-				greetingDialog.open();
-			}
+			Login.getMemberModel()
 		},
 		_onObjectMatched: function (oEvent) {
 			this.getOwnerComponent().getModel("appParam").setProperty("/showBack", false);

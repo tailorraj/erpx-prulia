@@ -16,7 +16,9 @@ class PRULIANewsletter(Document):
 def get_newsletter_list():
 	# return 'here'
 	newsletters = frappe.get_all('PRULIA Newsletter', fields=['name', 'title', 'type', 'link', 'content', 'publish_date', 'news_image'], 
-		filters=[('PRULIA Newsletter', "publish_date", "<=", now_datetime().date()), ('PRULIA Newsletter', "publish_date", ">=", frappe.utils.data.add_months(datetime.date.today(), -3)), ('PRULIA Newsletter', "publish_news", "=", 1)],
+		filters=[('PRULIA Newsletter', "publish_date", "<=", now_datetime().date()),
+				 ('PRULIA Newsletter', "publish_date", ">=", frappe.utils.data.add_months(datetime.date.today(), -3)),
+				 ('PRULIA Newsletter', "publish_news", "=", 1)],
 		order_by='publish_date desc')
 	return newsletters
 	# event_result = []
@@ -40,3 +42,16 @@ def get_newsletter_list():
 	# return event_result
 
 
+@frappe.whitelist(allow_guest=True)
+def get_newsletter_popup():
+	# if publish date is less than or equals to today and
+	newsletters = frappe.get_all('PRULIA Newsletter',
+								 fields=['name', 'title', 'type', 'link', 'content', 'publish_date',
+										 'news_image', 'position', 'region', 'branch'],
+								 filters=[('PRULIA Newsletter', "publish_date", "<=", now_datetime().date()),
+										  ('PRULIA Newsletter', "final_date", ">=", now_datetime().date()),
+										  ('PRULIA Newsletter', "publish_news", "=", 1),
+										  ('PRULIA Newsletter', "type", "=", "Popup")],
+								 order_by='publish_date desc')
+
+	return newsletters

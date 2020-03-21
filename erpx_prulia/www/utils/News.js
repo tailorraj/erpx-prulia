@@ -62,6 +62,19 @@ sap.ui.define([
           }
         }.bind(this));
     },
+    getPopupNews: function () {
+        return new Promise(function (resolve, reject) {
+            $.get(Config.serverURL+'/api/method/erpx_prulia.prulia_news.doctype.prulia_newsletter.prulia_newsletter.get_newsletter_popup', function(data, status, xhr) {
+                if (status === 'success') {
+                    if (data && data.message && data.message.length) {
+                        resolve(data.message);
+                    }
+                    else { reject(data); }
+                }
+                else { reject(status); }
+            })
+        });
+    },
 
     _manageNewsImage: function(aNews){
       for(var i = 0; i < aNews.length; i++){

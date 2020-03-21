@@ -7,11 +7,14 @@ sap.ui.define([
 	'sap/m/Label',
 	'sap/m/Input',
 	'sap/m/MessageToast',
+	"sap/m/Carousel",
+	"sap/m/Image",
 	"sap/ui/core/routing/History",
 	"com/erpx/site/prulia/PRULIA/utils/Login",
 	"com/erpx/site/prulia/PRULIA/utils/Member",
-	"com/erpx/site/prulia/PRULIA/utils/Event"
-], function (Controller, Popover, Button, Dialog, SimpleForm, Label, Input, MessageToast, History, Login, Member, Event) {
+	"com/erpx/site/prulia/PRULIA/utils/Event",
+	"com/erpx/site/prulia/PRULIA/utils/News"
+], function (Controller, Popover, Button, Dialog, SimpleForm, Label, Input, MessageToast, Carousel, Image, History, Login, Member, Event, News) {
 	"use strict";
 
 	return Controller.extend("com.erpx.site.prulia.PRULIA.controller.App", {
@@ -34,8 +37,56 @@ sap.ui.define([
 
 			Login.check_if_cookie_valid(function(){
 				Login.readMemberDetails(function(){
+					var member = Login._memberModel.getJSON();
+
+					try {
+						member = JSON.parse(member);
+					}
+					catch (e){}
+
 					MessageToast.show("Welcome Back!");
 					this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+
+					console.log(member);
+
+					//show greeting dialog
+					News.getInstance().getPopupNews().then(function (list) {
+
+						list = list.filter(function (news) {
+							var filters = ['position', 'region', 'branch'],
+								ret = true;
+
+							filters.forEach(filter => {
+							  if (ret && news[filter] && news[filter] !== member[filter]) { ret = false; }
+							});
+
+							return ret;
+                        });
+
+						if (list.length) {
+							var greetingDialog = new Dialog({
+								id: 'greetingDialog',
+								contentWidth: "80%",
+								content: new Carousel({
+									width: '100%',
+									pages: list.map(function (news) {
+										return new Image({
+											src: news.news_image,
+											width: "100%"
+										})
+									})
+								}),
+								endButton: new Button({
+									text: "Close",
+									press: function () {
+										greetingDialog.close();
+									}
+								})
+							});
+
+							greetingDialog.open();
+						}
+					});
 				}.bind(this), function(){
 					this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
 				}.bind(this));
