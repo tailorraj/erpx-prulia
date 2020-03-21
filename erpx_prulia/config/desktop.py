@@ -26,7 +26,7 @@ def get_data():
 			"type": "module",
 			"label": _("PRULIA Events")
 		},{
-			"module_name": "PRULIA Event2",
+			"module_name": "PRULIA Event",
 			"color": "orange",
 			"icon": "octicon octicon-bookmark",
 			"_doctype": "PRULIA Event",
