@@ -8,3 +8,9 @@ from frappe.model.document import Document
 
 class PRULIAFeedbackCategory(Document):
 	pass
+
+@frappe.whitelist()
+def get_categories():
+	cats = frappe.get_all('PRULIA Feedback Category', fields=['name', 'category'])
+
+	return cats

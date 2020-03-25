@@ -56,7 +56,7 @@ sap.ui.define([
 							var filters = ['position', 'region', 'branch'],
 								ret = true;
 
-							filters.forEach(filter => {
+							filters.forEach(function (filter) {
 							  if (ret && news[filter] && news[filter] !== member[filter]) { ret = false; }
 							});
 

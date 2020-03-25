@@ -351,7 +351,7 @@ sap.ui.define([
 								layout:"ResponsiveGridLayout",
 								content: [
 									new Label({
-										text: "Agent ID"
+										text: "Prudential ID"
 									}),
 									new Input("memberLogin-Username"),
 									new Label({
@@ -360,7 +360,7 @@ sap.ui.define([
 									new Input("memberLogin-Password", {
 										type:"Password"
 									}),
-									new sap.m.Link({text:"Forgot Password", press: function(){
+									new sap.m.Link({text:"Forgot Password / First time", press: function(){
 											this.loginDialog.close();
 											this.open_forget_password_dialog(oController);
 										}.bind(this)
