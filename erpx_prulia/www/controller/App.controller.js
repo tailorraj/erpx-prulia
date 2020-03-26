@@ -57,7 +57,12 @@ sap.ui.define([
 								ret = true;
 
 							filters.forEach(function (filter) {
-							  if (ret && news[filter] && news[filter] !== member[filter]) { ret = false; }
+								var arr;
+
+								if (ret && news[filter].length) {
+									arr = news[filter].map(function (el) { return el.name; });
+									if (arr.indexOf(member[filter]) === -1) { ret = false; }
+								}
 							});
 
 							return ret;
