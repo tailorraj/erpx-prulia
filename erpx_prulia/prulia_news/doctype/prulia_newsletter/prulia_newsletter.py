@@ -47,11 +47,22 @@ def get_newsletter_popup():
 	# if publish date is less than or equals to today and
 	newsletters = frappe.get_all('PRULIA Newsletter',
 								 fields=['name', 'title', 'type', 'link', 'content', 'publish_date',
-										 'news_image', 'position', 'region', 'branch'],
+										 'news_image'],
 								 filters=[('PRULIA Newsletter', "publish_date", "<=", now_datetime().date()),
 										  ('PRULIA Newsletter', "final_date", ">=", now_datetime().date()),
 										  ('PRULIA Newsletter', "publish_news", "=", 1),
 										  ('PRULIA Newsletter', "type", "=", "Popup")],
 								 order_by='publish_date desc')
+
+	for newsletter in newsletters:
+		newsletter['position'] = frappe.get_all('PRULIA Newsletter Position',
+									 fields=['name'],
+									 filters={'parent': newsletter.name})
+		newsletter['region'] = frappe.get_all('PRULIA Newsletter Region',
+									 fields=['name'],
+									 filters={'parent': newsletter.name})
+		newsletter['branch'] = frappe.get_all('PRULIA Newsletter Branch',
+									 fields=['name'],
+									 filters={'parent': newsletter.name})
 
 	return newsletters
