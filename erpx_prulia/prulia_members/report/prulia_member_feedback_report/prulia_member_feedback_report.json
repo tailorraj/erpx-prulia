@@ -1,0 +1,30 @@
+{
+ "add_total_row": 0, 
+ "apply_user_permissions": 1, 
+ "creation": "2020-04-22 13:48:04.490415", 
+ "disabled": 0, 
+ "docstatus": 0, 
+ "doctype": "Report", 
+ "idx": 0, 
+ "is_standard": "Yes", 
+ "modified": "2020-04-22 13:57:34.533677", 
+ "modified_by": "Administrator", 
+ "module": "PRULIA Members", 
+ "name": "PRULIA Member Feedback Report", 
+ "owner": "Administrator", 
+ "query": "SELECT\n `tabPRULIA Feedback`.`member` as \"PRULIA ID:Data/PRULIA ID:80\",\n `tabPRULIA Feedback`.`member_name` as \"Sender Name:Data/Sender Name:80\",\n `tabPRULIA Feedback`.`submission_date` as \"Submission Date:Date/Submission Date:80\",\n `tabPRULIA Feedback`.`remark` as \"Feedback Remark:Date/Feedback Remark:200\",\n `tabPRULIA Feedback`.`category` as \"Feedback Category:Link/Feedback Category:80\"\n FROM\n  `abPRULIA Feedback`", 
+ "ref_doctype": "PRULIA Feedback", 
+ "report_name": "PRULIA Member Feedback Report", 
+ "report_type": "Script Report", 
+ "roles": [
+  {
+   "role": "System Manager"
+  }, 
+  {
+   "role": "PRULIA Member Administrator"
+  }, 
+  {
+   "role": "PRULIA Member"
+  }
+ ]
+}

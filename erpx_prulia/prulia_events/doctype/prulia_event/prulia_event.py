@@ -11,29 +11,30 @@ from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobil
 
 class PRULIAEvent(Document):
 	def validate(self):
-		old_doc = frappe.get_doc("PRULIA Event", self.name)
 		status = 'open For Registration'
-		if self.event_status == 'Publish':
-			status = 'published'
-		if old_doc.event_status != self.event_status and (self.event_status == 'Publish' or self.event_status == 'Open For Registration'):
+		if not self.is_new():
+			old_doc = frappe.get_doc("PRULIA Event", self.name)
+			if self.event_status == 'Publish':
+				status = 'published'
+			if old_doc.event_status != self.event_status and (self.event_status == 'Publish' or self.event_status == 'Open For Registration'):
 
-			# set image
-			big_image = (self.event_image or '')
-			if big_image:
-				big_image = get_url() + self.event_image
+				# set image
+				big_image = (self.event_image or '')
+				if big_image:
+					big_image = get_url() + self.event_image
+				else:
+					throw(_('Please provide an image'))
+
+				# set tags to restrict to QL only
+				filters = []
+				if self.position_restriction == 'QL':
+					filters = [
+						{ 'field': 'tag', 'key': 'position', 'relation': '=', 'value': self.position_restriction }
+					]
+
+				push_noti('A new event {} is now {}'.format(self.event_name, status), big_image, filters)
 			else:
-				throw(_('Please provide an image'))
-
-			# set tags to restrict to QL only
-			filters = []
-			if self.position_restriction == 'QL':
-				filters = [
-					{ 'field': 'tag', 'key': 'position', 'relation': '=', 'value': self.position_restriction }
-				]
-
-			push_noti('A new event {} is now {}'.format(self.event_name, status), big_image, filters)
-		else:
-			pass
+				pass
 
 def push_noti(content, image, filters = []):
 	url = "https://onesignal.com/api/v1/notifications"
@@ -45,14 +46,20 @@ def push_noti(content, image, filters = []):
 			"app_id": one_signal_app_id,
 			"filters": filters,
 			"contents": {"en": content},
-			"big_picture": image
+			"big_picture": image,
+      "ios_attachments": {"image": image},
+      "ios_badgeType": "Increase",
+      "ios_badgeCount": 1
 		}
 	else:
 		payload = {
 			"app_id": one_signal_app_id,
 			"included_segments": ["All"],
 			"contents": {"en": content},
-			"big_picture": image
+			"big_picture": image,
+      "ios_attachments": {"image": image},
+      "ios_badgeType": "Increase",
+      "ios_badgeCount": 1
 		}
 
 	headers = {
@@ -120,7 +127,7 @@ def del_attendance(member, event):
 				frappe.msgprint("Your attendance is cancelled")
 	if not check_exist:
 		throw (_("Record not found"))
-	
+
 @frappe.whitelist()
 def get_event_list(member_name):
 	events = frappe.get_all('PRULIA Event', fields=['name', 'event_name', 'description', 'start_date_time', 'end_date_time', 'venue', 'event_status', 'position_restriction', 'event_image', 'show_open_for_registration', 'display_accomodation_option', 'display_shirt_option', 'fees', 'early_fees', 'break_up_session'],
@@ -130,8 +137,8 @@ def get_event_list(member_name):
 
 	event_result = []
 	for event in events:
-		if (event.position_restriction and event.position_restriction != member.position) :
-			continue 
+		if event.position_restriction and event.position_restriction != member.position:
+			continue
 
 		registration = frappe.get_all('PRULIA Attendee', filters={'member': member_name, 'parent': event.name}, fields=['name', 'shirt_size', 'meal_option', 'accomodation', 'attendance', 'pref_lang'])
 		if registration:
@@ -166,7 +173,7 @@ def get_event_list_web():
 		filters=[('PRULIA Event', "end_date_time", ">=", now_datetime().date()), ('PRULIA Event', "event_status", "!=", "Draft")],
 		order_by='start_date_time desc')
 
-	if frappe.session.user != 'Guest': 
+	if frappe.session.user != 'Guest':
 		member = mobile_member_login()
 		for event in events:
 			if event.break_up_session == 1 and event.position_restriction is not None:
@@ -188,7 +195,7 @@ def get_event_list_web():
 				event.can_register = True
 			else:
 				event.can_register = False
-	else: 
+	else:
 		for event in events:
 			event.register = False
 

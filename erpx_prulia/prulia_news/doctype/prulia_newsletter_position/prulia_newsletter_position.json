@@ -5,12 +5,12 @@
  "allow_rename": 0, 
  "autoname": "field:position", 
  "beta": 0, 
- "creation": "2020-03-26 18:30:37.658661", 
+ "creation": "2020-03-26 19:29:09.856245", 
  "custom": 0, 
  "docstatus": 0, 
  "doctype": "DocType", 
  "document_type": "", 
- "editable_grid": 0, 
+ "editable_grid": 1, 
  "engine": "InnoDB", 
  "fields": [
   {
@@ -55,7 +55,7 @@
  "issingle": 0, 
  "istable": 1, 
  "max_attachments": 0, 
- "modified": "2020-03-26 18:57:00.686830", 
+ "modified": "2020-03-26 19:29:09.856245", 
  "modified_by": "Administrator", 
  "module": "PRULIA News", 
  "name": "PRULIA Newsletter Position", 

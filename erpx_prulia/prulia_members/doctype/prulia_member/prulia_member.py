@@ -25,9 +25,9 @@ class PRULIAMember(Document):
 		if self.user_id:
 			self.validate_duplicate_user_id()			
 		
-		if(frappe.db.exists("PRULIA Member", self.name)):
+		if frappe.db.exists("PRULIA Member", self.name):
 			existing_member = frappe.get_doc("PRULIA Member", self.name)
-			if(existing_member.prudential_id!=self.prudential_id):
+			if existing_member.prudential_id != self.prudential_id:
 				self.validate_prudential_id()
 			if self.user_id is None and existing_member.user_id:
 				frappe.permissions.remove_user_permission("PRULIA Member", self.name, existing_member.user_id)
@@ -46,7 +46,7 @@ class PRULIAMember(Document):
 		#Autocreate User
 		if self.user_status in ["Active"]:
 			if self.user_id is None:
-				if(frappe.db.exists("User", self.email)):
+				if frappe.db.exists("User", self.email):
 					self.user_id = self.email
 				else:
 					self.user_id = self.create_user(self)

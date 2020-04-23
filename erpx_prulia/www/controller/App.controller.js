@@ -35,71 +35,80 @@ sap.ui.define([
 				showMap: false
 			});
 
-			Login.check_if_cookie_valid(function(){
-				Login.readMemberDetails(function(){
+			Login.check_if_cookie_valid(function() {
+				Login.readMemberDetails(function() {
 					var member = Login._memberModel.getJSON();
 
 					try {
 						member = JSON.parse(member);
 					}
-					catch (e){}
+					catch (e){
+						member = undefined;
+					}
 
 					MessageToast.show("Welcome Back!");
 					this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+					showPopupNews(member);
 
-					console.log(member);
-
-					//show greeting dialog
-					News.getInstance().getPopupNews().then(function (list) {
-
-						list = list.filter(function (news) {
-							var filters = ['position', 'region', 'branch'],
-								ret = true;
-
-							filters.forEach(function (filter) {
-								var arr;
-
-								if (ret && news[filter].length) {
-									arr = news[filter].map(function (el) { return el.name; });
-									if (arr.indexOf(member[filter]) === -1) { ret = false; }
-								}
-							});
-
-							return ret;
-                        });
-
-						if (list.length) {
-							var greetingDialog = new Dialog({
-								id: 'greetingDialog',
-								contentWidth: "80%",
-								content: new Carousel({
-									width: '100%',
-									pages: list.map(function (news) {
-										return new Image({
-											src: news.news_image,
-											width: "100%"
-										})
-									})
-								}),
-								endButton: new Button({
-									text: "Close",
-									press: function () {
-										greetingDialog.close();
-									}
-								})
-							});
-
-							greetingDialog.open();
-						}
-					});
 				}.bind(this), function(){
 					this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+					showPopupNews();
 				}.bind(this));
 				// this.getView().setModel(new Member().getModel(),"member");
 			}.bind(this), 
 			function(){
 				this.getOwnerComponent().getModel("appParam").setProperty("/busy", false);
+				showPopupNews();
 			}.bind(this));
+
+			function showPopupNews(member) {
+				//show greeting dialog
+				News.getInstance().getPopupNews().then(function (list) {
+					list = list.filter(function (news) {
+						var filters = ['position', 'region', 'branch'],
+							ret = true;
+
+						filters.forEach(function (filter) {
+							var arr;
+
+							if (ret && news[filter].length) {
+								if (member) { //if member exists, check if member match any of the filters
+									arr = news[filter].map(function (el) { return el.name; });
+									if (arr.indexOf(member[filter]) === -1) { ret = false; }
+								}
+								//if no member exists, and andy filter found on news shouldnt not show
+								else { ret = false; }
+							}
+						});
+
+						return ret;
+					});
+
+					if (list.length) {
+						var greetingDialog = new Dialog({
+							id: 'greetingDialog',
+							contentWidth: "80%",
+							content: new Carousel({
+								width: '100%',
+								pages: list.map(function (news) {
+									return new Image({
+										src: news.news_image,
+										width: "100%"
+									})
+								})
+							}),
+							endButton: new Button({
+								text: "Close",
+								press: function () {
+									greetingDialog.close();
+								}
+							})
+						});
+
+						greetingDialog.open();
+					}
+				});
+			}
 		},
 
 		/**

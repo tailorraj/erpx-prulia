@@ -19,6 +19,10 @@ def get_newsletter_list():
 		filters=[('PRULIA Newsletter', "publish_date", "<=", now_datetime().date()),
 				 ('PRULIA Newsletter', "publish_date", ">=", frappe.utils.data.add_months(datetime.date.today(), -3)),
 				 ('PRULIA Newsletter', "publish_news", "=", 1)],
+		or_filters=[
+			["type", "=", "Link"],
+			["type", "=", "Content"]
+		],
 		order_by='publish_date desc')
 	return newsletters
 	# event_result = []
