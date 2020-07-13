@@ -87,7 +87,7 @@ sap.ui.define([
 					if (list.length) {
 						var greetingDialog = new Dialog({
 							id: 'greetingDialog',
-							contentWidth: "80%",
+							contentWidth: "100%",
 							content: new Carousel({
 								width: '100%',
 								pages: list.map(function (news) {

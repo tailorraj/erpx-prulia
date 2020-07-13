@@ -8,11 +8,21 @@ from frappe.model.document import Document
 from frappe.utils import now_datetime
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 
+
 class PRULIATraining(Document):
 	pass
 
+
 @frappe.whitelist()
-def add_attendance(member, member_name, event, meal, shirt, accomodation):
+def add_attendance(data):
+	ret = json.loads(data)
+	member = ret.get('member')
+	member_name = ret.get('member_name')
+	event = ret.get('event')
+	meal = ret.get('meal')
+	shirt = ret.get('shirt')
+	accomodation = ret.get('accomodation')
+
 	member_data = frappe.get_doc("PRULIA Member", member)
 	event = frappe.get_doc("PRULIA Training", event)
 	event.flags.ignore_permissions = True

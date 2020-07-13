@@ -171,10 +171,6 @@ sap.ui.define([
               	text:"I agree to be govern by the rules and regulations of PRULIA as they now exist as they may hereafter be altered.",
 	        	visible: bCreate ? true:false
               }).addStyleClass("sapUiSmallMarginBeginEnd"),
-              new Text({
-              	text:"I hereby authorize Prudential Assurance Malaysia Berhad to debit by commission account for the registration of the training.",
-	        	visible: bCreate ? true:false
-              }).addStyleClass("sapUiSmallMarginBeginEnd"),
               new CheckBox("idAcknowledgementCheck", {
 	          		selected:"{/acknowlegement}",
 	          		visible: bCreate ? true:false,
@@ -263,7 +259,13 @@ sap.ui.define([
           "shirt": oTrainingRegistration.getProperty("/shirt_size"),
           "accomodation" : oTrainingRegistration.getProperty("/accomodation") === true ? "Yes" : "No"
         };
-        return $.post(Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.add_attendance', oPostData);
+        return $.ajax({
+          type: 'POST',
+          url: Config.serverURL + '/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.add_attendance',
+          data: JSON.stringify(oPostData),
+          dataType: 'json',
+          contentType: 'application/json'
+        });
       } else {
         var oPostData = {
           "trainee_name": oTrainingRegistration.getProperty("/trainee_name"),
@@ -277,7 +279,9 @@ sap.ui.define([
           data: JSON.stringify(oPostData),
           dataType: 'json',
           contentType: 'application/json'
-        });
+        }).error(function (e) {
+          console.error(e);
+        })
 
         // return $.post(Config.serverURL + '/api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.update_training_trainee', JSON.stringify(oPostData));
       }

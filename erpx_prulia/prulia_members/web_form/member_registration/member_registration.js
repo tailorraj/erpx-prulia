@@ -36,7 +36,12 @@ frappe.ready(function() {
 
 	loadScript('https://unpkg.com/imask').then(function () {
 		var $nric_input = $('input[name="nric_number"]'),
-			$cell_number = $('input[name="cell_number"]');
+			$cell_number = $('input[name="cell_number"]'),
+			$prudential_id = $('input[name="prudential_id"]');
+
+		IMask($prudential_id[0], {
+			mask: '0000000'
+		});
 
 		IMask($nric_input[0], {
 			mask: '000000\-00\-0000'

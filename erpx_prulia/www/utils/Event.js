@@ -289,7 +289,13 @@ sap.ui.define([
           "accomodation" : oEventRegistration.getProperty("/accomodation") === true ? "Yes" : "No",
           "pref_lang": oEventRegistration.getProperty("/pref_lang") || '',
         };
-        return $.post(Config.serverURL+'/api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.add_attendance', oPostData);
+        return $.post({
+            type: 'POST',
+            url: Config.serverURL+'/api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.add_attendance',
+            data: JSON.stringify(oPostData),
+            dataType: 'json',
+            contentType: 'application/json'
+        });
       } else {
         var oPostData = {
           "attendee_name": oEventRegistration.getProperty("/attendee_name"),

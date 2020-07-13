@@ -7,15 +7,15 @@
  "doctype": "Report", 
  "idx": 0, 
  "is_standard": "Yes", 
- "modified": "2020-04-22 13:57:34.533677", 
+ "modified": "2020-04-23 10:44:34.693781", 
  "modified_by": "Administrator", 
  "module": "PRULIA Members", 
  "name": "PRULIA Member Feedback Report", 
  "owner": "Administrator", 
- "query": "SELECT\n `tabPRULIA Feedback`.`member` as \"PRULIA ID:Data/PRULIA ID:80\",\n `tabPRULIA Feedback`.`member_name` as \"Sender Name:Data/Sender Name:80\",\n `tabPRULIA Feedback`.`submission_date` as \"Submission Date:Date/Submission Date:80\",\n `tabPRULIA Feedback`.`remark` as \"Feedback Remark:Date/Feedback Remark:200\",\n `tabPRULIA Feedback`.`category` as \"Feedback Category:Link/Feedback Category:80\"\n FROM\n  `abPRULIA Feedback`", 
+ "query": "SELECT\n `tabPRULIA Feedback`.`member` as \"PRULIA ID:Data/PRULIA ID:80\",\n `tabPRULIA Feedback`.`member_name` as \"Sender Name:Data/Sender Name:160\",\n `tabPRULIA Feedback`.`submission_date` as \"Submission Date:Date/Submission Date:140\",\n `tabPRULIA Feedback`.`remark` as \"Remark:Data/Feedback Remark:400\",\n `tabPRULIA Feedback`.`category` as \"Category:Link/PRULIA Feedback Category:120\"\n FROM\n  `tabPRULIA Feedback`", 
  "ref_doctype": "PRULIA Feedback", 
  "report_name": "PRULIA Member Feedback Report", 
- "report_type": "Script Report", 
+ "report_type": "Query Report", 
  "roles": [
   {
    "role": "System Manager"
