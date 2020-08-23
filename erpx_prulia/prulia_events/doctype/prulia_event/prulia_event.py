@@ -104,9 +104,50 @@ def add_attendance(data):
         "fees": event.early_fees if event.early_fees else event.fees,
         "pref_lang": pref_lang
     })
+    
     event.save()
-    frappe.msgprint("Your attendance is confirmed")
+    attendee_dt = frappe.get_doc("PRULIA Attendee", {"parent": event.name, "member": member})
 
+    link = get_payment_link(event.description, event.fees, attendee_dt.name, member_name, member_data.email, member_data.cell_number)
+    return {"payment_link": link}
+
+def create_sha256_signature(key, message):
+    import hmac
+    import hashlib
+    message = message.encode()
+    return hmac.new(str(key), str(message), hashlib.sha256).hexdigest()
+
+def get_payment_link(detail, amount, order_id, name, email, phone):
+    senangpay_settings = frappe.get_doc("Senangpay Settings")
+    if not senangpay_settings.enable:
+        frappe.throw("Please enable Senangpay Settings")
+    secret_key = senangpay_settings.secret_key
+
+    hash_string = str(secret_key)+str(detail)+str(amount)+str(order_id)
+    hashed_value = create_sha256_signature(secret_key, hash_string)
+
+    parameters = {
+        "detail": detail,
+        "amount": amount,
+        "order_id": order_id,
+        "hash": hashed_value,
+        "name": name,
+        "email": email,
+        "phone": phone
+    }
+    import urllib
+    
+    link = str(senangpay_settings.base_url)+"?"+urllib.urlencode(parameters)
+    return link
+
+@frappe.whitelist()
+def update_payment_status(data):
+    ret = json.loads(data)
+    order_id = ret.get('order_id')
+    p_att = frappe.get_doc("PRULIA Attendee", order_id)
+    p_att.paid = True
+    p_att.save()
+    return "success"
 
 @frappe.whitelist()
 def check_registration(member, event):
