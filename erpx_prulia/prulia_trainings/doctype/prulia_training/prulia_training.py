@@ -7,7 +7,7 @@ import frappe, json, datetime
 from frappe.model.document import Document
 from frappe.utils import now_datetime
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
-
+from erpx_prulia.prulia_integrations.doctype.senangpay_settings.senangpay_settings import create_sha256_signature, get_payment_link
 
 class PRULIATraining(Document):
 	pass
@@ -39,10 +39,17 @@ def add_attendance(data):
 		"accomodation": accomodation,
 		"agency_no": member_data.agency_no,
 		"reg_datetime": now_datetime(),
-		"fees": event.early_fees if event.early_fees else event.fees
+		"fees": event.early_fees if event.early_fees else event.fees,
+		"paid": True if event.training_with_fees else False
 	})
 	event.save()
-	frappe.msgprint("Your attendance is confirmed")
+	if event.training_with_fees:
+		attendee_dt = frappe.get_doc("PRULIA Attendee", {"parent": event.name, "member": member})
+
+		link = get_payment_link(event.description, event.fees, attendee_dt.name, member_name, member_data.email, member_data.cell_number)
+		return {"success":True, "payment_link": link}
+	else:
+		return {"success":True, "payment_link": ""}
 
 
 @frappe.whitelist()
