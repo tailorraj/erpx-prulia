@@ -8,6 +8,7 @@ from frappe.model.document import Document
 from frappe.utils import now_datetime, get_url
 from frappe import _, throw
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
+from erpx_prulia.prulia_integrations.doctype.senangpay_settings.senangpay_settings import get_payment_link
 
 
 class PRULIAEvent(Document):
@@ -110,35 +111,6 @@ def add_attendance(data):
 
     link = get_payment_link(event.description, event.fees, attendee_dt.name, member_name, member_data.email, member_data.cell_number)
     return {"payment_link": link}
-
-def create_sha256_signature(key, message):
-    import hmac
-    import hashlib
-    message = message.encode()
-    return hmac.new(str(key), str(message), hashlib.sha256).hexdigest()
-
-def get_payment_link(detail, amount, order_id, name, email, phone):
-    senangpay_settings = frappe.get_doc("Senangpay Settings")
-    if not senangpay_settings.enable:
-        frappe.throw("Please enable Senangpay Settings")
-    secret_key = senangpay_settings.secret_key
-
-    hash_string = str(secret_key)+str(detail)+str(amount)+str(order_id)
-    hashed_value = create_sha256_signature(secret_key, hash_string)
-
-    parameters = {
-        "detail": detail,
-        "amount": amount,
-        "order_id": order_id,
-        "hash": hashed_value,
-        "name": name,
-        "email": email,
-        "phone": phone
-    }
-    import urllib
-    
-    link = str(senangpay_settings.base_url)+"?"+urllib.urlencode(parameters)
-    return link
 
 @frappe.whitelist()
 def update_payment_status(data):
