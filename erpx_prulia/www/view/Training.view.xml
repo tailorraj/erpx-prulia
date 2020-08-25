@@ -32,7 +32,8 @@
 							<l:Grid defaultSpan="L4 M6 S12" class="sapUiNoContentPadding sapUiSmallMarginTop" content="{Training>/}" hSpacing="0">
 								<VBox class="eventBox">
 									<Text class="eventStatus eventRegistered" text="Registered" visible="{Training>register}"/>
-									<Text class="eventStatus eventOpenRegistration" text="Ready for Registration" visible="{=${Training>register} === false &amp;&amp; (${Training>training_status} === 'Open For Registration' || (${Training>training_status} === 'Publish' &amp;&amp; ${Training>show_open_for_registration} === 1))}"/>
+									<Text class="eventStatus eventOpenRegistration" text="Ready for Registration" visible="{=${Training>register} === false &amp;&amp; ${Training>training_with_fees} === false &amp;&amp; (${Training>training_status} === 'Open For Registration' || (${Training>training_status} === 'Publish' &amp;&amp; ${Training>show_open_for_registration} === 1))}"/>
+									<Text class="eventStatus eventOpenRegistration" text="Ready for Registration : {Training>currency}{Training>fees}" visible="{=${Training>register} === false &amp;&amp; ${Training>training_with_fees} === 1 &amp;&amp; (${Training>training_status} === 'Open For Registration' || (${Training>training_status} === 'Publish' &amp;&amp; ${Training>show_open_for_registration} === 1))}"/>
 									<Text class="eventStatus eventClosedRegistration" text="Registration Closed" visible="{=${Training>register} === false &amp;&amp; ${Training>training_status} === 'Registration Closed'}"/>
 									<GenericTile
 									frameType="TwoByOne" press="handleTrainingTilePress" backgroundImage="{Training>training_image}" class="genericTileImage">

@@ -44,12 +44,12 @@ def add_attendance(data):
 	})
 	event.save()
 	if event.training_with_fees:
-		attendee_dt = frappe.get_doc("PRULIA Attendee", {"parent": event.name, "member": member})
+		trainee = frappe.get_doc("PRULIA Trainee", {"parent": event.name, "member": member})
 
-		link = get_payment_link(event.description, event.fees, attendee_dt.name, member_name, member_data.email, member_data.cell_number)
-		return {"success":True, "payment_link": link}
+		link = get_payment_link(event.description, trainee.fees, trainee.name, member_name, member_data.email, member_data.cell_number)
+		return {"success":"success", "payment_link": link, "training": {"training_with_fees": event.training_with_fees} }
 	else:
-		return {"success":True, "payment_link": ""}
+		return {"success":"success", "payment_link": "", "training": {"training_with_fees": event.training_with_fees} }
 
 
 @frappe.whitelist()
@@ -92,7 +92,7 @@ def del_attendance(member, training):
 def get_training_list(member_name):
 	trainings = frappe.get_all('PRULIA Training',
 							fields=['name', 'training_name', 'description', 'start_date_time', 'end_date_time', 'venue',
-									'training_status', 'position_restriction', 'training_image', 'show_open_for_registration',
+									'training_status', 'position_restriction', 'training_image', 'show_open_for_registration',  'training_with_fees',
 									'display_accomodation_option', 'display_shirt_option'],
 							filters=[('PRULIA Training', "end_date_time", ">=", now_datetime().date()),
 									 ('PRULIA Training', "training_status", "!=", "Draft")],
@@ -100,6 +100,7 @@ def get_training_list(member_name):
 	member = frappe.get_doc("PRULIA Member", member_name)
 
 	training_result = []
+	global_defaults = frappe.get_doc("Global Defaults")
 	for training in trainings:
 		if (training.position_restriction and training.position_restriction != member.position):
 			continue
@@ -112,9 +113,12 @@ def get_training_list(member_name):
 			training.shirt_size = registration[0].shirt_size
 			training.meal_option = registration[0].meal_option
 			training.accomodation = registration[0].accomodation
+		if global_defaults.default_currency:
+			training.currency = global_defaults.default_currency
 		else:
 			training.register = False
 		training_result.append(training)
+	print(training_result)
 	return training_result
 
 
@@ -136,12 +140,13 @@ def update_training_trainee(data):
 def get_training_list_web():
 	trainings = frappe.get_all('PRULIA Training',
 							fields=['name', 'training_name', 'description', 'start_date_time', 'end_date_time', 'venue',
-									'training_status', 'position_restriction', 'training_image', 'show_open_for_registration',
+									'training_status', 'position_restriction', 'training_image', 'show_open_for_registration', 'training_with_fees',
 									'display_accomodation_option', 'display_shirt_option', 'fees', 'early_fees'],
 							filters=[('PRULIA Training', "end_date_time", ">=", now_datetime().date()),
 									 ('PRULIA Training', "training_status", "!=", "Draft")],
 							order_by='start_date_time desc')
-
+	global_defaults = frappe.get_doc("Global Defaults")
+	
 	if frappe.session.user != 'Guest':
 		member = mobile_member_login()
 		for training in trainings:
@@ -157,6 +162,8 @@ def get_training_list_web():
 				training.register = False
 			if (training.position_restriction and training.position_restriction == member.position):
 				training.can_register = True
+			if global_defaults.default_currency:
+				training.currency = global_defaults.default_currency
 			elif training.position_restriction == None:
 				training.can_register = True
 			else:
