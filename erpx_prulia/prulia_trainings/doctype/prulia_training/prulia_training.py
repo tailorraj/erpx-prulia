@@ -171,5 +171,8 @@ def get_training_list_web():
 	else:
 		for training in trainings:
 			training.register = False
+			if global_defaults.default_currency:
+				training.currency = global_defaults.default_currency
+
 
 	return trainings
