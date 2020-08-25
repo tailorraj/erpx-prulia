@@ -113,12 +113,12 @@ def get_training_list(member_name):
 			training.shirt_size = registration[0].shirt_size
 			training.meal_option = registration[0].meal_option
 			training.accomodation = registration[0].accomodation
-		if global_defaults.default_currency:
-			training.currency = global_defaults.default_currency
 		else:
 			training.register = False
+		
+		if global_defaults.default_currency:
+			training.currency = global_defaults.default_currency
 		training_result.append(training)
-	print(training_result)
 	return training_result
 
 
