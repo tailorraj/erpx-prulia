@@ -116,9 +116,14 @@ def add_attendance(data):
 def update_payment_status(data):
     ret = json.loads(data)
     order_id = ret.get('order_id')
-    p_att = frappe.get_doc("PRULIA Attendee", order_id)
-    p_att.paid = True
-    p_att.save()
+    if frappe.db.exists("PRULIA Attendee", order_id):
+        p_att = frappe.get_doc("PRULIA Attendee", order_id)
+        p_att.paid = True
+        p_att.save()
+    elif frappe.db.exists("PRULIA Training", order_id):
+        p_att = frappe.get_doc("PRULIA Training", order_id)
+        p_att.paid = True
+        p_att.save()
     return "success"
 
 @frappe.whitelist()
