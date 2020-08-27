@@ -18,7 +18,7 @@ def create_sha256_signature(key, message):
 
 def get_payment_link(detail, amount, order_id, name, email, phone):
     detail = detail[0:500]
-    detail = re.sub('[^a-zA-Z0-9 \n\.]', '_', detail)
+    detail = re.sub('[^a-zA-Z0-9 \n\.]', '-', detail)
     senangpay_settings = frappe.get_doc("Senangpay Settings")
     if not senangpay_settings.enable:
         frappe.throw("Please enable Senangpay Settings")
