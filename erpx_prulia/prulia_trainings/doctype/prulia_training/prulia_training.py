@@ -40,7 +40,7 @@ def add_attendance(data):
 		"agency_no": member_data.agency_no,
 		"reg_datetime": now_datetime(),
 		"fees": event.early_fees if event.early_fees else event.fees,
-		"paid": True if event.training_with_fees else False
+		"paid": False if event.training_with_fees else True
 	})
 	event.save()
 	if event.training_with_fees:
@@ -87,6 +87,16 @@ def del_attendance(member, training):
 	if not check_exist:
 		throw(_("Record not found"))
 
+@frappe.whitelist()
+def remove_unpaid_trainees():
+	if frappe.session.user != 'Guest':
+		member = mobile_member_login()
+		attendees = frappe.db.get_list("PRULIA Trainee", {"member":member.name, "paid": 0})
+		for att in attendees:
+			att_dt = frappe.get_doc("PRULIA Trainee", att.name)
+			att_dt.delete()
+		frappe.db.commit()
+
 
 @frappe.whitelist()
 def get_training_list(member_name):
@@ -105,7 +115,7 @@ def get_training_list(member_name):
 		if (training.position_restriction and training.position_restriction != member.position):
 			continue
 
-		registration = frappe.get_all('PRULIA Trainee', filters={'member': member_name, 'parent': training.name},
+		registration = frappe.get_all('PRULIA Trainee', filters={'member': member_name, 'parent': training.name, 'paid': True},
 									  fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
 		if registration:
 			training.register = True
@@ -150,7 +160,7 @@ def get_training_list_web():
 	if frappe.session.user != 'Guest':
 		member = mobile_member_login()
 		for training in trainings:
-			registration = frappe.get_all('PRULIA Trainee', filters={'member': member.name, 'parent': training.name},
+			registration = frappe.get_all('PRULIA Trainee', filters={'member': member.name, 'parent': training.name, 'paid': True},
 										  fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
 			if registration:
 				training.register = True

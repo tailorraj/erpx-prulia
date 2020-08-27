@@ -9,6 +9,7 @@ from frappe.utils import now_datetime, get_url
 from frappe import _, throw
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 from erpx_prulia.prulia_integrations.doctype.senangpay_settings.senangpay_settings import get_payment_link
+from erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training import remove_unpaid_trainees
 
 
 class PRULIAEvent(Document):
@@ -116,14 +117,26 @@ def add_attendance(data):
 def update_payment_status(data):
     ret = json.loads(data)
     order_id = ret.get('order_id')
-    if frappe.db.exists("PRULIA Attendee", order_id):
-        p_att = frappe.get_doc("PRULIA Attendee", order_id)
-        p_att.paid = True
-        p_att.save()
-    elif frappe.db.exists("PRULIA Training", order_id):
-        p_att = frappe.get_doc("PRULIA Training", order_id)
-        p_att.paid = True
-        p_att.save()
+    msg = ret.get('msg')
+    if msg == "Payment_was_successful":
+        if frappe.db.exists("PRULIA Attendee", order_id):
+            p_att = frappe.get_doc("PRULIA Attendee", order_id)
+            p_att.paid = 1
+            p_att.save()
+        elif frappe.db.exists("PRULIA Trainee", order_id):
+            p_att = frappe.get_doc("PRULIA Trainee", order_id)
+            p_att.paid = 1
+            p_att.save()
+    else:
+        if frappe.db.exists("PRULIA Attendee", order_id):
+            p_att = frappe.get_doc("PRULIA Attendee", order_id)
+            p_att.delete()
+        elif frappe.db.exists("PRULIA Trainee", order_id):
+            p_att = frappe.get_doc("PRULIA Trainee", order_id)
+            p_att.delete()
+    frappe.db.commit()
+    # remove unpaids
+    remove_unpaid_trainees()
     return "success"
 
 @frappe.whitelist()
