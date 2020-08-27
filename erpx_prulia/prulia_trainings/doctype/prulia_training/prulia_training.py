@@ -45,8 +45,8 @@ def add_attendance(data):
 	event.save()
 	if event.training_with_fees:
 		trainee = frappe.get_doc("PRULIA Trainee", {"parent": event.name, "member": member})
-
-		link = get_payment_link(event.description, trainee.fees, trainee.name, member_name, member_data.email, member_data.cell_number)
+		_description = str(event.training_name) + str(event.start_date_time) + str(event.end_date_time)
+		link = get_payment_link(_description, trainee.fees, trainee.name, member_name, member_data.email, member_data.cell_number)
 		return {"success":"success", "payment_link": link, "training": {"training_with_fees": event.training_with_fees} }
 	else:
 		return {"success":"success", "payment_link": "", "training": {"training_with_fees": event.training_with_fees} }

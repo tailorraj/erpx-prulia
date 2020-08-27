@@ -5,6 +5,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+import re
 
 class SenangpaySettings(Document):
 	pass
@@ -16,6 +17,8 @@ def create_sha256_signature(key, message):
     return hmac.new(str(key), str(message), hashlib.sha256).hexdigest()
 
 def get_payment_link(detail, amount, order_id, name, email, phone):
+    detail = detail[0:500]
+    detail = re.sub('[^a-zA-Z0-9 \n\.]', '_', detail)
     senangpay_settings = frappe.get_doc("Senangpay Settings")
     if not senangpay_settings.enable:
         frappe.throw("Please enable Senangpay Settings")
