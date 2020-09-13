@@ -94,7 +94,7 @@ class PersonalInformation extends React.Component {
 
         function getMemberDetails() {
             return axios.get('/api/method/erpx_prulia.prulia_members.doctype.prulia_member.prulia_member.mobile_member_login').then(data => {
-                return data['message'];
+                return data && data.data && data.data.message;
             });
         }
     }
