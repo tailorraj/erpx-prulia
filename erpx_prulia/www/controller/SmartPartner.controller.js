@@ -60,7 +60,10 @@ sap.ui.define([
 		handleSmartPartnerTilePress: function(oEvent){
 			var oSmartPartnerTileObject = oEvent.getSource().getBindingContext("SmartPartner").getObject();
 			if(oSmartPartnerTileObject.type==="Link"){
-				window.open(oSmartPartnerTileObject.link)
+				if (oSmartPartnerTileObject.link_same_tab) {
+					window.location.href = oSmartPartnerTileObject.link;
+				}
+				else { window.open(oSmartPartnerTileObject.link); }
 			} else {
 				sap.ui.core.UIComponent.getRouterFor(this).navTo("SmartPartnerDetail", {
 					smartpartnerid: oSmartPartnerTileObject.name

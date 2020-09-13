@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/chubb/static/css/main.b2b8e741.chunk.css",
+    "main.js": "/chubb/static/js/main.8d9beda1.chunk.js",
+    "main.js.map": "/chubb/static/js/main.8d9beda1.chunk.js.map",
+    "runtime-main.js": "/chubb/static/js/runtime-main.eee89a3a.js",
+    "runtime-main.js.map": "/chubb/static/js/runtime-main.eee89a3a.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/chubb/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.d5ce20d3.chunk.js": "/chubb/static/js/2.d5ce20d3.chunk.js",
+    "static/js/2.d5ce20d3.chunk.js.map": "/chubb/static/js/2.d5ce20d3.chunk.js.map",
+    "index.html": "/chubb/index.html",
+    "precache-manifest.b037c366d52309c3d8d5f630522c5b13.js": "/chubb/precache-manifest.b037c366d52309c3d8d5f630522c5b13.js",
+    "service-worker.js": "/chubb/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/chubb/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.b2b8e741.chunk.css.map": "/chubb/static/css/main.b2b8e741.chunk.css.map",
+    "static/js/2.d5ce20d3.chunk.js.LICENSE.txt": "/chubb/static/js/2.d5ce20d3.chunk.js.LICENSE.txt",
+    "static/media/home.scss": "/chubb/static/media/bannerblurr.61c90311.jpg",
+    "static/media/pdfIcon.svg": "/chubb/static/media/pdfIcon.03b701ff.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eee89a3a.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.d5ce20d3.chunk.js",
+    "static/css/main.b2b8e741.chunk.css",
+    "static/js/main.8d9beda1.chunk.js"
+  ]
+}
