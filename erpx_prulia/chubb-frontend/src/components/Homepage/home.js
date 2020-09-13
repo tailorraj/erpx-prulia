@@ -18,15 +18,12 @@ class Home extends React.Component {
                         <div className="hide">
 
                             <ul>
-                                <li><i className="fas fa-angle-left"></i><a href="/"><img src="/css/images/PruliaImage.png" /></a></li>
-                                <li><a>News</a></li>
-                                <li><a>Events</a></li>
-                                <li><a>Training</a></li>
-                                <li><a>Smart Partner</a></li>
+                                <li><a href="/" className="inline"><img className="logo-img" src="/css/images/PruliaImage.png" /></a></li>
+                                <li><a href="/#/news">News</a></li>
+                                <li><a href="/#/event">Events</a></li>
+                                <li><a href="/#/training">Training</a></li>
+                                <li><a href="/#/smartPartner">Smart Partner</a></li>
                             </ul>
-                        </div>
-                        <div className="fb-nav hide">
-                            <a><i className="fab fa-facebook-f "></i></a>
                         </div>
                     </div>
                 </nav>
