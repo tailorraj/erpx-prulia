@@ -38,55 +38,57 @@ class PersonalInformation extends React.Component {
                 }
             });
         }).catch(() => {
-           let data =  {
-                "creation": "2018-12-11 14:15:53.482815",
-                "send_password_update_notification": 0,
-                "membership_fee": 0,
-                "full_name": "Nicole Sherzinger",
-                "owner": "yapnicole93@gmail.com",
-                "user_status": "Active",
-                "modified_by": "Administrator",
-                "new_password": "",
-                "prudential_id": "0000001",
-                "highest_qualification": "SPM",
-                "office_number": "",
-                "branch": "Damansara Intan",
-                "docstatus": 0,
-                "email": "yapnicole93@gmail.com",
-                "home_phone": "",
-                "meal_option": "Non-Vegetarian",
-                "fax_number": "",
-                "logout_all_sessions": 0,
-                "promo_year": 0,
-                "nric_number": "888888-88-8888",
-                "doctype": "PRULIA Member",
-                "user_id": "yapnicole93@gmail.com",
-                "register_acknowledgement": 1,
-                "school": "",
-                "name": "0000001",
-                "idx": 5,
-                "cell_number": "6019-999 99999",
-                "field_of_study": "",
-                "gender": "Female",
-                "region": "Central3",
-                "modified": "2020-07-25 11:20:44.905880",
-                "profile_photo": "/files/person.png",
-                "race": "",
-                "shirt_size": "M",
-                "position": "QL",
-                "resign_year": 0
-            };
-
-            Object.keys(data).forEach(key => {
-                if (memberDetailsMap[key]) {
-
-                    this.props.gettingValues({
-                        target: {
-                            value: data[key]
-                        }
-                    }, memberDetailsMap[key])
-                }
-            });
+            window.alert('Please login to continue');
+            window.location.href = window.location.protocol + '//' + window.location.host
+           // let data =  {
+           //      "creation": "2018-12-11 14:15:53.482815",
+           //      "send_password_update_notification": 0,
+           //      "membership_fee": 0,
+           //      "full_name": "Nicole Sherzinger",
+           //      "owner": "yapnicole93@gmail.com",
+           //      "user_status": "Active",
+           //      "modified_by": "Administrator",
+           //      "new_password": "",
+           //      "prudential_id": "0000001",
+           //      "highest_qualification": "SPM",
+           //      "office_number": "",
+           //      "branch": "Damansara Intan",
+           //      "docstatus": 0,
+           //      "email": "yapnicole93@gmail.com",
+           //      "home_phone": "",
+           //      "meal_option": "Non-Vegetarian",
+           //      "fax_number": "",
+           //      "logout_all_sessions": 0,
+           //      "promo_year": 0,
+           //      "nric_number": "888888-88-8888",
+           //      "doctype": "PRULIA Member",
+           //      "user_id": "yapnicole93@gmail.com",
+           //      "register_acknowledgement": 1,
+           //      "school": "",
+           //      "name": "0000001",
+           //      "idx": 5,
+           //      "cell_number": "6019-999 99999",
+           //      "field_of_study": "",
+           //      "gender": "Female",
+           //      "region": "Central3",
+           //      "modified": "2020-07-25 11:20:44.905880",
+           //      "profile_photo": "/files/person.png",
+           //      "race": "",
+           //      "shirt_size": "M",
+           //      "position": "QL",
+           //      "resign_year": 0
+           //  };
+           //
+           //  Object.keys(data).forEach(key => {
+           //      if (memberDetailsMap[key]) {
+           //
+           //          this.props.gettingValues({
+           //              target: {
+           //                  value: data[key]
+           //              }
+           //          }, memberDetailsMap[key])
+           //      }
+           //  });
         });
 
         function getMemberDetails() {

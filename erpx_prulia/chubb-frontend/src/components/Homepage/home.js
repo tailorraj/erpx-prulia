@@ -16,9 +16,9 @@ class Home extends React.Component {
                 <nav className="navbar">
                     <div className="nav-div">
                         <div className="hide">
-                            <i className="fas fa-angle-left"></i>
+
                             <ul>
-                                <li><a>LOGO</a></li>
+                                <li><i className="fas fa-angle-left"></i><a href="/"><img src="/css/images/PruliaImage.png" /></a></li>
                                 <li><a>News</a></li>
                                 <li><a>Events</a></li>
                                 <li><a>Training</a></li>
@@ -72,11 +72,11 @@ class Home extends React.Component {
                                 <h6>Personal Accident Insurance (PA)</h6>
                             </div>
                         </Link>
-                        // <Link to='/personal-accident-insurance' style={{textDecoration: "none", color: "black"}}>
-                        //     <div className="pckg">
-                        //         <h6>Professional Idemnity</h6>
-                        //     </div>
-                        // </Link>
+                        <Link className="hidden" to='/personal-accident-insurance' style={{textDecoration: "none", color: "black"}}>
+                            <div className="pckg">
+                                <h6>Professional Idemnity</h6>
+                            </div>
+                        </Link>
                     </div>
                 </div>
 
