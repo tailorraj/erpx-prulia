@@ -19,10 +19,10 @@ class Home extends React.Component {
 
                             <ul>
                                 <li><a href="/" className="inline"><img className="logo-img" src="/css/images/PruliaImage.png" /></a></li>
-                                <li><a href="/#/news">News</a></li>
-                                <li><a href="/#/event">Events</a></li>
-                                <li><a href="/#/training">Training</a></li>
-                                <li><a href="/#/smartPartner">Smart Partner</a></li>
+                                <li><a className="white-link" href="/#/news">News</a></li>
+                                <li><a className="white-link" href="/#/event">Events</a></li>
+                                <li><a className="white-link" href="/#/training">Training</a></li>
+                                <li><a className="white-link" href="/#/smartPartner">Smart Partner</a></li>
                             </ul>
                         </div>
                     </div>
