@@ -13,7 +13,8 @@ node_modules/
 /coverage
 
 # production
-/build
+build/
+www/chubb
 
 # misc
 .DS_Store

@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build www",
+    "build": "react-scripts build && mv build ../www/chubb",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
