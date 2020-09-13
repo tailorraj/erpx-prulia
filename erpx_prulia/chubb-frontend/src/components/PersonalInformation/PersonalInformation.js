@@ -37,9 +37,10 @@ class PersonalInformation extends React.Component {
                     }, memberDetailsMap[key])
                 }
             });
-        }).catch(() => {
-            window.alert('Please login to continue');
-            window.location.href = '/';
+        }).catch(e => {
+            console.error(e);
+            // window.alert('Please login to continue');
+            // window.location.href = '/';
            // let data =  {
            //      "creation": "2018-12-11 14:15:53.482815",
            //      "send_password_update_notification": 0,
