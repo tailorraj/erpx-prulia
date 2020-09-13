@@ -39,7 +39,7 @@ class PersonalInformation extends React.Component {
             });
         }).catch(() => {
             window.alert('Please login to continue');
-            window.location.href = window.location.protocol + '//' + window.location.host
+            window.location.href = '/';
            // let data =  {
            //      "creation": "2018-12-11 14:15:53.482815",
            //      "send_password_update_notification": 0,
