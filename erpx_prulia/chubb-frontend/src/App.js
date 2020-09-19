@@ -18,9 +18,9 @@ class App extends React.Component {
                 child: '26.50'
             },
             total: 0,
-            mainInsured: false,
-            spouse: false,
-            child: false,
+            mainInsured: true,
+            spouse: true,
+            child: true,
             childs: 1,
             childsArr: [],
             memberDetails: {}
@@ -29,7 +29,7 @@ class App extends React.Component {
 
     getChecked = (ev, name) => {
         this.setState({
-            [name]: this.state[name] ? false : true
+            [name]: !this.state[name]
         }, () => {
             this.recalculateTotal(ev);
         })
@@ -128,11 +128,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-function setNestedKey(obj, path, value) {
-    if (path.length === 1) {
-        obj[path] = value
-        return
-    }
-    return setNestedKey(obj[path[0]], path.slice(1), value)
-}

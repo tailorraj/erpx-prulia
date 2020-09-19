@@ -1,17 +1,42 @@
 import React from 'react'
 import './PersonalInformation.scss'
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {Form} from 'react-bootstrap'
 import axios from 'axios';
+import {Formik} from 'formik';
+import InputMask from 'react-input-mask';
+import moment from 'moment';
 
-const memberDetailsMap = {
-    'full_name': 'mainInsuredName',
-    'email': 'mainInsuredEmail',
-    'nric_number': 'mainInsuredNric',
-    'cell_number': 'mainInsuredMobileNo',
-    'gender': 'mainInsuredGender',
+import { memberDetailsMap } from '../../helpers';
 
-};
+const CustomInput = props => (
+    <InputMask {...props}>{inputProps => <input {...inputProps} />}</InputMask>
+);
+
+const getDOB = (ic) => {
+    if (ic.match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)) {
+        var year = RegExp.$1;
+        var month = RegExp.$2;
+        var day = RegExp.$3;
+
+        var now = new Date().getFullYear().toString();
+
+        var decade = now.substr(0, 2);
+        if (now.substr(2, 2) > year) {
+            year = parseInt(decade.concat(year.toString()), 10);
+        } else year = '19' + year;
+
+        return year + '-' + month + '-' + day;
+    }
+
+    return null
+}
+
+const getAge = (dateOfBirth) => {
+    const dob = moment(dateOfBirth);
+
+    return moment(new Date()).diff(dob, 'years');
+}
 
 class PersonalInformation extends React.Component {
     constructor(props) {
@@ -26,70 +51,94 @@ class PersonalInformation extends React.Component {
     }
 
     componentDidMount() {
-        getMemberDetails().then(data => {
-            Object.keys(data).forEach(key => {
-                if (memberDetailsMap[key]) {
+        let key_pairs = memberDetailsMap(this.props.state.child ? this.props.state.childs : 0);
+        let keys = Object.keys(key_pairs);
+        let key_values = Object.values(key_pairs);
 
+        keys.forEach(key => {
+            this.props.gettingValues({
+                target: {
+                    value: ''
+                }
+            }, key);
+        });
+
+        getMemberDetails().then(data => {
+            key_values.forEach((key_value, index) => {
+                if (data[key_value]) {
                     this.props.gettingValues({
                         target: {
-                            value: data[key]
+                            value: data[key_value]
                         }
-                    }, memberDetailsMap[key])
+                    }, keys[index])
                 }
             });
+
+            this.props.gettingValues({
+                target: {
+                    value: getDOB(data.nric_number)
+                }
+            }, 'mainInsuredBirthDate');
+
         }).catch(e => {
             console.error(e);
-            window.alert('Please login to continue');
-            window.location.href = '/';
-           // let data =  {
-           //      "creation": "2018-12-11 14:15:53.482815",
-           //      "send_password_update_notification": 0,
-           //      "membership_fee": 0,
-           //      "full_name": "Nicole Sherzinger",
-           //      "owner": "yapnicole93@gmail.com",
-           //      "user_status": "Active",
-           //      "modified_by": "Administrator",
-           //      "new_password": "",
-           //      "prudential_id": "0000001",
-           //      "highest_qualification": "SPM",
-           //      "office_number": "",
-           //      "branch": "Damansara Intan",
-           //      "docstatus": 0,
-           //      "email": "yapnicole93@gmail.com",
-           //      "home_phone": "",
-           //      "meal_option": "Non-Vegetarian",
-           //      "fax_number": "",
-           //      "logout_all_sessions": 0,
-           //      "promo_year": 0,
-           //      "nric_number": "888888-88-8888",
-           //      "doctype": "PRULIA Member",
-           //      "user_id": "yapnicole93@gmail.com",
-           //      "register_acknowledgement": 1,
-           //      "school": "",
-           //      "name": "0000001",
-           //      "idx": 5,
-           //      "cell_number": "6019-999 99999",
-           //      "field_of_study": "",
-           //      "gender": "Female",
-           //      "region": "Central3",
-           //      "modified": "2020-07-25 11:20:44.905880",
-           //      "profile_photo": "/files/person.png",
-           //      "race": "",
-           //      "shirt_size": "M",
-           //      "position": "QL",
-           //      "resign_year": 0
-           //  };
-           //
-           //  Object.keys(data).forEach(key => {
-           //      if (memberDetailsMap[key]) {
-           //
-           //          this.props.gettingValues({
-           //              target: {
-           //                  value: data[key]
-           //              }
-           //          }, memberDetailsMap[key])
-           //      }
-           //  });
+            // window.alert('Please login to continue');
+            // window.location.href = '/';
+
+            let data = {
+                "creation": "2018-12-11 14:15:53.482815",
+                "send_password_update_notification": 0,
+                "membership_fee": 0,
+                "full_name": "Nicole Sherzinger",
+                "owner": "yapnicole93@gmail.com",
+                "user_status": "Active",
+                "modified_by": "Administrator",
+                "new_password": "",
+                "prudential_id": "0000001",
+                "highest_qualification": "SPM",
+                "office_number": "",
+                "branch": "Damansara Intan",
+                "docstatus": 0,
+                "email": "yapnicole93@gmail.com",
+                "home_phone": "",
+                "meal_option": "Non-Vegetarian",
+                "fax_number": "",
+                "logout_all_sessions": 0,
+                "promo_year": 0,
+                "nric_number": "900101-88-8888",
+                "doctype": "PRULIA Member",
+                "user_id": "yapnicole93@gmail.com",
+                "register_acknowledgement": 1,
+                "school": "",
+                "name": "0000001",
+                "idx": 5,
+                "cell_number": "6019-999 99999",
+                "field_of_study": "",
+                "gender": "Female",
+                "region": "Central3",
+                "modified": "2020-07-25 11:20:44.905880",
+                "profile_photo": "/files/person.png",
+                "race": "",
+                "shirt_size": "M",
+                "position": "QL",
+                "resign_year": 0
+            };
+
+            key_values.forEach((key_value, index) => {
+                if (data[key_value]) {
+                    this.props.gettingValues({
+                        target: {
+                            value: data[key_value]
+                        }
+                    }, keys[index])
+                }
+            });
+
+            this.props.gettingValues({
+                target: {
+                    value: getDOB(data.nric_number)
+                }
+            }, 'mainInsuredBirthDate')
         });
 
         function getMemberDetails() {
@@ -143,247 +192,349 @@ class PersonalInformation extends React.Component {
                     />
                 </div> */}
 
-                    {this.props.state.mainInsured && (
-                        <div className='mainInsured'>
-                            <p>Main Insured</p>
-                            <div className='inputGroup'>
-                                <label>Full Name as per NRIC</label>
-                                <input
-                                    type='text'
-                                    name='mainInsuredName'
-                                    value={this.props.state.mainInsuredName}
-                                    onChange={e => this.props.gettingValues(e, 'mainInsuredName')}
-                                />
-                            </div>
+                    <Formik enableReinitialize={true}
+                            initialValues={{...this.props.state, ...{mainInsuredStatus: 'married'}}}
+                            validate={values => {
+                                const errors = {};
 
-                            <div className='inputGroup two'>
-                                <label>Email</label>
-                                <input
-                                    type='email'
-                                    value={this.props.state.mainInsuredEmail}
-                                    onChange={e =>
-                                        this.props.gettingValues(e, 'mainInsuredEmail')
+                                console.log(values);
+
+                                if (!values.mainInsuredName) errors.mainInsuredName = 'Name is required';
+                                if (!values.spouseName) errors.spouseName = 'Name is required';
+
+                                if (!values.mainInsuredEmail) {
+                                    errors.mainInsuredEmail = 'Email is required';
+                                } else if (
+                                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.mainInsuredEmail)
+                                ) {
+                                    errors.mainInsuredEmail = 'Invalid email address';
+                                }
+
+                                if (!values.mainInsuredNric) {
+                                    errors.mainInsuredNric = 'NRIC is required';
+                                } else if (
+                                    !/^\d{6}-\d{2}-\d{4}$/i.test(values.mainInsuredNric)
+                                ) {
+                                    errors.mainInsuredNric = 'Invalid NRIC';
+                                }
+
+                                if (!values.spouseNric) {
+                                    errors.spouseNric = 'NRIC is required';
+                                } else if (
+                                    !/^\d{6}-\d{2}-\d{4}$/i.test(values.spouseNric)
+                                ) {
+                                    errors.spouseNric = 'Invalid NRIC';
+                                } else {
+                                    values.spouseBirthDate = getDOB(values.spouseNric);
+                                }
+
+                                if (!values.mainInsuredMobileNo) errors.mainInsuredMobileNo = 'Mobile Number is required';
+
+                                if (!values.mainInsuredGender) errors.mainInsuredGender = 'Gender is required';
+
+                                if (!values.mainInsuredStatus) errors.mainInsuredStatus = 'Marital status is required';
+
+                                if (!values.mainInsuredAddress) errors.mainInsuredAddress = 'Address is required';
+
+                                Object.keys(values).forEach(key => {
+                                    if (key.startsWith('childName') && !values[key]) {
+                                        errors[key] = 'Name is required';
                                     }
-                                />
-                            </div>
 
-                            <div className='inputGroup two three'>
-                                <label>NRIC</label>
-                                <input
-                                    type='text'
-                                    value={this.props.state.mainInsuredNric}
-                                    onChange={e => this.props.gettingValues(e, 'mainInsuredNric')}
-                                />
-                            </div>
+                                    if (key.startsWith('childBirthDate')) {
+                                        if (!values[key]) errors[key] = 'Date of birth is required';
 
-                            <div className='inputGroup two three'>
-                                <label>Mobile Number</label>
-                                <input
-                                    type='text'
-                                    value={this.props.state.mainInsuredMobileNo}
-                                    onChange={e =>
-                                        this.props.gettingValues(e, 'mainInsuredMobileNo')
+                                        if (getAge(values[key]) < 1 || getAge(values[key]) > 23) {
+                                            console.log(getAge(values[key]));
+                                            errors[key] = 'The age is not eligible, only 1 to 23 years of age is eligible';
+                                        }
                                     }
-                                />
-                            </div>
+                                });
 
-                            <div className='inputGroup two three'>
-                                <label>Date of Birth</label>
-                                <input
-                                    type='date'
-                                    value={this.props.state.mainInsuredBirthDate}
-                                    onChange={e =>
-                                        this.props.gettingValues(e, 'mainInsuredBirthDate')
-                                    }
-                                />
-                            </div>
+                                if (!values.acknowledge_child) errors.acknowledge_child = 'Please check the box';
 
-                            <div className='inputGroup two three'>
-                                <label>Gender</label>
-                                <div className='radioDiv'>
-                                    <Form.Check
-                                        type='radio'
-                                        label='Male'
-                                        name='formHorizontalRadios'
-                                        id='formHorizontalRadios1'
-                                        value='Male'
-                                        onChange={e =>
-                                            this.props.gettingValues(e, 'mainInsuredGender')
-                                        }
-                                    />
-                                    <Form.Check
-                                        type='radio'
-                                        label='Female'
-                                        name='formHorizontalRadios'
-                                        id='formHorizontalRadios2'
-                                        value='Female'
-                                        onChange={e =>
-                                            this.props.gettingValues(e, 'mainInsuredGender')
-                                        }
-                                    />
-                                </div>
-                            </div>
+                                return errors;
+                            }}
+                            onSubmit={(values, {setSubmitting}) => {
+                                setTimeout(() => {
 
-                            <div className='inputGroup two three'>
-                                <label>Marital Status</label>
-                                <div className='radioDiv'>
-                                    <Form.Check
-                                        type='radio'
-                                        label='Married'
-                                        name='formHorizontalRadios2'
-                                        id='formHorizontalRadios3'
-                                        value='married'
-                                        onChange={e =>
-                                            this.props.gettingValues(e, 'mainInsuredStatus')
-                                        }
-                                    />
-                                    <Form.Check
-                                        type='radio'
-                                        label='Single'
-                                        name='formHorizontalRadios2'
-                                        id='formHorizontalRadios4'
-                                        value='single'
-                                        onChange={e =>
-                                            this.props.gettingValues(e, 'mainInsuredStatus')
-                                        }
-                                    />
-                                    <Form.Check
-                                        type='radio'
-                                        label='Others'
-                                        name='formHorizontalRadios2'
-                                        id='formHorizontalRadios5'
-                                        value='others'
-                                        onChange={e =>
-                                            this.props.gettingValues(e, 'mainInsuredStatus')
-                                        }
-                                    />
-                                </div>
-                            </div>
+                                    console.log(JSON.stringify(values, null, 2));
+                                    setSubmitting(false);
+                                    this.props.history.push('/declaration');
+                                }, 400);
+                            }}
+                    >
+                        {({
+                              values, errors, touched,
+                              handleChange, handleBlur, handleSubmit, isSubmitting
+                          }) => (
+                            <form onSubmit={handleSubmit}>
+                                {this.props.state.mainInsured && (
+                                    <div className="mainInsured">
+                                        <p>Main Insured</p>
 
-                            <div className='inputGroup two'>
-                                <label>Address</label>
-                                <input
-                                    type='text'
-                                    value={this.props.state.mainInsuredAddress}
-                                    onChange={e =>
-                                        this.props.gettingValues(e, 'mainInsuredAddress')
-                                    }
-                                />
-                            </div>
-                        </div>
-                    )}
-
-                    {this.props.state.spouse && (
-                        <div className='mainInsured'>
-                            <p>Spouse</p>
-                            <div className='inputGroup'>
-                                <label>Full Name as per NRIC</label>
-                                <input
-                                    type='text'
-                                    value={this.props.state.spouseName}
-                                    onChange={e => this.props.gettingValues(e, 'spouseName')}
-                                />
-                            </div>
-
-                            <div className='inputGroup two three'>
-                                <label>NRIC</label>
-                                <input
-                                    type='number'
-                                    value={this.props.state.spouseNric}
-                                    onChange={e => this.props.gettingValues(e, 'spouseNric')}
-                                />
-                            </div>
-
-                            <div className='inputGroup two three'>
-                                <label>Date of Birth</label>
-                                <input
-                                    type='date'
-                                    value={this.props.state.spouseBirthDate}
-                                    onChange={e => this.props.gettingValues(e, 'spouseBirthDate')}
-                                />
-                            </div>
-                        </div>
-                    )}
-
-                    {this.props.state.child && (
-                        <div className='childMain'>
-                            <div className='tabs'>
-                                {Array.apply(null, {length: this.props.state.childs}).map((a, i) => {
-                                    return (
-                                        <div
-                                            className={this.state.activeChild === i ? 'active' : ''}
-                                            onClick={() => this.childActive(i)}
-                                            key={'tab' + i}
-                                        >
-                                            Child {i + 1}
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                            {Array.apply(null, {length: this.props.state.childs}).map((a, i) => {
-                                return (
-                                    <>
-                                        <div
-                                            style={
-                                                this.state.activeChild !== i
-                                                    ? {display: 'none'}
-                                                    : {display: 'flex'}
-                                            }
-                                            className='inputGroup'
-                                            key={'name' + i}
-                                        >
+                                        <div className='inputGroup three'>
                                             <label>Full Name as per NRIC</label>
-                                            <input
-                                                type='text'
-                                                value={this.props.state[`childName${i}`]}
-                                                onChange={e =>
-                                                    this.props.gettingValues(e, `childName${i}`)
-                                                }
-                                            />
+                                            <input type="text" name="mainInsuredName"
+                                                   value={values.mainInsuredName}
+                                                   onChange={handleChange}
+                                                   onBlur={handleBlur}/>
+                                            <span className="error">
+                                                {errors.mainInsuredName && touched.mainInsuredName && errors.mainInsuredName}
+                                            </span>
                                         </div>
-                                        <div
-                                            style={
-                                                this.state.activeChild !== i
-                                                    ? {display: 'none'}
-                                                    : {display: 'flex'}
-                                            }
-                                            className='inputGroup'
-                                            key={'dob' + i}
-                                        >
+
+                                        <div className='inputGroup two three'>
+                                            <label>Email</label>
+                                            <input type="text" name="mainInsuredEmail"
+                                                   value={values.mainInsuredEmail}
+                                                   onChange={handleChange}
+                                                   onBlur={handleBlur}/>
+                                            <span className="error">
+                                                {errors.mainInsuredEmail && touched.mainInsuredEmail && errors.mainInsuredEmail}
+                                            </span>
+                                        </div>
+
+                                        <div className='inputGroup two three'>
+                                            <label>NRIC</label>
+                                            <CustomInput type="text" name="mainInsuredNric" mask="999999-99-9999"
+                                                         value={values.mainInsuredNric}
+                                                         onChange={handleChange} onBlur={handleBlur}>
+                                                >
+                                            </CustomInput>
+
+                                            <span className="error">
+                                                {errors.mainInsuredNric && touched.mainInsuredNric && errors.mainInsuredNric}
+                                            </span>
+                                        </div>
+
+                                        <div className='inputGroup two three'>
+                                            <label>Mobile Number</label>
+                                            <CustomInput type="text" name="mainInsuredMobileNo" mask="+6 019 999 99999"
+                                                         value={values.mainInsuredMobileNo}
+                                                         onChange={handleChange} onBlur={handleBlur}>
+                                                >
+                                            </CustomInput>
+
+                                            <span className="error">
+                                                {errors.mainInsuredMobileNo && touched.mainInsuredMobileNo && errors.mainInsuredMobileNo}
+                                            </span>
+                                        </div>
+
+                                        <div className='inputGroup two three'>
                                             <label>Date of Birth</label>
                                             <input
+                                                disabled
                                                 type='date'
-                                                value={this.props.state[`childBirthDate${i}`]}
-                                                onChange={e =>
-                                                    this.props.gettingValues(e, `childBirthDate${i}`)
-                                                }
+                                                value={values.mainInsuredBirthDate}
+                                                onChange={handleChange}
                                             />
                                         </div>
-                                    </>
-                                )
-                            })}
-                        </div>
-                    )}
 
-                    <div className='terms'>
-                        <div className='content'>
-                            <Form.Check
-                                value={this.props.state.spouse}
-                                size='lg'
-                                type='checkbox'
-                            />
-                            {/*I am a Malaysian or a permanent resident of Malaysia. In the event*/}
-                            {/*I have opted to purchase the coverage for my spouse and/or*/}
-                            {/*child(ren), I hereby confirm that my spouse and/or my child is a*/}
-                            {/*Malaysia or a permanent resident of Malaysia, as the case may be.*/}
-                            Eligible child are over 30 days of age and under 19 years of age (or 23 years of age if a
-                            fulltime student at a recognized school, college or university).
-                        </div>
-                    </div>
+                                        <div className='inputGroup two three'>
+                                            <label>Gender</label>
+                                            <div className='radioDiv'>
+                                                <Form.Check
+                                                    type='radio'
+                                                    label='Male'
+                                                    name='mainInsuredGender'
+                                                    id='formHorizontalRadios1'
+                                                    value='Male'
+                                                    checked={values.mainInsuredGender === 'Male'}
+                                                    onChange={handleChange}
+                                                />
+                                                <Form.Check
+                                                    type='radio'
+                                                    label='Female'
+                                                    name='mainInsuredGender'
+                                                    id='formHorizontalRadios2'
+                                                    value='Female'
+                                                    checked={values.mainInsuredGender === 'Female'}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                        </div>
 
-                    <Link to='/declaration' style={{textDecoration: 'none'}}>
-                        <button className='next'>NEXT</button>
-                    </Link>
+                                        <div className='inputGroup two three'>
+                                            <label>Marital Status</label>
+                                            <div className='radioDiv'>
+                                                <Form.Check
+                                                    type='radio'
+                                                    label='Married'
+                                                    name='mainInsuredStatus'
+                                                    id='formHorizontalRadios3'
+                                                    value='married'
+                                                    checked={values.mainInsuredStatus === 'married'}
+                                                    onChange={handleChange}
+                                                />
+                                                <Form.Check
+                                                    type='radio'
+                                                    label='Single'
+                                                    name='mainInsuredStatus'
+                                                    id='formHorizontalRadios4'
+                                                    value='single'
+                                                    checked={values.mainInsuredStatus === 'single'}
+                                                    onChange={handleChange}
+                                                />
+                                                <Form.Check
+                                                    type='radio'
+                                                    label='Others'
+                                                    name='mainInsuredStatus'
+                                                    id='formHorizontalRadios5'
+                                                    value='others'
+                                                    checked={values.mainInsuredStatus === 'others'}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className='inputGroup two'>
+                                            <label>Address</label>
+                                            <input type="text" name="mainInsuredAddress"
+                                                   value={values.mainInsuredAddress}
+                                                   onChange={handleChange}
+                                                   onBlur={handleBlur}/>
+                                            <span className="error">
+                                                {errors.mainInsuredAddress && errors.mainInsuredAddress}
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                )}
+
+                                {this.props.state.spouse && (
+                                    <div className="mainInsured">
+                                        <p>Spouse</p>
+                                        <div className='inputGroup three'>
+                                            <label>Full Name as per NRIC</label>
+                                            <input type="text" name="spouseName"
+                                                   value={values.spouseName}
+                                                   onChange={handleChange}
+                                                   onBlur={handleBlur}/>
+                                            <span className="error">
+                                                {errors.spouseName && touched.spouseName && errors.spouseName}
+                                            </span>
+                                        </div>
+
+                                        <div className='inputGroup two three'>
+                                            <label>NRIC</label>
+                                            <CustomInput type="text" name="spouseNric" mask="999999-99-9999"
+                                                         value={values.spouseNric}
+                                                         onChange={handleChange} onBlur={handleBlur}>
+                                                >
+                                            </CustomInput>
+
+                                            <span className="error">
+                                                {errors.spouseNric && touched.spouseNric && errors.spouseNric}
+                                            </span>
+                                        </div>
+
+                                        <div className='inputGroup two three'>
+                                            <label>Date of Birth</label>
+                                            <input
+                                                name="spouseBirthDate"
+                                                disabled
+                                                type='date'
+                                                value={values.spouseBirthDate}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+
+
+                                    </div>
+                                )}
+
+                                {this.props.state.child && (
+                                    <div className="childMain">
+                                        <div className='tabs'>
+                                            {Array.apply(null, {length: this.props.state.childs}).map((a, i) => {
+                                                return (
+                                                    <div
+                                                        className={this.state.activeChild === i ? 'active' : ''}
+                                                        onClick={() => this.childActive(i)}
+                                                        key={'tab' + i}
+                                                    >
+                                                        Child {i + 1}
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+
+                                        {Array.apply(null, {length: this.props.state.childs}).map((a, i) => {
+                                            return (
+                                                <>
+                                                    <div
+                                                        style={
+                                                            this.state.activeChild !== i
+                                                                ? {display: 'none'}
+                                                                : {display: 'flex'}
+                                                        }
+                                                        className='inputGroup'
+                                                        key={'name' + i}
+                                                    >
+                                                        <label>Full Name as per NRIC</label>
+
+                                                        <input type="text" name={`childName${i}`}
+                                                               value={values[`childName${i}`]}
+                                                               onChange={handleChange}
+                                                               onBlur={handleBlur}/>
+                                                        <span className="error">
+                                                            {errors[`childName${i}`] && touched[`childName${i}`] && errors[`childName${i}`]}
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        style={
+                                                            this.state.activeChild !== i
+                                                                ? {display: 'none'}
+                                                                : {display: 'flex'}
+                                                        }
+                                                        className='inputGroup'
+                                                        key={'dob' + i}
+                                                    >
+                                                        <label>Date of Birth</label>
+                                                        <input
+                                                            className="three"
+                                                            type='date'
+                                                            name={`childBirthDate${i}`}
+                                                            value={values[`childBirthDate${i}`]}
+                                                            onChange={handleChange}
+                                                        />
+                                                        <span className="error">
+                                                            {errors[`childBirthDate${i}`] && touched[`childBirthDate${i}`] && errors[`childBirthDate${i}`]}
+                                                        </span>
+                                                    </div>
+                                                </>
+                                            )
+                                        })}
+
+                                        <div className='terms'>
+                                            <div className='content'>
+                                                <Form.Check
+                                                    name="acknowledge_child"
+                                                    value={values.acknowledge_child}
+                                                    size='lg'
+                                                    type='checkbox'
+                                                />
+                                                {/*I am a Malaysian or a permanent resident of Malaysia. In the event*/}
+                                                {/*I have opted to purchase the coverage for my spouse and/or*/}
+                                                {/*child(ren), I hereby confirm that my spouse and/or my child is a*/}
+                                                {/*Malaysia or a permanent resident of Malaysia, as the case may be.*/}
+                                                Eligible child are over 30 days of age and under 19 years of age (or 23
+                                                years of
+                                                age if a
+                                                fulltime student at a recognized school, college or university).
+                                            </div>
+                                            <span className="error">
+                                                {errors.acknowledge_child && touched.acknowledge_child && errors.acknowledge_child}
+                                            </span>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <button className='next' type="submit" disabled={isSubmitting}>NEXT</button>
+                            </form>
+                        )}
+                    </Formik>
                 </div>
             </div>
         )
