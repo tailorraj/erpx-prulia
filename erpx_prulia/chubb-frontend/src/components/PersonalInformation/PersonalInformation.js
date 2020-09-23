@@ -4,14 +4,9 @@ import {withRouter} from 'react-router-dom'
 import {Form} from 'react-bootstrap'
 import axios from 'axios';
 import {Formik} from 'formik';
-import InputMask from 'react-input-mask';
 import moment from 'moment';
 
-import { memberDetailsMap } from '../../helpers';
-
-const CustomInput = props => (
-    <InputMask {...props}>{inputProps => <input {...inputProps} />}</InputMask>
-);
+import { memberDetailsMap, CustomInput } from '../../helpers';
 
 const getDOB = (ic) => {
     if (ic.match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)) {
@@ -82,63 +77,72 @@ class PersonalInformation extends React.Component {
 
         }).catch(e => {
             console.error(e);
-            // window.alert('Please login to continue');
-            // window.location.href = '/';
+            window.alert('Please login to continue');
+            window.location.href = '/';
 
-            let data = {
-                "creation": "2018-12-11 14:15:53.482815",
-                "send_password_update_notification": 0,
-                "membership_fee": 0,
-                "full_name": "Nicole Sherzinger",
-                "owner": "yapnicole93@gmail.com",
-                "user_status": "Active",
-                "modified_by": "Administrator",
-                "new_password": "",
-                "prudential_id": "0000001",
-                "highest_qualification": "SPM",
-                "office_number": "",
-                "branch": "Damansara Intan",
-                "docstatus": 0,
-                "email": "yapnicole93@gmail.com",
-                "home_phone": "",
-                "meal_option": "Non-Vegetarian",
-                "fax_number": "",
-                "logout_all_sessions": 0,
-                "promo_year": 0,
-                "nric_number": "900101-88-8888",
-                "doctype": "PRULIA Member",
-                "user_id": "yapnicole93@gmail.com",
-                "register_acknowledgement": 1,
-                "school": "",
-                "name": "0000001",
-                "idx": 5,
-                "cell_number": "6019-999 99999",
-                "field_of_study": "",
-                "gender": "Female",
-                "region": "Central3",
-                "modified": "2020-07-25 11:20:44.905880",
-                "profile_photo": "/files/person.png",
-                "race": "",
-                "shirt_size": "M",
-                "position": "QL",
-                "resign_year": 0
-            };
-
-            key_values.forEach((key_value, index) => {
-                if (data[key_value]) {
-                    this.props.gettingValues({
-                        target: {
-                            value: data[key_value]
-                        }
-                    }, keys[index])
-                }
-            });
-
-            this.props.gettingValues({
-                target: {
-                    value: getDOB(data.nric_number)
-                }
-            }, 'mainInsuredBirthDate')
+            // let data = {
+            //     "creation": "2018-12-11 14:15:53.482815",
+            //     "send_password_update_notification": 0,
+            //     "membership_fee": 0,
+            //     "full_name": "Nicole Sherzinger",
+            //     "owner": "yapnicole93@gmail.com",
+            //     "user_status": "Active",
+            //     "modified_by": "Administrator",
+            //     "new_password": "",
+            //     "prudential_id": "0000001",
+            //     "highest_qualification": "SPM",
+            //     "office_number": "",
+            //     "branch": "Damansara Intan",
+            //     "docstatus": 0,
+            //     "email": "yapnicole93@gmail.com",
+            //     "home_phone": "",
+            //     "meal_option": "Non-Vegetarian",
+            //     "fax_number": "",
+            //     "logout_all_sessions": 0,
+            //     "promo_year": 0,
+            //     "nric_number": "900101-88-8888",
+            //     "doctype": "PRULIA Member",
+            //     "user_id": "yapnicole93@gmail.com",
+            //     "register_acknowledgement": 1,
+            //     "school": "",
+            //     "name": "0000001",
+            //     "idx": 5,
+            //     "cell_number": "6019-999 99999",
+            //     "field_of_study": "",
+            //     "gender": "Female",
+            //     "region": "Central3",
+            //     "modified": "2020-07-25 11:20:44.905880",
+            //     "profile_photo": "/files/person.png",
+            //     "race": "",
+            //     "shirt_size": "M",
+            //     "position": "QL",
+            //     "resign_year": 0,
+            //
+            //     "address": 'abc',
+            //     "spouse_name": 'abc',
+            //     "spouse_nric_number": '901010-88-8888',
+            //
+            //     "child_name0": 'abc',
+            //     "child_dob0": '22-08-2019',
+            //
+            //     "acknowledge_child": true
+            // };
+            //
+            // key_values.forEach((key_value, index) => {
+            //     if (data[key_value]) {
+            //         this.props.gettingValues({
+            //             target: {
+            //                 value: data[key_value]
+            //             }
+            //         }, keys[index])
+            //     }
+            // });
+            //
+            // this.props.gettingValues({
+            //     target: {
+            //         value: getDOB(data.nric_number)
+            //     }
+            // }, 'mainInsuredBirthDate')
         });
 
         function getMemberDetails() {
@@ -236,6 +240,11 @@ class PersonalInformation extends React.Component {
 
                                 if (!values.mainInsuredAddress) errors.mainInsuredAddress = 'Address is required';
 
+                                if (!values.mainInsuredPostcode) errors.mainInsuredPostcode = 'Postcode is required';
+                                else if (values.mainInsuredPostcode.length < 5) {
+                                    errors.mainInsuredPostcode = 'Invalid postcode';
+                                }
+
                                 Object.keys(values).forEach(key => {
                                     if (key.startsWith('childName') && !values[key]) {
                                         errors[key] = 'Name is required';
@@ -245,7 +254,6 @@ class PersonalInformation extends React.Component {
                                         if (!values[key]) errors[key] = 'Date of birth is required';
 
                                         if (getAge(values[key]) < 1 || getAge(values[key]) > 23) {
-                                            console.log(getAge(values[key]));
                                             errors[key] = 'The age is not eligible, only 1 to 23 years of age is eligible';
                                         }
                                     }
@@ -253,15 +261,20 @@ class PersonalInformation extends React.Component {
 
                                 if (!values.acknowledge_child) errors.acknowledge_child = 'Please check the box';
 
+                                Object.keys(values).forEach(key => {
+                                    this.props.gettingValues({
+                                        target: {
+                                            value: values[key]
+                                        }
+                                    }, key);
+                                });
+
                                 return errors;
                             }}
                             onSubmit={(values, {setSubmitting}) => {
-                                setTimeout(() => {
-
-                                    console.log(JSON.stringify(values, null, 2));
-                                    setSubmitting(false);
-                                    this.props.history.push('/declaration');
-                                }, 400);
+                                // console.log(JSON.stringify(values, null, 2));
+                                setSubmitting(false);
+                                this.props.history.push('/declaration');
                             }}
                     >
                         {({
@@ -399,6 +412,19 @@ class PersonalInformation extends React.Component {
                                             </span>
                                         </div>
 
+                                        <div className='inputGroup two three'>
+                                            <label>Postcode</label>
+                                            <CustomInput type="text" name="mainInsuredPostcode" mask="999999"
+                                                         value={values.mainInsuredPostcode}
+                                                         onChange={handleChange} onBlur={handleBlur}>
+                                                >
+                                            </CustomInput>
+
+                                            <span className="error">
+                                                {errors.mainInsuredPostcode && errors.mainInsuredPostcode}
+                                            </span>
+                                        </div>
+
                                     </div>
                                 )}
 
@@ -514,12 +540,13 @@ class PersonalInformation extends React.Component {
                                                     value={values.acknowledge_child}
                                                     size='lg'
                                                     type='checkbox'
+                                                    onChange={handleChange}
                                                 />
                                                 {/*I am a Malaysian or a permanent resident of Malaysia. In the event*/}
                                                 {/*I have opted to purchase the coverage for my spouse and/or*/}
                                                 {/*child(ren), I hereby confirm that my spouse and/or my child is a*/}
                                                 {/*Malaysia or a permanent resident of Malaysia, as the case may be.*/}
-                                                Eligible child are over 30 days of age and under 19 years of age (or 23
+                                                Eligible child are over 1 year of age and under 19 years of age (or 23
                                                 years of
                                                 age if a
                                                 fulltime student at a recognized school, college or university).

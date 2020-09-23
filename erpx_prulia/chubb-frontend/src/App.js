@@ -110,6 +110,7 @@ class App extends React.Component {
                         exact path="/proposal-form"
                         render={() => <Form
                             state={this.state}
+                            gettingValues={this.gettingValues}
                         />}/>
 
                     <Route

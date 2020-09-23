@@ -1,3 +1,6 @@
+import InputMask from "react-input-mask";
+import React from "react";
+
 export const memberDetailsMap = (childNum) => {
     let key_pair = {
         mainInsuredBirthDate: "dob",
@@ -8,6 +11,7 @@ export const memberDetailsMap = (childNum) => {
         mainInsuredNric: "nric_number",
         mainInsuredStatus: "marital_status",
         mainInsuredAddress: 'address',
+        mainInsuredPostcode: 'postcode',
 
         spouseName: 'spouse_name',
         spouseNric: 'spouse_nric_number',
@@ -23,3 +27,7 @@ export const memberDetailsMap = (childNum) => {
 
     return key_pair;
 };
+
+export const CustomInput = props => (
+    <InputMask {...props}>{inputProps => <input {...inputProps} />}</InputMask>
+);

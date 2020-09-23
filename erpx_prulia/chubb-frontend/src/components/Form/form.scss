@@ -64,6 +64,7 @@
 }
 
 .box {
+    min-width: 5px;
     width: 23.2px;
     height: 23.2px;
     border: 1px solid #4f4f4f;
@@ -101,7 +102,7 @@
     margin-bottom: 5px;
 }
 .form {
-    margin-top: 0px;
+    margin-top: 0;
     /* height:  2000px; */
 }
 .policy-dob {
@@ -237,7 +238,7 @@ margin-left: 155px;
     color: white;
 }
 table p {
-    margin: 0px;
+    margin: 0;
     padding: 6px 10px;
 }
 tbody tr {
@@ -310,10 +311,13 @@ width: 160px;
 }
 .Sign{
     width: 440px;
-}
-.Sign p{
-    border-top: 1px solid black;
-    margin-top: 70px;
+    div {
+        padding: 10px;
+        min-height: 50px;
+    }
+    p{
+        border-top: 1px solid black;
+    }
 }
 .page4{
     margin-top: 210px;
@@ -330,7 +334,7 @@ width: 160px;
     list-style: none;
 }
 .contact ul{
-    padding: 0px;
+    padding: 0;
 }
 .pdf-logo{
     /* float: right; */
