@@ -18,9 +18,9 @@ class App extends React.Component {
                 child: '26.50'
             },
             total: 0,
-            mainInsured: true,
-            spouse: true,
-            child: true,
+            mainInsured: false,
+            spouse: false,
+            child: false,
             childs: 1,
             childsArr: [],
             memberDetails: {}
