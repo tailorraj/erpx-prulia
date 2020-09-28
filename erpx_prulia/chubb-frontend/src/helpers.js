@@ -16,8 +16,6 @@ export const memberDetailsMap = (childNum) => {
         spouseName: 'spouse_name',
         spouseNric: 'spouse_nric_number',
         spouseBirthDate: 'spouse_dob',
-
-        acknowledge_child: 'acknowledge_child'
     };
 
     for (let i = 0; i < childNum; i++) {

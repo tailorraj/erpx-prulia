@@ -337,7 +337,6 @@ class PersonalInformation extends React.Component {
                                         <div className='inputGroup two three'>
                                             <label>Date of Birth</label>
                                             <input
-                                                disabled
                                                 type='date'
                                                 value={values.mainInsuredBirthDate}
                                                 onChange={handleChange}
@@ -376,8 +375,8 @@ class PersonalInformation extends React.Component {
                                                     label='Married'
                                                     name='mainInsuredStatus'
                                                     id='formHorizontalRadios3'
-                                                    value='married'
-                                                    checked={values.mainInsuredStatus === 'married'}
+                                                    value='Married'
+                                                    checked={values.mainInsuredStatus === 'Married'}
                                                     onChange={handleChange}
                                                 />
                                                 <Form.Check
@@ -385,8 +384,8 @@ class PersonalInformation extends React.Component {
                                                     label='Single'
                                                     name='mainInsuredStatus'
                                                     id='formHorizontalRadios4'
-                                                    value='single'
-                                                    checked={values.mainInsuredStatus === 'single'}
+                                                    value='Single'
+                                                    checked={values.mainInsuredStatus === 'Single'}
                                                     onChange={handleChange}
                                                 />
                                                 <Form.Check
@@ -394,8 +393,8 @@ class PersonalInformation extends React.Component {
                                                     label='Others'
                                                     name='mainInsuredStatus'
                                                     id='formHorizontalRadios5'
-                                                    value='others'
-                                                    checked={values.mainInsuredStatus === 'others'}
+                                                    value='Others'
+                                                    checked={values.mainInsuredStatus === 'Others'}
                                                     onChange={handleChange}
                                                 />
                                             </div>

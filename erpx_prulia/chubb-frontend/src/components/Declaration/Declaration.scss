@@ -135,19 +135,31 @@
                     margin-top: 30px;
                     flex-wrap: wrap;
                     .group{
-                        width: 50%;
+                        width: 360px;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         .sign{
-                            width: 90%;
-                            height: 50px;
+                            margin-bottom: 20px;
+                            width: 340px;
+                            height: 100px;
                             background-color: whitesmoke;
                             color: gray;
                             border-radius: 10px;
                             display: flex;
                             justify-content: center;
                             align-items: center;
+                        }
+                        label {
+                            button {
+                                display: inline-block;
+                                border-radius: 10px;
+                                padding: 1px 0;
+                                width: 50px;
+                                border: none;
+                                margin-left: 20px;
+                                text-align: center;
+                            }
                         }
                     }
                     .submit{

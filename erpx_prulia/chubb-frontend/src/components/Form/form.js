@@ -1,9 +1,62 @@
 import React from 'react'
 import './form.scss'
 import {withRouter} from 'react-router-dom'
-import moment from "moment";
+import {jsPDF} from "jspdf"
+import html2canvas from 'html2canvas';
+import moment from "moment"
+import axios from 'axios';
 
 window.moment = moment;
+
+const makePDF = (elementId) => {
+    var quotes = document.getElementById(elementId);
+
+    html2canvas(quotes)
+        .then((canvas) => {
+            //! MAKE YOUR PDF
+            var pdf = new jsPDF('p', 'pt', 'letter');
+
+            for (var i = 0; i <= quotes.clientHeight / 1040; i++) {
+                //! This is all just html2canvas stuff
+                var srcImg = canvas;
+                var sX = 0;
+                var sY = 1280 * i; // start 980 pixels down for every new page
+                var sWidth = 1040;
+                var sHeight = 1280;
+                var dX = 0;
+                var dY = 0;
+                var dWidth = 1040;
+                var dHeight = 1280;
+
+                window.onePageCanvas = document.createElement("canvas");
+                window.onePageCanvas.setAttribute('width', 1040);
+                window.onePageCanvas.setAttribute('height', 1280);
+                var ctx = window.onePageCanvas.getContext('2d');
+                // details on this usage of this function:
+                // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
+                ctx.drawImage(srcImg, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
+
+                // document.body.appendChild(canvas);
+                var canvasDataURL = window.onePageCanvas.toDataURL("image/png", 1.0);
+
+                var width = window.onePageCanvas.width;
+                var height = window.onePageCanvas.clientHeight;
+
+                //! If we're on anything other than the first page,
+                // add another page
+                if (i > 0) {
+                    pdf.addPage([612, 791]); //8.5" x 11" in pts (in*72)
+                }
+                //! now we declare that we're working on that page
+                pdf.setPage(i + 1);
+                //! now we add content to that page!
+                pdf.addImage(canvasDataURL, 'PNG', 20, 40, (width * .62), (height * .62));
+
+            }
+            //! after the for loop is finished running, we save the pdf.
+            pdf.save('Test.pdf');
+        });
+}
 
 class Form extends React.Component {
     constructor(props) {
@@ -11,9 +64,11 @@ class Form extends React.Component {
         this.state = {};
 
         // let data = {
+        //     "member": "0000001",
         //     "total": 556.5,
         //     "mainInsured": true,
         //     "spouse": true,
+        //     "card_sign": 'data:image/png;base64,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',
         //     "child": true,
         //     "childs": 1,
         //     "childsArr": [],
@@ -24,9 +79,10 @@ class Form extends React.Component {
         //     "mainInsuredMobileNo": "6019-999 99999",
         //     "mainInsuredName": "Nicole Sherzinger",
         //     "mainInsuredNric": "900101-88-8888",
-        //     "mainInsuredStatus": "married",
+        //     "mainInsuredStatus": "Married",
         //     "mainInsuredAddress": "abc",
         //     "mainInsuredPostcode": "111111",
+        //     "main_sign": 'data:image/png;base64,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',
         //     "spouseName": "abc",
         //     "spouseNric": "901010-88-8888",
         //     "spouseBirthDate": "1990-10-10",
@@ -34,13 +90,13 @@ class Form extends React.Component {
         //     "childName0": "abc",
         //     "childBirthDate0": "2012-12-12",
         //     "accountHolderName": "Nicole Sherzinger",
-        //     "paymentMethod": "Credit Card",
+        //     "payment_method": "Credit Card",
         //     "declaration": true,
         //     "privacyNotice": true,
         //     "paymentInstruction": true,
-        //     "issuingBank": "maybank",
-        //     "cardNo": "1111-1111-1111-1111",
-        //     "cardExpiry": "12/2023"
+        //     "issuing_bank": "maybank",
+        //     "card_number": "1111-1111-1111-1111",
+        //     "card_expiry": "12/2023"
         // };
         //
         // Object.keys(data).forEach(key => {
@@ -53,9 +109,62 @@ class Form extends React.Component {
     }
 
     printElem = () => {
-        // window.print()
         setTimeout(() => {
+
+            // makePDF('form');
+
             // this.props.history.push('/declaration')
+
+            let data = {
+                main_dob: this.props.state.mainInsuredBirthDate,
+                main_email: this.props.state.mainInsuredEmail,
+                main_gender: this.props.state.mainInsuredGender,
+                main_cell_number: this.props.state.mainInsuredMobileNo,
+                main_full_name: this.props.state.mainInsuredName,
+                main_nric_number: this.props.state.mainInsuredNric,
+                main_marital_status: this.props.state.mainInsuredStatus,
+                main_address: this.props.state.mainInsuredAddress,
+                main_postcode: this.props.state.mainInsuredPostcode,
+                main_sign: this.props.state.main_sign,
+
+                spouse_name: this.props.state.spouseName,
+                spouse_nric_number: this.props.state.spouseNric,
+                spouse_dob: this.props.state.spouseBirthDate,
+
+                children_table: [],
+
+                payment_method: this.props.state.payment_method,
+                issuing_bank: this.props.state.issuing_bank,
+                card_number: this.props.state.card_number,
+                card_expiry: this.props.state.card_expiry,
+                total: this.props.state.total,
+                card_sign: this.props.state.card_sign
+            }
+
+            Object.keys(this.props.state).forEach(key => {
+                if (key.startsWith('childName')) {
+                    data.children_table[getNum(key)] = data.children_table[getNum(key)] || {};
+                    data.children_table[getNum(key)].full_name = this.props.state[key];
+                }
+
+                if (key.startsWith('childBirthDate')) {
+                    data.children_table[getNum(key)] = data.children_table[getNum(key)] || {};
+                    data.children_table[getNum(key)].dob = this.props.state[key];
+                }
+
+                function getNum(key) {
+                    return parseInt(key.replace('childName', '').replace('childBirthDate', ''));
+                }
+
+            });
+
+
+            axios.post((window.location.hostname.includes('localhost') ? 'http://167.99.77.197' : ''
+            ) + '/api/method/erpx_prulia.prulia_pa.doctype.prulia_pa.prulia_pa.submit_application', data).then(data => {
+                console.log(data)
+                window.alert('Your application is now submitted.');
+                window.location.href = '/';
+            });
         }, 500)
     }
 
@@ -76,8 +185,6 @@ class Form extends React.Component {
         let mainInsuredStatus = this.props.state.mainInsuredStatus
         let mainInsuredAddress = this.props.state.mainInsuredAddress
         let mainInsuredPostcode = this.props.state.mainInsuredPostcode
-
-        console.log(mainInsuredName)
 
 
         let mainInsuredNameDiv = document.getElementById('mainInsuredName')
@@ -282,12 +389,12 @@ class Form extends React.Component {
         // Card details
         let accountHolderNameDiv = document.getElementById('accountHolderNameDiv')
         let accountHolderName = this.props.state.accountHolderName
-        let paymentMethod = this.props.state.paymentMethod
+        let payment_method = this.props.state.payment_method
 
-        let creditCard = paymentMethod === 'Credit Card'
-        let debitCard = paymentMethod === 'Dedit Card'
-        let masterCard = paymentMethod === 'Master Card'
-        let visa = paymentMethod === 'Visa'
+        let creditCard = payment_method === 'Credit Card'
+        let debitCard = payment_method === 'Dedit Card'
+        let masterCard = payment_method === 'Master Card'
+        let visa = payment_method === 'Visa'
 
         for (let i = 0; i < 38; i++) {
             accountHolderNameDiv.innerHTML += `<div id="accountHolderNameDiv${i}" class="box"></div>`
@@ -317,60 +424,64 @@ class Form extends React.Component {
             masterCardDiv.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/></svg>`
         }
 
-        let issuingBankDiv = document.getElementById('issuingBankDiv')
-        let issuingBank = this.props.state.issuingBank
+        let issuing_bankDiv = document.getElementById('issuing_bankDiv')
+        let issuing_bank = this.props.state.issuing_bank
 
         for (let i = 0; i < 16; i++) {
-            issuingBankDiv.innerHTML += `<div id="issuingBankDiv${i}" class="box"></div>`
+            issuing_bankDiv.innerHTML += `<div id="issuing_bankDiv${i}" class="box"></div>`
         }
-        if (issuingBank) {
-            for (let i = 0; i < issuingBank.length; i++) {
-                document.getElementById(`issuingBankDiv${i}`).innerHTML =
-                    issuingBank[i]
+        if (issuing_bank) {
+            for (let i = 0; i < issuing_bank.length; i++) {
+                document.getElementById(`issuing_bankDiv${i}`).innerHTML =
+                    issuing_bank[i]
             }
         }
 
-        let cardNoDiv = document.getElementById('cardNoDiv')
-        let cardNo = this.props.state.cardNo
+        let card_numberDiv = document.getElementById('card_numberDiv')
+        let card_number = this.props.state.card_number
 
         for (let i = 0; i < 19; i++) {
             if (i === 4 || i === 9 || i === 14) {
-                cardNoDiv.innerHTML += `<div id="cardNoDiv${i}" class="dash">-</div>`
+                card_numberDiv.innerHTML += `<div id="card_numberDiv${i}" class="dash">-</div>`
             } else {
-                cardNoDiv.innerHTML += `<div id="cardNoDiv${i}" class="box">${cardNo[i] || ''}</div>`
+                card_numberDiv.innerHTML += `<div id="card_numberDiv${i}" class="box">${card_number[i] || ''}</div>`
             }
         }
-        // if (cardNo) {
-        //   for (let i = 0; i < cardNo.length; i++) {
-        //     document.getElementById(`cardNoDiv${i}`).innerHTML =
-        //       cardNo[i]
+        // if (card_number) {
+        //   for (let i = 0; i < card_number.length; i++) {
+        //     document.getElementById(`card_numberDiv${i}`).innerHTML =
+        //       card_number[i]
         //   }
         // }
 
-        let cardExpiryDiv = document.getElementById('cardExpiryDiv')
-        let cardExpiry = this.props.state.cardExpiry
+        let card_expiryDiv = document.getElementById('card_expiryDiv')
+        let card_expiry = this.props.state.card_expiry
 
-        for (let i=0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) {
             if (i === 2) {
-                cardExpiryDiv.innerHTML += `<div id="cardExpiryDiv${i}" class="dash">/</div>`
+                card_expiryDiv.innerHTML += `<div id="card_expiryDiv${i}" class="dash">/</div>`
             } else {
-                cardExpiryDiv.innerHTML += `<div id="cardExpiryDiv${i}" class="box">${cardExpiry[i] || ''}</div>`
+                card_expiryDiv.innerHTML += `<div id="card_expiryDiv${i}" class="box">${card_expiry[i] || ''}</div>`
             }
         }
 
         let paymentDateDiv = document.getElementById('paymentDateDiv');
         let paymentDate = moment().format('YYYY-MM-DD')
 
-        for (let i=0; i < 10; i++) {
+        for (let i = 0; i < 10; i++) {
             paymentDateDiv.innerHTML += `<div id="paymentDateDiv${i}" class="box">${paymentDate[i] || ''}</div>`
         }
 
         let totalDiv = document.getElementById('totalDiv');
         let total = this.props.state.total.toFixed(2).toString()
 
-        for (let i=0; i < total.length; i++) {
+        for (let i = 0; i < total.length; i++) {
             totalDiv.innerHTML += `<div id="totalDiv${i}" class="box">${total[i] || ''}</div>`
         }
+
+
+        document.getElementById('mainSign').setAttribute('src', this.props.state.main_sign);
+        document.getElementById('cardSign').setAttribute('src', this.props.state.card_sign);
 
 
         this.printElem()
@@ -1070,7 +1181,7 @@ class Form extends React.Component {
                                 <div id='masterCardDiv' className='box'></div>
                                 <p>Master Card</p>
                             </div>
-                            <div id='issuingBankDiv' className='check'>
+                            <div id='issuing_bankDiv' className='check'>
                                 <p>Issuing Bank</p>
                                 {/* <div className='box'></div>
                 <div className='box'></div>
@@ -1095,7 +1206,7 @@ class Form extends React.Component {
                                 <div id='debitCardDiv' className='box'></div>
                                 <p>Debit Card</p>
                             </div>
-                            <div id="cardNoDiv" className='check'>
+                            <div id="card_numberDiv" className='check'>
                                 <p className='cardno'>Card No.</p>
                                 {/* <div className='box'></div>
                 <div className='box'></div>
@@ -1116,7 +1227,7 @@ class Form extends React.Component {
                             </div>
                         </div>
                         <div className='paymentDate'>
-                            <div className='check' id="cardExpiryDiv">
+                            <div className='check' id="card_expiryDiv">
                                 <p>Card Expiry</p>
                                 {/*<div className='box'>D</div>*/}
                                 {/*<div className='box'>D</div>*/}
@@ -1152,7 +1263,7 @@ class Form extends React.Component {
                             </div>
                         </div>
                         <div className='Sign'>
-                            <div></div>
+                            <img id="cardSign"/>
                             <p>
                                 Signature of Card Holder / <i> Tandatangan Pemegang Kad </i>
                             </p>
@@ -1231,7 +1342,7 @@ class Form extends React.Component {
                         </div>
                         <div className='page4Sign'>
                             <div className='Sign'>
-                                <div></div>
+                                <img id="mainSign"/>
                                 <p>
                                     Signature of Main Insured Person <br/>{' '}
                                     <i>Tandatangan Orange Tertanggung Utama </i>

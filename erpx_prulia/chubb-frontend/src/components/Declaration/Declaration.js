@@ -5,6 +5,7 @@ import {Form} from 'react-bootstrap'
 import {CustomInput} from "../../helpers";
 import {Formik} from 'formik';
 import moment from "moment";
+import SignatureCanvas from "react-signature-canvas";
 
 class Declaration extends React.Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class Declaration extends React.Component {
             target: {
                 value: 'Credit Card'
             }
-        }, 'paymentMethod');
+        }, 'payment_method');
     }
 
     render() {
@@ -69,18 +70,40 @@ class Declaration extends React.Component {
 
                                 if (!values.accountHolderName) errors.accountHolderName = 'Name is required';
 
-                                if (!values.paymentMethod) errors.paymentMethod = 'Payment method is required';
+                                if (!values.payment_method) errors.payment_method = 'Payment method is required';
 
-                                if (!values.issuingBank) errors.issuingBank = 'Issuing bank is required';
+                                if (!values.issuing_bank) errors.issuing_bank = 'Issuing bank is required';
 
-                                if (!values.cardNo) errors.cardNo = 'Card number is required';
+                                if (!values.card_number) errors.card_number = 'Card number is required';
 
-                                if (!values.cardExpiry) errors.cardExpiry = 'Expiry date is required';
+                                if (!values.card_expiry) errors.card_expiry = 'Expiry date is required';
                                 else if (
-                                    !/^(0[1-9]|1[0-2])\/?(([0-9]{4})$)/g.test(values.cardExpiry) ||
-                                    parseInt(values.cardExpiry.split('/').pop()) < parseInt(moment().year())
+                                    !/^(0[1-9]|1[0-2])\/?(([0-9]{4})$)/g.test(values.card_expiry) ||
+                                    parseInt(values.card_expiry.split('/').pop()) < parseInt(moment().year())
                                 ) {
-                                    errors.cardExpiry = 'Invalid expiry date';
+                                    errors.card_expiry = 'Invalid expiry date';
+                                }
+
+                                if (this.state.mainSign) {
+                                    if (this.state.mainSign.isEmpty()) errors.main_sign = 'Signature is required';
+                                    else {
+                                        this.props.gettingValues({
+                                            target: {
+                                                value: this.state.mainSign.toDataURL()
+                                            }
+                                        }, 'main_sign');
+                                    }
+                                }
+
+                                if (this.state.cardSign) {
+                                    if (this.state.cardSign.isEmpty()) errors.card_sign = 'Signature is required';
+                                    else {
+                                        this.props.gettingValues({
+                                            target: {
+                                                value: this.state.cardSign.toDataURL()
+                                            }
+                                        }, 'card_sign');
+                                    }
                                 }
 
 
@@ -216,17 +239,17 @@ class Declaration extends React.Component {
                                                 <Form.Check
                                                     type="radio"
                                                     label="Credit Card"
-                                                    name="paymentMethod"
+                                                    name="payment_method"
                                                     value="Credit Card"
-                                                    checked={values.paymentMethod === 'Credit Card'}
+                                                    checked={values.payment_method === 'Credit Card'}
                                                     onChange={handleChange}
                                                 />
                                                 <Form.Check
                                                     type="radio"
                                                     label="Debit Card"
-                                                    name="paymentMethod"
+                                                    name="payment_method"
                                                     value="Debit Card"
-                                                    checked={values.paymentMethod === 'Debit Card'}
+                                                    checked={values.payment_method === 'Debit Card'}
                                                     onChange={handleChange}
                                                 />
                                             </div>
@@ -234,23 +257,23 @@ class Declaration extends React.Component {
                                                 <Form.Check
                                                     type="radio"
                                                     label="Visa"
-                                                    name="paymentMethod"
+                                                    name="payment_method"
                                                     value="Visa"
-                                                    checked={values.paymentMethod === 'Visa'}
+                                                    checked={values.payment_method === 'Visa'}
                                                     onChange={handleChange}
                                                 />
                                                 <Form.Check
                                                     type="radio"
                                                     label="Mastercard"
-                                                    name="paymentMethod"
+                                                    name="payment_method"
                                                     value="Mastercard"
-                                                    checked={values.paymentMethod === 'Mastercard'}
+                                                    checked={values.payment_method === 'Mastercard'}
                                                     onChange={handleChange}
                                                 />
                                             </div>
 
                                             <span className="error">
-                                                {errors.paymentMethod && touched.paymentMethod && errors.paymentMethod}
+                                                {errors.payment_method && touched.payment_method && errors.payment_method}
                                             </span>
 
                                             <div className='secondFlex two'>
@@ -258,25 +281,25 @@ class Declaration extends React.Component {
                                                     <label>Issuing Bank</label>
                                                     <input
                                                         type='text'
-                                                        name="issuingBank"
-                                                        value={this.props.state.issuingBank}
+                                                        name="issuing_bank"
+                                                        value={this.props.state.issuing_bank}
                                                         onChange={handleChange}
                                                     />
                                                     <span className="error">
-                                                        {errors.issuingBank && touched.issuingBank && errors.issuingBank}
+                                                        {errors.issuing_bank && touched.issuing_bank && errors.issuing_bank}
                                                     </span>
                                                 </div>
                                                 <div className='inputGroup'>
                                                     <label>Card No.</label>
                                                     <CustomInput
                                                         type="text"
-                                                        name="cardNo"
+                                                        name="card_number"
                                                         mask="9999-9999-9999-9999"
-                                                        value={this.props.state.cardNo}
+                                                        value={this.props.state.card_number}
                                                         onChange={handleChange}
                                                     />
                                                     <span className="error">
-                                                        {errors.cardNo && touched.cardNo && errors.cardNo}
+                                                        {errors.card_number && touched.card_number && errors.card_number}
                                                     </span>
                                                 </div>
                                             </div>
@@ -285,13 +308,13 @@ class Declaration extends React.Component {
                                                     <label>Card Expiry</label>
                                                     <CustomInput
                                                         type="text"
-                                                        name="cardExpiry"
+                                                        name="card_expiry"
                                                         mask="99/9999"
-                                                        value={this.props.state.cardExpiry}
+                                                        value={this.props.state.card_expiry}
                                                         onChange={handleChange}
                                                     />
                                                     <span className="error">
-                                                        {errors.cardExpiry && touched.cardExpiry && errors.cardExpiry}
+                                                        {errors.card_expiry && touched.card_expiry && errors.card_expiry}
                                                     </span>
                                                 </div>
                                             </div>
@@ -303,15 +326,44 @@ class Declaration extends React.Component {
 
                                             <div className='signDiv'>
                                                 <div className='group'>
-                                                    <div className='sign'>Sign Here</div>
-                                                    <label>Signature of Card Holder</label>
+                                                    <div className='sign'><SignatureCanvas ref={(ref) => {
+                                                        this.state.cardSign = ref
+                                                    }} canvasProps={{
+                                                        width: '340px',
+                                                        height: '100%',
+                                                        className: 'sigCanvas'
+                                                    }}>
+                                                    </SignatureCanvas></div>
+                                                    <label>Signature of Card Holder
+                                                        <button
+                                                            onClick={this.state.cardSign && this.state.cardSign.clear()}>Clear
+                                                        </button>
+                                                    </label>
+                                                    <span className="error">
+                                                        {errors.card_sign && errors.card_sign}
+                                                    </span>
                                                 </div>
                                                 <div className='group'>
-                                                    <div className='sign'>Sign Here</div>
-                                                    <label>Signature of Main Insured Person</label>
+                                                    <div className='sign'><SignatureCanvas ref={(ref) => {
+                                                        this.state.mainSign = ref
+                                                    }} canvasProps={{
+                                                        width: '340px',
+                                                        height: '100%',
+                                                        className: 'sigCanvas'
+                                                    }}>
+                                                    </SignatureCanvas></div>
+                                                    <label>Signature of Main Insured Person
+                                                        <button
+                                                            onClick={this.state.mainSign && this.state.mainSign.clear()}>Clear
+                                                        </button>
+                                                    </label>
+                                                    <span className="error">
+                                                        {errors.main_sign && errors.main_sign}
+                                                    </span>
                                                 </div>
 
-                                                <button type="submit" disabled={isSubmitting}
+                                                <button type="submit"
+                                                        disabled={isSubmitting}
                                                         style={{textDecoration: 'none'}}
                                                         className="submit">
                                                     Submit
@@ -479,8 +531,8 @@ class Declaration extends React.Component {
                     {/*                    <input*/}
                     {/*                        type='text'*/}
                     {/*                        defaultValue='Maybank'*/}
-                    {/*                        value={this.props.state[`issuingBank`]}*/}
-                    {/*                        onChange={e => this.props.gettingValues(e, `issuingBank`)}*/}
+                    {/*                        value={this.props.state[`issuing_bank`]}*/}
+                    {/*                        onChange={e => this.props.gettingValues(e, `issuing_bank`)}*/}
                     {/*                    />*/}
                     {/*                </div>*/}
                     {/*                <div className='inputGroup'>*/}
@@ -488,8 +540,8 @@ class Declaration extends React.Component {
                     {/*                    <input*/}
                     {/*                        type='text'*/}
                     {/*                        defaultValue='1234 5678 4455 8877'*/}
-                    {/*                        value={this.props.state[`cardNo`]}*/}
-                    {/*                        onChange={e => this.props.gettingValues(e, `cardNo`)}*/}
+                    {/*                        value={this.props.state[`card_number`]}*/}
+                    {/*                        onChange={e => this.props.gettingValues(e, `card_number`)}*/}
                     {/*                    />*/}
                     {/*                </div>*/}
                     {/*            </div>*/}

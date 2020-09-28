@@ -150,14 +150,17 @@ class PersonalAccidentInsurance extends React.Component {
                                             </Accordion.Toggle>
                                         </div>
                                     </div>
-                                    <div className="third">
-                                        <label>Child</label>
-                                        <input
-                                            value={this.props.state.childs}
-                                            onChange={(e) => this.props.gettingValues(e, "childs")}
-                                            type="number"
-                                        />
-                                    </div>
+                                    {
+                                        this.props.state.child && (<div className="third">
+                                            <label>Child</label>
+                                            <input
+                                                value={this.props.state.childs}
+                                                onChange={(e) => this.props.gettingValues(e, "childs")}
+                                                type="number"
+                                            />
+                                        </div>)
+                                    }
+
                                 </div>
                             </Card.Header>
                             <Accordion.Collapse eventKey="2">

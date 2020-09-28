@@ -311,9 +311,11 @@ width: 160px;
 }
 .Sign{
     width: 440px;
+    img {
+        min-height: 100px;
+    }
     div {
-        padding: 10px;
-        min-height: 50px;
+        padding: 36px;
     }
     p{
         border-top: 1px solid black;
