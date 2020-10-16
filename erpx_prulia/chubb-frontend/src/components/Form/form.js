@@ -177,11 +177,14 @@ class Form extends React.Component {
                 let form = new FormData();
                 let filename = data.member + "_" + Date.now() + ".pdf";
 
-                form.append("doctype", "PRULIA PA");
+                form.append("doctype", "PRULIA Member");
+                form.append('docname', data.member);
+
                 form.append("is_private", 0);
                 form.append("cmd", "uploadfile");
+                form.append('from_form', 1);
+
                 form.append("filename", filename);
-                form.append("file_url", "/files/" + filename);
                 form.append('filedata', pdf_blob);
 
                 return axios.post(getURL(), form, {
