@@ -59,7 +59,7 @@
     display: flex;
     justify-content: start;
 }
-.marginLeftP{
+.marginLeftP {
     margin-left: 10px;
 }
 
@@ -110,7 +110,7 @@
     display: flex;
     justify-content: start;
 }
-.policy-dob .dob{
+.policy-dob .dob {
     margin-left: 140px;
 }
 .form-steps ol {
@@ -123,7 +123,7 @@
     justify-content: start;
     margin-top: 10px;
 }
-.newic-dob .dob{
+.newic-dob .dob {
     margin-left: 160px;
 }
 .gender-status {
@@ -131,14 +131,14 @@
     justify-content: start;
     margin-top: 10px;
 }
-.gender-status .status{
+.gender-status .status {
     margin-left: 193px;
 }
 .gender-status .box {
     margin-right: 5px;
     margin-left: 5px;
 }
-.correspond-address{
+.correspond-address {
     margin-top: 10px;
 }
 .correspond-address .check {
@@ -157,18 +157,18 @@
     justify-content: start;
     margin-top: 20px;
 }
-.number .check{
+.number .check {
     align-items: center;
     margin-top: 5px;
 }
-.number .check p{
+.number .check p {
     margin-right: 20px;
     text-align: left;
 }
-.number .check.two p{
+.number .check.two p {
     margin-right: 24px;
 }
-.number .check.three{
+.number .check.three {
     margin-left: 20px;
 }
 
@@ -178,14 +178,15 @@
     margin-top: 15px;
     margin-bottom: 20px;
 }
-.email p{
+.email p {
     width: 135px;
 }
 .detail-spouse {
     display: flex;
     justify-content: start;
 }
-.detail-spouse .spouse .box, .detail-spouse .child .box{
+.detail-spouse .spouse .box,
+.detail-spouse .child .box {
     margin: 0;
     margin-top: 5px;
     margin-right: 5px;
@@ -194,7 +195,7 @@
     display: flex;
     margin-left: 50px;
 }
-.child{
+.child {
     margin-left: 50px;
 }
 .icDob {
@@ -203,7 +204,7 @@
     margin-top: 10px;
 }
 .icDob .dob {
-margin-left: 155px;
+    margin-left: 155px;
 }
 .children {
     display: flex;
@@ -228,7 +229,7 @@ margin-left: 155px;
 }
 @media print {
     .yellow {
-        -webkit-print-color-adjust: exact; 
+        -webkit-print-color-adjust: exact;
         background-color: #ffd700;
         color: white;
     }
@@ -265,51 +266,53 @@ tbody .name {
 .page3 p {
     font-weight: 500;
 }
-.page2{
+.page2 {
     padding-top: 50px;
     margin-bottom: 280px;
 }
-.nric-name{
+.nric-name {
     margin-top: 20px;
 }
-.table3{
+.table3 {
     width: 100%;
 }
-.premiumpayment{
+.premiumpayment {
     margin-top: 20px;
 }
-.accountholder p{
-margin-bottom: 5px;
+.accountholder p {
+    margin-bottom: 5px;
 }
-.payment-check,.payment-check2{
+.payment-check,
+.payment-check2 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.payment-check p , .payment-check2 p{
-margin-left: 5px;
-margin-right: 5px;
+.payment-check p,
+.payment-check2 p {
+    margin-left: 5px;
+    margin-right: 5px;
 }
-.cardno{
+.cardno {
     width: 88px;
 }
-.maybank{
+.maybank {
     width: 82px;
 }
-.paymentDate{
+.paymentDate {
     display: flex;
     justify-content: space-between;
 }
-.paymentDate p{
+.paymentDate p {
     margin-right: 15px;
 }
-.totalPremium{
-width: 160px;
+.totalPremium {
+    width: 160px;
 }
-.rm{
+.rm {
     margin-right: 20px;
 }
-.Sign{
+.Sign {
     width: 440px;
     img {
         min-height: 100px;
@@ -317,41 +320,96 @@ width: 160px;
     div {
         padding: 36px;
     }
-    p{
+    p {
         border-top: 1px solid black;
     }
 }
-.page4{
+.page4 {
     margin-top: 210px;
     padding-top: 50px;
 }
 .page4 p {
     font-weight: 500;
 }
-.page4Sign{
+.page4Sign {
     display: flex;
     justify-content: space-between;
 }
 .contact li {
     list-style: none;
 }
-.contact ul{
+.contact ul {
     padding: 0;
 }
-.pdf-logo{
+.pdf-logo {
     /* float: right; */
     text-align: right;
 }
-.pdf-logo h3{
-display: flex;
-justify-content: flex-end;
+.pdf-logo h3 {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.pdf-logo sup{
+.pdf-logo sup {
     font-size: 10px;
     margin-top: 10px;
 }
-.copyright-pdf{
+.copyright-pdf {
     font-size: 13px;
     margin-top: 20px;
+}
+
+.loader {
+    background-color: rgba(0, 0, 0, 0.8);
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.spinner {
+    margin: auto;
+    margin-top: 200px;
+    width: 200px;
+    height: 200px;
+}
+
+.spinner svg {
+    animation: rotate 1.5s linear infinite;
+    height: 100%;
+    width: 100%;
+}
+
+.spinner circle {
+    stroke: white;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite 0s;
+    stroke-linecap: round;
+    fill: none;
+    stroke-width: 3;
+}
+
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124;
+    }
 }
