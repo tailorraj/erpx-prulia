@@ -117,17 +117,17 @@ class PersonalInformation extends React.Component {
             //     "shirt_size": "M",
             //     "position": "QL",
             //     "resign_year": 0,
-            //
+            
             //     "address": 'abc',
             //     "spouse_name": 'abc',
             //     "spouse_nric_number": '901010-88-8888',
-            //
+            
             //     "child_name0": 'abc',
             //     "child_dob0": '22-08-2019',
-            //
+            
             //     "acknowledge_child": true
             // };
-            //
+            
             // key_values.forEach((key_value, index) => {
             //     if (data[key_value]) {
             //         this.props.gettingValues({
@@ -137,7 +137,7 @@ class PersonalInformation extends React.Component {
             //         }, keys[index])
             //     }
             // });
-            //
+            
             // this.props.gettingValues({
             //     target: {
             //         value: getDOB(data.nric_number)
@@ -197,7 +197,7 @@ class PersonalInformation extends React.Component {
                 </div> */}
 
                     <Formik enableReinitialize={true}
-                            initialValues={{...this.props.state, ...{mainInsuredStatus: 'married'}}}
+                            initialValues={{...this.props.state, ...{mainInsuredStatus: 'Married'}}}
                             validate={values => {
                                 const errors = {};
 
@@ -259,7 +259,7 @@ class PersonalInformation extends React.Component {
                                     }
                                 });
 
-                                if (!values.acknowledge_child) errors.acknowledge_child = 'Please check the box';
+                                if (this.props.state.child && !values.acknowledge_child) errors.acknowledge_child = 'Please check the box';
 
                                 Object.keys(values).forEach(key => {
                                     this.props.gettingValues({
@@ -268,6 +268,8 @@ class PersonalInformation extends React.Component {
                                         }
                                     }, key);
                                 });
+
+                                console.error(errors);
 
                                 return errors;
                             }}
