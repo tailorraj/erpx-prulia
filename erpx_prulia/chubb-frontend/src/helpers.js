@@ -3,6 +3,7 @@ import React from "react";
 
 export const memberDetailsMap = (childNum) => {
     let key_pair = {
+        member: 'prudential_id',
         mainInsuredBirthDate: "dob",
         mainInsuredEmail: "email",
         mainInsuredGender: "gender",
