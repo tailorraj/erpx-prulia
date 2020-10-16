@@ -45,7 +45,7 @@ const makePDF = (elementId) => {
             );
         });
 
-        return pdf.output('blob');
+        return pdf.output('datauri');
     });
 };
 
