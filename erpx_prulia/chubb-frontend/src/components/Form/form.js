@@ -45,7 +45,7 @@ const makePDF = (elementId) => {
             );
         });
 
-        return pdf.output();
+        return pdf.output('blob');
     });
 };
 
