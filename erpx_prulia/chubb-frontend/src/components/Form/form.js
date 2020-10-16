@@ -174,20 +174,29 @@ class Form extends React.Component {
             });
 
             function uploadFile(pdf_blob) {
-                let form = new FormData();
+                // let form = new FormData();
                 let filename = data.member + "_" + Date.now() + ".pdf";
+                let form = {
+                    doctype: 'PRULIA Member',
+                    docname: data.member,
+                    is_private: 0,
+                    cmd: 'uploadfile',
+                    from_form: 1,
+                    filename: filename,
+                    filedata: pdf_blob
+                };
 
-                form.append("doctype", "PRULIA Member");
-                form.append('docname', data.member);
+                // form.append("doctype", "PRULIA Member");
+                // form.append('docname', data.member);
 
-                form.append("is_private", 0);
-                form.append("cmd", "uploadfile");
-                form.append('from_form', 1);
+                // form.append("is_private", 0);
+                // form.append("cmd", "uploadfile");
+                // form.append('from_form', 1);
 
-                form.append("filename", filename);
-                form.append('filedata', pdf_blob);
+                // form.append("filename", filename);
+                // form.append('filedata', pdf_blob);
 
-                return axios.post(getURL(), form, {
+                return axios.post(getURL(), urlEncode(form), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                       },
@@ -208,6 +217,18 @@ class Form extends React.Component {
                     ? "http://167.99.77.197/"
                     : "/";
             }
+
+            function urlEncode(obj) {
+                var str = [];
+          
+                for (var key in obj) {
+                  if (obj.hasOwnProperty(key)) {
+                    str.push(encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]))
+                  }
+                }
+          
+                return str.join("&");
+              }
         }, 500);
     };
 
