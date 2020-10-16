@@ -77,72 +77,72 @@ class PersonalInformation extends React.Component {
 
         }).catch(e => {
             console.error(e);
-            window.alert('Please login to continue');
-            window.location.href = '/';
+            // window.alert('Please login to continue');
+            // window.location.href = '/';
 
-            // let data = {
-            //     "creation": "2018-12-11 14:15:53.482815",
-            //     "send_password_update_notification": 0,
-            //     "membership_fee": 0,
-            //     "full_name": "Nicole Sherzinger",
-            //     "owner": "yapnicole93@gmail.com",
-            //     "user_status": "Active",
-            //     "modified_by": "Administrator",
-            //     "new_password": "",
-            //     "prudential_id": "0000001",
-            //     "highest_qualification": "SPM",
-            //     "office_number": "",
-            //     "branch": "Damansara Intan",
-            //     "docstatus": 0,
-            //     "email": "yapnicole93@gmail.com",
-            //     "home_phone": "",
-            //     "meal_option": "Non-Vegetarian",
-            //     "fax_number": "",
-            //     "logout_all_sessions": 0,
-            //     "promo_year": 0,
-            //     "nric_number": "900101-88-8888",
-            //     "doctype": "PRULIA Member",
-            //     "user_id": "yapnicole93@gmail.com",
-            //     "register_acknowledgement": 1,
-            //     "school": "",
-            //     "name": "0000001",
-            //     "idx": 5,
-            //     "cell_number": "6019-999 99999",
-            //     "field_of_study": "",
-            //     "gender": "Female",
-            //     "region": "Central3",
-            //     "modified": "2020-07-25 11:20:44.905880",
-            //     "profile_photo": "/files/person.png",
-            //     "race": "",
-            //     "shirt_size": "M",
-            //     "position": "QL",
-            //     "resign_year": 0,
+            let data = {
+                "creation": "2018-12-11 14:15:53.482815",
+                "send_password_update_notification": 0,
+                "membership_fee": 0,
+                "full_name": "Nicole Sherzinger",
+                "owner": "yapnicole93@gmail.com",
+                "user_status": "Active",
+                "modified_by": "Administrator",
+                "new_password": "",
+                "prudential_id": "0000001",
+                "highest_qualification": "SPM",
+                "office_number": "",
+                "branch": "Damansara Intan",
+                "docstatus": 0,
+                "email": "yapnicole93@gmail.com",
+                "home_phone": "",
+                "meal_option": "Non-Vegetarian",
+                "fax_number": "",
+                "logout_all_sessions": 0,
+                "promo_year": 0,
+                "nric_number": "900101-88-8888",
+                "doctype": "PRULIA Member",
+                "user_id": "yapnicole93@gmail.com",
+                "register_acknowledgement": 1,
+                "school": "",
+                "name": "0000001",
+                "idx": 5,
+                "cell_number": "6019-999 99999",
+                "field_of_study": "",
+                "gender": "Female",
+                "region": "Central3",
+                "modified": "2020-07-25 11:20:44.905880",
+                "profile_photo": "/files/person.png",
+                "race": "",
+                "shirt_size": "M",
+                "position": "QL",
+                "resign_year": 0,
             
-            //     "address": 'abc',
-            //     "spouse_name": 'abc',
-            //     "spouse_nric_number": '901010-88-8888',
+                "address": 'abc',
+                "spouse_name": 'abc',
+                "spouse_nric_number": '901010-88-8888',
             
-            //     "child_name0": 'abc',
-            //     "child_dob0": '22-08-2019',
+                "child_name0": 'abc',
+                "child_dob0": '22-08-2019',
             
-            //     "acknowledge_child": true
-            // };
+                "acknowledge_child": true
+            };
             
-            // key_values.forEach((key_value, index) => {
-            //     if (data[key_value]) {
-            //         this.props.gettingValues({
-            //             target: {
-            //                 value: data[key_value]
-            //             }
-            //         }, keys[index])
-            //     }
-            // });
+            key_values.forEach((key_value, index) => {
+                if (data[key_value]) {
+                    this.props.gettingValues({
+                        target: {
+                            value: data[key_value]
+                        }
+                    }, keys[index])
+                }
+            });
             
-            // this.props.gettingValues({
-            //     target: {
-            //         value: getDOB(data.nric_number)
-            //     }
-            // }, 'mainInsuredBirthDate')
+            this.props.gettingValues({
+                target: {
+                    value: getDOB(data.nric_number)
+                }
+            }, 'mainInsuredBirthDate')
         });
 
         function getMemberDetails() {
@@ -251,7 +251,7 @@ class PersonalInformation extends React.Component {
                                     }
 
                                     if (key.startsWith('childBirthDate')) {
-                                        if (!values[key]) errors[key] = 'Date of birth is required';
+                                        if (!getAge(values[key])) errors[key] = 'Date of birth is required';
 
                                         if (getAge(values[key]) < 1 || getAge(values[key]) > 23) {
                                             errors[key] = 'The age is not eligible, only 1 to 23 years of age is eligible';
@@ -460,7 +460,6 @@ class PersonalInformation extends React.Component {
                                             <label>Date of Birth</label>
                                             <input
                                                 name="spouseBirthDate"
-                                                disabled
                                                 type='date'
                                                 value={values.spouseBirthDate}
                                                 onChange={handleChange}
@@ -553,7 +552,7 @@ class PersonalInformation extends React.Component {
                                                 fulltime student at a recognized school, college or university).
                                             </div>
                                             <span className="error">
-                                                {errors.acknowledge_child && touched.acknowledge_child && errors.acknowledge_child}
+                                                {errors.acknowledge_child && errors.acknowledge_child}
                                             </span>
                                         </div>
                                     </div>
