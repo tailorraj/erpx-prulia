@@ -162,14 +162,17 @@ class Form extends React.Component {
                     }
                 });
 
-                // submitApplication(data).then(res => {
-                //     console.log(res);
-                // window.alert('Your application is now submitted.');
-                // window.location.href = '/';
-                // });
-
                 return uploadFile(pdf_blob).then((res) => {
-                    console.log(res);
+                    data.application_form =
+                        res &&
+                        res.data &&
+                        res.data.message &&
+                        res.data.message.file_url;
+                    submitApplication(data).then((res) => {
+                        console.log(res);
+                        // window.alert("Your application is now submitted.");
+                        // window.location.href = "/";
+                    });
                 });
             });
 
