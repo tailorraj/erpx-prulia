@@ -177,8 +177,7 @@ class Form extends React.Component {
                 let form = new FormData();
                 let filename = data.member + "_" + Date.now() + ".pdf";
 
-                form.append("doctype", "PRULIA Member");
-                form.append("docname", data.member);
+                form.append("doctype", "PRULIA PA");
 
                 form.append("is_private", 0);
                 form.append("cmd", "uploadfile");
