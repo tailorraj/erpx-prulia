@@ -221,8 +221,8 @@ class Form extends React.Component {
                 this._componentDidMount();
             } catch (e) {
                 console.error(e);
-                // window.alert("Please login to continue.");
-                // window.location.href = "/";
+                window.alert("Please login to continue.");
+                window.location.href = "/";
             }
         }, 500);
     }
