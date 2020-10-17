@@ -45,8 +45,6 @@ const makePDF = (elementId) => {
             );
         });
 
-        pdf.save('test.pdf');
-
         return pdf.output("datauristring");
     });
 };
@@ -54,7 +52,9 @@ const makePDF = (elementId) => {
 class Form extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            submitting: false,
+        };
 
         // comment this in prod, used for testing
 
@@ -108,111 +108,116 @@ class Form extends React.Component {
         // });
     }
 
-    printElem = () => {
-        setTimeout(() => {
-            // this.props.history.push('/declaration')
+    goBack = () => {
+        this.props.history.goBack();
+    };
 
-            let data = {
-                member: this.props.state.member,
-                main_dob: this.props.state.mainInsuredBirthDate,
-                main_email: this.props.state.mainInsuredEmail,
-                main_gender: this.props.state.mainInsuredGender,
-                main_cell_number: this.props.state.mainInsuredMobileNo,
-                main_full_name: this.props.state.mainInsuredName,
-                main_nric_number: this.props.state.mainInsuredNric,
-                main_marital_status: this.props.state.mainInsuredStatus,
-                main_address: this.props.state.mainInsuredAddress,
-                main_postcode: this.props.state.mainInsuredPostcode,
-                main_sign: this.props.state.main_sign,
+    submit = () => {
+        this.setState({
+            submitting: true
+        });
+        // this.props.history.push('/declaration')
 
-                spouse_name: this.props.state.spouseName,
-                spouse_nric_number: this.props.state.spouseNric,
-                spouse_dob: this.props.state.spouseBirthDate,
+        let data = {
+            member: this.props.state.member,
+            main_dob: this.props.state.mainInsuredBirthDate,
+            main_email: this.props.state.mainInsuredEmail,
+            main_gender: this.props.state.mainInsuredGender,
+            main_cell_number: this.props.state.mainInsuredMobileNo,
+            main_full_name: this.props.state.mainInsuredName,
+            main_nric_number: this.props.state.mainInsuredNric,
+            main_marital_status: this.props.state.mainInsuredStatus,
+            main_address: this.props.state.mainInsuredAddress,
+            main_postcode: this.props.state.mainInsuredPostcode,
+            main_sign: this.props.state.main_sign,
 
-                children_table: [],
+            spouse_name: this.props.state.spouseName,
+            spouse_nric_number: this.props.state.spouseNric,
+            spouse_dob: this.props.state.spouseBirthDate,
 
-                payment_method: this.props.state.payment_method,
-                issuing_bank: this.props.state.issuing_bank,
-                card_number: this.props.state.card_number,
-                card_expiry: this.props.state.card_expiry,
-                total: this.props.state.total,
-                card_sign: this.props.state.card_sign,
-            };
+            children_table: [],
 
-            makePDF().then((pdf_blob) => {
-                Object.keys(this.props.state).forEach((key) => {
-                    if (key.startsWith("childName")) {
-                        data.children_table[getNum(key)] =
-                            data.children_table[getNum(key)] || {};
-                        data.children_table[
-                            getNum(key)
-                        ].full_name = this.props.state[key];
-                    }
+            payment_method: this.props.state.payment_method,
+            issuing_bank: this.props.state.issuing_bank,
+            card_number: this.props.state.card_number,
+            card_expiry: this.props.state.card_expiry,
+            total: this.props.state.total,
+            card_sign: this.props.state.card_sign,
+        };
 
-                    if (key.startsWith("childBirthDate")) {
-                        data.children_table[getNum(key)] =
-                            data.children_table[getNum(key)] || {};
-                        data.children_table[getNum(key)].dob = this.props.state[
-                            key
-                        ];
-                    }
+        makePDF().then((pdf_blob) => {
+            Object.keys(this.props.state).forEach((key) => {
+                if (key.startsWith("childName")) {
+                    data.children_table[getNum(key)] =
+                        data.children_table[getNum(key)] || {};
+                    data.children_table[
+                        getNum(key)
+                    ].full_name = this.props.state[key];
+                }
 
-                    function getNum(key) {
-                        return parseInt(
-                            key
-                                .replace("childName", "")
-                                .replace("childBirthDate", "")
-                        );
-                    }
-                });
+                if (key.startsWith("childBirthDate")) {
+                    data.children_table[getNum(key)] =
+                        data.children_table[getNum(key)] || {};
+                    data.children_table[getNum(key)].dob = this.props.state[
+                        key
+                    ];
+                }
 
-                return uploadFile(pdf_blob)
-                    .then((res) => {
-                        data.application_form =
-                            res &&
-                            res.data &&
-                            res.data.message &&
-                            res.data.message.file_url;
-                        return submitApplication(data).then((res) => {
-                            window.alert("Your application is now submitted.");
-                            window.location.href = "/";
-                        });
-                    })
-                    .catch((e) => {
-                        console.error(e);
-                    });
+                function getNum(key) {
+                    return parseInt(
+                        key
+                            .replace("childName", "")
+                            .replace("childBirthDate", "")
+                    );
+                }
             });
 
-            function uploadFile(pdf_blob) {
-                let form = new FormData();
-                let filename = data.member + "_" + Date.now() + ".pdf";
+            return uploadFile(pdf_blob)
+                .then((res) => {
+                    data.application_form =
+                        res &&
+                        res.data &&
+                        res.data.message &&
+                        res.data.message.file_url;
+                    return submitApplication(data).then((res) => {
+                        window.alert("Your application is now submitted.");
+                        window.location.href = "/";
+                    });
+                })
+                .catch((e) => {
+                    console.error(e);
+                });
+        });
 
-                form.append("doctype", "PRULIA PA");
+        function uploadFile(pdf_blob) {
+            let form = new FormData();
+            let filename = data.member + "_" + Date.now() + ".pdf";
 
-                form.append("is_private", 0);
-                form.append("cmd", "uploadfile");
-                form.append("from_form", 1);
+            form.append("doctype", "PRULIA PA");
 
-                form.append("filename", filename);
-                form.append("filedata", pdf_blob);
+            form.append("is_private", 0);
+            form.append("cmd", "uploadfile");
+            form.append("from_form", 1);
 
-                return axios.post(getURL(), form);
-            }
+            form.append("filename", filename);
+            form.append("filedata", pdf_blob);
 
-            function submitApplication(data) {
-                return axios.post(
-                    getURL() +
-                        "api/method/erpx_prulia.prulia_pa.doctype.prulia_pa.prulia_pa.submit_application",
-                    data
-                );
-            }
+            return axios.post(getURL(), form);
+        }
 
-            function getURL() {
-                return window.location.hostname.includes("localhost")
-                    ? "http://167.99.77.197/"
-                    : "/";
-            }
-        }, 500);
+        function submitApplication(data) {
+            return axios.post(
+                getURL() +
+                    "api/method/erpx_prulia.prulia_pa.doctype.prulia_pa.prulia_pa.submit_application",
+                data
+            );
+        }
+
+        function getURL() {
+            return window.location.hostname.includes("localhost")
+                ? "http://167.99.77.197/"
+                : "/";
+        }
     };
 
     componentDidMount() {
@@ -553,19 +558,38 @@ class Form extends React.Component {
             .getElementById("cardSign")
             .setAttribute("src", this.props.state.card_sign);
 
-        this.printElem();
     }
 
     render() {
         return (
             <div id="form" className="form-main container">
-                <div class="loader">
-                    <div class="spinner">
-                        <svg viewBox="0 0 100 100">
-                            <circle cx="50" cy="50" r="20" />
-                        </svg>
-                    </div>
+                <div className="topDiv">
+                    <svg
+                        style={{ cursor: "pointer" }}
+                        onClick={this.goBack}
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        className="bi bi-chevron-left"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                        />
+                    </svg>
+                    <p>Application submission</p>
                 </div>
+                {this.state.submitting && (
+                    <div class="loader">
+                        <div class="spinner">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="20" />
+                            </svg>
+                        </div>
+                    </div>
+                )}
                 <div className="info-div page1" id="page1">
                     <div className="heading-div">
                         <div className="heading">
@@ -1620,6 +1644,17 @@ class Form extends React.Component {
                             </p>
                         </div>
                     </div>
+                </div>
+
+                <div className="submit-container">
+                    <button
+                        onClick={this.submit}
+                        disabled={this.state.submitting}
+                        style={{ textDecoration: "none" }}
+                        className="submit"
+                    >
+                        Submit
+                    </button>
                 </div>
             </div>
         );

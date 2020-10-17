@@ -305,7 +305,7 @@ class Declaration extends React.Component {
                                             </div>
                                             <div className="secondFlex two">
                                                 <div className='inputGroup second'>
-                                                    <label>Card Expiry</label>
+                                                    <label>Card Expiry (MM/YYYY)</label>
                                                     <CustomInput
                                                         type="text"
                                                         name="card_expiry"

@@ -4,6 +4,43 @@
 .form-main {
     background-color: white;
     padding: 30px;
+    .topDiv {
+        color: rgb(224, 95, 96);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 20px;
+        svg {
+            font-weight: bold;
+            font-size: 25px;
+            @media screen and (min-width: 600px) {
+                font-size: 30px;
+            }
+        }
+        p {
+            margin: 0;
+            margin-left: 10px;
+            font-weight: 600;
+            @media screen and (min-width: 600px) {
+                font-size: 20px;
+            }
+        }
+    }
+    .submit-container {
+        width: 100%;
+        text-align: center;
+        .submit{
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+            padding: 5px 0;
+            width: 50%;
+            border: none;
+            margin: auto;
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
 }
 .form-main .heading-div {
     margin-top: 10px;
