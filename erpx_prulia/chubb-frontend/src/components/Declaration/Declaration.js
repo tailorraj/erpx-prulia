@@ -10,7 +10,11 @@ import SignatureCanvas from "react-signature-canvas";
 class Declaration extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            declaration: this.props.state.declaration || false,
+            privacyNotice: this.props.state.privacyNotice || false,
+            paymentInstruction: this.props.state.paymentInstruction || false
+        }
     }
 
     goBack = () => {
@@ -59,8 +63,6 @@ class Declaration extends React.Component {
                             }}
                             validate={values => {
                                 const errors = {};
-
-                                console.log(values);
 
                                 if (!values.declaration) errors.declaration = 'Please check the box!';
 
@@ -118,7 +120,22 @@ class Declaration extends React.Component {
                                 return errors;
                             }}
                             onSubmit={(values, {setSubmitting}) => {
-                                console.log(JSON.stringify(values, null, 2));
+                                if (this.state.mainSign && !this.state.mainSign.isEmpty()) {
+                                    this.props.gettingValues({
+                                        target: {
+                                            value: this.state.mainSign.toDataURL()
+                                        }
+                                    }, 'main_sign');
+                                }
+
+                                if (this.state.cardSign && !this.state.cardSign.isEmpty()) {
+                                    this.props.gettingValues({
+                                        target: {
+                                            value: this.state.cardSign.toDataURL()
+                                        }
+                                    }, 'card_sign');
+                                }
+
                                 setSubmitting(false);
                                 this.props.history.push('/proposal-form');
                             }}
@@ -335,9 +352,13 @@ class Declaration extends React.Component {
                                                     }}>
                                                     </SignatureCanvas></div>
                                                     <label>Signature of Card Holder
-                                                        <button
-                                                            onClick={this.state.cardSign && this.state.cardSign.clear()}>Clear
-                                                        </button>
+                                                        <input
+                                                            type="button"
+                                                            value="Clear"
+                                                            onClick={() => {
+                                                                this.state.cardSign && this.state.cardSign.clear()
+                                                            }}>
+                                                        </input>
                                                     </label>
                                                     <span className="error">
                                                         {errors.card_sign && errors.card_sign}
@@ -353,9 +374,13 @@ class Declaration extends React.Component {
                                                     }}>
                                                     </SignatureCanvas></div>
                                                     <label>Signature of Main Insured Person
-                                                        <button
-                                                            onClick={this.state.mainSign && this.state.mainSign.clear()}>Clear
-                                                        </button>
+                                                        <input
+                                                            type="button"
+                                                            value="Clear"
+                                                            onClick={() => {
+                                                                this.state.mainSign && this.state.mainSign.clear()
+                                                            }}>
+                                                        </input>
                                                     </label>
                                                     <span className="error">
                                                         {errors.main_sign && errors.main_sign}

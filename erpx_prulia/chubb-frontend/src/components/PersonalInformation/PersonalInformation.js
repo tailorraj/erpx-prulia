@@ -129,17 +129,17 @@ class PersonalInformation extends React.Component {
                 //     "shirt_size": "M",
                 //     "position": "QL",
                 //     "resign_year": 0,
-
+                //
                 //     "address": 'abc',
                 //     "spouse_name": 'abc',
                 //     "spouse_nric_number": '901010-88-8888',
-
+                //
                 //     "child_name0": 'abc',
                 //     "child_dob0": '22-08-2019',
-
+                //
                 //     "acknowledge_child": true
                 // };
-
+                //
                 // key_values.forEach((key_value, index) => {
                 //     if (data[key_value]) {
                 //         this.props.gettingValues({
@@ -149,7 +149,7 @@ class PersonalInformation extends React.Component {
                 //         }, keys[index])
                 //     }
                 // });
-
+                //
                 // this.props.gettingValues({
                 //     target: {
                 //         value: getDOB(data.nric_number)

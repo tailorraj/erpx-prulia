@@ -348,6 +348,7 @@ class Form extends React.Component {
         let spouseName = this.props.state.spouseName;
         let spouseNric = this.props.state.spouseNric;
         let spouseBirthDate = this.props.state.spouseBirthDate;
+        let hasChild = this.props.state.child;
         let childs = this.props.state.childs;
 
         let spouseTrue = document.getElementById("spouseTrue");
@@ -404,9 +405,8 @@ class Form extends React.Component {
         }
 
         let noOfChilds = document.getElementById("noOfChilds");
-        if (childs !== 0) {
+        if (hasChild && childs !== 0) {
             childs = childs.toString();
-            console.log(childs);
             for (let i = 0; i < 2; i++) {
                 if (childs.length === 1 && i === 0) {
                     noOfChilds.innerHTML += `<div id="noOfChilds${i}" class="box">0</div>`;
@@ -419,7 +419,7 @@ class Form extends React.Component {
             }
         } else {
             for (let i = 0; i < 2; i++) {
-                noOfChilds.innerHTML += `<div id="noOfChilds${i}" class="box"></div>`;
+                noOfChilds.innerHTML += `<div id="noOfChilds${0}" class="box">0</div>`;
             }
         }
 
