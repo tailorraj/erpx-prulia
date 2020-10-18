@@ -46,6 +46,8 @@ class PersonalInformation extends React.Component {
     };
 
     componentDidMount() {
+        if (this.props.state.populated) return;
+
         let key_pairs = memberDetailsMap(
             this.props.state.child ? this.props.state.childs : 0
         );
@@ -214,10 +216,7 @@ class PersonalInformation extends React.Component {
 
                     <Formik
                         enableReinitialize={true}
-                        initialValues={{
-                            ...this.props.state,
-                            ...{ mainInsuredStatus: "Married" },
-                        }}
+                        initialValues={this.props.state.populated || this.props.state}
                         validate={(values) => {
                             const errors = {};
 
@@ -338,6 +337,11 @@ class PersonalInformation extends React.Component {
                         }}
                         onSubmit={(values, { setSubmitting }) => {
                             // console.log(JSON.stringify(values, null, 2));
+                            this.props.gettingValues({
+                                target: {
+                                    value: values
+                                }
+                            }, 'populated');
                             setSubmitting(false);
                             this.props.history.push("/declaration");
                         }}
@@ -512,6 +516,10 @@ class PersonalInformation extends React.Component {
                                                     onChange={handleChange}
                                                 />
                                             </div>
+                                            <span className="error">
+                                                {errors.mainInsuredStatus &&
+                                                errors.mainInsuredStatus}
+                                            </span>
                                         </div>
 
                                         <div className="inputGroup two">
