@@ -2,18 +2,21 @@ import React from "react";
 import "./form.scss";
 import { withRouter } from "react-router-dom";
 import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
 import moment from "moment";
 import axios from "axios";
+import { toJpeg } from 'html-to-image';
 
 window.moment = moment;
 
-const makePDF = (elementId) => {
-    let pages = ["#page1", "#page2", "#page3", "#page4"];
+const makePDF = () => {
+    let pages = ['page1', 'page2', 'page3', 'page4'];
     let tasks = pages.map((page) => {
-        let el = document.querySelector(page);
+        let el = document.getElementById(page);
 
-        return html2canvas(el);
+        return toJpeg(el, {
+            backgroundColor: '#fff',
+            pixelRatio: 1
+        })
     });
 
     return Promise.all(tasks).then((canvases) => {
@@ -23,8 +26,7 @@ const makePDF = (elementId) => {
             format: "a4",
         });
 
-        canvases.forEach((canvas, index) => {
-            const imgData = canvas.toDataURL("image/jpeg");
+        canvases.forEach((imgData, index) => {
             const imgProps = pdf.getImageProperties(imgData);
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
@@ -36,7 +38,7 @@ const makePDF = (elementId) => {
             }
 
             pdf.addImage(
-                canvas.toDataURL("image/jpeg"),
+                imgData,
                 "JPEG",
                 padding,
                 padding,
@@ -56,8 +58,8 @@ class Form extends React.Component {
             submitting: false,
         };
 
-        // comment this in prod, used for testing
-
+        // // comment this in prod, used for testing
+        //
         // let data = {
         //     member: "0000001",
         //     total: 556.5,
@@ -72,7 +74,7 @@ class Form extends React.Component {
         //     mainInsuredBirthDate: "1990-01-01",
         //     mainInsuredEmail: "yapnicole93@gmail.com",
         //     mainInsuredGender: "Female",
-        //     mainInsuredMobileNo: "6019-999 99999",
+        //     mainInsuredMobileNo: "+6019-999 99999",
         //     mainInsuredName: "Nicole Sherzinger",
         //     mainInsuredNric: "900101-88-8888",
         //     mainInsuredStatus: "Married",
@@ -95,7 +97,7 @@ class Form extends React.Component {
         //     card_number: "1111-1111-1111-1111",
         //     card_expiry: "12/2023",
         // };
-
+        //
         // Object.keys(data).forEach((key) => {
         //     this.props.gettingValues(
         //         {
@@ -265,7 +267,7 @@ class Form extends React.Component {
         }
         mainInsuredAddressDiv.innerHTML += `<div class="postcode" ><p>Postcode / <i>Poskod<i/></p></div>`;
         for (let i = 0; i < 6; i++) {
-            mainInsuredAddressDiv.innerHTML += `<div id="mainInsuredAddress${i}" class="box">${mainInsuredPostcode[i]}</div>`;
+            mainInsuredAddressDiv.innerHTML += `<div id="mainInsuredAddress${String(i).replace('_', '')}" class="box">${mainInsuredPostcode[i]}</div>`;
         }
 
         let mainInsuredNricDiv = document.getElementById("mainInsuredNric");
@@ -306,9 +308,9 @@ class Form extends React.Component {
         let marriedDiv = document.getElementById("married");
         let singleDiv = document.getElementById("single");
         let othersDiv = document.getElementById("others");
-        if (mainInsuredStatus === "married") {
+        if (mainInsuredStatus === "Married") {
             marriedDiv.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/></svg>`;
-        } else if (mainInsuredStatus === "single") {
+        } else if (mainInsuredStatus === "Single") {
             singleDiv.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/></svg>`;
         } else if (mainInsuredStatus === "others") {
             othersDiv.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/></svg>`;
@@ -324,6 +326,7 @@ class Form extends React.Component {
         }
         if (mainInsuredMobileNo) {
             mainInsuredMobileNo = mainInsuredMobileNo.toString();
+            mainInsuredMobileNo = mainInsuredMobileNo.replace('+', '');
             for (let i = 0; i < 14; i++) {
                 if (i !== 4) {
                     document.getElementById(`phoneNo${i}`).innerHTML =
@@ -456,8 +459,8 @@ class Form extends React.Component {
         let payment_method = this.props.state.payment_method;
 
         let creditCard = payment_method === "Credit Card";
-        let debitCard = payment_method === "Dedit Card";
-        let masterCard = payment_method === "Master Card";
+        let debitCard = payment_method === "Debit Card";
+        let masterCard = payment_method === "MasterCard";
         let visa = payment_method === "Visa";
 
         for (let i = 0; i < 38; i++) {
@@ -582,14 +585,15 @@ class Form extends React.Component {
                     <p>Application submission</p>
                 </div>
                 {this.state.submitting && (
-                    <div class="loader">
-                        <div class="spinner">
+                    <div className="loader">
+                        <div className="spinner">
                             <svg viewBox="0 0 100 100">
                                 <circle cx="50" cy="50" r="20" />
                             </svg>
                         </div>
                     </div>
                 )}
+
                 <div className="info-div page1" id="page1">
                     <div className="heading-div">
                         <div className="heading">
@@ -707,6 +711,7 @@ class Form extends React.Component {
                         </div>
                     </div>
                 </div>
+
                 <div className="page2 form-con" id="page2">
                     <div className="form">
                         <div className="indicate">
@@ -726,7 +731,13 @@ class Form extends React.Component {
                                 </p>
                             </div>
                             <div className="check check1">
-                                <div className="box"></div>
+                                <div className="box">
+                                    <svg width="30px" height="30px" viewBox="0 0 16 16" className="bi bi-check"
+                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fillRule="evenodd"
+                                              d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"></path>
+                                    </svg>
+                                </div>
                                 <p>
                                     {" "}
                                     This is an annual auto-renewable policy{" "}
