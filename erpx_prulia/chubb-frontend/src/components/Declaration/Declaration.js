@@ -150,6 +150,7 @@ class Declaration extends React.Component {
                                         value={values.declaration}
                                         size="lg"
                                         type="checkbox"
+										value="1"
                                         onChange={handleChange}
                                     />
                                     <div className='content'>
@@ -167,9 +168,12 @@ class Declaration extends React.Component {
                                             for access to or correction of my personal data, or for any
                                             other queries or complaints.
                                         </p>
+                                        <p1>
+											I understand and agreed that this is an annual auto-renewal policy.
+                                        </p1>
                                     </div>
-
                                 </div>
+
                                 <span className="error">
                                     {errors.declaration && errors.declaration}
                                 </span>
