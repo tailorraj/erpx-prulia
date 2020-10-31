@@ -317,21 +317,15 @@ class Form extends React.Component {
         }
 
         let phoneNoDiv = document.getElementById("phoneNo");
-        for (let i = 0; i < 14; i++) {
-            if (i !== 4) {
-                phoneNoDiv.innerHTML += `<div id="phoneNo${i}" class="box"></div>`;
-            } else {
-                phoneNoDiv.innerHTML += `<div class="dash">-</div>`;
-            }
+        for (let i = 0; i < 15; i++) {
+            phoneNoDiv.innerHTML += `<div id="phoneNo${i}" class="box"></div>`;
         }
         if (mainInsuredMobileNo) {
             mainInsuredMobileNo = mainInsuredMobileNo.toString();
-            mainInsuredMobileNo = mainInsuredMobileNo.replace('+', '');
-            for (let i = 0; i < 14; i++) {
-                if (i !== 4) {
+            mainInsuredMobileNo = mainInsuredMobileNo.replace('+', '').replace('-', ' ');
+            for (let i = 0; i < 15; i++) {
                     document.getElementById(`phoneNo${i}`).innerHTML =
                         mainInsuredMobileNo[i] || "";
-                }
             }
         }
 
