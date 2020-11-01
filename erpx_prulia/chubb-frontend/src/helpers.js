@@ -40,7 +40,21 @@ export function getMemberDetails() {
 }
 
 export function getPrevReg(member_id) {
-
+    fetch("/", {
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
+        "body": "doctype=PRULIA+PA&filters=%7B%22member%22%3A%22" + member_id + "%22%7D&fields=%5B%22name%22%2C%22member%22%2C%22application_status%22%5D&cmd=frappe.client.get_list",
+        "method": "POST",
+        "credentials": "include"
+    })
+        .then(response => response.json())
+        .then(data => {
+            return data && data.message || [];
+        }).catch((e) => {
+            console.error(e);
+            return [];
+        })
 }
 
 export function getURL() {

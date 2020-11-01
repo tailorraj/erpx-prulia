@@ -5,7 +5,7 @@ import {Form} from "react-bootstrap";
 import {Formik} from "formik";
 import moment from "moment";
 
-import {memberDetailsMap, CustomInput, getMemberDetails} from "../../helpers";
+import {memberDetailsMap, CustomInput, getMemberDetails, getPrevReg} from "../../helpers";
 
 const getDOB = (ic) => {
     if (ic.match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)) {
@@ -87,6 +87,11 @@ class PersonalInformation extends React.Component {
                     },
                     "mainInsuredBirthDate"
                 );
+
+                //get prev registration
+                getPrevReg(this.props.state.member).then(regs => {
+                    console.log(regs);
+                });
             })
             .catch((e) => {
                 console.error(e);
