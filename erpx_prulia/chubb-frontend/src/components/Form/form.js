@@ -1,10 +1,11 @@
 import React from "react";
 import "./form.scss";
-import { withRouter } from "react-router-dom";
-import { jsPDF } from "jspdf";
+import {withRouter} from "react-router-dom";
+import {jsPDF} from "jspdf";
 import moment from "moment";
 import axios from "axios";
-import { toJpeg } from 'html-to-image';
+import {toJpeg} from 'html-to-image';
+import {getURL} from '../../helpers';
 
 window.moment = moment;
 
@@ -154,7 +155,7 @@ class Form extends React.Component {
                         data.children_table[getNum(key)] || {};
                     data.children_table[
                         getNum(key)
-                    ].full_name = this.props.state[key];
+                        ].full_name = this.props.state[key];
                 }
 
                 if (key.startsWith("childBirthDate")) {
@@ -162,7 +163,7 @@ class Form extends React.Component {
                         data.children_table[getNum(key)] || {};
                     data.children_table[getNum(key)].dob = this.props.state[
                         key
-                    ];
+                        ];
                 }
 
                 function getNum(key) {
@@ -210,15 +211,9 @@ class Form extends React.Component {
         function submitApplication(data) {
             return axios.post(
                 getURL() +
-                    "api/method/erpx_prulia.prulia_pa.doctype.prulia_pa.prulia_pa.submit_application",
+                "api/method/erpx_prulia.prulia_pa.doctype.prulia_pa.prulia_pa.submit_application",
                 data
             );
-        }
-
-        function getURL() {
-            return window.location.hostname.includes("localhost")
-                ? "http://167.99.77.197/"
-                : "/";
         }
     };
 
@@ -254,7 +249,6 @@ class Form extends React.Component {
                 mainInsuredName[i] || ""
             }</div>`;
         }
-
 
 
         let mainInsuredAddressDiv = document.getElementById("address");
@@ -327,8 +321,8 @@ class Form extends React.Component {
             mainInsuredMobileNo = mainInsuredMobileNo.toString();
             mainInsuredMobileNo = mainInsuredMobileNo.replace('+', '').replace('-', ' ');
             for (let i = 0; i < 15; i++) {
-                    document.getElementById(`phoneNo${i}`).innerHTML =
-                        mainInsuredMobileNo[i] || "";
+                document.getElementById(`phoneNo${i}`).innerHTML =
+                    mainInsuredMobileNo[i] || "";
             }
         }
 
@@ -433,10 +427,10 @@ class Form extends React.Component {
                         : ""
                 }</td>
         <td>${
-            this.props.state[`childBirthDate${i}`]
-                ? this.props.state[`childBirthDate${i}`]
-                : ""
-        }</td>
+                    this.props.state[`childBirthDate${i}`]
+                        ? this.props.state[`childBirthDate${i}`]
+                        : ""
+                }</td>
         </tr>`;
             }
         } else {
@@ -565,7 +559,7 @@ class Form extends React.Component {
             <div id="form" className="form-main container">
                 <div className="topDiv">
                     <svg
-                        style={{ cursor: "pointer" }}
+                        style={{cursor: "pointer"}}
                         onClick={this.goBack}
                         width="1em"
                         height="1em"
@@ -585,7 +579,7 @@ class Form extends React.Component {
                     <div className="loader">
                         <div className="spinner">
                             <svg viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="20" />
+                                <circle cx="50" cy="50" r="20"/>
                             </svg>
                         </div>
                     </div>
@@ -618,7 +612,7 @@ class Form extends React.Component {
                                     Statement Pursuant to Schedule 9 of
                                     Financial Services Act 2013{" "}
                                 </span>{" "}
-                                <br />
+                                <br/>
                                 Kenyataan Mengikut Jadual 9 Akta Perkhidmatan
                                 Kewangan 2013
                             </p>
@@ -626,37 +620,37 @@ class Form extends React.Component {
                                 (a) not to make a misrepresentation to Chubb
                                 Insurance Malaysia Berhad (Chubb) when answering
                                 any questions We ask in this proposal form;{" "}
-                                <br />
-                                <br />
+                                <br/>
+                                <br/>
                                 (b) when renewing this Policy, not to make a
                                 misrepresentation to Us in answering any
                                 questions, or confirming or amending any matter
                                 previously disclosed to Us in relation to this
-                                Policy; and <br /> <br />
+                                Policy; and <br/> <br/>
                                 (c) to disclose to Us any matter, other than
                                 what We have asked in (a) and (b) above, that
                                 You know to be relevant to Our decision on
                                 whether to accept the risk or not and the rates
-                                and terms to be applied. <br /> <br />
+                                and terms to be applied. <br/> <br/>
                                 Your duty to take reasonable care for the above
                                 shall be based on what a reasonable person in
-                                Your circumstances would have known. <br />{" "}
-                                <br />
+                                Your circumstances would have known. <br/>{" "}
+                                <br/>
                                 <i>
                                     Anda mempunyai kewajipan untuk mengambil
-                                    langkah yang sewajarnya : <br /> <br />
+                                    langkah yang sewajarnya : <br/> <br/>
                                     (a) untuk tidak membuat salah nyataan kepada
                                     Chubb Insurance Malaysia Berhad (Chubb)
                                     apabila menjawab apa-apa soalan yang Kami
                                     tanya di dalam borang cadangan ini;
-                                    <br /> <br />
+                                    <br/> <br/>
                                     (b) apabila memperbaharui Polisi ini, tidak
                                     membuat salah nyataan kepada Kami apabila
                                     menjawab apa-apa soalan, atau mengesahkan
                                     atau meminda apa-apa perkara yang telah
                                     didedahkan sebelum itu kepada Kami
                                     berhubungan dengan Polisi ini; dan
-                                    <br /> <br />
+                                    <br/> <br/>
                                     (c) untuk mendedahkan kepada Kami apa-apa
                                     perkara, selain daripada apa yang Kami
                                     kehendaki di (a) dan (b) di atas, yang Anda
@@ -664,13 +658,13 @@ class Form extends React.Component {
                                     Kami sama ada untuk menerima risiko atau
                                     tidak dan kadar dan terma yang hendak
                                     dikenakan.
-                                    <br /> <br />
+                                    <br/> <br/>
                                     Kewajipan Anda untuk mengambil langkah yang
                                     sewajarnya untuk di atas adalah berdasarkan
                                     kepada apa yang orang yang mengalami keadaan
                                     Anda mungkin ketahui.
                                 </i>
-                                <br /> <br />
+                                <br/> <br/>
                             </p>
                             <p className="underLine">
                                 <span className="bold">Note/ </span> <i>Nota</i>
@@ -681,7 +675,7 @@ class Form extends React.Component {
                                 not be construed as an acceptance or commitment
                                 on the part of the Insurer unless the same is
                                 incorporated in the Policy evidencing such
-                                cover. <br /> <br />
+                                cover. <br/> <br/>
                                 <i>
                                     Perlindungan yang dipohon di dalam Borang
                                     Pendaftaran ini tidak sepatutnya ditafsir
@@ -689,21 +683,21 @@ class Form extends React.Component {
                                     Penanggung Insurans melainkan jika ia
                                     dinyatakan di dalam Polisi yang membuktikan
                                     perlindungan tersebut
-                                    <br /> <br />
+                                    <br/> <br/>
                                     *Chubb reserves the right to reject any
                                     application for this Policy without
                                     assigning any reasons thereof Enrolment /
                                     Renewal is strictly for Prulia Members Only.
-                                    <br /> <br />
+                                    <br/> <br/>
                                     *Chubb berhak menolak mana-mana permohonan
                                     untuk Polisi ini tanpa memberi apa-apa
                                     sebabnya.
-                                    <br /> <br />
+                                    <br/> <br/>
                                     Enrolment/Renewal is strictly for Prulia
                                     members only. / Pendaftaran/Pembaharuan
                                     adalah terhad kepada ahli Prulia sahaja{" "}
                                 </i>{" "}
-                                <br /> <br />
+                                <br/> <br/>
                             </p>
                         </div>
                     </div>
@@ -738,7 +732,7 @@ class Form extends React.Component {
                                 <p>
                                     {" "}
                                     This is an annual auto-renewable policy{" "}
-                                    <br />
+                                    <br/>
                                     <i>
                                         Ini adalah polisi tahunan yang
                                         diperbaharui secara otomatik
@@ -880,15 +874,18 @@ class Form extends React.Component {
                                         <i>Status Perkahwinan</i>
                                     </p>
                                     <div className="check">
-                                        <div id="married" className="box"></div>{" "}
+                                        <div id="married" className="box"></div>
+                                        {" "}
                                         <p>
                                             Married / <i>Berkahwin</i>
                                         </p>
-                                        <div id="single" className="box"></div>{" "}
+                                        <div id="single" className="box"></div>
+                                        {" "}
                                         <p>
                                             Single / <i>Bujang</i>
                                         </p>
-                                        <div id="others" className="box"></div>{" "}
+                                        <div id="others" className="box"></div>
+                                        {" "}
                                         <p>
                                             Others / <i>Lain-lain</i>
                                         </p>
@@ -905,7 +902,7 @@ class Form extends React.Component {
                             <div className="number">
                                 <div className="check">
                                     <p>
-                                        Tel No. / <i>No. Tel</i> <br />
+                                        Tel No. / <i>No. Tel</i> <br/>
                                         (House / <i>Rumah</i>)
                                     </p>
                                     <div className="box"></div>
@@ -939,7 +936,7 @@ class Form extends React.Component {
                                 </div>
                                 <div className="check two">
                                     <p>
-                                        Tel No. / <i>No. Tel</i> <br /> (Office/{" "}
+                                        Tel No. / <i>No. Tel</i> <br/> (Office/{" "}
                                         <i>Pejabat</i>)
                                     </p>
                                     <div className="box"></div>
@@ -1027,7 +1024,7 @@ class Form extends React.Component {
                                 <div>
                                     <p>
                                         Please indicate ( ✓ ) option to include{" "}
-                                        <br />
+                                        <br/>
                                         Sila tanda ( ✓ ) pilihan untuk
                                         memasukkan
                                     </p>
@@ -1039,7 +1036,7 @@ class Form extends React.Component {
                                             className="box"
                                         ></div>
                                         <p>
-                                            Spouse and / or <br />
+                                            Spouse and / or <br/>
                                             <i>Pasangan dan /atau</i>
                                         </p>
                                     </div>
@@ -1052,7 +1049,7 @@ class Form extends React.Component {
                                         ></div>
                                         <p>
                                             Child / Children
-                                            <br />
+                                            <br/>
                                             <i>Anak / Anak-anak</i>
                                         </p>
                                     </div>
@@ -1102,30 +1099,30 @@ class Form extends React.Component {
                             </div>
                             <table>
                                 <thead className="yellow">
-                                    <tr>
-                                        <th className="name">
+                                <tr>
+                                    <th className="name">
+                                        {" "}
+                                        <p>
                                             {" "}
-                                            <p>
-                                                {" "}
-                                                <span className="bold">
+                                            <span className="bold">
                                                     {" "}
-                                                    Name{" "}
+                                                Name{" "}
                                                 </span>{" "}
-                                                / <i>Nama </i>{" "}
-                                            </p>
-                                        </th>
-                                        <th className="dateOfBirth">
-                                            <p>
+                                            / <i>Nama </i>{" "}
+                                        </p>
+                                    </th>
+                                    <th className="dateOfBirth">
+                                        <p>
                                                 <span className="bold">
                                                     Date Of Birth
                                                 </span>{" "}
-                                                / <i>Tarikh lahir </i>{" "}
-                                            </p>
-                                        </th>
-                                    </tr>
+                                            / <i>Tarikh lahir </i>{" "}
+                                        </p>
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody id="childTable">
-                                    {/* <tr>
+                                {/* <tr>
                     <td className='name'></td>
                     <td></td>
                   </tr>
@@ -1158,182 +1155,182 @@ class Form extends React.Component {
                         </p>
                         <table>
                             <thead className="yellow">
-                                <tr>
-                                    <th className="name">
+                            <tr>
+                                <th className="name">
+                                    {" "}
+                                    <p>
                                         {" "}
-                                        <p>
-                                            {" "}
-                                            <span className="bold">
+                                        <span className="bold">
                                                 {" "}
-                                                Benefits{" "}
+                                            Benefits{" "}
                                             </span>{" "}
-                                            / <i> Manfaat </i>{" "}
-                                        </p>
-                                    </th>
-                                    <th className="dateOfBirth">
-                                        <p>
+                                        / <i> Manfaat </i>{" "}
+                                    </p>
+                                </th>
+                                <th className="dateOfBirth">
+                                    <p>
                                             <span className="bold">
                                                 Sum Insured
                                             </span>{" "}
-                                            / <i>Jumlah Tertanggung </i>{" "}
-                                        </p>
-                                    </th>
-                                </tr>
+                                        / <i>Jumlah Tertanggung </i>{" "}
+                                    </p>
+                                </th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td className="name">
+                            <tr>
+                                <td className="name">
+                                    {" "}
+                                    <p>
                                         {" "}
-                                        <p>
-                                            {" "}
-                                            <span className="bold">
+                                        <span className="bold">
                                                 {" "}
-                                                Accidental Death & Permanent
+                                            Accidental Death & Permanent
                                                 Disablement
                                             </span>{" "}
-                                            <br />
-                                            <i>
-                                                Kematian & Hilang Upaya Kekal
-                                                Akibat Kemalangan{" "}
-                                            </i>{" "}
-                                        </p>{" "}
-                                    </td>
-                                    <td>
-                                        <p>
+                                        <br/>
+                                        <i>
+                                            Kematian & Hilang Upaya Kekal
+                                            Akibat Kemalangan{" "}
+                                        </i>{" "}
+                                    </p>{" "}
+                                </td>
+                                <td>
+                                    <p>
                                             <span className="bold">
                                                 Main Insured & Spouse
                                             </span>{" "}
-                                            <br />
-                                            <i>
-                                                Orang Tertanggung Utama &
-                                                Pasangan RM 1,000,000 each /
-                                                setiap orang
-                                                <br />
-                                                <br />
-                                                <span className="bold">
+                                        <br/>
+                                        <i>
+                                            Orang Tertanggung Utama &
+                                            Pasangan RM 1,000,000 each /
+                                            setiap orang
+                                            <br/>
+                                            <br/>
+                                            <span className="bold">
                                                     Eligible Child
                                                 </span>{" "}
-                                                / Anak yang Layak RM 100,000
-                                                each / setiap orang{" "}
-                                            </i>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="name">
-                                        <p>
+                                            / Anak yang Layak RM 100,000
+                                            each / setiap orang{" "}
+                                        </i>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="name">
+                                    <p>
                                             <span className="bold">
                                                 Funeral Expenses{" "}
                                             </span>
-                                            /<i> Perbelanjaan Pengebumian</i>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>RM 3,000</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="name">
-                                        <p>
+                                        /<i> Perbelanjaan Pengebumian</i>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>RM 3,000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="name">
+                                    <p>
                                             <span className="bold">
                                                 Accident Medical Expenses{" "}
                                             </span>{" "}
-                                            /{" "}
-                                            <i>
-                                                {" "}
-                                                Perbelanjaan Perubatan akibat
-                                                Kemalangan
-                                            </i>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>RM 5,000</p>
-                                    </td>
-                                </tr>
+                                        /{" "}
+                                        <i>
+                                            {" "}
+                                            Perbelanjaan Perubatan akibat
+                                            Kemalangan
+                                        </i>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>RM 5,000</p>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                         <table className="table3">
                             <thead className="yellow">
-                                <tr>
-                                    <th className="name">
+                            <tr>
+                                <th className="name">
+                                    {" "}
+                                    <p>
                                         {" "}
-                                        <p>
-                                            {" "}
-                                            <span className="bold">
+                                        <span className="bold">
                                                 Annual Premium inclusive of 6%
                                                 GST{" "}
                                             </span>{" "}
-                                            /{" "}
-                                            <i>
-                                                {" "}
-                                                Premium Tahunan termasuk CBP 6%{" "}
-                                            </i>{" "}
-                                        </p>
-                                    </th>
-                                    <th className="dateOfBirth">
-                                        <p>
+                                        /{" "}
+                                        <i>
+                                            {" "}
+                                            Premium Tahunan termasuk CBP 6%{" "}
+                                        </i>{" "}
+                                    </p>
+                                </th>
+                                <th className="dateOfBirth">
+                                    <p>
                                             <span className="bold">
                                                 Sum Insured
                                             </span>{" "}
-                                            /<i> Jumlah Tertanggung</i>{" "}
-                                        </p>
-                                    </th>
-                                </tr>
+                                        /<i> Jumlah Tertanggung</i>{" "}
+                                    </p>
+                                </th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td className="name">
+                            <tr>
+                                <td className="name">
+                                    {" "}
+                                    <p>
                                         {" "}
-                                        <p>
-                                            {" "}
-                                            <span className="bold">
+                                        <span className="bold">
                                                 {" "}
-                                                Main Insured{" "}
+                                            Main Insured{" "}
                                             </span>
-                                            /<i>
-                                                {" "}
-                                                Orang Tertanggung Utama
-                                            </i>{" "}
-                                        </p>{" "}
-                                    </td>
-                                    <td>
-                                        <p>RM 265.00</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="name">
-                                        <p>
+                                        /<i>
+                                        {" "}
+                                        Orang Tertanggung Utama
+                                    </i>{" "}
+                                    </p>{" "}
+                                </td>
+                                <td>
+                                    <p>RM 265.00</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="name">
+                                    <p>
                                             <span className="bold">
                                                 Spouse{" "}
                                             </span>
-                                            /<i> Pasangan</i>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>RM 265.00</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="name">
-                                        <p>
+                                        /<i> Pasangan</i>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>RM 265.00</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="name">
+                                    <p>
                                             <span className="bold">
                                                 Eligible Child{" "}
                                             </span>
-                                            /<i> Anak yang Layaks</i>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>RM 26.50</p>
-                                    </td>
-                                </tr>
+                                        /<i> Anak yang Layaks</i>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>RM 26.50</p>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                     <div className="page3-detail">
                         <p>
                             *GST (Goods & Services Tax) /{" "}
-                            <i> CBP (Cukai Barangan & Perkhidmatan)</i> <br />
-                            <br />
+                            <i> CBP (Cukai Barangan & Perkhidmatan)</i> <br/>
+                            <br/>
                             *Age limit : The plan shall cover eligible persons
                             who are not less than 18 years of age or more than
                             70 years of age (i.e. upon attainment of the
@@ -1341,8 +1338,8 @@ class Form extends React.Component {
                             days of age and under 19 years of age (or 23 years
                             of age if a fulltime student at a recognized school,
                             college or university).
-                            <br />
-                            <br />
+                            <br/>
+                            <br/>
                             <i>
                                 *Had umur : Pelan ini akan melindungi
                                 orang-orang yang layak yang tidak kurang
@@ -1361,7 +1358,7 @@ class Form extends React.Component {
                             I authorise Chubb to debit my account or credit card
                             on a monthly/yearly basis for payment of the premium
                             stated below.
-                            <br />
+                            <br/>
                             <i>
                                 Saya membenarkan Chubb untuk mendebit akaun saya
                                 atau kad kredit untuk pembayaran premium yang
@@ -1478,7 +1475,7 @@ class Form extends React.Component {
                             </div>
                         </div>
                         <div className="Sign">
-                            <img id="cardSign" />
+                            <img id="cardSign"/>
                             <p>
                                 Signature of Card Holder /{" "}
                                 <i> Tandatangan Pemegang Kad </i>
@@ -1576,9 +1573,9 @@ class Form extends React.Component {
                         </div>
                         <div className="page4Sign">
                             <div className="Sign">
-                                <img id="mainSign" />
+                                <img id="mainSign"/>
                                 <p>
-                                    Signature of Main Insured Person <br />{" "}
+                                    Signature of Main Insured Person <br/>{" "}
                                     <i>Tandatangan Orange Tertanggung Utama </i>
                                 </p>
                             </div>
@@ -1658,7 +1655,7 @@ class Form extends React.Component {
                     <button
                         onClick={this.submit}
                         disabled={this.state.submitting}
-                        style={{ textDecoration: "none" }}
+                        style={{textDecoration: "none"}}
                         className="submit"
                     >
                         Submit

@@ -150,7 +150,6 @@ class Declaration extends React.Component {
                                         value={values.declaration}
                                         size="lg"
                                         type="checkbox"
-										value="1"
                                         onChange={handleChange}
                                     />
                                     <div className='content'>

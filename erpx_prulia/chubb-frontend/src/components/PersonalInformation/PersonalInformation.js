@@ -1,12 +1,11 @@
 import React from "react";
 import "./PersonalInformation.scss";
-import { withRouter } from "react-router-dom";
-import { Form } from "react-bootstrap";
-import axios from "axios";
-import { Formik } from "formik";
+import {withRouter} from "react-router-dom";
+import {Form} from "react-bootstrap";
+import {Formik} from "formik";
 import moment from "moment";
 
-import { memberDetailsMap, CustomInput } from "../../helpers";
+import {memberDetailsMap, CustomInput, getMemberDetails} from "../../helpers";
 
 const getDOB = (ic) => {
     if (ic.match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)) {
@@ -158,16 +157,6 @@ class PersonalInformation extends React.Component {
                 //     }
                 // }, 'mainInsuredBirthDate')
             });
-
-        function getMemberDetails() {
-            return axios
-                .get(
-                    "/api/method/erpx_prulia.prulia_members.doctype.prulia_member.prulia_member.mobile_member_login"
-                )
-                .then((data) => {
-                    return data && data.data && data.data.message;
-                });
-        }
     }
 
     childActive = (i) => {
@@ -179,26 +168,27 @@ class PersonalInformation extends React.Component {
     render() {
         return (
             <div className="personalInfoDiv">
-                <div className="topDiv">
-                    <svg
-                        onClick={this.goBack}
-                        style={{ cursor: "pointer" }}
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 16 16"
-                        className="bi bi-chevron-left"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                        />
-                    </svg>
-                    <p>Personal Information</p>
-                </div>
-                <div className="mainForm">
-                    {/* <div className="second">
+                <div>
+                    <div className="topDiv">
+                        <svg
+                            onClick={this.goBack}
+                            style={{cursor: "pointer"}}
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 16 16"
+                            className="bi bi-chevron-left"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                            />
+                        </svg>
+                        <p>Personal Information</p>
+                    </div>
+                    <div className="mainForm">
+                        {/* <div className="second">
                     <p>Complete Your Personal Details</p>
                     <Form.Check
                         type="radio"
@@ -214,571 +204,573 @@ class PersonalInformation extends React.Component {
                     />
                 </div> */}
 
-                    <Formik
-                        enableReinitialize={true}
-                        initialValues={this.props.state.populated || this.props.state}
-                        validate={(values) => {
-                            const errors = {};
+                        <Formik
+                            enableReinitialize={true}
+                            initialValues={this.props.state.populated || this.props.state}
+                            validate={(values) => {
+                                const errors = {};
 
-                            console.log(values);
+                                console.log(values);
 
-                            if (!values.mainInsuredName)
-                                errors.mainInsuredName = "Name is required";
+                                if (!values.mainInsuredName)
+                                    errors.mainInsuredName = "Name is required";
 
-                            if (!values.mainInsuredEmail) {
-                                errors.mainInsuredEmail = "Email is required";
-                            } else if (
-                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                                    values.mainInsuredEmail
-                                )
-                            ) {
-                                errors.mainInsuredEmail =
-                                    "Invalid email address";
-                            }
-
-                            if (!values.mainInsuredNric) {
-                                errors.mainInsuredNric = "NRIC is required";
-                            } else if (
-                                !/^\d{6}-\d{2}-\d{4}$/i.test(
-                                    values.mainInsuredNric
-                                )
-                            ) {
-                                errors.mainInsuredNric = "Invalid NRIC";
-                            } else {
-                                values.mainInsuredBirthDate = getDOB(
-                                    values.mainInsuredNric
-                                );
-                            }
-
-                            if (!values.mainInsuredMobileNo)
-                                errors.mainInsuredMobileNo =
-                                    "Mobile Number is required";
-
-                            if (!values.mainInsuredGender)
-                                errors.mainInsuredGender = "Gender is required";
-
-                            if (!values.mainInsuredStatus)
-                                errors.mainInsuredStatus =
-                                    "Marital status is required";
-
-                            if (!values.mainInsuredAddress)
-                                errors.mainInsuredAddress =
-                                    "Address is required";
-
-                            if (!values.mainInsuredPostcode)
-                                errors.mainInsuredPostcode =
-                                    "Postcode is required";
-                            else if (values.mainInsuredPostcode.length < 5) {
-                                errors.mainInsuredPostcode = "Invalid postcode";
-                            }
-
-                            if (this.props.state.spouse) {
-                                if (!values.spouseName)
-                                    errors.spouseName = "Name is required";
-
-                                if (!values.spouseNric) {
-                                    errors.spouseNric = "NRIC is required";
+                                if (!values.mainInsuredEmail) {
+                                    errors.mainInsuredEmail = "Email is required";
                                 } else if (
-                                    !/^\d{6}-\d{2}-\d{4}$/i.test(
-                                        values.spouseNric
+                                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+                                        values.mainInsuredEmail
                                     )
                                 ) {
-                                    errors.spouseNric = "Invalid NRIC";
+                                    errors.mainInsuredEmail =
+                                        "Invalid email address";
+                                }
+
+                                if (!values.mainInsuredNric) {
+                                    errors.mainInsuredNric = "NRIC is required";
+                                } else if (
+                                    !/^\d{6}-\d{2}-\d{4}$/i.test(
+                                        values.mainInsuredNric
+                                    )
+                                ) {
+                                    errors.mainInsuredNric = "Invalid NRIC";
                                 } else {
-                                    values.spouseBirthDate = getDOB(
-                                        values.spouseNric
+                                    values.mainInsuredBirthDate = getDOB(
+                                        values.mainInsuredNric
                                     );
                                 }
-                            }
 
-                            if (this.props.state.child) {
-                                Object.keys(values).forEach((key) => {
-                                    if (
-                                        key.startsWith("childName") &&
-                                        !values[key]
+                                if (!values.mainInsuredMobileNo)
+                                    errors.mainInsuredMobileNo =
+                                        "Mobile Number is required";
+
+                                if (!values.mainInsuredGender)
+                                    errors.mainInsuredGender = "Gender is required";
+
+                                if (!values.mainInsuredStatus)
+                                    errors.mainInsuredStatus =
+                                        "Marital status is required";
+
+                                if (!values.mainInsuredAddress)
+                                    errors.mainInsuredAddress =
+                                        "Address is required";
+
+                                if (!values.mainInsuredPostcode)
+                                    errors.mainInsuredPostcode =
+                                        "Postcode is required";
+                                else if (values.mainInsuredPostcode.length < 5) {
+                                    errors.mainInsuredPostcode = "Invalid postcode";
+                                }
+
+                                if (this.props.state.spouse) {
+                                    if (!values.spouseName)
+                                        errors.spouseName = "Name is required";
+
+                                    if (!values.spouseNric) {
+                                        errors.spouseNric = "NRIC is required";
+                                    } else if (
+                                        !/^\d{6}-\d{2}-\d{4}$/i.test(
+                                            values.spouseNric
+                                        )
                                     ) {
-                                        errors[key] = "Name is required";
+                                        errors.spouseNric = "Invalid NRIC";
+                                    } else {
+                                        values.spouseBirthDate = getDOB(
+                                            values.spouseNric
+                                        );
                                     }
+                                }
 
-                                    if (key.startsWith("childBirthDate")) {
-                                        if (!getAge(values[key]))
-                                            errors[key] =
-                                                "Date of birth is required";
-
+                                if (this.props.state.child) {
+                                    Object.keys(values).forEach((key) => {
                                         if (
-                                            getAge(values[key]) < 1 ||
-                                            getAge(values[key]) > 23
+                                            key.startsWith("childName") &&
+                                            !values[key]
                                         ) {
-                                            errors[key] =
-                                                "The age is not eligible, only 1 to 23 years of age is eligible";
+                                            errors[key] = "Name is required";
                                         }
-                                    }
+
+                                        if (key.startsWith("childBirthDate")) {
+                                            if (!getAge(values[key]))
+                                                errors[key] =
+                                                    "Date of birth is required";
+
+                                            if (
+                                                getAge(values[key]) < 1 ||
+                                                getAge(values[key]) > 23
+                                            ) {
+                                                errors[key] =
+                                                    "The age is not eligible, only 1 to 23 years of age is eligible";
+                                            }
+                                        }
+                                    });
+
+                                    if (!values.acknowledge_child)
+                                        errors.acknowledge_child =
+                                            "Please check the box";
+                                }
+
+                                Object.keys(values).forEach((key) => {
+                                    console.log(key);
+                                    this.props.gettingValues(
+                                        {
+                                            target: {
+                                                value: values[key],
+                                            },
+                                        },
+                                        key
+                                    );
                                 });
 
-                                if (!values.acknowledge_child)
-                                    errors.acknowledge_child =
-                                        "Please check the box";
-                            }
+                                console.error(errors);
 
-                            Object.keys(values).forEach((key) => {
-                                this.props.gettingValues(
-                                    {
-                                        target: {
-                                            value: values[key],
-                                        },
-                                    },
-                                    key
-                                );
-                            });
+                                return errors;
+                            }}
+                            onSubmit={(values, {setSubmitting}) => {
+                                // console.log(JSON.stringify(values, null, 2));
+                                this.props.gettingValues({
+                                    target: {
+                                        value: values
+                                    }
+                                }, 'populated');
+                                setSubmitting(false);
+                                this.props.history.push("/declaration");
+                            }}
+                        >
+                            {({
+                                  values,
+                                  errors,
+                                  touched,
+                                  handleChange,
+                                  handleBlur,
+                                  handleSubmit,
+                                  isSubmitting,
+                              }) => (
+                                <form onSubmit={handleSubmit}>
+                                    {this.props.state.mainInsured && (
+                                        <div className="mainInsured">
+                                            <p>Main Insured</p>
 
-                            console.error(errors);
-
-                            return errors;
-                        }}
-                        onSubmit={(values, { setSubmitting }) => {
-                            // console.log(JSON.stringify(values, null, 2));
-                            this.props.gettingValues({
-                                target: {
-                                    value: values
-                                }
-                            }, 'populated');
-                            setSubmitting(false);
-                            this.props.history.push("/declaration");
-                        }}
-                    >
-                        {({
-                            values,
-                            errors,
-                            touched,
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                            isSubmitting,
-                        }) => (
-                            <form onSubmit={handleSubmit}>
-                                {this.props.state.mainInsured && (
-                                    <div className="mainInsured">
-                                        <p>Main Insured</p>
-
-                                        <div className="inputGroup three">
-                                            <label>Full Name as per NRIC</label>
-                                            <input
-                                                type="text"
-                                                name="mainInsuredName"
-                                                value={values.mainInsuredName}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            />
-                                            <span className="error">
+                                            <div className="inputGroup three">
+                                                <label>Full Name as per NRIC</label>
+                                                <input
+                                                    type="text"
+                                                    name="mainInsuredName"
+                                                    value={values.mainInsuredName}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                                <span className="error">
                                                 {errors.mainInsuredName &&
-                                                    touched.mainInsuredName &&
-                                                    errors.mainInsuredName}
+                                                touched.mainInsuredName &&
+                                                errors.mainInsuredName}
                                             </span>
-                                        </div>
+                                            </div>
 
-                                        <div className="inputGroup two three">
-                                            <label>Email</label>
-                                            <input
-                                                type="text"
-                                                name="mainInsuredEmail"
-                                                value={values.mainInsuredEmail}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            />
-                                            <span className="error">
+                                            <div className="inputGroup two three">
+                                                <label>Email</label>
+                                                <input
+                                                    type="text"
+                                                    name="mainInsuredEmail"
+                                                    value={values.mainInsuredEmail}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                                <span className="error">
                                                 {errors.mainInsuredEmail &&
-                                                    touched.mainInsuredEmail &&
-                                                    errors.mainInsuredEmail}
+                                                touched.mainInsuredEmail &&
+                                                errors.mainInsuredEmail}
                                             </span>
-                                        </div>
+                                            </div>
 
-                                        <div className="inputGroup two three">
-                                            <label>NRIC</label>
-                                            <CustomInput
-                                                type="text"
-                                                name="mainInsuredNric"
-                                                mask="999999-99-9999"
-                                                value={values.mainInsuredNric}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            >
+                                            <div className="inputGroup two three">
+                                                <label>NRIC</label>
+                                                <CustomInput
+                                                    type="text"
+                                                    name="mainInsuredNric"
+                                                    mask="999999-99-9999"
+                                                    value={values.mainInsuredNric}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
                                                 >
-                                            </CustomInput>
+                                                    >
+                                                </CustomInput>
 
-                                            <span className="error">
+                                                <span className="error">
                                                 {errors.mainInsuredNric &&
-                                                    touched.mainInsuredNric &&
-                                                    errors.mainInsuredNric}
+                                                touched.mainInsuredNric &&
+                                                errors.mainInsuredNric}
                                             </span>
-                                        </div>
+                                            </div>
 
-                                        <div className="inputGroup two three">
-                                            <label>Mobile Number</label>
-                                            <CustomInput
-                                                type="text"
-                                                name="mainInsuredMobileNo"
-                                                mask="+6 019 999 99999"
-                                                value={
-                                                    values.mainInsuredMobileNo
-                                                }
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            >
+                                            <div className="inputGroup two three">
+                                                <label>Mobile Number</label>
+                                                <CustomInput
+                                                    type="text"
+                                                    name="mainInsuredMobileNo"
+                                                    mask="+6 019 999 99999"
+                                                    value={
+                                                        values.mainInsuredMobileNo
+                                                    }
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
                                                 >
-                                            </CustomInput>
+                                                    >
+                                                </CustomInput>
 
-                                            <span className="error">
+                                                <span className="error">
                                                 {errors.mainInsuredMobileNo &&
-                                                    touched.mainInsuredMobileNo &&
-                                                    errors.mainInsuredMobileNo}
+                                                touched.mainInsuredMobileNo &&
+                                                errors.mainInsuredMobileNo}
                                             </span>
-                                        </div>
+                                            </div>
 
-                                        <div className="inputGroup two three">
-                                            <label>Date of Birth</label>
-                                            <input
-                                                name="mainInsuredBirthDate"
-                                                type="date"
-                                                value={
-                                                    values.mainInsuredBirthDate
-                                                }
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div className="inputGroup two three">
-                                            <label>Gender</label>
-                                            <div className="radioDiv">
-                                                <Form.Check
-                                                    type="radio"
-                                                    label="Male"
-                                                    name="mainInsuredGender"
-                                                    id="formHorizontalRadios1"
-                                                    value="Male"
-                                                    checked={
-                                                        values.mainInsuredGender ===
-                                                        "Male"
-                                                    }
-                                                    onChange={handleChange}
-                                                />
-                                                <Form.Check
-                                                    type="radio"
-                                                    label="Female"
-                                                    name="mainInsuredGender"
-                                                    id="formHorizontalRadios2"
-                                                    value="Female"
-                                                    checked={
-                                                        values.mainInsuredGender ===
-                                                        "Female"
+                                            <div className="inputGroup two three">
+                                                <label>Date of Birth</label>
+                                                <input
+                                                    name="mainInsuredBirthDate"
+                                                    type="date"
+                                                    value={
+                                                        values.mainInsuredBirthDate
                                                     }
                                                     onChange={handleChange}
                                                 />
                                             </div>
-                                        </div>
 
-                                        <div className="inputGroup two three">
-                                            <label>Marital Status</label>
-                                            <div className="radioDiv">
-                                                <Form.Check
-                                                    type="radio"
-                                                    label="Married"
-                                                    name="mainInsuredStatus"
-                                                    id="formHorizontalRadios3"
-                                                    value="Married"
-                                                    checked={
-                                                        values.mainInsuredStatus ===
-                                                        "Married"
-                                                    }
-                                                    onChange={handleChange}
-                                                />
-                                                <Form.Check
-                                                    type="radio"
-                                                    label="Single"
-                                                    name="mainInsuredStatus"
-                                                    id="formHorizontalRadios4"
-                                                    value="Single"
-                                                    checked={
-                                                        values.mainInsuredStatus ===
-                                                        "Single"
-                                                    }
-                                                    onChange={handleChange}
-                                                />
-                                                <Form.Check
-                                                    type="radio"
-                                                    label="Others"
-                                                    name="mainInsuredStatus"
-                                                    id="formHorizontalRadios5"
-                                                    value="Others"
-                                                    checked={
-                                                        values.mainInsuredStatus ===
-                                                        "Others"
-                                                    }
-                                                    onChange={handleChange}
-                                                />
+                                            <div className="inputGroup two three">
+                                                <label>Gender</label>
+                                                <div className="radioDiv">
+                                                    <Form.Check
+                                                        type="radio"
+                                                        label="Male"
+                                                        name="mainInsuredGender"
+                                                        id="formHorizontalRadios1"
+                                                        value="Male"
+                                                        checked={
+                                                            values.mainInsuredGender ===
+                                                            "Male"
+                                                        }
+                                                        onChange={handleChange}
+                                                    />
+                                                    <Form.Check
+                                                        type="radio"
+                                                        label="Female"
+                                                        name="mainInsuredGender"
+                                                        id="formHorizontalRadios2"
+                                                        value="Female"
+                                                        checked={
+                                                            values.mainInsuredGender ===
+                                                            "Female"
+                                                        }
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
                                             </div>
-                                            <span className="error">
+
+                                            <div className="inputGroup two three">
+                                                <label>Marital Status</label>
+                                                <div className="radioDiv">
+                                                    <Form.Check
+                                                        type="radio"
+                                                        label="Married"
+                                                        name="mainInsuredStatus"
+                                                        id="formHorizontalRadios3"
+                                                        value="Married"
+                                                        checked={
+                                                            values.mainInsuredStatus ===
+                                                            "Married"
+                                                        }
+                                                        onChange={handleChange}
+                                                    />
+                                                    <Form.Check
+                                                        type="radio"
+                                                        label="Single"
+                                                        name="mainInsuredStatus"
+                                                        id="formHorizontalRadios4"
+                                                        value="Single"
+                                                        checked={
+                                                            values.mainInsuredStatus ===
+                                                            "Single"
+                                                        }
+                                                        onChange={handleChange}
+                                                    />
+                                                    <Form.Check
+                                                        type="radio"
+                                                        label="Others"
+                                                        name="mainInsuredStatus"
+                                                        id="formHorizontalRadios5"
+                                                        value="Others"
+                                                        checked={
+                                                            values.mainInsuredStatus ===
+                                                            "Others"
+                                                        }
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                                <span className="error">
                                                 {errors.mainInsuredStatus &&
                                                 errors.mainInsuredStatus}
                                             </span>
-                                        </div>
+                                            </div>
 
-                                        <div className="inputGroup two">
-                                            <label>Address</label>
-                                            <input
-                                                type="text"
-                                                name="mainInsuredAddress"
-                                                value={
-                                                    values.mainInsuredAddress
-                                                }
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            />
-                                            <span className="error">
+                                            <div className="inputGroup two">
+                                                <label>Address</label>
+                                                <input
+                                                    type="text"
+                                                    name="mainInsuredAddress"
+                                                    value={
+                                                        values.mainInsuredAddress
+                                                    }
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                                <span className="error">
                                                 {errors.mainInsuredAddress &&
-                                                    errors.mainInsuredAddress}
+                                                errors.mainInsuredAddress}
                                             </span>
-                                        </div>
+                                            </div>
 
-                                        <div className="inputGroup two three">
-                                            <label>Postcode</label>
-                                            <CustomInput
-                                                type="text"
-                                                name="mainInsuredPostcode"
-                                                mask="999999"
-                                                value={
-                                                    values.mainInsuredPostcode
-                                                }
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            >
+                                            <div className="inputGroup two three">
+                                                <label>Postcode</label>
+                                                <CustomInput
+                                                    type="text"
+                                                    name="mainInsuredPostcode"
+                                                    mask="999999"
+                                                    value={
+                                                        values.mainInsuredPostcode
+                                                    }
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
                                                 >
-                                            </CustomInput>
+                                                    >
+                                                </CustomInput>
 
-                                            <span className="error">
+                                                <span className="error">
                                                 {errors.mainInsuredPostcode &&
-                                                    errors.mainInsuredPostcode}
+                                                errors.mainInsuredPostcode}
                                             </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
 
-                                {this.props.state.spouse && (
-                                    <div className="mainInsured">
-                                        <p>Spouse</p>
-                                        <div className="inputGroup three">
-                                            <label>Full Name as per NRIC</label>
-                                            <input
-                                                type="text"
-                                                name="spouseName"
-                                                value={values.spouseName}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            />
-                                            <span className="error">
+                                    {this.props.state.spouse && (
+                                        <div className="mainInsured">
+                                            <p>Spouse</p>
+                                            <div className="inputGroup three">
+                                                <label>Full Name as per NRIC</label>
+                                                <input
+                                                    type="text"
+                                                    name="spouseName"
+                                                    value={values.spouseName}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                                <span className="error">
                                                 {errors.spouseName &&
-                                                    touched.spouseName &&
-                                                    errors.spouseName}
+                                                touched.spouseName &&
+                                                errors.spouseName}
                                             </span>
-                                        </div>
+                                            </div>
 
-                                        <div className="inputGroup two three">
-                                            <label>NRIC</label>
-                                            <CustomInput
-                                                type="text"
-                                                name="spouseNric"
-                                                mask="999999-99-9999"
-                                                value={values.spouseNric}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            >
+                                            <div className="inputGroup two three">
+                                                <label>NRIC</label>
+                                                <CustomInput
+                                                    type="text"
+                                                    name="spouseNric"
+                                                    mask="999999-99-9999"
+                                                    value={values.spouseNric}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
                                                 >
-                                            </CustomInput>
+                                                    >
+                                                </CustomInput>
 
-                                            <span className="error">
+                                                <span className="error">
                                                 {errors.spouseNric &&
-                                                    touched.spouseNric &&
-                                                    errors.spouseNric}
+                                                touched.spouseNric &&
+                                                errors.spouseNric}
                                             </span>
-                                        </div>
+                                            </div>
 
-                                        <div className="inputGroup two three">
-                                            <label>Date of Birth</label>
-                                            <input
-                                                name="spouseBirthDate"
-                                                type="date"
-                                                value={values.spouseBirthDate}
-                                                onChange={handleChange}
-                                            />
+                                            <div className="inputGroup two three">
+                                                <label>Date of Birth</label>
+                                                <input
+                                                    name="spouseBirthDate"
+                                                    type="date"
+                                                    value={values.spouseBirthDate}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
 
-                                {this.props.state.child && (
-                                    <div className="childMain">
-                                        <div className="tabs">
+                                    {this.props.state.child && (
+                                        <div className="childMain">
+                                            <div className="tabs">
+                                                {Array.apply(null, {
+                                                    length: this.props.state.childs,
+                                                }).map((a, i) => {
+                                                    return (
+                                                        <div
+                                                            className={
+                                                                this.state
+                                                                    .activeChild ===
+                                                                i
+                                                                    ? "active"
+                                                                    : ""
+                                                            }
+                                                            onClick={() =>
+                                                                this.childActive(i)
+                                                            }
+                                                            key={"tab" + i}
+                                                        >
+                                                            Child {i + 1}
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+
                                             {Array.apply(null, {
                                                 length: this.props.state.childs,
                                             }).map((a, i) => {
                                                 return (
-                                                    <div
-                                                        className={
-                                                            this.state
-                                                                .activeChild ===
-                                                            i
-                                                                ? "active"
-                                                                : ""
-                                                        }
-                                                        onClick={() =>
-                                                            this.childActive(i)
-                                                        }
-                                                        key={"tab" + i}
-                                                    >
-                                                        Child {i + 1}
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-
-                                        {Array.apply(null, {
-                                            length: this.props.state.childs,
-                                        }).map((a, i) => {
-                                            return (
-                                                <>
-                                                    <div
-                                                        style={
-                                                            this.state
-                                                                .activeChild !==
-                                                            i
-                                                                ? {
-                                                                      display:
-                                                                          "none",
-                                                                  }
-                                                                : {
-                                                                      display:
-                                                                          "flex",
-                                                                  }
-                                                        }
-                                                        className="inputGroup"
-                                                        key={"name" + i}
-                                                    >
-                                                        <label>
-                                                            Full Name as per
-                                                            NRIC
-                                                        </label>
-
-                                                        <input
-                                                            type="text"
-                                                            name={`childName${i}`}
-                                                            value={
-                                                                values[
-                                                                    `childName${i}`
-                                                                ]
+                                                    <>
+                                                        <div
+                                                            style={
+                                                                this.state
+                                                                    .activeChild !==
+                                                                i
+                                                                    ? {
+                                                                        display:
+                                                                            "none",
+                                                                    }
+                                                                    : {
+                                                                        display:
+                                                                            "flex",
+                                                                    }
                                                             }
-                                                            onChange={
-                                                                handleChange
-                                                            }
-                                                            onBlur={handleBlur}
-                                                        />
-                                                        <span className="error">
+                                                            className="inputGroup"
+                                                            key={"name" + i}
+                                                        >
+                                                            <label>
+                                                                Full Name as per
+                                                                NRIC
+                                                            </label>
+
+                                                            <input
+                                                                type="text"
+                                                                name={`childName${i}`}
+                                                                value={
+                                                                    values[
+                                                                        `childName${i}`
+                                                                        ]
+                                                                }
+                                                                onChange={
+                                                                    handleChange
+                                                                }
+                                                                onBlur={handleBlur}
+                                                            />
+                                                            <span className="error">
                                                             {errors[
                                                                 `childName${i}`
-                                                            ] &&
-                                                                touched[
-                                                                    `childName${i}`
                                                                 ] &&
-                                                                errors[
-                                                                    `childName${i}`
+                                                            touched[
+                                                                `childName${i}`
+                                                                ] &&
+                                                            errors[
+                                                                `childName${i}`
                                                                 ]}
                                                         </span>
-                                                    </div>
-                                                    <div
-                                                        style={
-                                                            this.state
-                                                                .activeChild !==
-                                                            i
-                                                                ? {
-                                                                      display:
-                                                                          "none",
-                                                                  }
-                                                                : {
-                                                                      display:
-                                                                          "flex",
-                                                                  }
-                                                        }
-                                                        className="inputGroup"
-                                                        key={"dob" + i}
-                                                    >
-                                                        <label>
-                                                            Date of Birth
-                                                        </label>
-                                                        <input
-                                                            className="three"
-                                                            type="date"
-                                                            name={`childBirthDate${i}`}
-                                                            value={
-                                                                values[
-                                                                    `childBirthDate${i}`
-                                                                ]
+                                                        </div>
+                                                        <div
+                                                            style={
+                                                                this.state
+                                                                    .activeChild !==
+                                                                i
+                                                                    ? {
+                                                                        display:
+                                                                            "none",
+                                                                    }
+                                                                    : {
+                                                                        display:
+                                                                            "flex",
+                                                                    }
                                                             }
-                                                            onChange={
-                                                                handleChange
-                                                            }
-                                                        />
-                                                        <span className="error">
+                                                            className="inputGroup"
+                                                            key={"dob" + i}
+                                                        >
+                                                            <label>
+                                                                Date of Birth
+                                                            </label>
+                                                            <input
+                                                                className="three"
+                                                                type="date"
+                                                                name={`childBirthDate${i}`}
+                                                                value={
+                                                                    values[
+                                                                        `childBirthDate${i}`
+                                                                        ]
+                                                                }
+                                                                onChange={
+                                                                    handleChange
+                                                                }
+                                                            />
+                                                            <span className="error">
                                                             {errors[
                                                                 `childBirthDate${i}`
-                                                            ] &&
-                                                                touched[
-                                                                    `childBirthDate${i}`
                                                                 ] &&
-                                                                errors[
-                                                                    `childBirthDate${i}`
+                                                            touched[
+                                                                `childBirthDate${i}`
+                                                                ] &&
+                                                            errors[
+                                                                `childBirthDate${i}`
                                                                 ]}
                                                         </span>
-                                                    </div>
-                                                </>
-                                            );
-                                        })}
+                                                        </div>
+                                                    </>
+                                                );
+                                            })}
 
-                                        <div className="terms">
-                                            <div className="content">
-                                                <Form.Check
-                                                    name="acknowledge_child"
-                                                    value={
-                                                        values.acknowledge_child
-                                                    }
-                                                    size="lg"
-                                                    type="checkbox"
-                                                    onChange={handleChange}
-                                                />
-                                                {/*I am a Malaysian or a permanent resident of Malaysia. In the event*/}
-                                                {/*I have opted to purchase the coverage for my spouse and/or*/}
-                                                {/*child(ren), I hereby confirm that my spouse and/or my child is a*/}
-                                                {/*Malaysia or a permanent resident of Malaysia, as the case may be.*/}
-                                                Eligible child are over 1 year
-                                                of age and under 19 years of age
-                                                (or 23 years of age if a
-                                                fulltime student at a recognized
-                                                school, college or university).
-                                            </div>
-                                            <span className="error">
+                                            <div className="terms">
+                                                <div className="content">
+                                                    <Form.Check
+                                                        name="acknowledge_child"
+                                                        value={
+                                                            values.acknowledge_child
+                                                        }
+                                                        size="lg"
+                                                        type="checkbox"
+                                                        onChange={handleChange}
+                                                    />
+                                                    {/*I am a Malaysian or a permanent resident of Malaysia. In the event*/}
+                                                    {/*I have opted to purchase the coverage for my spouse and/or*/}
+                                                    {/*child(ren), I hereby confirm that my spouse and/or my child is a*/}
+                                                    {/*Malaysia or a permanent resident of Malaysia, as the case may be.*/}
+                                                    Eligible child are over 1 year
+                                                    of age and under 19 years of age
+                                                    (or 23 years of age if a
+                                                    fulltime student at a recognized
+                                                    school, college or university).
+                                                </div>
+                                                <span className="error">
                                                 {errors.acknowledge_child &&
-                                                    errors.acknowledge_child}
+                                                errors.acknowledge_child}
                                             </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
 
-                                <button
-                                    className="next"
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                >
-                                    NEXT
-                                </button>
-                            </form>
-                        )}
-                    </Formik>
+                                    <button
+                                        className="next"
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                    >
+                                        NEXT
+                                    </button>
+                                </form>
+                            )}
+                        </Formik>
+                    </div>
                 </div>
             </div>
         );

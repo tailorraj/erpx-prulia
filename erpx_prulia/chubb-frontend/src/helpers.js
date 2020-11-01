@@ -1,5 +1,7 @@
 import InputMask from "react-input-mask";
 import React from "react";
+import axios from "axios";
+window.axios = axios;
 
 export const memberDetailsMap = (childNum) => {
     let key_pair = {
@@ -26,6 +28,26 @@ export const memberDetailsMap = (childNum) => {
 
     return key_pair;
 };
+
+export function getMemberDetails() {
+    return axios
+        .get(
+            "/api/method/erpx_prulia.prulia_members.doctype.prulia_member.prulia_member.mobile_member_login"
+        )
+        .then((data) => {
+            return data && data.data && data.data.message;
+        });
+}
+
+export function getPrevReg(member_id) {
+
+}
+
+export function getURL() {
+    return window.location.hostname.includes("localhost")
+        ? "http://167.99.77.197/"
+        : "/";
+}
 
 export const CustomInput = props => (
     <InputMask {...props}>{inputProps => <input {...inputProps} />}</InputMask>
