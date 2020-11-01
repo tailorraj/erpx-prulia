@@ -169,7 +169,7 @@ class PersonalInformation extends React.Component {
                 //     target: {
                 //         value: getDOB(data.nric_number)
                 //     }
-                // }, 'mainInsuredBirthDate')
+                // }, 'mainInsuredBirthDate');
             });
     }
 
@@ -182,7 +182,7 @@ class PersonalInformation extends React.Component {
     render() {
         return (
             <div className="personalInfoDiv">
-                {this.state.regs}
+                {JSON.stringify(this.state.regs)}
                 <div>
                     <div className="topDiv">
                         <svg
