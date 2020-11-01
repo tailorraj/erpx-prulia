@@ -248,11 +248,14 @@ class Form extends React.Component {
 
         let mainInsuredNameDiv = document.getElementById("mainInsuredName");
 
+
         for (let i = 0; i < 43; i++) {
             mainInsuredNameDiv.innerHTML += `<div id="mainInsuredName${i}" class="box">${
                 mainInsuredName[i] || ""
             }</div>`;
         }
+
+
 
         let mainInsuredAddressDiv = document.getElementById("address");
 

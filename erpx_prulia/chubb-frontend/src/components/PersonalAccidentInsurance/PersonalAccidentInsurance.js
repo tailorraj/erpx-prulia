@@ -6,6 +6,7 @@ import {Accordion, Card, Button, Form} from 'react-bootstrap';
 import pdfIcon from './images/pdfIcon.svg'
 import {Link, withRouter} from 'react-router-dom';
 
+
 class PersonalAccidentInsurance extends React.Component {
     constructor(props) {
         super(props);
@@ -152,12 +153,17 @@ class PersonalAccidentInsurance extends React.Component {
                                     </div>
                                     {
                                         this.props.state.child && (<div className="third">
-                                            <label>Child</label>
-                                            <input
-                                                value={this.props.state.childs}
-                                                onChange={(e) => this.props.gettingValues(e, "childs")}
-                                                type="number"
-                                            />
+                                            <label>Child/s  :</label>
+												  <select value={this.state.value} onChange={(e) => this.props.gettingValues(e, "childs")} type="number">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+												  </select>
                                         </div>)
                                     }
 
