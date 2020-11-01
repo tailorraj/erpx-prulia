@@ -36,6 +36,7 @@ class PersonalInformation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            regs: [],
             activeChild: 0,
         };
     }
@@ -90,7 +91,15 @@ class PersonalInformation extends React.Component {
 
                 //get prev registration
                 getPrevReg(this.props.state.member).then(regs => {
-                    console.log(regs);
+                    regs = regs.filter(reg => {
+                        return ['Approved', 'Pending Approval'].indexOf(reg.application_status) > -1;
+                    });
+
+                    if (regs.length) {
+                        this.setState({
+                            regs: regs
+                        });
+                    }
                 });
             })
             .catch((e) => {
@@ -173,6 +182,7 @@ class PersonalInformation extends React.Component {
     render() {
         return (
             <div className="personalInfoDiv">
+                {this.state.regs}
                 <div>
                     <div className="topDiv">
                         <svg
