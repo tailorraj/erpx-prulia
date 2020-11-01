@@ -457,7 +457,7 @@ class Form extends React.Component {
 
         let creditCard = payment_method === "Credit Card";
         let debitCard = payment_method === "Debit Card";
-        let masterCard = payment_method === "MasterCard";
+        let masterCard = payment_method === "Mastercard";
         let visa = payment_method === "Visa";
 
         for (let i = 0; i < 38; i++) {
