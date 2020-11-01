@@ -45,7 +45,7 @@ export function getPrevReg(member_id) {
         "headers": {
             "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
-        "body": "doctype=PRULIA+PA&filters=%7B%22member%22%3A%22" + member_id + "%22%7D&fields=%5B%22name%22%2C%22member%22%2C%22application_status%22%2C%22approval_date%22%5D&cmd=frappe.client.get_list",
+        "body": "doctype=PRULIA+PA&filters=%7B%22member%22%3A%22" + member_id + "%22%7D&fields=%5B%22name%22%2C%22member%22%2C%22application_status%22%5D&cmd=frappe.client.get_list",
         "method": "POST",
         "credentials": "include"
     })
