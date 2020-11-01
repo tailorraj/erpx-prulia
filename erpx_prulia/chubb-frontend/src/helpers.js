@@ -1,6 +1,7 @@
 import InputMask from "react-input-mask";
 import React from "react";
 import axios from "axios";
+
 window.axios = axios;
 
 export const memberDetailsMap = (childNum) => {
@@ -40,7 +41,7 @@ export function getMemberDetails() {
 }
 
 export function getPrevReg(member_id) {
-    fetch("/", {
+    return fetch("/", {
         "headers": {
             "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
