@@ -405,6 +405,7 @@ class PersonalInformation extends React.Component {
                                                         value={values.mainInsuredName}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
+                                                        maxLength={80}
                                                     />
                                                     <span className="error">
                                                 {errors.mainInsuredName &&
@@ -421,6 +422,7 @@ class PersonalInformation extends React.Component {
                                                         value={values.mainInsuredEmail}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
+                                                        maxLength={80}
                                                     />
                                                     <span className="error">
                                                 {errors.mainInsuredEmail &&
@@ -610,6 +612,7 @@ class PersonalInformation extends React.Component {
                                                         value={values.spouseName}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
+                                                        maxLength={80}
                                                     />
                                                     <span className="error">
                                                 {errors.spouseName &&
@@ -706,6 +709,7 @@ class PersonalInformation extends React.Component {
                                                                 <input
                                                                     type="text"
                                                                     name={`childName${i}`}
+                                                                    maxLength={80}
                                                                     value={
                                                                         values[
                                                                             `childName${i}`

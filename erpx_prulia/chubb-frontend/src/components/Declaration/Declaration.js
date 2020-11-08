@@ -247,6 +247,7 @@ class Declaration extends React.Component {
                                                 value={values.accountHolderName}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
+                                                maxLength={80}
                                             />
                                             <span className="error">
                                                 {errors.accountHolderName && touched.accountHolderName && errors.accountHolderName}
@@ -304,6 +305,7 @@ class Declaration extends React.Component {
                                                         name="issuing_bank"
                                                         value={this.props.state.issuing_bank}
                                                         onChange={handleChange}
+                                                        maxLength={35}
                                                     />
                                                     <span className="error">
                                                         {errors.issuing_bank && touched.issuing_bank && errors.issuing_bank}

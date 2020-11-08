@@ -94,7 +94,7 @@ class Form extends React.Component {
         //     declaration: true,
         //     privacyNotice: true,
         //     paymentInstruction: true,
-        //     issuing_bank: "maybank",
+        //     issuing_bank: "Maybank aaaaaaaaaaaaaaaaaaaaaaaaaaa",
         //     card_number: "1111-1111-1111-1111",
         //     card_expiry: "12/2023",
         // };
@@ -244,11 +244,7 @@ class Form extends React.Component {
         let mainInsuredNameDiv = document.getElementById("mainInsuredName");
 
 
-        for (let i = 0; i < 43; i++) {
-            mainInsuredNameDiv.innerHTML += `<div id="mainInsuredName${i}" class="box">${
-                mainInsuredName[i] || ""
-            }</div>`;
-        }
+        mainInsuredNameDiv.innerText = mainInsuredName;
 
 
         let mainInsuredAddressDiv = document.getElementById("address");
@@ -326,16 +322,8 @@ class Form extends React.Component {
             }
         }
 
-        let emailDiv = document.getElementById("emailDiv");
-
-        for (let i = 0; i < 40; i++) {
-            emailDiv.innerHTML += `<div id="emailDiv${i}" class="box"></div>`;
-        }
         if (mainInsuredEmail) {
-            for (let i = 0; i < mainInsuredEmail.length; i++) {
-                document.getElementById(`emailDiv${i}`).innerHTML =
-                    mainInsuredEmail[i];
-            }
+            document.getElementById(`email`).innerText = mainInsuredEmail;
         }
 
         // Spouse and child session
@@ -355,14 +343,8 @@ class Form extends React.Component {
         }
 
         let spouseNameDiv = document.getElementById("spouseNameDiv");
-        for (let i = 0; i < 43; i++) {
-            spouseNameDiv.innerHTML += `<div id="spouseNameDiv${i}" class="box"></div>`;
-        }
         if (spouseName) {
-            for (let i = 0; i < spouseName.length; i++) {
-                document.getElementById(`spouseNameDiv${i}`).innerHTML =
-                    spouseName[i];
-            }
+            spouseNameDiv.innerText = spouseName;
         }
 
         let spouseNricDiv = document.getElementById("spouseNricDiv");
@@ -454,15 +436,7 @@ class Form extends React.Component {
         let masterCard = payment_method === "Mastercard";
         let visa = payment_method === "Visa";
 
-        for (let i = 0; i < 38; i++) {
-            accountHolderNameDiv.innerHTML += `<div id="accountHolderNameDiv${i}" class="box"></div>`;
-        }
-        if (accountHolderName) {
-            for (let i = 0; i < accountHolderName.length; i++) {
-                document.getElementById(`accountHolderNameDiv${i}`).innerHTML =
-                    accountHolderName[i];
-            }
-        }
+        accountHolderNameDiv.innerText = accountHolderName;
 
         let creditCardDiv = document.getElementById("creditCardDiv");
         let debitCardDiv = document.getElementById("debitCardDiv");
@@ -482,18 +456,10 @@ class Form extends React.Component {
             masterCardDiv.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/></svg>`;
         }
 
-        let issuing_bankDiv = document.getElementById("issuing_bankDiv");
+        let issuing_bankDiv = document.getElementById("issuing_bank");
         let issuing_bank = this.props.state.issuing_bank;
 
-        for (let i = 0; i < 16; i++) {
-            issuing_bankDiv.innerHTML += `<div id="issuing_bankDiv${i}" class="box"></div>`;
-        }
-        if (issuing_bank) {
-            for (let i = 0; i < issuing_bank.length; i++) {
-                document.getElementById(`issuing_bankDiv${i}`).innerHTML =
-                    issuing_bank[i];
-            }
-        }
+        issuing_bankDiv.innerText = issuing_bank;
 
         let card_numberDiv = document.getElementById("card_numberDiv");
         let card_number = this.props.state.card_number;
@@ -816,10 +782,8 @@ class Form extends React.Component {
                                     Full Name (as stated in NRIC) /{" "}
                                     <i>Nama Penuh (seperti di dalam K/P)</i>
                                 </p>
-                                <div
-                                    id="mainInsuredName"
-                                    className="check"
-                                ></div>
+                                <div id="mainInsuredName" className="input-value underline uppercase">
+                                </div>
                             </div>
                             <div className="newic-dob">
                                 <div className="newIc">
@@ -972,44 +936,7 @@ class Form extends React.Component {
                                 <p>
                                     E-mail / <i>E-mail</i>
                                 </p>
-                                <div id="email" className="check">
-                                    {/* <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div>
-                  <div className='box'></div> */}
+                                <div id="email" className="input-value">
                                 </div>
                             </div>
                             <div>
@@ -1060,7 +987,7 @@ class Form extends React.Component {
                                     Full Name (as stated in NRIC) /{" "}
                                     <i>Nama Penuh (seperti di dalam K/P)</i>
                                 </p>
-                                <div id="spouseNameDiv" className="check"></div>
+                                <div id="spouseNameDiv" className="input-value underline uppercase"></div>
                             </div>
                             <div className="icDob">
                                 <div className="New-IC ">
@@ -1371,7 +1298,7 @@ class Form extends React.Component {
                             Name of Account Holder or Credit Card Holder /
                             <i> Nama Pemegang Akaun atau Pemegang Kad Kredit</i>
                         </p>
-                        <div id="accountHolderNameDiv" className="check"></div>
+                        <div id="accountHolderNameDiv" className="input-value underline uppercase"></div>
                     </div>
                     <div className="premiumpayment">
                         <p className="underLine">
@@ -1391,30 +1318,16 @@ class Form extends React.Component {
                                 <div id="masterCardDiv" className="box"></div>
                                 <p>Master Card</p>
                             </div>
-                            <div id="issuing_bankDiv" className="check">
-                                <p>Issuing Bank</p>
-                                {/* <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div>
-                <div className='box'></div> */}
-                            </div>
-                        </div>
-                        <div className="payment-check2">
                             <div className="check">
                                 <div id="debitCardDiv" className="box"></div>
                                 <p>Debit Card</p>
+                            </div>
+                        </div>
+                        <div className="payment-check2">
+                            <div id="issuing_bankDiv" className="check">
+                                <p>Issuing Bank</p>
+                                <div id="issuing_bank" className="input-value underline uppercase">
+                                </div>
                             </div>
                             <div id="card_numberDiv" className="check">
                                 <p className="cardno">Card No.</p>
