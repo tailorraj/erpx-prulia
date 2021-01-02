@@ -199,13 +199,17 @@ class PersonalAccidentInsurance extends React.Component {
                             insurance product, please read the Policy Wordings and Product Disclosure Sheet.</p>
                     </div>
 
-                    {/*<div className="pdfDiv">*/}
-                    {/*    <div className="div"><img src={pdfIcon}/> <a href="#">Policy Wording</a></div>*/}
-                    {/*    <div className="div"><img src={pdfIcon}/> <a href="#">Product Disclosure Sheet</a></div>*/}
-                    {/*    <div className="div"><img src={pdfIcon}/> <a href="#">Personal Data Protection Notice</a></div>*/}
-                    {/*    <div className="div"><img src={pdfIcon}/> <a href="#">Declaration And Authorization</a></div>*/}
-                    {/*    <div className="div"><img src={pdfIcon}/> <a href="#">Eligibility Criteria</a></div>*/}
-                    {/*</div>*/}
+                    <div>
+                        <a href="" download></a>
+                    </div>
+
+                    <div className="pdfDiv">
+                        <div className="div"><img src={pdfIcon}/> <a href={`${process.env.PUBLIC_URL}/assets/files/chubb_pa_wordings.pdf`} download>Chubb PA Wordings</a></div>
+                        <div className="div"><img src={pdfIcon}/> <a href={`${process.env.PUBLIC_URL}/assets/files/prulia_endorsement_up_to_age_80.pdf`} download>PRULIA Endorsement</a></div>
+                        {/*<div className="div"><img src={pdfIcon}/> <a href="#">Personal Data Protection Notice</a></div>*/}
+                        {/*<div className="div"><img src={pdfIcon}/> <a href="#">Declaration And Authorization</a></div>*/}
+                        {/*<div className="div"><img src={pdfIcon}/> <a href="#">Eligibility Criteria</a></div>*/}
+                    </div>
 
                     {this.props.state.total != 0 && <div className="buttonDiv">
                         <Link to="/personal-information">BUY NOW</Link>

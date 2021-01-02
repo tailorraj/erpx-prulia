@@ -5,12 +5,35 @@
 from __future__ import unicode_literals
 import frappe, json, datetime
 from frappe.model.document import Document
-from frappe.utils import now_datetime
+from frappe.utils import now_datetime, get_url
+from frappe import _, throw
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 from erpx_prulia.prulia_integrations.doctype.senangpay_settings.senangpay_settings import create_sha256_signature, get_payment_link
 
 class PRULIATraining(Document):
-	pass
+	def validate(self):
+		status = 'open For Registration'
+		if not self.is_new():
+			old_doc = frappe.get_doc("PRULIA Training", self.name)
+			if self.training_status == 'Publish':
+				status = 'published'
+			if old_doc.training_status != self.training_status and (
+					self.training_status == 'Publish' or self.training_status == 'Open For Registration'):
+				# set image
+				big_image = (self.training_image or '')
+				if big_image:
+					big_image = get_url() + self.training_image
+				else:
+					throw(_('Please provide an image'))
+				# set tags to restrict to QL only
+				filters = []
+				if self.position_restriction == 'QL':
+					filters = [
+						{'field': 'tag', 'key': 'position', 'relation': '=', 'value': self.position_restriction}
+					]
+				push_noti('A new training {} is now {}'.format(self.training_name, status), big_image, filters)
+			else:
+				pass
 
 
 @frappe.whitelist()

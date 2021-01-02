@@ -66,7 +66,7 @@ class Declaration extends React.Component {
 
                                 if (!values.declaration) errors.declaration = 'Please check the box!';
 
-                                if (!values.privacyNotice) errors.privacyNotice = 'Please check the box!';
+                                // if (!values.privacyNotice) errors.privacyNotice = 'Please check the box!';
 
                                 if (!values.paymentInstruction) errors.paymentInstruction = 'Please check the box!';
 
@@ -177,33 +177,33 @@ class Declaration extends React.Component {
                                     {errors.declaration && errors.declaration}
                                 </span>
                                 <hr/>
-                                <div className="flexDiv">
-                                    <Form.Check
-                                        name="privacyNotice"
-                                        value={values.privacyNotice}
-                                        size="lg"
-                                        type="checkbox"
-                                        onChange={handleChange}
-                                    />
-                                    <div className='content'>
-                                        <h6>Privacy Notice</h6>
-                                        <p>
-                                            I understand that Chubb needs to deal with my personal data to
-                                            administer my Policy and offer me insurance products and
-                                            services. To achieve these purposes, I allow Chubb to collect,
-                                            use and disclose my personal data to selected third parties in
-                                            or outside Malaysia, in accordance with Chubb’s Personal Data
-                                            Protection Notice, which is found in Chubb’s website at
-                                            www.chubb.com/my-privacy. I may contact Chubb for access to or
-                                            correction of my personal data, or for any other queries or
-                                            complaints.
-                                        </p>
-                                    </div>
-                                </div>
-                                <span className="error">
-                                    {errors.privacyNotice && errors.privacyNotice}
-                                </span>
-                                <hr/>
+                                {/*<div className="flexDiv">*/}
+                                {/*    <Form.Check*/}
+                                {/*        name="privacyNotice"*/}
+                                {/*        value={values.privacyNotice}*/}
+                                {/*        size="lg"*/}
+                                {/*        type="checkbox"*/}
+                                {/*        onChange={handleChange}*/}
+                                {/*    />*/}
+                                {/*    <div className='content'>*/}
+                                {/*        <h6>Privacy Notice</h6>*/}
+                                {/*        <p>*/}
+                                {/*            I understand that Chubb needs to deal with my personal data to*/}
+                                {/*            administer my Policy and offer me insurance products and*/}
+                                {/*            services. To achieve these purposes, I allow Chubb to collect,*/}
+                                {/*            use and disclose my personal data to selected third parties in*/}
+                                {/*            or outside Malaysia, in accordance with Chubb’s Personal Data*/}
+                                {/*            Protection Notice, which is found in Chubb’s website at*/}
+                                {/*            www.chubb.com/my-privacy. I may contact Chubb for access to or*/}
+                                {/*            correction of my personal data, or for any other queries or*/}
+                                {/*            complaints.*/}
+                                {/*        </p>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
+                                {/*<span className="error">*/}
+                                {/*    {errors.privacyNotice && errors.privacyNotice}*/}
+                                {/*</span>*/}
+                                {/*<hr/>*/}
                                 <div className="flexDiv">
                                     <Form.Check
                                         name="paymentInstruction"
@@ -228,10 +228,10 @@ class Declaration extends React.Component {
                                 <hr/>
 
                                 <p className='iConfirm'>
-                                    I confirm that this product is suitable for me and meets my
-                                    insurance needs, financial objectives and priority and hereby agree
-                                    to purchase this product. Where I have opted to purchase the
-                                    coverage for my spouse and/or my child(ren), I further confirm that
+                                    I confirm that I have read the policy wordings and product disclosure sheet and
+                                    this product is suitable for me and meets my insurance needs, financial objectives
+                                    and priority and hereby agree to purchase this product. Where I have opted to
+                                    purchase the coverage for my spouse and/or my child(ren), I further confirm that
                                     this product is suitable for them and meets their insurance needs,
                                     financial objectives and priority and hereby agree to purchase this
                                     product for their benefit.
