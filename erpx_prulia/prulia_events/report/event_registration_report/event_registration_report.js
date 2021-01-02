@@ -19,6 +19,18 @@ frappe.query_reports["Event Registration Report"] = {
             "label": __("Prudential ID"),
             "fieldtype": "Data"
         },{
+            "fieldname":"Region",
+            "label": __("Region"),
+            "fieldtype": "Data"
+        },{
+            "fieldname":"Branch",
+            "label": __("Branch"),
+            "fieldtype": "Data"
+        },{
+            "fieldname":"Contact Mobile",
+            "label": __("Contact Mobile"),
+            "fieldtype": "Data"
+        },{
             "fieldname":"Agency Code",
             "label": __("Agency Code"),
             "fieldtype": "Data"

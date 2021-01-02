@@ -189,27 +189,27 @@
 										class="columns"
 										alignItems="Stretch" visible="{=!${device>/system/phone}}">
 										<items>
-											<Image src="css/icons/maxis-grey.png" densityAware="false" width="100%">
+											<Image src="css/icons/maxis.png" densityAware="false" width="100%">
 												<layoutData>
 													<FlexItemData growFactor="1" />
 												</layoutData>
 											</Image>
-											<Image src="css/icons/dolemon-grey.png" densityAware="false" width="100%">
+											<Image src="css/icons/dolemon.png" densityAware="false" width="100%">
 												<layoutData>
 													<FlexItemData growFactor="1" />
 												</layoutData>
 											</Image>
-											<Image src="css/icons/BMW-grey.png" densityAware="false" width="100%">
+											<Image src="css/icons/BMW.png" densityAware="false" width="100%">
 												<layoutData>
 													<FlexItemData growFactor="1" />
 												</layoutData>
 											</Image>
-											<Image src="css/icons/Volvo-grey.png" densityAware="false" width="100%">
+											<Image src="css/icons/Volvo.png" densityAware="false" width="100%">
 												<layoutData>
 													<FlexItemData growFactor="1" />
 												</layoutData>
 											</Image>
-											<Image src="css/icons/chubb-grey.png" densityAware="false" width="100%">
+											<Image src="css/icons/chubb.png" densityAware="false" width="100%">
 												<layoutData>
 													<FlexItemData growFactor="1" />
 												</layoutData>
@@ -219,7 +219,7 @@
 													<!--<FlexItemData growFactor="1" />-->
 												<!--</layoutData>-->
 											<!--</Image>-->
-											<Image src="css/icons/toptravel-grey.png" densityAware="false" width="100%">
+											<Image src="css/icons/toptravel.png" densityAware="false" width="100%">
 												<layoutData>
 													<FlexItemData growFactor="1" />
 												</layoutData>
@@ -228,13 +228,13 @@
 									</FlexBox>
 									<!--only for phone -->
 									<l:Grid defaultSpan="L3 M3 S3" class="sapUiNoContentPadding sapUiSmallMarginTop" visible="{device>/system/phone}">
-										<Image src="css/icons/maxis-grey.png" densityAware="false" width="100%"/>
-										<Image src="css/icons/dolemon-grey.png" densityAware="false" width="100%"/>
-										<Image src="css/icons/bmw-grey.png" densityAware="false" width="100%" />
-										<Image src="css/icons/volvo-grey.png" densityAware="false" width="100%" />
-										<Image src="css/icons/chubb-grey.png" densityAware="false" width="100%" />
+										<Image src="css/icons/maxis.png" densityAware="false" width="100%"/>
+										<Image src="css/icons/dolemon.png" densityAware="false" width="100%"/>
+										<Image src="css/icons/bmw.png" densityAware="false" width="100%" />
+										<Image src="css/icons/volvo.png" densityAware="false" width="100%" />
+										<Image src="css/icons/chubb.png" densityAware="false" width="100%" />
 										<!--<Image src="css/icons/qbe-grey.png" densityAware="false" width="100%" />-->
-										<Image src="css/icons/toptravel-grey.png" densityAware="false" width="100%"/>
+										<Image src="css/icons/toptravel.png" densityAware="false" width="100%"/>
 									</l:Grid>
 									<HBox width="100%" justifyContent="Center" visible="{login>/memberLogon}">
 										<Link class="darkLink" text="Smart Partners Details" press="handleSmartPartnerPress"></Link>
