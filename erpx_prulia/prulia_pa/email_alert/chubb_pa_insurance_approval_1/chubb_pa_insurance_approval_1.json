@@ -1,0 +1,30 @@
+{
+ "attach_print": 0, 
+ "condition": "doc.application_status==\"Approved\"", 
+ "creation": "2020-11-01 17:27:05.017632", 
+ "days_in_advance": 0, 
+ "docstatus": 0, 
+ "doctype": "Email Alert", 
+ "document_type": "PRULIA PA", 
+ "enabled": 1, 
+ "event": "Value Change", 
+ "idx": 0, 
+ "is_standard": 1, 
+ "message": "<h3>{{_(\"CHUBB PA Insurance Application Approved !\")}}</h3>\n\n<ul>\n<li>Prudential ID \t   : {{ doc.member }}\n<li>PRULIA Member Name : {{ doc.main_full_name }}\n</ul>\n\n", 
+ "modified": "2020-11-01 17:29:11.662574", 
+ "modified_by": "Administrator", 
+ "module": "PRULIA PA", 
+ "name": "CHUBB PA Insurance Approval 1", 
+ "owner": "Administrator", 
+ "property_value": "", 
+ "recipients": [
+  {
+   "cc": "foreslamch@gmail.com", 
+   "email_by_document_field": "main_email", 
+   "email_by_role": "PRULIA Member"
+  }
+ ], 
+ "set_property_after_alert": "", 
+ "subject": "CHUBB PA Insurance Approval", 
+ "value_changed": "application_status"
+}

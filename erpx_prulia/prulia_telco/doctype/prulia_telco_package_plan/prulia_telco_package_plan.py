@@ -6,5 +6,11 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 
+
 class PRULIATelcoPackagePlan(Document):
-	pass
+    pass
+
+
+@frappe.whitelist(allow_guest=True)
+def get_all():
+    return frappe.get_all('PRULIA Telco Package Plan', fields=['*'])

@@ -6,5 +6,11 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 
+
 class PRULIATelcoOption(Document):
-	pass
+    pass
+
+
+@frappe.whitelist()
+def get_all():
+    return frappe.get_all('PRULIA Telco Option', fields=['*'])

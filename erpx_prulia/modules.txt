@@ -5,3 +5,4 @@ PRULIA News
 PRULIA Integrations
 PRULIA Telco
 PRULIA PA
+PRULIA Pedia
