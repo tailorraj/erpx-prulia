@@ -9,6 +9,8 @@ from frappe.utils import now_datetime, get_url
 from frappe import _, throw
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 from erpx_prulia.onesignal import push_noti
+from erpx_prulia.prulia_integrations.doctype.senangpay_settings.senangpay_settings import get_payment_link
+from erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training import remove_unpaid_trainees
 
 
 class PRULIAEvent(Document):
@@ -70,9 +72,38 @@ def add_attendance(data):
         "fees": event.early_fees if event.early_fees else event.fees,
         "pref_lang": pref_lang
     })
+    
     event.save()
-    frappe.msgprint("Your attendance is confirmed")
+    attendee_dt = frappe.get_doc("PRULIA Attendee", {"parent": event.name, "member": member})
 
+    link = get_payment_link(event.description, event.fees, attendee_dt.name, member_name, member_data.email, member_data.cell_number)
+    return {"payment_link": link}
+
+@frappe.whitelist()
+def update_payment_status(data):
+    ret = json.loads(data)
+    order_id = ret.get('order_id')
+    msg = ret.get('msg')
+    if msg == "Payment_was_successful":
+        if frappe.db.exists("PRULIA Attendee", order_id):
+            p_att = frappe.get_doc("PRULIA Attendee", order_id)
+            p_att.paid = 1
+            p_att.save()
+        elif frappe.db.exists("PRULIA Trainee", order_id):
+            p_att = frappe.get_doc("PRULIA Trainee", order_id)
+            p_att.paid = 1
+            p_att.save()
+    else:
+        if frappe.db.exists("PRULIA Attendee", order_id):
+            p_att = frappe.get_doc("PRULIA Attendee", order_id)
+            p_att.delete()
+        elif frappe.db.exists("PRULIA Trainee", order_id):
+            p_att = frappe.get_doc("PRULIA Trainee", order_id)
+            p_att.delete()
+    frappe.db.commit()
+    # remove unpaids
+    remove_unpaid_trainees()
+    return "success"
 
 @frappe.whitelist()
 def check_registration(member, event):

@@ -5,7 +5,11 @@
  "allow_rename": 0, 
  "autoname": "PRBK.######", 
  "beta": 0, 
+<<<<<<< HEAD
  "creation": "2020-07-19 17:22:28.713305", 
+=======
+ "creation": "2020-07-19 12:33:45.365683", 
+>>>>>>> 3ada8cb4cbbc4b705a784be541f723c20d2f999a
  "custom": 0, 
  "docstatus": 0, 
  "doctype": "DocType", 
@@ -203,7 +207,11 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
+<<<<<<< HEAD
  "modified": "2020-07-19 17:23:48.833933", 
+=======
+ "modified": "2020-07-19 13:02:37.860601", 
+>>>>>>> 3ada8cb4cbbc4b705a784be541f723c20d2f999a
  "modified_by": "Administrator", 
  "module": "PRULIA News", 
  "name": "PRULIA Book", 

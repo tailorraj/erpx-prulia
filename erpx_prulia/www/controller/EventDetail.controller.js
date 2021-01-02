@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"com/erpx/site/prulia/PRULIA/utils/Event",
 	"com/erpx/site/prulia/PRULIA/utils/Login",
-  	"com/erpx/site/prulia/PRULIA/utils/ErrorHandler",
-], function (Controller, DateFormat, MessageBox, MessageToast, Event, Login, ErrorHandler) {
+	"com/erpx/site/prulia/PRULIA/utils/ErrorHandler",
+	"com/erpx/site/prulia/PRULIA/utils/Config",
+], function (Controller, DateFormat, MessageBox, MessageToast, Event, Login, ErrorHandler, Config) {
 	"use strict";
 
 	return Controller.extend("com.erpx.site.prulia.PRULIA.controller.EventDetail", {
@@ -97,8 +98,56 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.erpx.site.prulia.PRULIA.view.NewsDetail
 		 */
-		// onAfterRendering: function() {
-		// },
+		onAfterRendering: function() {
+			console.log("Even");
+
+			var complete_url = window.location.href;
+
+			console.log(complete_url);
+
+			var pieces = complete_url.split("?");
+
+			if( pieces && pieces.length > 1) {
+				var response_obj = {};
+
+				var params = pieces[1].split("&");
+
+				$.each( params, function( key, value ) {
+
+					var param_value = value.split("=");
+
+					response_obj[param_value[0]] = param_value[1];
+
+				});
+
+				console.log(response_obj);
+
+				this.updatePaymentStatus(response_obj).done(
+					function(data, status, xhr){
+						if(data.message){
+							MessageToast.show("You have registered successfully");
+						} else {
+							MessageToast.show(JSON.parse(JSON.parse(data._server_messages)[0]).message);
+						}					
+					}
+				).fail(
+					function(error){
+						ErrorHandler.handleAjaxError(error);
+	                }
+				);
+
+			}
+		},
+
+		updatePaymentStatus: function(data_obj){
+			return $.ajax({
+				type: "POST",
+				url: Config.serverURL+'/api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.update_payment_status',
+				data: JSON.stringify(data_obj),
+				dataType: 'json',
+				contentType: 'application/json'
+			});
+		},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.

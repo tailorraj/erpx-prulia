@@ -1,0 +1,202 @@
+.personalInfoDiv {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+
+  .mainForm {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    @media screen and (min-width: 600px) {
+      padding: 20px;
+    }
+  }
+  .highlight {
+    color: rgb(224, 95, 96);
+  }
+  .topDiv {
+    color: rgb(224, 95, 96);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 20px;
+
+    svg {
+      font-weight: bold;
+      font-size: 25px;
+      @media screen and (min-width: 600px) {
+        font-size: 30px;
+      }
+    }
+
+    p {
+      margin: 0;
+      margin-left: 10px;
+      font-weight: 600;
+      @media screen and (min-width: 600px) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .second {
+    margin-top: 25px;
+
+    p {
+      color: #d99e3c;
+      font-weight: 600;
+    }
+
+    .form-check {
+      label {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .mainInsured {
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    p {
+      color: #FF9966;
+      font-weight: 600;
+      font-size: 18px;
+      @media screen and (min-width: 600px) {
+        font-size: 25px;
+      }
+    }
+
+    .inputGroup {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        color: rgb(200, 200, 200);
+        font-weight: 500;
+        font-size: 14px;
+        margin: 0;
+        @media screen and (min-width: 600px) {
+          font-size: 16px;
+        }
+      }
+
+      input {
+        border: none;
+        border-bottom: 1px solid lightgray;
+        background-color: transparent;
+        outline: none;
+        padding: 5px 0;
+        padding-top: 0;
+        @media screen and (min-width: 600px) {
+          font-size: 18px;
+        }
+      }
+
+      &.two {
+        margin-top: 20px;
+      }
+
+      &.three {
+        margin-top: 20px;
+
+        .radioDiv {
+          display: flex;
+
+          label {
+            font-size: 16px;
+            color: black;
+            font-weight: normal;
+            @media screen and (min-width: 600px) {
+              font-size: 16px;
+            }
+          }
+
+          .form-check {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .next {
+    width: 100%;
+    border: 2px solid rgb(224, 95, 96);
+    border-bottom-width: 3px;
+    border-right-width: 3px;
+    background-color: #E05F60;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    height: 35px;
+    margin-top: 20px;
+    &:disabled {
+      color: rgba(150, 150, 150, 0.5);
+    }
+  }
+
+  .childMain {
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+
+      div {
+        padding: 0 20px;
+        border-radius: 2px;
+        margin-right: 5px;
+        width: 100px;
+        font-weight: 600;
+        border: 1px solid lightgray;
+        color: #FF9966;
+        text-align: center;
+        margin-bottom: 2px;
+
+        &.active {
+          background-color: #FFCCCC;
+        }
+      }
+    }
+
+    .inputGroup {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+
+      label {
+        color: rgb(200, 200, 200);
+        font-weight: 500;
+        font-size: 14px;
+        margin: 0;
+      }
+
+      input {
+        background-color: transparent;
+        outline: none;
+        padding: 5px 0;
+        padding-top: 0;
+        border: none;
+        &:not(.three) {
+          border-bottom: 1px solid lightgray;
+        }
+      }
+    }
+  }
+
+  .terms {
+    margin-top: 20px;
+
+    .content {
+      color: rgb(150, 150, 150);
+      font-size: 16px;
+
+      .form-check {
+        display: inline-block;
+      }
+    }
+  }
+}

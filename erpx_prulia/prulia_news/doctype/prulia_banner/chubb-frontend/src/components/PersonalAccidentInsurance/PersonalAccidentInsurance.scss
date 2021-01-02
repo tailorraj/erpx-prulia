@@ -1,0 +1,237 @@
+.mainDivPersonal {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    .topDiv {
+        color: rgb(224, 95, 96);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        svg {
+            font-weight: bold;
+            font-size: 25px;
+            @media screen and (min-width: 600px) {
+                font-size: 30px;
+            }
+        }
+        p {
+            margin: 0;
+            margin-left: 10px;
+            font-weight: 600;
+            @media screen and (min-width: 600px) {
+                font-size: 20px;
+            }
+        }
+    }
+    .formDiv {
+        padding: 20px;
+        background-color: white;
+        margin-top: 15px;
+        .accordion {
+            background-color: white;
+            .card {
+                border: none;
+                // @media screen and (min-width: 600px) {
+                //     width: 20px;
+                // }
+            }
+            div {
+                background-color: transparent;
+                // padding: 0;
+            }
+            .card-header {
+                padding: 20px 15px;
+                padding-bottom: 10px;
+                background: #8080801a;
+                margin-top: 10px;
+            }
+            .expansionHeader {
+                color: rgb(224, 95, 96);
+                background-color: transparent !important;
+                h5 {
+                    margin-bottom: 10px;
+                    // @media screen and (min-width: 600px) {
+                    //     font-size: 22px;
+                    //     text-align: center;
+                    // }
+                }
+                .second {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    // justify-content: center;
+                    .form-group {
+                        margin: 0;
+                        .form-check-input:checked {
+                            background-color: rgb(224, 95, 96);
+                        }
+                    }
+                    .insideSecond {
+                        margin-left: 10px;
+                        h6 {
+                            color: #d99e3c;
+                            margin: 0;
+                            font-size: 18px;
+                            margin-bottom: 2px;
+                            @media screen and (min-width: 600px) {
+                                font-size: 20px;
+                            }
+                        }
+                        p {
+                            margin: 0;
+                            color: rgb(215, 215, 215);
+                            @media screen and (min-width: 600px) {
+                                font-size: 18px;
+                            }
+                            span {
+                                color: rgb(224, 95, 96);
+                            }
+                        }
+                    }
+                    .iconDiv {
+                        position: absolute;
+                        right: 1px;
+                        top: 0%;
+                        transform: translate(0%, -0%);
+                        @media screen and (min-width: 600px) {
+                            // right: 150px;
+                        }
+                        button {
+                            box-shadow: none;
+                            border: none;
+                            outline: none;
+                            color: rgb(224, 95, 96);
+                        }
+                        .triangle-down {
+                            width: 0;
+                            height: 0;
+                            border-left: 12px solid transparent;
+                            border-right: 12px solid transparent;
+                            border-top: 20px solid rgb(224, 95, 96);
+                        }
+                    }
+                }
+            }
+            .third {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 5px;
+                label {
+                    font-size: 18px;
+                    color: rgb(215, 215, 215);
+                    margin: 0;
+                }
+                input {
+                    width: 80px;
+                    border: 2px solid lightgray;
+                    border-radius: 5px;
+                    margin-left: 10px;
+                    outline: none;
+                    padding: 5px;
+                }
+            }
+            .card-body {
+                padding: 0.75rem 1.25rem;
+                background-color: #f9f7f8;
+                border-radius: 2px;
+                text-align: center;
+                p {
+                    font-size: 14px;
+                    text-align: center;
+                    color: rgb(179, 177, 177);
+                    margin-bottom: 5px;
+                }
+                span {
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: rgb(224, 95, 96);
+                    margin-bottom: 15px;
+                    display: inline-block;
+                }
+            }
+        }
+        hr {
+            border-color: rgb(224, 95, 96);
+        }
+        .total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            padding: 0 15px;
+            @media screen and (min-width: 600px) {
+                width: 50%;
+                margin: auto;
+                justify-content: space-evenly;
+            }
+            label {
+                font-size: 22px;
+                font-weight: 600;
+                color: rgb(215, 215, 215);
+                margin: 0;
+            }
+            input {
+                width: 75%;
+                border: 2px solid lightgray;
+                border-radius: 5px;
+                margin-left: 10px;
+                outline: none;
+                padding: 5px;
+            }
+        }
+        .lastPrivacy {
+            margin-top: 15px;
+            .p1 {
+                color: rgb(215, 215, 215);
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+            .p2 {
+                color: rgb(215, 215, 215);
+                font-size: 15px;
+            }
+        }
+        .pdfDiv {
+            padding: 10px 20px;
+            .div {
+                display: flex;
+                align-items: center;
+                margin-top: 5px;
+            }
+            a {
+                color: #d99e3c;
+                text-decoration: underline;
+                font-size: 14px;
+            }
+            img {
+                width: 16px;
+                margin-right: 10px;
+                @media screen and (min-width: 600px) {
+                    width: 20px;
+                }
+            }
+        }
+        .buttonDiv {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            a {
+                width: 100%;
+                border: 2px solid #d99e3c;
+                border-radius: 10px;
+                font-size: 18px;
+                color: #d99e3c;
+                font-weight: 600;
+                background-color: transparent;
+                padding: 5px;
+                border-right-width: 4px;
+                border-bottom-width: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+            }
+        }
+    }
+}

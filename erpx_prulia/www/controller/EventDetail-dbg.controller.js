@@ -70,9 +70,9 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.erpx.site.prulia.PRULIA.view.NewsDetail
 		 */
-		// onAfterRendering: function() {
-			
-		// },
+		onAfterRendering: function() {
+			console.log("onAfterRendering");
+		},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
