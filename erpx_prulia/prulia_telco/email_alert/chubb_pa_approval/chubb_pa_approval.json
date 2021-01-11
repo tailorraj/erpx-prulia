@@ -1,0 +1,30 @@
+{
+ "attach_print": 0, 
+ "condition": "doc.reg_status==\"Approved\"", 
+ "creation": "2020-11-01 16:40:58.444797", 
+ "days_in_advance": 0, 
+ "docstatus": 0, 
+ "doctype": "Email Alert", 
+ "document_type": "PRULIA Telco Connect", 
+ "enabled": 1, 
+ "event": "Save", 
+ "idx": 0, 
+ "is_standard": 1, 
+ "message": "<h3>{{_(\"CHUBB PA Insurance Application Approved !\")}}</h3>\n\nPrudential ID \t   : {{ doc.prudential_id }}\nPRULIA Member Name : {{ doc.full_name_nric }}\n\n\n", 
+ "modified": "2020-11-01 17:05:19.276320", 
+ "modified_by": "Administrator", 
+ "module": "PRULIA Telco", 
+ "name": "CHUBB PA Approval", 
+ "owner": "Administrator", 
+ "property_value": "doc.nowdate()", 
+ "recipients": [
+  {
+   "cc": "foreslamch@gmail.com", 
+   "email_by_document_field": "owner", 
+   "email_by_role": "PRULIA Member"
+  }
+ ], 
+ "set_property_after_alert": "approval_date", 
+ "subject": "CHUBB PA Insurance Approval", 
+ "value_changed": "reg_status"
+}

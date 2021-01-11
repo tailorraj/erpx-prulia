@@ -1,0 +1,45 @@
+
+.newline{
+    min-height: 115px;
+}
+.portin,.changeplan{
+    min-height: 83px;
+}
+
+
+.Pdf-popup{
+    width: 85vw;
+    height: 90vh;
+    background-color: #fff;
+  overflow: auto;
+}
+
+
+.siganture-pad canvas{
+    border: 1px solid #000;
+    background-color: #fff;
+}
+.Devicecard-deck{
+    justify-content:space-around;
+    margin: 8px;
+}
+#cardplan{
+    border:  solid rgba(0,0,0,.125);
+}
+.formdevice{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+.btn-my-color{
+   
+   
+    border-bottom: none;
+
+    color: #fff;  
+}
+.chk11{
+    margin: 5px;
+    transform: scale(1.2);
+}

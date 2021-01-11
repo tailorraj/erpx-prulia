@@ -7,4 +7,9 @@ import frappe
 from frappe.model.document import Document
 
 class PRULIATelcoSubLine(Document):
-	pass
+    pass
+
+
+@frappe.whitelist()
+def get_all():
+    return frappe.get_all('PRULIA Telco Sub Line', fields=['*'])

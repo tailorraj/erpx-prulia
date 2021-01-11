@@ -152,9 +152,9 @@ class PersonalAccidentInsurance extends React.Component {
                                         </div>
                                     </div>
                                     {
-                                        this.props.state.child && (<div className="third">
+                                        this.props.state.childs && (<div className="third">
                                             <label>Child/s :</label>
-                                            <select value={this.props.state.child}
+                                            <select value={this.props.state.childs}
                                                     onChange={(e) => this.props.gettingValues(e, "childs")}
                                                     type="number">
                                                 <option value="1">1</option>
@@ -168,7 +168,6 @@ class PersonalAccidentInsurance extends React.Component {
                                             </select>
                                         </div>)
                                     }
-
                                 </div>
                             </Card.Header>
                             <Accordion.Collapse eventKey="2">
