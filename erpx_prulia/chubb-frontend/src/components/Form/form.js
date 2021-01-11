@@ -483,7 +483,7 @@ class Form extends React.Component {
         let card_expiryDiv = document.getElementById("card_expiryDiv");
         let card_expiry = this.props.state.card_expiry;
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 7; i++) {
             if (i === 2) {
                 card_expiryDiv.innerHTML += `<div id="card_expiryDiv${i}" class="dash">/</div>`;
             } else {
