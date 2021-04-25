@@ -13,7 +13,7 @@
             >
           </v-slide-x-transition>
 
-          <a :to="{ name: 'Home' }">
+          <div @click="$router.push({ name: 'Home' })" style="cursor: pointer">
             <v-img
               style="display: inline-block"
               alt="PRULIA"
@@ -23,7 +23,7 @@
               transition="scale-transition"
               width="32"
             />
-          </a>
+          </div>
         </v-row>
       </div>
       <span class="hidden-sm-and-down ml-3" v-if="member">
@@ -132,9 +132,9 @@ export default {
   },
 
   mounted() {
+    this.$store.dispatch('home/load')
     this.$store.dispatch('auth/load').then(() => {
       this.$store.dispatch('news/load')
-      this.$store.dispatch('home/load')
     })
   },
 

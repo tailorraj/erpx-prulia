@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="article">
     <v-row class="dusk"><v-img contain :src="article.image"/></v-row>
     <v-row class="vanilla py-3" justify="center">
       <h2>{{ article.title }}</h2>

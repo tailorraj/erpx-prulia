@@ -1,21 +1,10 @@
 const BomPlugin = require('webpack-utf8-bom')
 const TerserPlugin = require('terser-webpack-plugin')
+const isDev = process.env.NODE_ENV === 'development'
 
-module.exports = {
+const config = {
   parallel: true,
-  publicPath: '/beta/',
   assetsDir: 'static',
-  configureWebpack: {
-    plugins: [new BomPlugin(true)],
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: { output: { ascii_only: true } }
-        })
-      ]
-    }
-  },
   devServer: {
     proxy: {
       '/api/': {
@@ -31,3 +20,20 @@ module.exports = {
     }
   }
 }
+
+if (!isDev) {
+  config.publicPath = '/beta/'
+  config.configureWebpack = {
+    plugins: [new BomPlugin(true)],
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: { output: { ascii_only: true } }
+        })
+      ]
+    }
+  }
+}
+
+module.exports = config

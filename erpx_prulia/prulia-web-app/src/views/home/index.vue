@@ -70,25 +70,19 @@
         </v-col>
       </v-row>
       <v-row justify="center" align="center">
-        <v-col cols="12" class="pa-0">
-          <v-parallax
-            src="@/assets/banners/PRULIA_BannerVoice.jpg"
-            height="300"
-          >
-            <div class="white--text text-center">
-              <h2>About PRULIA</h2>
-              <h5 class="px-4 hidden-sm-and-down">
-                It is very important that every agent or leader of Prudential
-                should be a member of PRULIA to be united and stand together as
-                one, to be the united
-              </h5>
-              <h1>"Voice of the Agency"</h1>
-              <v-btn color="white" plain>
-                Read more
-              </v-btn>
-            </div>
-          </v-parallax>
-        </v-col>
+        <v-img src="@/assets/banners/PRULIA_BannerVoice.jpg" contain />
+        <div class="white--text text-center" style="position: absolute;">
+          <h2>About PRULIA</h2>
+          <h5 class="px-4 hidden-sm-and-down">
+            It is very important that every agent or leader of Prudential should
+            be a member of PRULIA to be united and stand together as one, to be
+            the united
+          </h5>
+          <h1>"Voice of the Agency"</h1>
+          <v-btn color="white" plain>
+            Read more
+          </v-btn>
+        </div>
       </v-row>
       <v-row class="amber pb-5">
         <v-col cols="12" class="text-center primary--text">
