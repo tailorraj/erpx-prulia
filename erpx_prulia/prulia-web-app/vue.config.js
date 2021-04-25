@@ -1,4 +1,5 @@
-var BomPlugin = require('webpack-utf8-bom') // add this line
+const BomPlugin = require('webpack-utf8-bom')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
   parallel: true,
@@ -9,7 +10,15 @@ module.exports = {
     config.plugins.delete('prefetch')
   },
   configureWebpack: {
-    plugins: [new BomPlugin(true)]
+    plugins: [new BomPlugin(true)],
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: { output: { ascii_only: true } }
+        })
+      ]
+    }
   },
   devServer: {
     proxy: {
