@@ -13,7 +13,7 @@
             >
           </v-slide-x-transition>
 
-          <a href="/">
+          <a :to="{ name: 'Home' }">
             <v-img
               style="display: inline-block"
               alt="PRULIA"
