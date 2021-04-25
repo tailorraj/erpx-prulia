@@ -1,0 +1,189 @@
+.declarationMain {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    .topDiv {
+        color: rgb(224, 95, 96);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 20px;
+        svg {
+            font-weight: bold;
+            font-size: 25px;
+            @media screen and (min-width: 600px) {
+                font-size: 30px;
+            }
+        }
+        p {
+            margin: 0;
+            margin-left: 10px;
+            font-weight: 600;
+            @media screen and (min-width: 600px) {
+                font-size: 20px;
+            }
+        }
+    }
+    .declarationForm {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        @media screen and (min-width: 600px) {
+            padding: 20px;
+        }
+        .flexDiv {
+            display: flex;
+            .content {
+                margin-left: 5px;
+                h6 {
+                    color: rgb(224, 95, 96);
+                    @media screen and (min-width: 600px) {
+                        font-size: 20px;
+                    }
+                }
+                p {
+                    color: gray;
+                    font-size: 12px;
+                    line-height: 18px;
+                    @media screen and (min-width: 600px) {
+                        font-size: 16px;
+                        line-height: 22px;
+                    }
+                }
+                p1 {
+                    color: rgb(115, 115, 115);
+                    font-size: 14px;
+                    line-height: 18px;
+                    @media screen and (min-width: 600px) {
+                        font-size: 16px;
+                        line-height: 22px;
+                    }
+                }
+            }
+        }
+        .iConfirm {
+            color: gray;
+            font-size: 12px;
+            line-height: 18px;
+            @media screen and (min-width: 600px) {
+                font-size: 16px;
+                line-height: 22px;
+            }
+        }
+        .paymentDetails {
+            .inputGroup {
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+                label {
+                    color: rgb(200, 200, 200);
+                    font-weight: 500;
+                    font-size: 14px;
+                    margin: 0;
+                }
+                input {
+                    background-color: transparent;
+                    outline: none;
+                    padding: 5px 0;
+                    margin-right: 5px;
+                    border: none;
+                    border-bottom: 2px solid lightgray;
+                }
+            }
+            .second {
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+                .form-check{
+                    width: 150px;
+                }
+                label {
+                    color: rgb(200, 200, 200);
+                    font-weight: 500;
+                    font-size: 14px;
+                    margin: 0;
+                }
+                .secondFlex{
+                    display: flex;
+                    margin-top: 5px;
+                    .two{
+                        // margin-left: 20px;
+                    }
+                    .inputGroup{
+                        margin-top: 10px;
+                        &.second{
+                            width: 150px;
+                        }
+                        input{
+                            font-size: 14px;
+                        }
+                        .date{
+                            width: 90%;
+                        }
+                    }
+                }
+                .total{
+                    margin-top: 10px;
+                    width: 100%;
+                    padding: 10px 0;
+                    display: flex;
+                    justify-content: center;
+                    border: 1px solid rgb(224, 95, 96);
+                    border-radius: 10px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: rgb(224, 95, 96);
+                    span{
+                        color: grey;
+                    }
+                }
+                .signDiv{
+                    display: flex;
+                    justify-content: space-evenly;
+                    width: 100%;
+                    margin-top: 30px;
+                    flex-wrap: wrap;
+                    .group{
+                        width: 360px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .sign{
+                            margin-bottom: 20px;
+                            width: 340px;
+                            height: 100px;
+                            background-color: whitesmoke;
+                            color: gray;
+                            border-radius: 10px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        label {
+                            input {
+								color: rgb(90, 90, 90);
+                                display: inline-block;
+                                border-radius: 10px;
+                                padding: 1px 0;
+                                width: 50px;
+                                border: none;
+                                margin-left: 20px;
+                                text-align: center;
+                            }
+                        }
+                    }
+                    .submit{
+                        background-color: #E05F60;
+                        color: white;
+                        border-radius: 10px;
+                        padding: 5px 0;
+                        width: 50%;
+                        border: none;
+                        margin-top: 50px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

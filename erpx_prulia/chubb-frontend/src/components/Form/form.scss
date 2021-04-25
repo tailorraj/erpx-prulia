@@ -1,0 +1,465 @@
+.container {
+    min-width: 1100px;
+}
+.form-main {
+    background-color: white;
+    padding: 30px;
+    .topDiv {
+        color: rgb(224, 95, 96);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 20px;
+        svg {
+            font-weight: bold;
+            font-size: 25px;
+            @media screen and (min-width: 600px) {
+                font-size: 30px;
+            }
+        }
+        p {
+            margin: 0;
+            margin-left: 10px;
+            font-weight: 600;
+            @media screen and (min-width: 600px) {
+                font-size: 20px;
+            }
+        }
+    }
+    .submit-container {
+        width: 100%;
+        text-align: center;
+        .submit{
+            background-color: #E05F60;
+            color: white;
+            border-radius: 10px;
+            padding: 5px 0;
+            width: 50%;
+            border: none;
+            margin: auto;
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
+}
+.form-main .heading-div {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.heading {
+    width: 380px;
+    margin-left: 110px;
+}
+.info-div {
+    margin-bottom: 250px;
+}
+.heading h3 span {
+    font-size: 25px;
+}
+.information {
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+.information h3 {
+    font-family: "Orbitron", sans-serif;
+    letter-spacing: 10px;
+    font-weight: bold;
+    color: #ffd000;
+}
+.bold {
+    font-weight: bold;
+}
+.underLine {
+    border-bottom: 2px solid #ffd000;
+    margin-bottom: 25px !important;
+    /* height: 45px; */
+}
+.statements p {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 500;
+}
+.information .name {
+    width: 39%;
+}
+.postcode {
+    width: 162px;
+    text-align: center;
+}
+.information .statements {
+    width: 59%;
+}
+.indicate {
+    display: flex;
+    justify-content: start;
+}
+.marginLeftP {
+    margin-left: 10px;
+}
+
+.box {
+    min-width: 5px;
+    width: 23.2px;
+    height: 23.2px;
+    border: 1px solid #4f4f4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    color: gray;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.check {
+    display: flex;
+    /* margin-left: 5px; */
+}
+.check1 {
+    width: auto;
+    font-weight: 500;
+}
+.check1.check1 {
+    margin-left: 30px;
+}
+.indicate p {
+    font-size: 13px;
+}
+.indicate .box {
+    margin-right: 5px;
+}
+.form-con {
+    /* width: 870px !important; */
+}
+.form p {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.form {
+    margin-top: 0;
+    /* height:  2000px; */
+}
+.policy-dob {
+    margin-top: 20px;
+    display: flex;
+    justify-content: start;
+}
+.policy-dob .dob {
+    margin-left: 140px;
+}
+.form-steps ol {
+    padding: 18px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.newic-dob {
+    display: flex;
+    justify-content: start;
+    margin-top: 10px;
+}
+.newic-dob .dob {
+    margin-left: 160px;
+}
+.gender-status {
+    display: flex;
+    justify-content: start;
+    margin-top: 10px;
+}
+.gender-status .status {
+    margin-left: 193px;
+}
+.gender-status .box {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.correspond-address {
+    margin-top: 10px;
+}
+.correspond-address .check {
+    flex-wrap: wrap;
+}
+.dash {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.number {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin-top: 20px;
+}
+.number .check {
+    align-items: center;
+    margin-top: 5px;
+}
+.number .check p {
+    margin-right: 20px;
+    text-align: left;
+}
+.number .check.two p {
+    margin-right: 24px;
+}
+.number .check.three {
+    margin-left: 20px;
+}
+
+.email {
+    display: flex;
+    /* flex-wrap: wrap; */
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.email p {
+    width: 135px;
+}
+.detail-spouse {
+    display: flex;
+    justify-content: start;
+}
+.detail-spouse .spouse .box,
+.detail-spouse .child .box {
+    margin: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.spouse {
+    display: flex;
+    margin-left: 50px;
+}
+.child {
+    margin-left: 50px;
+}
+.icDob {
+    display: flex;
+    justify-content: start;
+    margin-top: 10px;
+}
+.icDob .dob {
+    margin-left: 155px;
+}
+.children {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.children p {
+    margin-right: 20px;
+}
+.form table,
+.form tbody,
+.form thead {
+    width: 100%;
+}
+.form table tr {
+    width: 100%;
+}
+.form table thead .name {
+    width: 75%;
+
+    border-right: 1px solid white;
+}
+@media print {
+    .yellow {
+        -webkit-print-color-adjust: exact;
+        background-color: #ffd700;
+        color: white;
+    }
+}
+.yellow {
+    background-color: #ffd700;
+    color: white;
+}
+table p {
+    margin: 0;
+    padding: 6px 10px;
+}
+tbody tr {
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+tbody .name {
+    border-right: 1px solid black;
+}
+
+.page3 {
+    padding-top: 50px;
+}
+.page3 table {
+    margin-top: 20px;
+}
+.page3 table thead .name {
+    width: 70%;
+}
+.page3-detail {
+    margin-top: 20px;
+}
+.page3 p {
+    font-weight: 500;
+}
+.page2 {
+    padding-top: 50px;
+    margin-bottom: 280px;
+}
+.nric-name {
+    margin-top: 20px;
+}
+.table3 {
+    width: 100%;
+}
+.premiumpayment {
+    margin-top: 20px;
+}
+.accountholder p {
+    margin-bottom: 5px;
+}
+.payment-check,
+.payment-check2 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.payment-check p,
+.payment-check2 p {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.cardno {
+    width: 88px;
+}
+.maybank {
+    width: 82px;
+}
+.paymentDate {
+    display: flex;
+    justify-content: space-between;
+}
+.paymentDate p {
+    margin-right: 15px;
+}
+.totalPremium {
+    width: 160px;
+}
+.rm {
+    margin-right: 20px;
+}
+.Sign {
+    width: 440px;
+    img {
+        min-height: 100px;
+    }
+    div {
+        padding: 36px;
+    }
+    p {
+        border-top: 1px solid black;
+    }
+}
+.page4 {
+    padding-top: 50px;
+}
+.page4 p {
+    font-weight: 500;
+}
+.page4Sign {
+    display: flex;
+    justify-content: space-between;
+}
+.contact li {
+    list-style: none;
+}
+.contact ul {
+    padding: 0;
+}
+.pdf-logo {
+    /* float: right; */
+    text-align: right;
+}
+.pdf-logo h3 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pdf-logo sup {
+    font-size: 10px;
+    margin-top: 10px;
+}
+.copyright-pdf {
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+.loader {
+    background-color: rgba(0, 0, 0, 0.8);
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.spinner {
+    margin: auto;
+    margin-top: 200px;
+    width: 200px;
+    height: 200px;
+}
+
+.spinner svg {
+    animation: rotate 1.5s linear infinite;
+    height: 100%;
+    width: 100%;
+}
+
+.spinner circle {
+    stroke: white;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite 0s;
+    stroke-linecap: round;
+    fill: none;
+    stroke-width: 3;
+}
+
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124;
+    }
+}
+
+.input-value {
+    font-weight: bold;
+    color: gray;
+}
+
+.underline {
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+.uppercase {
+    text-transform: uppercase;
+
+}

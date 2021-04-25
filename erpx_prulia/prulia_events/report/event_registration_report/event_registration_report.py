@@ -21,6 +21,9 @@ def get_columns():
 		_("Prudential ID") + ":Link/PRULIA Member:100",
 		_("Registration Date") + ":Datetime:120",
         _("Member Name") + ":Data:120",
+		_("Region") + ":Link/PRULIA Region:100",
+		_("Branch") + ":Link/PRULIA Branch:100",
+		_("Contact Mobile") + ":Data:80",
 		_("Agency Code") + ":Data:80",
 		_("Price") + ":Currency:100",
 		_("Paid Fees") + ":Currency:100",
@@ -31,7 +34,7 @@ def get_columns():
 def get_registrations(filters):
 	conditions = get_conditions(filters)
 	return frappe.db.sql("""select attendee.parent as "EventID", event.event_name as "EventName", member.prudential_id as "PrudentialID",
-	        attendee.reg_datetime as "RegistrationDate", member.full_name as "MemberName", attendee.agency_no as "AgencyCode",
+	        attendee.reg_datetime as "RegistrationDate", member.full_name as "MemberName", member.region as "Region", member.branch as "Branch", member.cell_number as "Contact Mobile", attendee.agency_no as "AgencyCode",
 	        event.fees as "Price", attendee.fees as "PaidFees", attendee.meal_option as "MealOption", attendee.shirt_size as "ShirtSize"
 			from
 			`tabPRULIA Attendee` attendee
@@ -52,6 +55,15 @@ def get_conditions(filters):
 
 	if filters.get("Prudential ID"):
 		conditions += "and member.prudential_id LIKE '%{}%'".format(filters["Prudential ID"])
+
+	if filters.get("Region"):
+		conditions += "and member.region LIKE '%{}%'".format(filters["Region"])
+
+	if filters.get("Branch"):
+		conditions += "and member.Branch LIKE '%{}%'".format(filters["Branch"])
+
+	if filters.get("Contact Mobile"):
+		conditions += "and cell_number LIKE '%{}%'".format(filters["Contact Mobile"])
 
 	if filters.get("Agency Code"):
 		conditions += "and attendee.agency_no LIKE '%{}%'".format(filters["Agency Code"])

@@ -54,13 +54,26 @@ def get_data():
 			"_doctype": "PRULIA Training",
 			"type": "list",
 			"link": "List/PRULIA Training",
-			"label": _("PRULIA Training")
+			"label": _("PRULIA Training List")
 		},{
 			"module_name": "PRULIA News",
 			"color": "red",
 			"icon": "octicon octicon-rss",
 			"type": "module",
 			"label": _("PRULIA News")
-		},
-					
+		},{
+            "module_name": "PRULIA PA",
+            "color": "red",
+            "icon": "octicon octicon-rss",
+            "type": "module",
+            "label": _("PRULIA PA"),
+        },{
+            "module_name": "PRULIA PA",
+            "color": "red",
+            "icon": "octicon octicon-rss",
+            "_doctype": "PRULIA PA",
+            "type": "list",
+            "link": "List/PRULIA PA",
+            "label": _("PRULIA PA")
+        }
 	]

@@ -119,6 +119,11 @@ boot_session = "erpx_prulia.boot.boot_session"
 # ------------------------------
 #
 override_whitelisted_methods = {
-	"frappe.core.doctype.user.user.update_password": "erpx_prulia.prulia_members.doctype.prulia_member.prulia_member.update_password"
+    "frappe.core.doctype.user.user.update_password": "erpx_prulia.prulia_members.doctype.prulia_member.prulia_member.update_password"
 }
 
+
+# Overriding Whitelisted Methods
+# ------------------------------
+#
+fixtures = ["Property Setter", "Custom Field"]

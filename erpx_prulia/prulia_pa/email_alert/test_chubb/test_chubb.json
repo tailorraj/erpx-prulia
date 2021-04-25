@@ -1,0 +1,32 @@
+{
+ "attach_print": 0, 
+ "condition": "", 
+ "creation": "2020-11-02 00:03:32.556297", 
+ "days_in_advance": 0, 
+ "docstatus": 0, 
+ "doctype": "Email Alert", 
+ "document_type": "PRULIA PA", 
+ "enabled": 1, 
+ "event": "Value Change", 
+ "idx": 0, 
+ "is_standard": 1, 
+ "message": "<h3>{{_(\"CHUBB PA Insurance Application\")}}</h3>\n\n<h4>Applicant Details</h4>\n<ul>\n<li>Prudential ID \t   : {{ doc.member }}\n<li>PRULIA Member Name     : {{ doc.main_full_name }}\n</ul>\n\n<h4>Click the link to download the PRULIA member registration form :</h4>\n</ul>\n", 
+ "modified": "2020-11-02 00:11:56.291258", 
+ "modified_by": "Administrator", 
+ "module": "PRULIA PA", 
+ "name": "Test CHUBB", 
+ "owner": "Administrator", 
+ "property_value": "", 
+ "recipients": [
+  {
+   "cc": "foreslamch@gmail.com", 
+   "email_by_document_field": ""
+  }, 
+  {
+   "cc": "dev.erpx@gmail.com"
+  }
+ ], 
+ "set_property_after_alert": "", 
+ "subject": "TEST CHUBB PA Registration for {{ doc.main_full_name }}", 
+ "value_changed": "application_status"
+}

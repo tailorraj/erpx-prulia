@@ -3,11 +3,15 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-import frappe, json, datetime, requests
+import frappe
+import json
+import datetime
+import requests
 from frappe.model.document import Document
 from frappe.utils import now_datetime, get_url
 from frappe import _, throw
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
+from erpx_prulia.onesignal import push_noti
 
 
 class PRULIAEvent(Document):
@@ -31,47 +35,14 @@ class PRULIAEvent(Document):
                 filters = []
                 if self.position_restriction == 'QL':
                     filters = [
-                        {'field': 'tag', 'key': 'position', 'relation': '=', 'value': self.position_restriction}
+                        {'field': 'tag', 'key': 'position', 'relation': '=',
+                            'value': self.position_restriction}
                     ]
 
-                push_noti('A new event {} is now {}'.format(self.event_name, status), big_image, filters)
+                push_noti('A new event {} is now {}'.format(
+                    self.event_name, status), big_image, filters)
             else:
                 pass
-
-
-def push_noti(content, image, filters=[]):
-    url = "https://onesignal.com/api/v1/notifications"
-    one_signal_api_key = frappe.local.conf.get('one_signal_api_key')
-    one_signal_app_id = frappe.local.conf.get('one_signal_app_id')
-
-    if len(filters) > 0:
-        payload = {
-            "app_id": one_signal_app_id,
-            "filters": filters,
-            "contents": {"en": content},
-            "big_picture": image,
-            "ios_attachments": {"image": image},
-            "ios_badgeType": "Increase",
-            "ios_badgeCount": 1
-        }
-    else:
-        payload = {
-            "app_id": one_signal_app_id,
-            "included_segments": ["All"],
-            "contents": {"en": content},
-            "big_picture": image,
-            "ios_attachments": {"image": image},
-            "ios_badgeType": "Increase",
-            "ios_badgeCount": 1
-        }
-
-    headers = {
-        'content-type': "application/json",
-        'authorization': "Basic {}".format(one_signal_api_key),
-        'cache-control': "no-cache"
-    }
-
-    requests.request("POST", url, data=json.dumps(payload), headers=headers)
 
 
 @frappe.whitelist()
@@ -157,6 +128,7 @@ def get_event_list(member_name):
     member = frappe.get_doc("PRULIA Member", member_name)
 
     event_result = []
+    global_defaults = frappe.get_doc("Global Defaults")
     for event in events:
         if event.position_restriction and event.position_restriction != member.position:
             continue
@@ -174,6 +146,9 @@ def get_event_list(member_name):
             event.pref_lang = registration[0].pref_lang
         else:
             event.register = False
+
+        if global_defaults.default_currency:
+            event.currency = global_defaults.default_currency
         event_result.append(event)
     return event_result
 
@@ -181,7 +156,8 @@ def get_event_list(member_name):
 @frappe.whitelist()
 def update_event_attendee(data):
     attendee = json.loads(data)
-    attendee_rec = frappe.get_doc("PRULIA Attendee", attendee.get('attendee_name'))
+    attendee_rec = frappe.get_doc(
+        "PRULIA Attendee", attendee.get('attendee_name'))
     if attendee_rec:
         attendee_rec.flags.ignore_permissions = True
         attendee_rec.meal_option = attendee.get('meal_option')
@@ -202,13 +178,15 @@ def get_event_list_web():
                             filters=[('PRULIA Event', "end_date_time", ">=", now_datetime().date()),
                                      ('PRULIA Event', "event_status", "!=", "Draft")],
                             order_by='start_date_time desc')
+    global_defaults = frappe.get_doc("Global Defaults")
 
     if frappe.session.user != 'Guest':
         member = mobile_member_login()
         for event in events:
             if event.break_up_session == 1 and event.position_restriction is not None:
                 event._lang = frappe.get_all('PRULIA Event Languages',
-                                             filters={'position_restriction': event.position_restriction},
+                                             filters={
+                                                 'position_restriction': event.position_restriction},
                                              fields=['language'])
             registration = frappe.get_all('PRULIA Attendee', filters={'member': member.name, 'parent': event.name},
                                           fields=['name', 'shirt_size', 'meal_option', 'accomodation', 'attendance',
@@ -225,6 +203,8 @@ def get_event_list_web():
                 event.register = False
             if (event.position_restriction and event.position_restriction == member.position):
                 event.can_register = True
+            if global_defaults.default_currency:
+                event.currency = global_defaults.default_currency
             elif event.position_restriction == None:
                 event.can_register = True
             else:
@@ -232,6 +212,8 @@ def get_event_list_web():
     else:
         for event in events:
             event.register = False
+            if global_defaults.default_currency:
+                event.currency = global_defaults.default_currency
 
     return events
 
@@ -244,6 +226,7 @@ def get_lang(data):
     if position is None:
         docs = frappe.get_all('PRULIA Event Languages', fields=['language'])
     else:
-        docs = frappe.get_all('PRULIA Event Languages', filters={'position_restriction': position}, fields=['language'])
+        docs = frappe.get_all('PRULIA Event Languages', filters={
+                              'position_restriction': position}, fields=['language'])
 
     return docs

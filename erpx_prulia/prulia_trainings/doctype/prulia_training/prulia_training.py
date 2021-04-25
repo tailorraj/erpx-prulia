@@ -7,10 +7,32 @@ import frappe, json, datetime
 from frappe.model.document import Document
 from frappe.utils import now_datetime
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
-
+from erpx_prulia.onesignal import push_noti
 
 class PRULIATraining(Document):
-	pass
+	def validate(self):
+		status = 'open For Registration'
+		if not self.is_new():
+			old_doc = frappe.get_doc("PRULIA Training", self.name)
+			if self.training_status == 'Publish':
+				status = 'published'
+			if old_doc.training_status != self.training_status and (
+					self.training_status == 'Publish' or self.training_status == 'Open For Registration'):
+				# set image
+				big_image = (self.training_image or '')
+				if big_image:
+					big_image = get_url() + self.training_image
+				else:
+					throw(_('Please provide an image'))
+				# set tags to restrict to QL only
+				filters = []
+				if self.position_restriction == 'QL':
+					filters = [
+						{'field': 'tag', 'key': 'position', 'relation': '=', 'value': self.position_restriction}
+					]
+				push_noti('A new training {} is now {}'.format(self.training_name, status), big_image, filters)
+			else:
+				pass
 
 
 @frappe.whitelist()
@@ -93,6 +115,7 @@ def get_training_list(member_name):
 	member = frappe.get_doc("PRULIA Member", member_name)
 
 	training_result = []
+	global_defaults = frappe.get_doc("Global Defaults")
 	for training in trainings:
 		if (training.position_restriction and training.position_restriction != member.position):
 			continue
@@ -107,6 +130,9 @@ def get_training_list(member_name):
 			training.accomodation = registration[0].accomodation
 		else:
 			training.register = False
+
+		if global_defaults.default_currency:
+			training.currency = global_defaults.default_currency
 		training_result.append(training)
 	return training_result
 
@@ -134,6 +160,7 @@ def get_training_list_web():
 							filters=[('PRULIA Training', "end_date_time", ">=", now_datetime().date()),
 									 ('PRULIA Training', "training_status", "!=", "Draft")],
 							order_by='start_date_time desc')
+	global_defaults = frappe.get_doc("Global Defaults")
 
 	if frappe.session.user != 'Guest':
 		member = mobile_member_login()
@@ -150,6 +177,8 @@ def get_training_list_web():
 				training.register = False
 			if (training.position_restriction and training.position_restriction == member.position):
 				training.can_register = True
+			if global_defaults.default_currency:
+				training.currency = global_defaults.default_currency
 			elif training.position_restriction == None:
 				training.can_register = True
 			else:
@@ -157,5 +186,8 @@ def get_training_list_web():
 	else:
 		for training in trainings:
 			training.register = False
+			if global_defaults.default_currency:
+				training.currency = global_defaults.default_currency
+
 
 	return trainings
