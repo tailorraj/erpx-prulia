@@ -5,10 +5,6 @@ module.exports = {
   parallel: true,
   publicPath: '/beta/',
   assetsDir: 'static',
-  chainWebpack: config => {
-    config.plugins.delete('preload')
-    config.plugins.delete('prefetch')
-  },
   configureWebpack: {
     plugins: [new BomPlugin(true)],
     optimization: {
