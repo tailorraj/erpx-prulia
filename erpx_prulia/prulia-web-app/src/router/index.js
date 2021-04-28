@@ -67,7 +67,7 @@ const routes = [
     path: '/smart-partners',
     name: 'SmartPartners',
     component: () => import('@/views/smart-partners'),
-    meta: { showBack: true }
+    meta: { auth: true, showBack: true }
   },
   {
     path: '/smart-partners/:id',
