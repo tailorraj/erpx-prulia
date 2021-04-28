@@ -11,31 +11,30 @@
               icon
               ><v-icon size="40">mdi-chevron-left</v-icon></v-btn
             >
-            <v-menu v-if="member"  offset-y>
-              <template #activator="{ on, attrs }">
-                <v-btn
-                    class="hidden-md-and-up mr-1 ml-1"
-                    icon
-                    v-bind="attrs"
-                    v-on="on"
-                >
-                  <v-icon>
-                    mdi-menu
-                  </v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item
-                    :to="link.route"
-                    :key="`topbar-link-sm-${index}`"
-                    v-for="(link, index) in topBarLinks"
-                >
-                  <v-list-item-title>{{ link.title }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
           </v-slide-x-transition>
-
+          <v-menu v-if="member"  offset-y>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                  class="hidden-md-and-up mr-1 ml-1"
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+              >
+                <v-icon>
+                  mdi-menu
+                </v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                  :to="link.route"
+                  :key="`topbar-link-sm-${index}`"
+                  v-for="(link, index) in topBarLinks"
+              >
+                <v-list-item-title>{{ link.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
           <div @click="$router.push({ name: 'Home' })" style="cursor: pointer">
             <v-img
               style="display: inline-block"
