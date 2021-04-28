@@ -127,7 +127,7 @@
           </v-btn>
         </v-col>
       </v-row>
-      <v-row class="grey px-4 px-md-12">
+      <v-row class="grey px-4 px-md-12 pb-6">
         <v-col cols="12" class="text-center">
           <h3 class="primary--text">Smart Partners</h3>
         </v-col>
