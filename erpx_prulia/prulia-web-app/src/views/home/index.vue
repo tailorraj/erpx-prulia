@@ -93,9 +93,16 @@
         </v-col>
 
         <v-col cols="12" class="text-center">
-          <v-btn plain color="secondary">
-            Find out more
-          </v-btn>
+          <v-badge
+              color="primary"
+              content="Coming soon"
+              overlap
+          >
+            <v-btn disabled plain color="secondary">
+              Find out more
+            </v-btn>
+          </v-badge>
+
         </v-col>
       </v-row>
       <v-row class="vanilla pb-6">
@@ -117,6 +124,36 @@
             block
             :href="link.href"
             >{{ link.title }}
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row class="grey px-4 px-md-12">
+        <v-col cols="12" class="text-center">
+          <h3 class="primary--text">Smart Partners</h3>
+        </v-col>
+        <v-row no-gutters align="center" justify="center">
+          <v-col cols="2">
+            <v-img src="@/assets/logo/smart-partners/maxis-grey.png"/>
+          </v-col>
+          <v-col cols="2">
+            <v-img src="@/assets/logo/smart-partners/dolemon-grey.png"/>
+          </v-col>
+          <v-col cols="2" class="pa-2">
+            <v-img src="@/assets/logo/smart-partners/BMW-grey.png"/>
+          </v-col>
+          <v-col cols="2">
+            <v-img src="@/assets/logo/smart-partners/Volvo-grey.png"/>
+          </v-col>
+          <v-col cols="2">
+            <v-img src="@/assets/logo/smart-partners/chubb-grey.png"/>
+          </v-col>
+          <v-col cols="2">
+            <v-img src="@/assets/logo/smart-partners/toptravel-grey.png"/>
+          </v-col>
+        </v-row>
+        <v-col cols="12" class="text-center caption" v-if="member">
+          <v-btn plain color="secondary" :to="{ name: 'SmartPartners' }">
+            Find out more
           </v-btn>
         </v-col>
       </v-row>
@@ -227,6 +264,8 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: 'Home',
   components: {},
@@ -307,9 +346,10 @@ export default {
         title: 'Malaysia Takaful Association',
         href: 'http://www.malaysiantakaful.com.my/'
       }
-    ]
+    ],
   }),
   computed: {
+    ...mapGetters('auth', ['member']),
     allNews() {
       return this.$store.getters['news/all'].slice(0, 3)
     }

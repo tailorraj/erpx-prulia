@@ -24,7 +24,7 @@ export default new Vuetify({
         dusk: '#EBF5EE',
         sky: '#90caf9',
         amber: '#F8D675',
-        grey: '#eceff1',
+        grey: '#FAFAFA',
         black: '#212121',
         dark: '#424242'
       },

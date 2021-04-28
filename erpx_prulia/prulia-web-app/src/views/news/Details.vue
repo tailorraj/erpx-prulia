@@ -35,13 +35,18 @@ import isEqual from 'lodash/isEqual'
 export default {
   name: 'index.vue',
   computed: {
-    ...mapGetters('news', { allNews: 'all' }),
+    ...mapGetters('news', { allNews: 'all', loaded: 'loaded' }),
     currentNews() {
       return this.allNews.find(news =>
         isEqual(this.$route.params.id, news.name)
       )
     }
-  }
+  },
+  mounted() {
+    if (!this.loaded) {
+      this.$store.dispatch('news/load')
+    }
+  },
 }
 </script>
 

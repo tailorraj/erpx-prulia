@@ -6,7 +6,7 @@
     <v-row class="vanilla py-3" justify="center">
       <h2>Latest News</h2>
     </v-row>
-    <v-row class="primary">
+    <v-row v-if="allNews.length" class="primary">
       <v-col
         align-self="center"
         class="pa-6"
@@ -42,6 +42,9 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-else justify="center" class="vanilla pb-12">
+      Oops, no latest news available :(
+    </v-row>
   </v-container>
 </template>
 
@@ -49,13 +52,10 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'index.vue',
+  name: 'News',
   computed: {
     ...mapGetters('news', { allNews: 'all' })
   },
-  mounted() {
-    console.log(this.allNews)
-  }
 }
 </script>
 
