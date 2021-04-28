@@ -3,9 +3,6 @@
     <v-row class="dusk"
       ><v-img contain src="@/assets/banners/PRULIA_BannerNews.jpg"
     /></v-row>
-    <v-row class="vanilla py-3" justify="center">
-      <h2>Latest News</h2>
-    </v-row>
     <v-row v-if="allNews.length" class="primary">
       <v-col
         align-self="center"

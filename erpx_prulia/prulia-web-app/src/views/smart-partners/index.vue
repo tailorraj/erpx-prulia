@@ -1,11 +1,8 @@
 <template>
   <v-container>
     <v-row class="dusk"
-      ><v-img contain src="@/assets/banners/PRULIA_BannerEvents.jpg"
+      ><v-img contain src="@/assets/banners/PRULIA_BannerSmartPartner.jpg"
     /></v-row>
-    <v-row class="vanilla py-3" justify="center">
-      <h2>Smart Partners</h2>
-    </v-row>
     <v-row v-if="all.length" class="primary">
       <v-col
           align-self="center"

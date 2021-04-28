@@ -155,9 +155,8 @@ export default {
 
   mounted() {
     this.$store.dispatch('home/load')
-    this.$store.dispatch('auth/load').then(() => {
-      this.$store.dispatch('news/load')
-    })
+    this.$store.dispatch('news/load')
+    this.$store.dispatch('auth/load')
   },
 
   watch: {
