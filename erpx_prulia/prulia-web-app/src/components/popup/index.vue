@@ -2,9 +2,9 @@
   <v-dialog
     v-model="model"
     max-width="80%"
-    content-class="popup-dialog pa-0 elevation-0"
+    content-class="popup-dialog elevation-0"
   >
-    <v-card class="pa-0 transparent mb-0 elevation-0">
+    <v-card class="transparent elevation-0">
       <v-btn
         class="dusk"
         color="secondary"
@@ -25,7 +25,6 @@
         :show-arrows="popups.length > 1"
         show-arrows-on-hover
         interval="5000"
-        class="pa-0"
         height="450px"
       >
         <v-carousel-item
@@ -33,7 +32,7 @@
           v-for="(popup, i) in popups"
           :key="`popup-${i}`"
         >
-          <v-row class="fill-height pa-0" align="center" justify="center">
+          <v-row class="fill-height" no-gutters align="center" justify="center">
             <v-img :src="popup.news_image" contain max-height="100%" />
           </v-row>
         </v-carousel-item>
