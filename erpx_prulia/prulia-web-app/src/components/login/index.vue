@@ -116,6 +116,7 @@ export default {
           this.model = false
           this.$nextTick(() => {
             this.$router.push({ name: 'Home' }).catch(() => {})
+            this.$store.dispatch('news/togglePopup', true)
           })
         })
         .catch(error => {

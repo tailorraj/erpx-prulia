@@ -69,7 +69,7 @@
           </v-btn>
         </v-col>
       </v-row>
-      <v-row justify="center" align="center">
+      <v-row justify="center" align="center" class="secondary">
         <v-img src="@/assets/banners/PRULIA_BannerVoice.jpg" contain />
         <div class="white--text text-center" style="position: absolute;">
           <h2>About PRULIA</h2>

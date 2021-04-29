@@ -28,6 +28,7 @@ const actions = {
         let { message } = data
 
         commit('SET_MEMBER', message)
+        return true
       })
       .finally(() => {
         commit('SET_LOADED', true)

@@ -6,19 +6,19 @@
           <v-slide-x-transition>
             <v-btn
               v-if="showBack"
-              class="mr-1 ml-1"
+              class="mr-1 ml-1 hidden-sm-and-down"
               @click="$router.back()"
               icon
               ><v-icon size="40">mdi-chevron-left</v-icon></v-btn
             >
           </v-slide-x-transition>
-          <v-menu v-if="member"  offset-y>
+          <v-menu v-if="member" offset-y>
             <template #activator="{ on, attrs }">
               <v-btn
-                  class="hidden-md-and-up mr-1 ml-1"
-                  icon
-                  v-bind="attrs"
-                  v-on="on"
+                class="hidden-md-and-up mr-1 ml-1"
+                icon
+                v-bind="attrs"
+                v-on="on"
               >
                 <v-icon>
                   mdi-menu
@@ -27,9 +27,9 @@
             </template>
             <v-list>
               <v-list-item
-                  :to="link.route"
-                  :key="`topbar-link-sm-${index}`"
-                  v-for="(link, index) in topBarLinks"
+                :to="link.route"
+                :key="`topbar-link-sm-${index}`"
+                v-for="(link, index) in topBarLinks"
               >
                 <v-list-item-title>{{ link.title }}</v-list-item-title>
               </v-list-item>
@@ -83,6 +83,7 @@
     </v-main>
 
     <login v-model="showLogin" />
+    <popup />
 
     <v-snackbar
       v-model="snackbar.status"
@@ -115,11 +116,12 @@ import Login from '@/components/login/index'
 import { sync } from 'vuex-pathify'
 import UserMenu from '@/components/user-menu/index'
 import { mapGetters } from 'vuex'
+import Popup from '@/components/popup/index'
 
 export default {
   name: 'App',
 
-  components: { UserMenu, Login },
+  components: { Popup, UserMenu, Login },
 
   data: () => ({
     showLogin: false
@@ -156,7 +158,10 @@ export default {
   mounted() {
     this.$store.dispatch('home/load')
     this.$store.dispatch('news/load')
-    this.$store.dispatch('auth/load')
+    this.$store.dispatch('news/loadPopup')
+    this.$store.dispatch('auth/load').finally(() => {
+      this.$store.dispatch('news/togglePopup', true)
+    })
   },
 
   watch: {
@@ -167,6 +172,7 @@ export default {
 
   methods: {
     openLogin() {
+      this.$store.dispatch('news/togglePopup', false)
       this.$router.push({ name: 'Home' }).catch(() => {})
       this.$nextTick(() => {
         this.$router.push({ name: 'Login' }).catch(() => {})
