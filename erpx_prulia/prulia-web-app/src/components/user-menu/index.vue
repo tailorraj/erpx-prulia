@@ -35,10 +35,7 @@
         <v-list-item @click="changePassword = true">
           <v-list-item-title>Change password</v-list-item-title>
         </v-list-item>
-        <v-list-item
-          href="https://form.jotform.me/80987924533469"
-          target="_blank"
-        >
+        <v-list-item @click="feedback = true">
           <v-list-item-title>Feedback</v-list-item-title>
         </v-list-item>
         <!--      <v-list-item @click.stop="darkMode">-->
@@ -57,17 +54,20 @@
       </v-list>
     </v-menu>
     <change-password v-model="changePassword" />
+    <feedback v-model="feedback" />
   </div>
 </template>
 
 <script>
 import UserAvatar from '@/components/common/UserAvatar'
 import ChangePassword from '@/components/change-password/index'
+import Feedback from '@/components/feedback/index'
 export default {
   name: 'UserMenu',
-  components: { ChangePassword, UserAvatar },
+  components: { Feedback, ChangePassword, UserAvatar },
   data: () => ({
-    changePassword: false
+    changePassword: false,
+    feedback: false
   }),
   beforeCreate() {
     this.$vuetify.theme.dark = this.$localStorage.get('dark-mode')
