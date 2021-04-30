@@ -72,6 +72,21 @@ const actions = {
       data
     )
   },
+  changePassword(self, data) {
+    return axios({
+      url: '/api/method/frappe.core.doctype.user.user.update_password',
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true,
+      data: JSON.stringify({
+        ...data,
+        logout_all_sessions: false
+      })
+    })
+  },
   logout({ commit }) {
     commit('SET_MEMBER', null)
     return axios.get(`/api/method/logout`)

@@ -92,6 +92,7 @@ export default {
           let { data } = response
           let { message } = data
           this.showSnackbar(message, 'success')
+          this.$emit('close')
         })
         .catch(error => {
           try {
