@@ -13,12 +13,11 @@
             {{ $store.getters['auth/member'].full_name }}
           </text-truncate>
         </h4>
-        <v-avatar right v-if="$store.getters['auth/member'].profile_photo">
-          <v-img
-            max-width="28"
-            max-height="28"
-            :src="$store.getters['auth/member'].profile_photo"
-        /></v-avatar>
+        <user-avatar
+          class="ml-3"
+          right
+          :src="$store.getters['auth/member'].profile_photo"
+        />
       </v-btn>
     </template>
     <v-list dense>
@@ -59,8 +58,10 @@
 </template>
 
 <script>
+import UserAvatar from '@/components/common/UserAvatar'
 export default {
   name: 'UserMenu',
+  components: { UserAvatar },
   beforeCreate() {
     this.$vuetify.theme.dark = this.$localStorage.get('dark-mode')
   },

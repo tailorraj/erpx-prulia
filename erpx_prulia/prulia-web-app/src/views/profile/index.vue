@@ -3,9 +3,12 @@
     <v-list v-if="member">
       <v-list-item>
         <v-list-item-avatar>
-          <v-avatar right v-if="member.profile_photo">
-            <v-img max-width="36" max-height="36" :src="member.profile_photo"
-          /></v-avatar>
+          <user-avatar
+            size="36"
+            :src="member.profile_photo"
+            right
+            color="secondary"
+          />
         </v-list-item-avatar>
         <v-list-item-title>
           <div>
@@ -205,9 +208,11 @@
 import { mapGetters } from 'vuex'
 import cloneDeep from 'lodash/cloneDeep'
 import { GENDER, MEAL_OPTIONS, SHIRT_SIZE } from '@/const'
+import UserAvatar from '@/components/common/UserAvatar'
 
 export default {
   name: 'Profile',
+  components: { UserAvatar },
   data: () => ({
     memberData: null,
     disableForm: true,
