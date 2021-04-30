@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="model" max-width="450px">
     <v-form
-      v-if="model"
+      v-if="model && !showForgotPassword"
       ref="form"
       @submit.prevent="onSubmit"
       v-model="valid"
@@ -25,8 +25,8 @@
             persistent-hint
             prepend-icon="mdi-account"
             :rules="[
-              () => !!prudential_id || 'Agent ID is required',
-              () => String(prudential_id).length >= 7 || 'Invalid Agent ID'
+              val => !!val || 'Prudential ID is required',
+              val => String(val).length >= 7 || 'Invalid Prudential ID'
             ]"
           />
           <v-text-field
@@ -38,8 +38,8 @@
             persistent-hint
             prepend-icon="mdi-lock"
             :rules="[
-              () => !!password || 'Password is required',
-              () => String(password).length >= 6 || 'Invalid password'
+              val => !!val || 'Password is required',
+              val => String(val).length >= 6 || 'Invalid password'
             ]"
             :type="showPassword ? '' : 'password'"
             :append-outer-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -47,7 +47,13 @@
           />
           <v-row>
             <v-spacer />
-            <v-btn color="primary" rounded small class="mt-4" text
+            <v-btn
+              color="primary"
+              rounded
+              small
+              class="mt-4"
+              text
+              @click="showForgotPassword = true"
               >Forgot password?</v-btn
             >
           </v-row>
@@ -61,6 +67,7 @@
             class="white--text"
             type="submit"
             :disabled="!valid"
+            :loading="loading"
             rounded
             text
             >Login</v-btn
@@ -68,20 +75,28 @@
         </v-card-actions>
       </v-card>
     </v-form>
+    <forgot-password
+      v-if="showForgotPassword"
+      @login="showForgotPassword = false"
+      @close="model = false"
+    />
   </v-dialog>
 </template>
 
 <script>
+import ForgotPassword from '@/components/login/ForgotPassword'
 const data = () => ({
   valid: false,
+  loading: false,
   prudential_id: '',
   password: '',
-  showPassword: false
+  showPassword: false,
+  showForgotPassword: false
 })
 
 export default {
   name: 'Login',
-
+  components: { ForgotPassword },
   data: () => data(),
 
   props: {
@@ -107,6 +122,7 @@ export default {
 
   methods: {
     onSubmit() {
+      this.loading = true
       this.$store
         .dispatch('auth/login', {
           usr: this.prudential_id,
@@ -124,6 +140,9 @@ export default {
           let { message } = data
 
           this.showSnackbar(message, 'error')
+        })
+        .finally(() => {
+          this.loading = false
         })
     }
   }

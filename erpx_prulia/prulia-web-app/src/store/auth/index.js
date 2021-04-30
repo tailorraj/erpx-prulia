@@ -66,6 +66,12 @@ const actions = {
       } else return Promise.reject({ response: { data } })
     })
   },
+  forgotPassword(self, data) {
+    return axios.post(
+      '/api/method/erpx_prulia.prulia_members.doctype.prulia_member.prulia_member.forget_password',
+      data
+    )
+  },
   logout({ commit }) {
     commit('SET_MEMBER', null)
     return axios.get(`/api/method/logout`)

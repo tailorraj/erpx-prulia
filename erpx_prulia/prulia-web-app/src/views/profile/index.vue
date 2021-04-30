@@ -8,7 +8,12 @@
           /></v-avatar>
         </v-list-item-avatar>
         <v-list-item-title>
-          {{ member.full_name }}
+          <div>
+            {{ member.full_name }}
+          </div>
+          <div class="caption">
+            {{ member.email }}
+          </div>
         </v-list-item-title>
         <v-list-item-action>
           <v-btn color="primary" icon :disabled="loading" @click="toggleForm"
