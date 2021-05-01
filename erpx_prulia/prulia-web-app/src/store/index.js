@@ -9,6 +9,7 @@ import events from './events'
 import training from './training'
 import smartPartners from './smartPartners'
 import feedback from './feedback'
+import book from './book'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     events,
     training,
     smartPartners,
-    feedback
+    feedback,
+    book
   }
 })

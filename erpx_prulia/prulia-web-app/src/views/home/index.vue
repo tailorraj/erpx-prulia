@@ -93,11 +93,9 @@
         </v-col>
 
         <v-col cols="12" class="text-center">
-          <v-badge color="primary" content="Coming soon" overlap>
-            <v-btn disabled plain color="secondary">
-              Find out more
-            </v-btn>
-          </v-badge>
+          <v-btn plain color="secondary" :to="{ name: 'Book' }">
+            Find out more
+          </v-btn>
         </v-col>
       </v-row>
       <v-row class="vanilla pb-6">
