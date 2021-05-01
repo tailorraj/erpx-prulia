@@ -30,10 +30,10 @@
     "slick-carousel": "^1.8.1",
     "sweetalert": "^2.1.2"
   },
-  "homepage": ".",
+  "homepage": "/telco",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rm -rf ../www/telco && mv build ../www/telco",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
