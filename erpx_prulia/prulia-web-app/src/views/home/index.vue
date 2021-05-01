@@ -93,16 +93,11 @@
         </v-col>
 
         <v-col cols="12" class="text-center">
-          <v-badge
-              color="primary"
-              content="Coming soon"
-              overlap
-          >
+          <v-badge color="primary" content="Coming soon" overlap>
             <v-btn disabled plain color="secondary">
               Find out more
             </v-btn>
           </v-badge>
-
         </v-col>
       </v-row>
       <v-row class="vanilla pb-6">
@@ -133,22 +128,22 @@
         </v-col>
         <v-row no-gutters align="center" justify="center">
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/maxis-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/maxis-grey.png" />
           </v-col>
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/dolemon-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/dolemon-grey.png" />
           </v-col>
           <v-col cols="2" class="pa-2">
-            <v-img src="@/assets/logo/smart-partners/BMW-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/BMW-grey.png" />
           </v-col>
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/Volvo-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/Volvo-grey.png" />
           </v-col>
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/chubb-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/chubb-grey.png" />
           </v-col>
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/toptravel-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/toptravel-grey.png" />
           </v-col>
         </v-row>
         <v-col cols="12" class="text-center caption" v-if="member">
@@ -252,19 +247,11 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-footer color="secondary" padless class="justify-center" width="100%">
-      <v-card flat class="secondary text-center">
-        <v-card-text class="white--text">
-          Copyright © {{ new Date().getFullYear() }}
-          Prudential Life Insurance Agency Association. All rights reserved.
-        </v-card-text>
-      </v-card>
-    </v-footer>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
@@ -346,7 +333,7 @@ export default {
         title: 'Malaysia Takaful Association',
         href: 'http://www.malaysiantakaful.com.my/'
       }
-    ],
+    ]
   }),
   computed: {
     ...mapGetters('auth', ['member']),

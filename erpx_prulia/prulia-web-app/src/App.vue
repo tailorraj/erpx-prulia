@@ -108,6 +108,14 @@
         </v-btn>
       </template>
     </v-snackbar>
+    <v-footer color="secondary" padless class="justify-center" width="100%">
+      <v-card flat class="secondary text-center">
+        <v-card-text class="white--text">
+          Copyright © {{ new Date().getFullYear() }}
+          Prudential Life Insurance Agency Association. All rights reserved.
+        </v-card-text>
+      </v-card>
+    </v-footer>
   </v-app>
 </template>
 
