@@ -83,6 +83,8 @@ export default {
       },
       set(val) {
         if (!val) {
+          this.croppa_pic?.remove()
+          this.croppa_pic?.refresh()
           this.resetComponentData(data)
         }
         this.$emit('input', val)
