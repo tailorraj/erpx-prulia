@@ -39,7 +39,7 @@
             prepend-icon="mdi-lock"
             :rules="[
               val => !!val || 'Password is required',
-              val => String(val).length >= 6 || 'Invalid password'
+              val => String(val).length >= 6 || 'Minimum 6 characters required'
             ]"
             :type="showPassword ? '' : 'password'"
             :append-outer-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"

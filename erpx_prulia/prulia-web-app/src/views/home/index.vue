@@ -79,7 +79,11 @@
             the united
           </h5>
           <h1>"Voice of the Agency"</h1>
-          <v-btn color="white" plain>
+          <v-btn
+            color="white"
+            plain
+            :to="{ name: 'View', params: { id: 'PHC00003' } }"
+          >
             Read more
           </v-btn>
         </div>

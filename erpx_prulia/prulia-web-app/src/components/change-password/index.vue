@@ -20,7 +20,7 @@
             prepend-icon="mdi-lock-open"
             :rules="[
               val => !!val || 'Password is required',
-              val => String(val).length >= 6 || 'Invalid password'
+              val => String(val).length >= 6 || 'Minimum 6 characters required'
             ]"
             :type="showPassword.old_password ? '' : 'password'"
             :append-outer-icon="
