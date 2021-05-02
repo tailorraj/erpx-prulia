@@ -108,12 +108,13 @@ const actions = {
       },
       referrer: 'http://167.99.77.197/',
       referrerPolicy: 'strict-origin-when-cross-origin',
-      body: encodeURIComponent(
+      body:
         `from_form=1&is_private=0&cmd=uploadfile&doctype=PRULIA+Member&` +
-          `docname=${member_name}&filename=${member_name +
-            '_' +
-            filename}&file_url=&filedata=${filedata}&file_size=${file_size}`
-      ),
+        `docname=${member_name}&filename=${member_name +
+          '_' +
+          filename}&file_url=&filedata=${encodeURIComponent(
+          filedata
+        )}&file_size=${file_size}`,
       method: 'POST',
       mode: 'cors',
       credentials: 'include'
