@@ -114,6 +114,7 @@ export default {
           file_size: file.size
         })
         .then(() => {
+          this.model = false
           this.showSnackbar('Profile picture updated successfully', 'success')
         })
         .catch(() => {
