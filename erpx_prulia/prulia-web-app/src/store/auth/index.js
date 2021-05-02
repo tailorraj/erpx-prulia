@@ -1,5 +1,6 @@
 import { make } from 'vuex-pathify'
 import axios from 'axios'
+import cloneDeep from 'lodash/cloneDeep'
 
 const state = {
   member: null,
@@ -91,8 +92,9 @@ const actions = {
     commit('SET_MEMBER', null)
     return axios.get(`/api/method/logout`)
   },
-  uploadPic({ commit, getters }, data) {
-    let member_name = getters['member'].name
+  uploadPic({ commit, getters, dispatch }, data) {
+    let member = cloneDeep(getters['member'])
+    let member_name = member.name
 
     let { filedata, file_size, filename } = data
 
@@ -117,8 +119,12 @@ const actions = {
     }).then(async response => {
       let data = await response.json()
       if (response.ok) {
-        console.log(data)
-        return true
+        let { message } = data
+        let { file_url } = message
+
+        member.profile_photo = file_url
+
+        return dispatch('updateMemberDetails', member)
       } else return Promise.reject({ response: { data } })
     })
 
