@@ -125,6 +125,7 @@ import { sync } from 'vuex-pathify'
 import UserMenu from '@/components/user-menu/index'
 import { mapGetters } from 'vuex'
 import Popup from '@/components/popup/index'
+import './scss/global.scss'
 
 export default {
   name: 'App',
