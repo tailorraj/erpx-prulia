@@ -98,33 +98,57 @@ const actions = {
 
     console.log(commit, data, member_name)
 
-    const config = {
-      withCredentials: true,
+    return fetch('http://167.99.77.197', {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }
-
-    return axios
-      .post(
-        '/',
-        {
-          from_form: 1,
-          is_private: 0,
-          cmd: 'uploadfile',
-          doctype: 'PRULIA Member',
-          docname: member_name,
-          filename: member_name + '_' + filename,
-          file_url: '',
-          filedata,
-          file_size
-        },
-        config
-      )
-      .then(response => {
-        console.log(response)
+        accept: '*/*',
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'x-requested-with': 'XMLHttpRequest'
+      },
+      referrer: 'http://167.99.77.197/',
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      body:
+        `from_form=1&is_private=0&cmd=uploadfile&doctype=PRULIA+Member&` +
+        `docname=${member_name}&filename=${member_name +
+          '_' +
+          filename}&file_url=&filedata=${filedata}&file_size=${file_size}`,
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include'
+    }).then(async response => {
+      let data = await response.json()
+      if (response.ok) {
+        console.log(data)
         return true
-      })
+      } else return Promise.reject({ response: { data } })
+    })
+
+    // const config = {
+    //   withCredentials: true,
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   }
+    // }
+    //
+    // return axios
+    //   .post(
+    //     '/',
+    //     {
+    //       from_form: 1,
+    //       is_private: 0,
+    //       cmd: 'uploadfile',
+    //       doctype: 'PRULIA Member',
+    //       docname: member_name,
+    //       filename: member_name + '_' + filename,
+    //       file_url: '',
+    //       filedata,
+    //       file_size
+    //     },
+    //     config
+    //   )
+    //   .then(response => {
+    //     console.log(response)
+    //     return true
+    //   })
 
     // return axios({
     //   url: 'http://167.99.77.197',
