@@ -125,6 +125,7 @@ const actions = {
         let { file_url } = message
 
         member.profile_photo = file_url
+        commit('SET_MEMBER', member)
 
         return dispatch('updateMemberDetails', member)
       } else return Promise.reject({ response: { data } })
