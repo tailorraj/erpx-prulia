@@ -98,8 +98,6 @@ const actions = {
 
     let { filedata, file_size, filename } = data
 
-    console.log(commit, data, member_name)
-
     return fetch('http://167.99.77.197', {
       headers: {
         accept: '*/*',
@@ -130,71 +128,6 @@ const actions = {
         return dispatch('updateMemberDetails', member)
       } else return Promise.reject({ response: { data } })
     })
-
-    // const config = {
-    //   withCredentials: true,
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   }
-    // }
-    //
-    // return axios
-    //   .post(
-    //     '/',
-    //     {
-    //       from_form: 1,
-    //       is_private: 0,
-    //       cmd: 'uploadfile',
-    //       doctype: 'PRULIA Member',
-    //       docname: member_name,
-    //       filename: member_name + '_' + filename,
-    //       file_url: '',
-    //       filedata,
-    //       file_size
-    //     },
-    //     config
-    //   )
-    //   .then(response => {
-    //     console.log(response)
-    //     return true
-    //   })
-
-    // return axios({
-    //   url: 'http://167.99.77.197',
-    //   method: 'POST',
-    //   withCredentials: true,
-    //   headers: {
-    //     accept: '*/*',
-    //     'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    //   },
-    //   data: JSON.stringify({
-    //     from_form: 1,
-    //     is_private: 0,
-    //     cmd: 'uploadfile',
-    //     doctype: 'PRULIA Member',
-    //     docname: member_name,
-    //     filename: member_name + '_' + filename,
-    //     file_url: '',
-    //     filedata,
-    //     file_size
-    //   })
-    // })
-
-    // return axios
-    //   .post('http://167.99.77.197', {
-    //     from_form: 1,
-    //     is_private: 0,
-    //     cmd: 'uploadfile',
-    //     doctype: 'PRULIA Member',
-    //     docname: member_name,
-    //     filename: member_name + '_' + filename,
-    //     file_url: '',
-    //     filedata,
-    //     file_size
-    //   })
-    //   .then(response => {
-    //     console.log(response)
-    //   })
   },
   load({ dispatch }) {
     return axios.get(`/api/method/frappe.auth.get_logged_user`).then(() => {
