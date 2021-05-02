@@ -34,7 +34,7 @@
           justify="center"
           align="center"
         >
-          <v-btn icon @click="croppa_pic.remove">
+          <v-btn icon v-if="croppa_pic" @click="croppa_pic.remove">
             <v-icon color="secondary">mdi-delete</v-icon>
           </v-btn>
         </v-row>
