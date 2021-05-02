@@ -270,7 +270,7 @@ export default {
       {
         title: 'Membership',
         icon: 'mdi-account-lock',
-        route: { name: 'View', params: { id: 'PHC00007' } }
+        route: { name: 'View', params: { id: 'PHC00004' } }
       },
       {
         title: 'Achievements',
