@@ -76,6 +76,18 @@ const routes = [
     meta: { auth: true, showBack: true }
   },
   {
+    path: '/book',
+    name: 'Book',
+    component: () => import('@/views/book'),
+    meta: { showBack: true }
+  },
+  {
+    path: '/book/:id',
+    name: 'BookDetails',
+    component: () => import('@/views/book/Details'),
+    meta: { showBack: true }
+  },
+  {
     path: '/pedia',
     name: 'Pedia',
     component: () => import('@/views/pedia'),

@@ -43,7 +43,7 @@ const actions = {
     return Promise.all(
       [
         axios.get(
-          `api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.get_event_list_web`
+          `/api/method/erpx_prulia.prulia_events.doctype.prulia_event.prulia_event.get_event_list_web`
         ),
         member &&
           axios.post(

@@ -2,12 +2,12 @@ import { make } from 'vuex-pathify'
 import axios from 'axios'
 
 const state = {
-  all: []
+  all: [],
+  loaded: false
 }
 
 const getters = {
-  ...make.getters(state),
-  hasPedia: getters => getters.all.length > 0
+  ...make.getters(state)
 }
 const mutations = {
   ...make.mutations(state)
@@ -16,13 +16,17 @@ const mutations = {
 const actions = {
   ...make.actions(state),
   load({ commit }) {
-    axios
+    return axios
       .get(
-        `/api/method/erpx_prulia.prulia_news.doctype.prulia_pedia.prulia_pedia.get_pedia_posts`
+        `/api/method/erpx_prulia.prulia_news.doctype.prulia_book.prulia_book.get_books_list`
       )
-      .then(({ data }) => {
+      .then(responses => {
+        let { data } = responses
         let { message } = data
+
         commit('SET_ALL', message || [])
+        commit('SET_LOADED', true)
+        return true
       })
   }
 }

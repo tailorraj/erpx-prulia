@@ -1,44 +1,33 @@
 <template>
-    <v-container>
-        <v-row class="dusk"
-        ><v-img contain src="@/assets/banners/PRULIA_BannerNews.jpg"
-        /></v-row>
-        <v-row>
-            <v-col
-                    cols="12"
-                    sm="12"
-                    md="12"
-            >
-                <v-text-field
-                        label="Outlined"
-                        outlined
-                ></v-text-field>
-            </v-col>
-        </v-row>
-        <v-row style="text-align: center;display: block;">
-            <v-btn
-                    depressed
-                    color="primary"
-                    @click="window.location.href = '/pedia/add'"
-            >
-                New Pedia
-            </v-btn>
-        </v-row>
-        <v-row justify="center" class="vanilla pb-12">
-            Oops, no posts available :(
-        </v-row>
-    </v-container>
+  <v-container>
+    <v-row v-if="all.length"> </v-row>
+    <v-row
+      v-else
+      justify="center"
+      align="center"
+      class="vanilla pb-12 fill-height"
+    >
+      <span class="pt-4">
+        Oops, no Pedia available :(
+      </span>
+    </v-row>
+    <v-slide-y-reverse-transition>
+      <v-btn color="primary" fab fixed bottom right>
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+    </v-slide-y-reverse-transition>
+  </v-container>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-    export default {
-        name: 'Pedia',
-        computed: {
-            ...mapGetters('pedia', {})
-        },
-    }
+export default {
+  name: 'Pedia',
+  computed: {
+    ...mapGetters('pedia', ['all'])
+  }
+}
 </script>
 
 <style scoped></style>
