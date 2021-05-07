@@ -32,7 +32,7 @@
           </a>
         </v-col>
       </v-row>
-      <v-row class="sky" v-if="allNews.length">
+      <v-row class="sky" v-if="member && allNews.length">
         <v-col cols="12" class="text-center">
           <span>Latest News</span>
         </v-col>
