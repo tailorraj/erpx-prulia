@@ -2,7 +2,8 @@ import { make } from 'vuex-pathify'
 import axios from 'axios'
 
 const state = {
-  all: []
+  all: [],
+  meta: null
 }
 
 const getters = {
@@ -15,10 +16,20 @@ const mutations = {
 
 const actions = {
   ...make.actions(state),
+  loadMeta({ commit }) {
+    axios
+      .get(
+        `/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.get_pedia_meta`
+      )
+      .then(({ data }) => {
+        let { message } = data
+        commit('SET_META', message || [])
+      })
+  },
   load({ commit }) {
     axios
       .get(
-        `/api/method/erpx_prulia.prulia_news.doctype.prulia_pedia.prulia_pedia.get_pedia_posts`
+        `/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.get_pedia_posts`
       )
       .then(({ data }) => {
         let { message } = data
