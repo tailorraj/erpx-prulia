@@ -63,7 +63,7 @@
       </span>
 
       <v-spacer></v-spacer>
-      <v-btn href="https://www.facebook.com/prulia.staff" target="_blank" icon
+      <v-btn href="https://www.facebook.com/prulia.prulia" target="_blank" icon
         ><v-icon>mdi-facebook</v-icon></v-btn
       >
       <template v-if="$store.getters['auth/member']">
