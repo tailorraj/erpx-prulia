@@ -11,6 +11,14 @@ class PRULIAPedia(Document):
 
 
 @frappe.whitelist()
+def get_pedia_meta():
+    meta = frappe.get_meta('PRULIA PediaTest')
+    #meta.has_field('status')
+    #meta.get_custom_fields()
+
+    return meta
+
+@frappe.whitelist()
 def get_pedia_posts():
     #doc = frappe.get_all('PRULIA PediaTest', filters={'published': true}, fields=['name', 'description'])
     doc = frappe.db.get_values("PRULIA PediaTest",{'published': 1}, "*", as_dict=True)
