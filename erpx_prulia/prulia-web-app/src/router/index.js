@@ -75,6 +75,18 @@ const routes = [
     component: () => import('@/views/smart-partners/Details'),
     meta: { auth: true, showBack: true }
   },
+  {
+    path: '/pedia',
+    name: 'Pedia',
+    component: () => import('@/views/pedia'),
+    meta: { auth: true, showBack: true }
+  },
+  {
+    path: '/pedia/add',
+    name: 'PediaAdd',
+    component: () => import('@/views/pedia/Add'),
+    meta: { auth: true, showBack: true }
+  }
 ]
 
 const router = new VueRouter({

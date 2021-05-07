@@ -22,3 +22,23 @@ export const ACCOMODATION = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' }
 ]
+
+export const CLAIMS = [
+  { text: 'Claim', value: 'Claim' },
+  { text: 'Operation', value: 'Operation' },
+  { text: 'Custom Service', value: 'Custom Service' },
+  { text: 'Others', value: 'Others' }
+]
+
+export const MED_PLAN = [
+  { text: 'PMM', value: 'PMM' },
+  { text: 'PMM2', value: 'PMM2' },
+  { text: 'Pmm3', value: 'Pmm3' },
+  { text: 'PMM4', value: 'PMM4' },
+  { text: 'Pmm5', value: 'Pmm5' },
+  { text: 'PruHealth', value: 'PruHealth' },
+  { text: 'PruFleximed', value: 'PruFleximed' },
+  { text: 'PRUValue med', value: 'PRUValue med' },
+  { text: 'PruMillionmed', value: 'PruMillionmed' },
+  { text: 'Others', value: 'Others' }
+]

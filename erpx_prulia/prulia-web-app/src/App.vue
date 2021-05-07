@@ -148,6 +148,10 @@ export default {
         {
           title: 'Smart Partners',
           route: { name: 'SmartPartners' }
+        },
+        {
+          title: 'Pedia',
+          route: { name: 'Pedia' }
         }
       ]
     }
@@ -157,6 +161,7 @@ export default {
     this.$store.dispatch('home/load')
     this.$store.dispatch('news/load')
     this.$store.dispatch('auth/load')
+    this.$store.dispatch('pedia/load')
   },
 
   watch: {
