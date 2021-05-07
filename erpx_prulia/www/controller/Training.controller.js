@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/format/DateFormat",
-	"com/erpx/site/prulia/PRULIA/utils/Training"
-], function (Controller, DateFormat, Training) {
+	"com/erpx/site/prulia/PRULIA/utils/Training",
+	"com/erpx/site/prulia/PRULIA/utils/Config"
+], function (Controller, DateFormat, Training, Config) {
 	"use strict";
 
 	return Controller.extend("com.erpx.site.prulia.PRULIA.controller.Training", {
@@ -47,7 +48,25 @@ sap.ui.define([
 		 * @memberOf com.erpx.site.prulia.PRULIA.view.News
 		 */
 		onAfterRendering: function() {
+			this.removeUnpaids().done(
+				function(data, status, xhr){
+					console.log(data);
+				}
+			).fail(
+				function(error){
+					ErrorHandler.handleAjaxError(error);
+				}
+			);
+		},
 
+		removeUnpaids: function(){
+			return $.ajax({
+				type: "POST",
+				url: Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.remove_unpaid_trainees',
+				data: JSON.stringify({}),
+				dataType: 'json',
+				contentType: 'application/json'
+			});
 		},
 
 		/**

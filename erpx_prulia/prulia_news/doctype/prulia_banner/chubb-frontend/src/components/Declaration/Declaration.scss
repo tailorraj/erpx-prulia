@@ -1,0 +1,168 @@
+.daclarationMain {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    .topDiv {
+        color: rgb(224, 95, 96);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 20px;
+        svg {
+            font-weight: bold;
+            font-size: 25px;
+            @media screen and (min-width: 600px) {
+                font-size: 30px;
+            }
+        }
+        p {
+            margin: 0;
+            margin-left: 10px;
+            font-weight: 600;
+            @media screen and (min-width: 600px) {
+                font-size: 20px;
+            }
+        }
+    }
+    .declarationForm {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        @media screen and (min-width: 600px) {
+            padding: 20px;
+        }
+        .flexDiv {
+            display: flex;
+            .content {
+                margin-left: 5px;
+                h6 {
+                    color: rgb(224, 95, 96);
+                    @media screen and (min-width: 600px) {
+                        font-size: 20px;
+                    }
+                }
+                p {
+                    color: gray;
+                    font-size: 12px;
+                    line-height: 18px;
+                    @media screen and (min-width: 600px) {
+                        font-size: 16px;
+                        line-height: 22px;
+                    }
+                }
+            }
+        }
+        .iConfirm {
+            color: gray;
+            font-size: 12px;
+            line-height: 18px;
+            @media screen and (min-width: 600px) {
+                font-size: 16px;
+                line-height: 22px;
+            }
+        }
+        .paymentDetails {
+            .inputGroup {
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+                label {
+                    color: rgb(224, 95, 96);
+                    font-weight: 500;
+                    font-size: 14px;
+                    margin: 0;
+                }
+                input {
+                    border: none;
+                    background-color: transparent;
+                    outline: none;
+                    padding: 5px 0;
+                    padding-top: 0;
+                    border: none;
+                    
+                }
+            }
+            .second {
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+                .form-check{
+                    width: 150px;
+                }
+                label {
+                    color: rgb(224, 95, 96);
+                    font-weight: 500;
+                    font-size: 14px;
+                    margin: 0;
+                }
+                .secondFlex{
+                    display: flex;
+                    margin-top: 5px;
+                    .two{
+                        // margin-left: 20px;
+                    }
+                    .inputGroup{
+                        margin-top: 10px;
+                        &.second{
+                            width: 150px;
+                        }
+                        input{
+                            font-size: 14px;
+                        }
+                        .date{
+                            width: 90%;
+                        }
+                    }
+                }
+                .total{
+                    margin-top: 10px;
+                    width: 100%;
+                    padding: 10px 0px;
+                    display: flex;
+                    justify-content: center;
+                    border: 1px solid rgb(224, 95, 96);
+                    border-radius: 10px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: rgb(224, 95, 96);
+                    span{
+                        color: grey;
+                    }
+                }
+                .signDiv{
+                    display: flex;
+                    justify-content: space-evenly;
+                    width: 100%;
+                    margin-top: 30px;
+                    flex-wrap: wrap;
+                    .group{
+                        width: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .sign{
+                            width: 90%;
+                            height: 50px;
+                            background-color: whitesmoke;
+                            color: gray;
+                            border-radius: 10px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                    .submit{
+                        background-color: red;
+                        color: white;
+                        border-radius: 10px;
+                        padding: 5px 0;
+                        width: 50%;
+                        border: none;
+                        margin-top: 20px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
