@@ -237,7 +237,7 @@ def forget_password(data):
 				doc.new_password = random_string(10)
 				doc.send_password_update_notification = True
 				doc.save()
-				return "Please check your email for your temporary login credential'"
+				return "Please check your email for your temporary login credential"
 			elif doc.user_status == 'Pending Activation':
 				doc.flags.ignore_permissions = True
 				doc.user_status = 'Active'

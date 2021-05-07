@@ -11,7 +11,7 @@
         <h2>{{ currentNews.title }}</h2>
       </v-col>
       <v-col cols="12" class="pt-0 white--text">
-        <h5>{{ currentNews.publish_data | formatDate('DD MMM YYYY') }}</h5>
+        <h5>{{ currentNews.publish_date | formatDate('DD MMM YYYY') }}</h5>
       </v-col>
     </v-row>
     <v-row justify="center" class="vanilla pb-12">
@@ -46,7 +46,7 @@ export default {
     if (!this.loaded) {
       this.$store.dispatch('news/load')
     }
-  },
+  }
 }
 </script>
 

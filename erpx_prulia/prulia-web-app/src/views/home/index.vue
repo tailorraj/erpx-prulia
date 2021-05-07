@@ -32,7 +32,7 @@
           </a>
         </v-col>
       </v-row>
-      <v-row class="sky" v-if="allNews.length">
+      <v-row class="sky" v-if="member && allNews.length">
         <v-col cols="12" class="text-center">
           <span>Latest News</span>
         </v-col>
@@ -69,7 +69,7 @@
           </v-btn>
         </v-col>
       </v-row>
-      <v-row justify="center" align="center">
+      <v-row justify="center" align="center" class="secondary">
         <v-img src="@/assets/banners/PRULIA_BannerVoice.jpg" contain />
         <div class="white--text text-center" style="position: absolute;">
           <h2>About PRULIA</h2>
@@ -79,7 +79,11 @@
             the united
           </h5>
           <h1>"Voice of the Agency"</h1>
-          <v-btn color="white" plain>
+          <v-btn
+            color="white"
+            plain
+            :to="{ name: 'View', params: { id: 'PHC00003' } }"
+          >
             Read more
           </v-btn>
         </div>
@@ -93,16 +97,9 @@
         </v-col>
 
         <v-col cols="12" class="text-center">
-          <v-badge
-              color="primary"
-              content="Coming soon"
-              overlap
-          >
-            <v-btn disabled plain color="secondary">
-              Find out more
-            </v-btn>
-          </v-badge>
-
+          <v-btn plain color="secondary" :to="{ name: 'Book' }">
+            Find out more
+          </v-btn>
         </v-col>
       </v-row>
       <v-row class="vanilla pb-6">
@@ -133,22 +130,22 @@
         </v-col>
         <v-row no-gutters align="center" justify="center">
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/maxis-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/maxis-grey.png" />
           </v-col>
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/dolemon-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/dolemon-grey.png" />
           </v-col>
           <v-col cols="2" class="pa-2">
-            <v-img src="@/assets/logo/smart-partners/BMW-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/BMW-grey.png" />
           </v-col>
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/Volvo-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/Volvo-grey.png" />
           </v-col>
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/chubb-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/chubb-grey.png" />
           </v-col>
           <v-col cols="2">
-            <v-img src="@/assets/logo/smart-partners/toptravel-grey.png"/>
+            <v-img src="@/assets/logo/smart-partners/toptravel-grey.png" />
           </v-col>
         </v-row>
         <v-col cols="12" class="text-center caption" v-if="member">
@@ -252,19 +249,11 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-footer color="secondary" padless class="justify-center" width="100%">
-      <v-card flat class="secondary text-center">
-        <v-card-text class="white--text">
-          Copyright © {{ new Date().getFullYear() }}
-          Prudential Life Insurance Agency Association. All rights reserved.
-        </v-card-text>
-      </v-card>
-    </v-footer>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
@@ -285,7 +274,7 @@ export default {
       {
         title: 'Membership',
         icon: 'mdi-account-lock',
-        route: { name: 'View', params: { id: 'PHC00007' } }
+        route: { name: 'View', params: { id: 'PHC00004' } }
       },
       {
         title: 'Achievements',
@@ -346,7 +335,7 @@ export default {
         title: 'Malaysia Takaful Association',
         href: 'http://www.malaysiantakaful.com.my/'
       }
-    ],
+    ]
   }),
   computed: {
     ...mapGetters('auth', ['member']),

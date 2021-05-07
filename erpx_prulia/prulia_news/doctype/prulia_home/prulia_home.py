@@ -9,8 +9,7 @@ from frappe.model.document import Document
 class PRULIAHome(Document):
 	pass
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_home():
-
 	home_entries = frappe.get_single("PRULIA Home")
 	return home_entries

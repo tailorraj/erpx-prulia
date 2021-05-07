@@ -7,7 +7,9 @@ import home from './home'
 import auth from './auth'
 import events from './events'
 import training from './training'
-import smartPartners from './smartPartners';
+import smartPartners from './smartPartners'
+import feedback from './feedback'
+import book from './book'
 
 Vue.use(Vuex)
 
@@ -19,6 +21,8 @@ export default new Vuex.Store({
     news,
     events,
     training,
-    smartPartners
+    smartPartners,
+    feedback,
+    book
   }
 })
