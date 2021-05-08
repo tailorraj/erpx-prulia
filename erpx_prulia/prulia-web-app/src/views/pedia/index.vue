@@ -26,6 +26,9 @@ export default {
   name: 'Pedia',
   computed: {
     ...mapGetters('pedia', ['all'])
+  },
+  mounted() {
+    this.$store.dispatch('pedia/loadMeta')
   }
 }
 </script>
