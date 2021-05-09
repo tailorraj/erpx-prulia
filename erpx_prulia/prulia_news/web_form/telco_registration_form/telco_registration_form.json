@@ -25,7 +25,7 @@
  "owner": "Administrator", 
  "payment_button_label": "Buy Now", 
  "published": 1, 
- "route": "telco-registration-form", 
+ "route": "telco-registration-form",
  "show_sidebar": 0, 
  "sidebar_items": [], 
  "success_url": "/telco-registration-form", 
