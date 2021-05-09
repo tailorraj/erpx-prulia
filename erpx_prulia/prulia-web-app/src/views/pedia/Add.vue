@@ -199,6 +199,12 @@
             ></v-file-input>
         </v-row>
         <v-row>
+            <v-text-field
+                    value=""
+                    label="Reason of declined"
+            ></v-text-field>
+        </v-row>
+        <v-row>
             <h3>STEP 5 : Member Concern</h3>
         </v-row>
         <v-row>

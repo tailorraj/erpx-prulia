@@ -94,6 +94,12 @@ const routes = [
     meta: { auth: true, showBack: true }
   },
   {
+    path: '/pedia/:id',
+    name: 'PediaDetails',
+    component: () => import('@/views/pedia/Details'),
+    meta: { auth: true, showBack: true }
+  },
+  {
     path: '/pedia/add',
     name: 'PediaAdd',
     component: () => import('@/views/pedia/Add'),

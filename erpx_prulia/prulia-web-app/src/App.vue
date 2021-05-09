@@ -174,7 +174,6 @@ export default {
     this.$store.dispatch('news/loadPopup')
     this.$store.dispatch('auth/load').finally(() => {
       this.$store.dispatch('news/togglePopup', true)
-      this.$store.dispatch('pedia/load')
     })
   },
 
