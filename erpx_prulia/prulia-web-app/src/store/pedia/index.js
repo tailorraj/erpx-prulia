@@ -3,7 +3,9 @@ import axios from 'axios'
 
 const state = {
   all: [],
-  meta: null
+  loaded: false,
+  meta: null,
+  metaLoaded: false
 }
 
 const getters = {
@@ -23,7 +25,8 @@ const actions = {
       )
       .then(({ data }) => {
         let { message } = data
-        commit('SET_META', message || [])
+        commit('SET_META', message?.fields || [])
+        commit('SET_META_LOADED', true);
       })
   },
   load({ commit }) {
@@ -34,6 +37,7 @@ const actions = {
       .then(({ data }) => {
         let { message } = data
         commit('SET_ALL', message || [])
+        commit('SET_LOADED', true);
       })
   }
 }
