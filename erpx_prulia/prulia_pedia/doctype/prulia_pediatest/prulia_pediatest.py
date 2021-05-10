@@ -6,19 +6,20 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 
-class PRULIAPedia(Document):
+class PRULIAPediaTest(Document):
 	pass
+
 
 @frappe.whitelist()
 def get_pedia_meta():
-    meta = frappe.get_meta('PRULIA Pedia')
+    meta = frappe.get_meta('PRULIA PediaTest')
     return meta
 
 
 @frappe.whitelist()
 def get_pedia_posts():
     #doc = frappe.get_all('PRULIA PediaTest', filters={'published': true}, fields=['name', 'description'])
-    doc = frappe.db.get_values("PRULIA Pedia",{'published': True}, "*", as_dict=True)
+    doc = frappe.db.get_values("PRULIA PediaTest",{'published': 1}, "*", as_dict=True)
 
     return doc
 
@@ -26,7 +27,7 @@ def get_pedia_posts():
 @frappe.whitelist()
 def create_new_post(data):
     dat = json.loads(data)
-    doc = frappe.new_doc("PRULIA Pedia")
+    doc = frappe.new_doc("PRULIA PediaTest")
     doc.flags.ignore_permissions = True
     doc.flags.ignore_mandatory = True
     doc.title = dat.get('title')
