@@ -8,6 +8,7 @@ from frappe.model.document import Document
 from frappe.utils import now_datetime
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 from erpx_prulia.onesignal import push_noti
+from jinja2 import Template
 
 class PRULIATraining(Document):
 	def validate(self):
@@ -120,6 +121,9 @@ def get_training_list(member_name):
 		if (training.position_restriction and training.position_restriction != member.position):
 			continue
 
+        template = Template(training.description)
+        training.description = template.render(member = member)
+
 		registration = frappe.get_all('PRULIA Trainee', filters={'member': member_name, 'parent': training.name},
 									  fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
 		if registration:
@@ -165,6 +169,8 @@ def get_training_list_web():
 	if frappe.session.user != 'Guest':
 		member = mobile_member_login()
 		for training in trainings:
+            template = Template(training.description)
+            training.description = template.render(member = member)
 			registration = frappe.get_all('PRULIA Trainee', filters={'member': member.name, 'parent': training.name},
 										  fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
 			if registration:

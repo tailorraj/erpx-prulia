@@ -12,6 +12,7 @@ from frappe.utils import now_datetime, get_url
 from frappe import _, throw
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 from erpx_prulia.onesignal import push_noti
+from jinja2 import Template
 
 
 class PRULIAEvent(Document):
@@ -133,6 +134,9 @@ def get_event_list(member_name):
         if event.position_restriction and event.position_restriction != member.position:
             continue
 
+        template = Template(event.description)
+        event.description = template.render(member = member)
+
         registration = frappe.get_all('PRULIA Attendee', filters={'member': member_name, 'parent': event.name},
                                       fields=['name', 'shirt_size', 'meal_option', 'accomodation', 'attendance',
                                               'pref_lang'])
@@ -183,6 +187,8 @@ def get_event_list_web():
     if frappe.session.user != 'Guest':
         member = mobile_member_login()
         for event in events:
+            template = Template(event.description)
+            event.description = template.render(member = member)
             if event.break_up_session == 1 and event.position_restriction is not None:
                 event._lang = frappe.get_all('PRULIA Event Languages',
                                              filters={
