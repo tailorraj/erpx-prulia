@@ -127,22 +127,22 @@ def get_training_list(member_name):
         if (training.position_restriction and training.position_restriction != member.position):
             continue
 
-    template = Template(training.description)
-    training.description = template.render(member=member)
+        template = Template(training.description)
+        training.description = template.render(member=member)
 
-    registration = frappe.get_all('PRULIA Trainee', filters={'member': member_name, 'parent': training.name},
-                                  fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
-    if registration:
-        training.register = True
-        training.trainee_name = registration[0].name
-        training.shirt_size = registration[0].shirt_size
-        training.meal_option = registration[0].meal_option
-        training.accomodation = registration[0].accomodation
-    else:
-        training.register = False
-    if global_defaults.default_currency:
-        training.currency = global_defaults.default_currency
-    training_result.append(training)
+        registration = frappe.get_all('PRULIA Trainee', filters={'member': member_name, 'parent': training.name},
+                                      fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
+        if registration:
+            training.register = True
+            training.trainee_name = registration[0].name
+            training.shirt_size = registration[0].shirt_size
+            training.meal_option = registration[0].meal_option
+            training.accomodation = registration[0].accomodation
+        else:
+            training.register = False
+        if global_defaults.default_currency:
+            training.currency = global_defaults.default_currency
+        training_result.append(training)
     return training_result
 
 
