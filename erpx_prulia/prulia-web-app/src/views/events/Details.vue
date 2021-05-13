@@ -51,7 +51,7 @@
       <v-btn
         v-if="
           !currentEvent.register &&
-            currentEvent.status === 'Open For Registration'
+            currentEvent.event_status === 'Open For Registration'
         "
         @click="registerEvent = true"
         large
