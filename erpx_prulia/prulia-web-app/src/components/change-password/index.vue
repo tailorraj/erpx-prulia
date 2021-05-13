@@ -142,8 +142,7 @@ export default {
           old_password,
           new_password
         })
-        .then(response => {
-          console.log(response)
+        .then(() => {
           this.showSnackbar('Password changed successfully!', 'success')
           this.model = false
         })
