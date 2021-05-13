@@ -200,5 +200,4 @@ def get_training_list_web():
 			if global_defaults.default_currency:
 				training.currency = global_defaults.default_currency
 
-
 	return trainings
