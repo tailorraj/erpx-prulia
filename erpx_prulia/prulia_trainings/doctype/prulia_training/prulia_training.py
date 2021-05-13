@@ -3,12 +3,16 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-import frappe, json, datetime
+import frappe
+import json
+import datetime
 from frappe.model.document import Document
-from frappe.utils import now_datetime
+from frappe.utils import now_datetime, get_url
+from frappe import _, throw
 from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 from erpx_prulia.onesignal import push_noti
 from jinja2 import Template
+
 
 class PRULIATraining(Document):
 	def validate(self):
@@ -29,9 +33,11 @@ class PRULIATraining(Document):
 				filters = []
 				if self.position_restriction == 'QL':
 					filters = [
-						{'field': 'tag', 'key': 'position', 'relation': '=', 'value': self.position_restriction}
+						{'field': 'tag', 'key': 'position', 'relation': '=',
+						    'value': self.position_restriction}
 					]
-				push_noti('A new training {} is now {}'.format(self.training_name, status), big_image, filters)
+				push_noti('A new training {} is now {}'.format(
+				    self.training_name, status), big_image, filters)
 			else:
 				pass
 
@@ -122,28 +128,26 @@ def get_training_list(member_name):
 			continue
 
         template = Template(training.description)
-        training.description = template.render(member = member)
+        training.description = template.render(member=member)
 
-		registration = frappe.get_all('PRULIA Trainee', filters={'member': member_name, 'parent': training.name},
+        registration = frappe.get_all('PRULIA Trainee', filters={'member': member_name, 'parent': training.name},
 									  fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
-		if registration:
+        if registration:
 			training.register = True
 			training.trainee_name = registration[0].name
 			training.shirt_size = registration[0].shirt_size
 			training.meal_option = registration[0].meal_option
 			training.accomodation = registration[0].accomodation
-		else:
+        else:
 			training.register = False
-
-		if global_defaults.default_currency:
+        if global_defaults.default_currency:
 			training.currency = global_defaults.default_currency
-		training_result.append(training)
+        training_result.append(training)
 	return training_result
 
 
 @frappe.whitelist()
 def update_training_trainee(data):
-	print(data)
 	attendee = json.loads(data)
 	attendee_rec = frappe.get_doc("PRULIA Trainee", attendee.get('trainee_name'))
 	if attendee_rec:
@@ -168,26 +172,27 @@ def get_training_list_web():
 
 	if frappe.session.user != 'Guest':
 		member = mobile_member_login()
-		for training in trainings:
+        for training in trainings:
             template = Template(training.description)
             training.description = template.render(member = member)
-			registration = frappe.get_all('PRULIA Trainee', filters={'member': member.name, 'parent': training.name},
+
+            registration = frappe.get_all('PRULIA Trainee', filters={'member': member.name, 'parent': training.name},
 										  fields=['name', 'shirt_size', 'meal_option', 'accomodation'])
-			if registration:
+            if registration:
 				training.register = True
 				training.trainee_name = registration[0].name
 				training.shirt_size = registration[0].shirt_size
 				training.meal_option = registration[0].meal_option
 				training.accomodation = registration[0].accomodation
-			else:
+            else:
 				training.register = False
-			if (training.position_restriction and training.position_restriction == member.position):
+            if (training.position_restriction and training.position_restriction == member.position):
 				training.can_register = True
-			if global_defaults.default_currency:
+            if global_defaults.default_currency:
 				training.currency = global_defaults.default_currency
-			elif training.position_restriction == None:
+            elif training.position_restriction == None:
 				training.can_register = True
-			else:
+            else:
 				training.can_register = False
 	else:
 		for training in trainings:
