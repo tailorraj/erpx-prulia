@@ -237,12 +237,12 @@ def forget_password(data):
 				doc.new_password = random_string(10)
 				doc.send_password_update_notification = True
 				doc.save()
-				return "Please check your email for your temporary login credential"
+				return "Please check your email at {0} for your temporary login credential".format(doc.email)
 			elif doc.user_status == 'Pending Activation':
 				doc.flags.ignore_permissions = True
 				doc.user_status = 'Active'
 				doc.save()
-				return 'Your account is activated, please check your email for your temporary login credential'
+				return 'Your account is activated, please check your email at {0} for your temporary login credential'.format(doc.email)
 			elif doc.user_status == 'Pending Approval':
 				return 'Your application is still pending for approval'
 			else:
