@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-row class="dusk"
-      ><v-img contain src="@/assets/banners/PRULIA_BannerNews.jpg"
-    /></v-row>
+    <v-row class="primary pa-4" justify="center">
+      <h1 class="white--text">Books</h1>
+    </v-row>
     <v-row v-if="all.length" class="primary">
       <v-col
         align-self="center"

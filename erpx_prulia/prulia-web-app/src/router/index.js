@@ -31,13 +31,13 @@ const routes = [
     path: '/news',
     name: 'News',
     component: () => import('@/views/news'),
-    meta: { showBack: true }
+    meta: { auth: true, showBack: true }
   },
   {
     path: '/news/:id',
     name: 'NewsDetails',
     component: () => import('@/views/news/Details'),
-    meta: { showBack: true }
+    meta: { auth: true, showBack: true }
   },
   {
     path: '/events',
