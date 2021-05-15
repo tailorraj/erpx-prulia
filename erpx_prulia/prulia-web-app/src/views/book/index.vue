@@ -43,7 +43,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row v-else justify="center" class="vanilla pb-12">
+    <v-row v-else justify="center" class="vanilla pb-12 pt-4">
       Oops, no books available :(
     </v-row>
   </v-container>
