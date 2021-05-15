@@ -58,7 +58,6 @@ export default {
     ...mapGetters('book', ['all'])
   },
   mounted() {
-    console.log('a')
     this.$store.dispatch('book/load')
   }
 }
