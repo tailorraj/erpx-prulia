@@ -8,7 +8,7 @@
       </v-card-title>
       <v-divider />
 
-      <v-card-text class="px-8 pb-8">
+      <v-card-text v-if="!showConfirm" class="px-8 pb-8">
         <v-text-field
           id="prudential_id"
           name="prudential_id"
@@ -49,6 +49,9 @@
           >
         </v-row>
       </v-card-text>
+      <v-card-text v-else class="px-8 pb-8 subtitle-1">
+        {{ confirmMessage }}
+      </v-card-text>
 
       <v-divider />
 
@@ -57,7 +60,7 @@
         <v-btn
           class="white--text"
           type="submit"
-          :disabled="!valid"
+          :disabled="!valid || showConfirm"
           :loading="loading"
           rounded
           text
@@ -75,7 +78,9 @@ export default {
     valid: false,
     loading: false,
     prudential_id: '',
-    nric_number: ''
+    nric_number: '',
+    showConfirm: false,
+    confirmMessage: ''
   }),
   methods: {
     onSubmit() {
@@ -91,8 +96,8 @@ export default {
         .then(response => {
           let { data } = response
           let { message } = data
-          this.showSnackbar(message, 'success')
-          this.$emit('close')
+          this.confirmMessage = message
+          this.showConfirm = true
         })
         .catch(error => {
           try {

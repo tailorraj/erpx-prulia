@@ -1,8 +1,12 @@
 <template>
   <v-container>
-    <v-row class="dusk"
-      ><v-img contain src="@/assets/banners/PRULIA_BannerNews.jpg"
-    /></v-row>
+    <v-row class="amber py-12 px-7">
+      <v-col cols="12" class="text-center primary--text">
+        <h1>Recommended books to read</h1>
+      </v-col>
+      <v-col>
+        <v-img src="@/assets/banners/PRULIA_BannerBook.jpg"></v-img> </v-col
+    ></v-row>
     <v-row v-if="all.length" class="primary">
       <v-col
         align-self="center"
@@ -39,7 +43,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row v-else justify="center" class="vanilla pb-12">
+    <v-row v-else justify="center" class="vanilla pb-12 pt-4">
       Oops, no books available :(
     </v-row>
   </v-container>
@@ -54,7 +58,6 @@ export default {
     ...mapGetters('book', ['all'])
   },
   mounted() {
-    console.log('a')
     this.$store.dispatch('book/load')
   }
 }

@@ -49,7 +49,10 @@
     </v-row>
     <v-row class="primary py-3" justify="center">
       <v-btn
-        v-if="!currentEvent.register"
+        v-if="
+          !currentEvent.register &&
+            currentEvent.event_status === 'Open For Registration'
+        "
         @click="registerEvent = true"
         large
         rounded
