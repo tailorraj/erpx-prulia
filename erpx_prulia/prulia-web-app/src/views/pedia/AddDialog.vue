@@ -19,7 +19,7 @@
         >
           <template v-for="(step, index) in steps">
             <v-stepper-step
-              :rules="[() => validity[index]]"
+              :rules="[() => validity[index] !== false]"
               editable
               color="primary"
               :step="index + 1"
@@ -156,7 +156,7 @@ export default {
       this.$store
         .dispatch('pedia/createPedia', this.data)
         .then(() => {
-          this.showSnackbar('Pedia created!', 'success')
+          this.showSnackbar('Pedia submitted successfully!', 'success')
           this.model = false
         })
         .catch(error => {

@@ -6,10 +6,11 @@
           <div>
             {{ currentPedia.title }}
           </div>
-          <div class="caption">
-            {{ currentPedia.published_date | formatDate('DD MMM YYYY') }}
-          </div>
+          <div class="caption">By {{ currentPedia.full_name }}</div>
         </v-list-item-title>
+        <v-list-item-action-text class="caption">
+          {{ currentPedia.published_date | formatDate('DD MMM YYYY') }}
+        </v-list-item-action-text>
       </v-list-item>
     </v-list>
 
