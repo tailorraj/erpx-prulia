@@ -18,6 +18,17 @@ const mutations = {
 
 const actions = {
   ...make.actions(state),
+  createPedia({ dispatch }, data) {
+    axios
+      .post(
+        '/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.create_new_post',
+        data
+      )
+      .then(response => {
+        console.log(response)
+        dispatch('load')
+      })
+  },
   loadMeta({ commit }) {
     axios
       .get(
@@ -26,7 +37,7 @@ const actions = {
       .then(({ data }) => {
         let { message } = data
         commit('SET_META', message?.fields || [])
-        commit('SET_META_LOADED', true);
+        commit('SET_META_LOADED', true)
       })
   },
   load({ commit }) {
@@ -37,7 +48,7 @@ const actions = {
       .then(({ data }) => {
         let { message } = data
         commit('SET_ALL', message || [])
-        commit('SET_LOADED', true);
+        commit('SET_LOADED', true)
       })
   }
 }

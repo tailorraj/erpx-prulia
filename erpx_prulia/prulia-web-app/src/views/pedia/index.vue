@@ -2,19 +2,19 @@
   <v-container>
     <v-row v-if="all.length" class="primary">
       <v-col
-          align-self="center"
-          class="pa-6"
-          cols="12"
-          sm="6"
-          md="4"
-          v-for="(pedia, index) in all"
-          :key="`pedia-${index}`"
+        align-self="center"
+        class="pa-6"
+        cols="12"
+        sm="6"
+        md="4"
+        v-for="(pedia, index) in all"
+        :key="`pedia-${index}`"
       >
         <v-card
-            min-height="100"
-            class="dusk"
-            hover
-            :to="{ name: 'PediaDetails', params: { id: pedia.name } }"
+          min-height="100"
+          class="dusk"
+          hover
+          :to="{ name: 'PediaDetails', params: { id: pedia.name } }"
         >
           <v-card-subtitle class="pb-0">
             <h3>
@@ -41,18 +41,24 @@
       </span>
     </v-row>
     <v-slide-y-reverse-transition>
-      <v-btn color="primary" fab fixed bottom right>
+      <v-btn color="primary" fab fixed bottom right @click="showDialog = true">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-slide-y-reverse-transition>
+    <add-dialog v-model="showDialog" />
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import AddDialog from './AddDialog'
 
 export default {
   name: 'Pedia',
+  components: { AddDialog },
+  data: () => ({
+    showDialog: false
+  }),
   computed: {
     ...mapGetters('pedia', ['all'])
   },

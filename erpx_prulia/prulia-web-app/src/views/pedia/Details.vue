@@ -91,10 +91,13 @@ export default {
         }
       })
 
+      //remove member details section
+      sections.splice(1, 1)
+
       //remove member comment section
       sections.pop()
 
-      return sections
+      return sections.filter(item => item.fields.length)
     }
   },
   mounted() {
