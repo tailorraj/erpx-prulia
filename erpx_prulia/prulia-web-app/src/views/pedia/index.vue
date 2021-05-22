@@ -1,5 +1,18 @@
 <template>
   <v-container>
+    <v-row no-gutters justify="end" align="center" class="pa-0">
+      <v-col><h3>Pedia</h3></v-col>
+      <v-spacer />
+      <v-col cols="9" md="3">
+        <v-text-field
+          v-model="search"
+          @input="onSearch"
+          placeholder="Search"
+          prepend-icon="mdi-magnify"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+
     <v-row v-if="all.length" class="primary">
       <v-col
         align-self="center"
@@ -16,12 +29,19 @@
           hover
           :to="{ name: 'PediaDetails', params: { id: pedia.name } }"
         >
-          <v-card-subtitle class="pb-0">
-            <h3>
+          <v-card-text class="pb-0">
+            <div class="display-5 text--primary">
               <text-truncate>{{ pedia.title }}</text-truncate>
-            </h3>
-          </v-card-subtitle>
-          <v-card-actions class="">
+            </div>
+            <p class="pb-0">By {{ pedia.full_name }}</p>
+          </v-card-text>
+          <v-card-actions class="px-4">
+            <v-chip v-if="pedia.category"
+              ><text-truncate>{{ pedia.category }}</text-truncate></v-chip
+            >
+            <v-chip v-if="pedia.other_cat" class="ml-2"
+              ><text-truncate>{{ pedia.other_cat }}</text-truncate></v-chip
+            >
             <v-spacer />
             <span class="subtitle-2 pa-2 text--darken-4">
               {{ pedia.published_date | formatDate('DD MMM YYYY') }}
@@ -52,11 +72,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import AddDialog from './AddDialog'
+import { debounce } from 'lodash'
 
 export default {
   name: 'Pedia',
   components: { AddDialog },
   data: () => ({
+    search: '',
     showDialog: false
   }),
   computed: {
@@ -65,6 +87,11 @@ export default {
   mounted() {
     this.$store.dispatch('pedia/load')
     this.$store.dispatch('pedia/loadMeta')
+  },
+  methods: {
+    onSearch: debounce(function() {
+      this.$store.dispatch('pedia/load', this.search)
+    }, 400)
   }
 }
 </script>

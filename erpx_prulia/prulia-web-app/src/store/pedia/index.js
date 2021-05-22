@@ -40,10 +40,13 @@ const actions = {
         commit('SET_META_LOADED', true)
       })
   },
-  load({ commit }) {
+  load({ commit }, search = '') {
     axios
-      .get(
-        `/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.get_pedia_posts`
+      .post(
+        `/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.get_pedia_posts`,
+        {
+          search
+        }
       )
       .then(({ data }) => {
         let { message } = data
