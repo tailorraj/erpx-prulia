@@ -18,11 +18,16 @@ def get_pedia_meta():
 
 
 @frappe.whitelist()
-def get_pedia_posts():
-    #doc = frappe.get_all('PRULIA PediaTest', filters={'published': true}, fields=['name', 'description'])
-    doc = frappe.db.get_values("PRULIA Pedia",{'published': True}, "*", as_dict=True)
-
-    return doc
+def get_pedia_posts(data):
+	dat = json.loads(data)
+	docs = frappe.get_all('PRULIA Pedia',
+							fields=['*'],
+							filters=[
+								('PRULIA Pedia', "published", "=", True),
+								('PRULIA Pedia', "title", "LIKE", "%"+dat.get('search')+"%")
+							],
+							order_by='published_date desc')
+	return docs
 
 
 @frappe.whitelist()
