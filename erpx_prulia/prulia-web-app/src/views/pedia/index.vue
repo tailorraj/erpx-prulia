@@ -34,16 +34,16 @@
               <text-truncate>{{ pedia.title }}</text-truncate>
             </div>
             <p class="pb-0">By {{ pedia.full_name }}</p>
-          </v-card-text>
-          <v-card-actions class="px-4">
             <v-chip v-if="pedia.category"
               ><text-truncate>{{ pedia.category }}</text-truncate></v-chip
             >
             <v-chip v-if="pedia.other_cat" class="ml-2"
               ><text-truncate>{{ pedia.other_cat }}</text-truncate></v-chip
             >
+          </v-card-text>
+          <v-card-actions class="px-4">
             <v-spacer />
-            <span class="subtitle-2 pa-2 text--darken-4">
+            <span class="caption pa-2">
               {{ pedia.published_date | formatDate('DD MMM YYYY') }}
             </span>
           </v-card-actions>
