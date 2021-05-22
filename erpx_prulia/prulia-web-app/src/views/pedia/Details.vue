@@ -28,7 +28,7 @@
           <v-expansion-panel-content>
             <v-row class="py-0 px-3" dense>
               <v-col
-                cols="12"
+                :cols="field.columns || 12"
                 v-for="(field, field_index) in section.fields"
                 :key="`field-${index}-${field_index}`"
               >
@@ -92,13 +92,9 @@ export default {
         }
       })
 
-      //remove member details section
-      sections.splice(1, 1)
-
-      //remove member comment section
-      sections.pop()
-
-      return sections.filter(item => item.fields.length)
+      return sections.filter(
+        section => section.fields.length && section.options?.includes('show')
+      )
     }
   },
   mounted() {
