@@ -94,6 +94,25 @@
                       :rules="isRequired(field)"
                       :items="field.options.split(/\n/)"
                     >
+                      <template #item="{item, on, attrs}">
+                        <template v-if="item.startsWith('*')">
+                          <v-list-item disabled>
+                            <v-list-item-title class="font-weight-medium">
+                              {{ item.slice(1) }}
+                            </v-list-item-title>
+                          </v-list-item>
+                        </template>
+                        <v-list-item
+                          class="pl-8"
+                          v-else
+                          v-on="on"
+                          v-bind="attrs"
+                        >
+                          <v-list-item-content>
+                            {{ item }}
+                          </v-list-item-content>
+                        </v-list-item>
+                      </template>
                     </v-select>
                     <v-textarea
                       rows="2"
