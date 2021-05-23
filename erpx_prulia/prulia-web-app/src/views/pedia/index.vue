@@ -72,7 +72,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import AddDialog from './AddDialog'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 
 export default {
   name: 'Pedia',

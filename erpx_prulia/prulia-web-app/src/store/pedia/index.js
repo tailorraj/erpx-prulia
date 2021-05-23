@@ -5,7 +5,8 @@ const state = {
   all: [],
   loaded: false,
   meta: null,
-  metaLoaded: false
+  metaLoaded: false,
+  comments: []
 }
 
 const getters = {
@@ -24,9 +25,30 @@ const actions = {
         '/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.create_new_post',
         data
       )
-      .then(response => {
-        console.log(response)
+      .then(() => {
         dispatch('load')
+      })
+  },
+  addComment({ commit, getters }, data) {
+    return axios
+      .post(
+        '/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.add_comment',
+        data
+      )
+      .then(({ data }) => {
+        let { message } = data
+        commit('SET_COMMENTS', [message, ...getters['comments']] || [])
+      })
+  },
+  loadComments({ commit }, id) {
+    axios
+      .post(
+        `/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.get_pedia_comments`,
+        { id }
+      )
+      .then(({ data }) => {
+        let { message } = data
+        commit('SET_COMMENTS', message || [])
       })
   },
   loadMeta({ commit }) {
