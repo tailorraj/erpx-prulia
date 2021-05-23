@@ -28,7 +28,7 @@
           <v-expansion-panel-content>
             <v-row class="py-0 px-3" dense>
               <v-col
-                class="py-0 px-2"
+                class="py-1 px-2"
                 :cols="field.columns || 12"
                 v-for="(field, field_index) in section.fields"
                 :key="`field-${index}-${field_index}`"
