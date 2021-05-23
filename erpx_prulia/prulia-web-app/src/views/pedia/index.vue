@@ -13,9 +13,8 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="all.length" class="primary">
+    <v-row v-if="all.length" class="primary" align="start">
       <v-col
-        align-self="center"
         class="pa-6"
         cols="12"
         sm="6"
