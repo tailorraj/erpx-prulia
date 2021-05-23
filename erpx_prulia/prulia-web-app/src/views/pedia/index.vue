@@ -13,7 +13,7 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="all.length" class="primary" align="start">
+    <v-row v-if="all.length" class="vanilla" align="start">
       <v-col
         class="pa-6"
         cols="12"
@@ -24,7 +24,6 @@
       >
         <v-card
           min-height="100"
-          class="dusk"
           hover
           :to="{ name: 'PediaDetails', params: { id: pedia.name } }"
         >
