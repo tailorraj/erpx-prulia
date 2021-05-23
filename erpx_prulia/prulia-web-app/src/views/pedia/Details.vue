@@ -17,7 +17,7 @@
     <v-expansion-panels accordion multiple>
       <template v-for="(section, index) in fields">
         <v-expansion-panel
-          v-if="section.fields.length"
+          v-if="showSection(section)"
           :key="`section-${index}`"
         >
           <v-expansion-panel-header>
@@ -28,6 +28,7 @@
           <v-expansion-panel-content>
             <v-row class="py-0 px-3" dense>
               <v-col
+                class="py-0 px-2"
                 :cols="field.columns || 12"
                 v-for="(field, field_index) in section.fields"
                 :key="`field-${index}-${field_index}`"
@@ -42,7 +43,9 @@
                 <v-text-field
                   dense
                   v-if="
-                    field.fieldtype === 'Data' || field.fieldtype === 'Select'
+                    field.fieldtype === 'Data' ||
+                      field.fieldtype === 'Select' ||
+                      field.fieldtype === 'Date'
                   "
                   :label="field.label"
                   v-model="currentPedia[field.fieldname]"
@@ -299,6 +302,16 @@ export default {
     this.$store.dispatch('pedia/loadComments', this.$route.params.id)
   },
   methods: {
+    showSection(section) {
+      if (
+        section.fieldname === 'assistance_section' &&
+        !this.currentPedia?.yes_check
+      ) {
+        return false
+      }
+
+      return section.fields.length
+    },
     onComment() {
       let data = {
         parent: this.$route.params.id,

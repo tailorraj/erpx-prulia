@@ -70,7 +70,7 @@
               <v-form v-model="validity[index]">
                 <v-row no-gutters class="pr-6">
                   <v-col
-                    class="pa-0"
+                    class="py-0 px-2"
                     :cols="field.columns || 12"
                     v-for="(field, field_index) in step.fields"
                     :key="`field-${index}-${field_index}`"
@@ -103,6 +103,30 @@
                       :rules="isRequired(field)"
                     >
                     </v-textarea>
+
+                    <v-menu
+                      v-if="field.fieldtype === 'Date'"
+                      v-model="dates[field.fieldname]"
+                      :close-on-content-click="false"
+                      transition="scale-transition"
+                      nudge-bottom="48"
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="data[field.fieldname]"
+                          :label="field.label"
+                          :rules="isRequired(field)"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="data[field.fieldname]"
+                        @input="dates[field.fieldname] = false"
+                      ></v-date-picker>
+                    </v-menu>
                   </v-col>
                 </v-row>
               </v-form>
@@ -138,7 +162,8 @@ const data = () => ({
   mode: null,
   loading: false,
   data: {},
-  currentStep: 1
+  currentStep: 1,
+  dates: {}
 })
 
 export default {

@@ -34,10 +34,10 @@
               <text-truncate>{{ pedia.title }}</text-truncate>
             </div>
             <p class="pb-0">By {{ pedia.full_name }}</p>
-            <v-chip v-if="pedia.category"
+            <v-chip v-if="pedia.category" class="my-1 mr-2"
               ><text-truncate>{{ pedia.category }}</text-truncate></v-chip
             >
-            <v-chip v-if="pedia.other_cat" class="ml-2"
+            <v-chip v-if="pedia.other_cat" class="my-1"
               ><text-truncate>{{ pedia.other_cat }}</text-truncate></v-chip
             >
           </v-card-text>
