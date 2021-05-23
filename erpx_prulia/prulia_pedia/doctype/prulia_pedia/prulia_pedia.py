@@ -31,6 +31,18 @@ def get_pedia_posts(data):
 
 
 @frappe.whitelist()
+def get_pedia_comments(data):
+	dat = json.loads(data)
+	docs = frappe.get_all('PRULIA Pedia Comment',
+							fields=['*'],
+							filters=[
+								('PRULIA Pedia Comment', "parent", "=", dat.get('id')),
+							],
+							order_by='comment_date desc')
+	return docs
+
+
+@frappe.whitelist()
 def create_new_post(data):
     dat = json.loads(data)
     doc = frappe.new_doc("PRULIA Pedia")
@@ -47,3 +59,23 @@ def create_new_post(data):
     doc.save()
 
     return doc
+
+
+@frappe.whitelist()
+def add_comment(data):
+	dat = json.loads(data)
+	doc = frappe.new_doc("PRULIA Pedia Comment")
+
+	doc.flags.ignore_permissions = True
+	doc.flags.ignore_mandatory = True
+	
+	for key in dat:
+		doc.set(key, dat.get(key))
+	doc.parent = dat.get('parent')
+	doc.comment_date = now_datetime()
+	member = mobile_member_login()
+	doc.commenter = member.name
+
+	doc.save()
+
+	return doc
