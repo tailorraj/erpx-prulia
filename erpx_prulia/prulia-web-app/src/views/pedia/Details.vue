@@ -56,7 +56,7 @@
                   v-if="field.fieldtype === 'Long Text'"
                   :label="field.label"
                   v-model="currentPedia[field.fieldname]"
-                  disabled
+                  readonly
                 >
                 </v-textarea>
               </v-col>

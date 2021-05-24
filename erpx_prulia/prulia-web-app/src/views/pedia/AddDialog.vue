@@ -54,13 +54,19 @@
         >
           <template v-for="(step, index) in steps">
             <v-stepper-step
-              :rules="[() => validity[index] !== false]"
               editable
               color="primary"
               :step="index + 1"
               :key="`stepper-${index}`"
             >
-              <small>{{ step.label }}</small>
+              <small
+                >{{ step.label
+                }}<span
+                  class="red--text font-weight-medium"
+                  v-if="validity[index] === false"
+                  >&nbsp;(Required fields)</span
+                ></small
+              >
             </v-stepper-step>
             <v-stepper-content
               editable
@@ -80,19 +86,22 @@
                       v-if="field.fieldtype === 'Check'"
                       :label="field.description || field.label"
                       v-model="data[field.fieldname]"
+                      :rules="isRequired(field, 'Please check here')"
                     />
+
                     <v-text-field
                       v-if="field.fieldtype === 'Data'"
                       :label="field.label"
                       v-model="data[field.fieldname]"
                       :rules="isRequired(field)"
                     ></v-text-field>
+
                     <v-select
                       v-if="field.fieldtype === 'Select'"
                       :label="field.label"
                       v-model="data[field.fieldname]"
                       :rules="isRequired(field)"
-                      :items="field.options.split(/\n/)"
+                      :items="field.options.split(/\n/).filter(item => item)"
                     >
                       <template #item="{item, on, attrs}">
                         <template v-if="item.startsWith('*')">
@@ -114,11 +123,13 @@
                         </v-list-item>
                       </template>
                     </v-select>
+
                     <v-textarea
-                      rows="2"
                       v-if="field.fieldtype === 'Long Text'"
                       :label="field.label"
-                      v-model="data[field.fieldname]"
+                      :value="field.default || ''"
+                      @change="data[field.fieldname] = $event"
+                      :readonly="!!field.default"
                       :rules="isRequired(field)"
                     >
                     </v-textarea>
@@ -231,8 +242,9 @@ export default {
     }
   },
   methods: {
-    isRequired(field) {
-      return field.reqd ? [v => !!v || `${field.label} is required`] : []
+    isRequired(field, label) {
+      if (!label) label = `${field.label} is required`
+      return field.reqd ? [v => !!v || label] : []
     },
     onSubmit() {
       this.loading = true
