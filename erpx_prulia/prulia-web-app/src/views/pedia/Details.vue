@@ -60,6 +60,27 @@
                   readonly
                 >
                 </v-textarea>
+                <div class="py-3" v-if="field.fieldtype === 'Attach'">
+                  <div>
+                    <label class="v-label theme--light">
+                      {{ field.label }}
+                    </label>
+                  </div>
+                  <div>
+                    <v-btn
+                      class="px-0"
+                      color="primary darken-2"
+                      :href="currentPedia[field.fieldname]"
+                      download
+                      target="_blank"
+                      text
+                      plain
+                    >
+                      <v-icon left>mdi-link</v-icon>
+                      {{ currentPedia[field.fieldname] }}
+                    </v-btn>
+                  </div>
+                </div>
               </v-col>
             </v-row>
           </v-expansion-panel-content>
