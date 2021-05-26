@@ -232,7 +232,7 @@ export default {
             fields: []
           }
         } else if (sections[index]?.fields) {
-          sections[index].fields.push(_meta)
+          if (!_meta.hidden) sections[index].fields.push(_meta)
         }
       })
 

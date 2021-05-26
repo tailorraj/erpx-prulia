@@ -38,7 +38,7 @@
                   v-if="field.fieldtype === 'Check'"
                   :label="field.description || field.label"
                   v-model="currentPedia[field.fieldname]"
-                  disabled
+                  readonly
                 />
                 <v-text-field
                   dense
@@ -49,13 +49,14 @@
                   "
                   :label="field.label"
                   v-model="currentPedia[field.fieldname]"
-                  disabled
+                  readonly
                 ></v-text-field>
                 <v-textarea
                   dense
                   v-if="field.fieldtype === 'Long Text'"
                   :label="field.label"
                   v-model="currentPedia[field.fieldname]"
+                  class="grey"
                   readonly
                 >
                 </v-textarea>
@@ -261,7 +262,9 @@ export default {
             fields: []
           }
         } else if (sections[index]?.fields) {
-          sections[index].fields.push(_meta)
+          if (!_meta.hidden) {
+            sections[index].fields.push(_meta)
+          }
         }
       })
 
