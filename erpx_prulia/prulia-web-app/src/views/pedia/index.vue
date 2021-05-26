@@ -23,6 +23,7 @@
         :key="`pedia-${index}`"
       >
         <v-card
+          rounded
           min-height="100"
           hover
           :to="{ name: 'PediaDetails', params: { id: pedia.name } }"

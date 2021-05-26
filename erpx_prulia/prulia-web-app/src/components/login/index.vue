@@ -7,7 +7,7 @@
       v-model="valid"
       autocomplete="on"
     >
-      <v-card>
+      <v-card rounded>
         <v-card-title class="primary--text">
           Login
           <v-spacer />

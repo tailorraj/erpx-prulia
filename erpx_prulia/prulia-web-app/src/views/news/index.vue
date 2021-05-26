@@ -14,6 +14,7 @@
         :key="`news-${index}`"
       >
         <v-card
+          rounded
           class="dusk"
           hover
           :to="{ name: 'NewsDetails', params: { id: news.name } }"
@@ -52,7 +53,7 @@ export default {
   name: 'News',
   computed: {
     ...mapGetters('news', { allNews: 'all' })
-  },
+  }
 }
 </script>
 

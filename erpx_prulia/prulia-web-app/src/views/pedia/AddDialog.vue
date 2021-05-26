@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="model" max-width="600">
-    <v-card>
+    <v-card rounded>
       <v-card-title class="primary--text">
         Add New Pedia
         <v-spacer />

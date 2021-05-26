@@ -148,7 +148,7 @@
                 getUserShortName(comment.commenter_name)
               }}</span>
             </template>
-            <v-card>
+            <v-card rounded>
               <v-card-text>
                 {{ comment.comment }}
               </v-card-text>
