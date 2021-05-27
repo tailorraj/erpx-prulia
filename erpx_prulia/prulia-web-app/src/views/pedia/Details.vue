@@ -68,16 +68,16 @@
                   </div>
                   <div>
                     <v-btn
-                      class="px-0"
                       color="primary darken-2"
                       :href="currentPedia[field.fieldname]"
-                      download
                       target="_blank"
+                      download
                       text
                       plain
+                      rounded
                     >
                       <v-icon left>mdi-link</v-icon>
-                      {{ currentPedia[field.fieldname] }}
+                      {{ currentPedia[field.fieldname] || 'No file found' }}
                     </v-btn>
                   </div>
                 </div>
