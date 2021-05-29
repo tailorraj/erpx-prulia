@@ -35,7 +35,7 @@ const actions = {
       referrerPolicy: 'strict-origin-when-cross-origin',
       body:
         `from_form=1&is_private=0&cmd=uploadfile&doctype=PRULIA+Pedia&` +
-        `docname=${data.docname}&fieldname=${data.fieldname}&filename=${
+        `docname=${data.docname}&attached_to_field=${data.fieldname}&filename=${
           data.filename
         }&file_url=&filedata=${encodeURIComponent(data.filedata)}&file_size=${
           data.file_size
