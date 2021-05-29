@@ -26,7 +26,7 @@ const actions = {
     )
   },
   uploadAttachment(opts, data) {
-    return fetch('', {
+    return fetch('/', {
       headers: {
         accept: '*/*',
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
