@@ -164,7 +164,7 @@
                       :rules="[
                         v =>
                           !v ||
-                          value.size < 5000000 ||
+                          v.size < 5000000 ||
                           'File size should be less than 5 MB!'
                       ]"
                       @change="attachments[field.fieldname] = $event"
