@@ -15,7 +15,7 @@
         </v-card-title>
         <v-divider />
 
-        <v-card-text class="px-2 pb-2 pt-0">
+        <v-card-text class="px-2 pb-2">
           <v-list dense class="pt-0">
             <v-list-item>
               <v-select
@@ -162,6 +162,18 @@ export default {
 
     currentEvent() {
       return this.all.find(event => isEqual(this.$route.params.id, event.name))
+    }
+  },
+
+  watch: {
+    model(val) {
+      if (val) {
+        const keys = ['meal_option', 'shirt_size']
+
+        keys.forEach(key => {
+          this.eventData[key] = this.member[key]
+        })
+      }
     }
   },
 
