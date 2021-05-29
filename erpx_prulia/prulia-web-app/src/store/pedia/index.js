@@ -52,7 +52,6 @@ const actions = {
     })
       .then(response => response.json())
       .then(ret => {
-        console.log('uploaded')
         let { message } = ret
         let { file_url } = message
 

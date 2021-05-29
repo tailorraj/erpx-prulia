@@ -279,7 +279,7 @@ export default {
             .forEach(key => {
               tasks.push(
                 this.toBase64(this.attachments[key]).then(filedata => {
-                  this.$store.dispatch('pedia/uploadAttachment', {
+                  return this.$store.dispatch('pedia/uploadAttachment', {
                     doctype: 'PRULIA Pedia',
                     docname: name,
                     fieldname: key,
@@ -292,7 +292,6 @@ export default {
             })
 
           return Promise.all(tasks).then(() => {
-            console.log('complete')
             this.showSnackbar('Pedia submitted successfully!', 'success')
             this.model = false
             this.$store.dispatch('pedia/load')
