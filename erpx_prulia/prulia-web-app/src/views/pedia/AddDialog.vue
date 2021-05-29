@@ -288,6 +288,7 @@ export default {
           return Promise.all(tasks).then(() => {
             this.showSnackbar('Pedia submitted successfully!', 'success')
             this.model = false
+            this.$store.dispatch('pedia/load')
           })
         })
         .catch(error => {
