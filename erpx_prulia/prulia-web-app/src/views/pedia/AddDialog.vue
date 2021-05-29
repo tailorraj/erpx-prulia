@@ -11,7 +11,7 @@
       <v-card-text v-if="!mode">
         <v-row no-gutters justify="center" align="center" class="pa-6">
           <v-col class="px-3">
-            <v-card @click="mode = 'help'">
+            <v-card @click="changeMode('help')">
               <v-card-text class="pt-9">
                 <v-row justify="center">
                   <v-btn x-large fab class="primary elevation-0">
@@ -26,7 +26,7 @@
           </v-col>
 
           <v-col class="px-3">
-            <v-card @click="mode = 'feedback'">
+            <v-card @click="changeMode('feedback')">
               <v-card-text class="pt-9">
                 <v-row justify="center">
                   <v-btn x-large fab class="indigo elevation-0">
@@ -245,6 +245,10 @@ export default {
     isRequired(field, label) {
       if (!label) label = `${field.label} is required`
       return field.reqd ? [v => !!v || label] : []
+    },
+    changeMode(mode) {
+      this.mode = mode
+      this.validity = []
     },
     onSubmit() {
       this.loading = true
