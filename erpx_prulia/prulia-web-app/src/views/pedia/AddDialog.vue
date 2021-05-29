@@ -161,6 +161,12 @@
                     <v-file-input
                       v-if="field.fieldtype === 'Attach'"
                       :label="field.label"
+                      :rules="[
+                        v =>
+                          !v ||
+                          value.size < 5000000 ||
+                          'File size should be less than 5 MB!'
+                      ]"
                       @change="attachments[field.fieldname] = $event"
                     >
                     </v-file-input>

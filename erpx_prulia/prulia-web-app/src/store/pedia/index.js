@@ -25,7 +25,13 @@ const actions = {
       data
     )
   },
-  uploadAttachment(opts, data) {
+  updatePedia(opts, data) {
+    return axios.post(
+      '/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.update_post',
+      data
+    )
+  },
+  uploadAttachment({ dispatch }, data) {
     return fetch('/', {
       headers: {
         accept: '*/*',
@@ -43,6 +49,17 @@ const actions = {
       method: 'POST',
       mode: 'cors',
       credentials: 'include'
+    }).then(async response => {
+      let ret = await response.json()
+      if (response.ok) {
+        let { message } = ret
+        let { file_url } = message
+
+        return dispatch('updatePedia', {
+          name: data.docname,
+          [data.fieldname]: file_url
+        })
+      } else return Promise.reject({ response: { data } })
     })
   },
   addComment({ commit, getters }, data) {
