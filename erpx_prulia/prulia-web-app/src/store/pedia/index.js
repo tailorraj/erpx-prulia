@@ -26,7 +26,7 @@ const actions = {
     )
   },
   uploadAttachment(opts, data) {
-    return fetch('/', {
+    return fetch('', {
       headers: {
         accept: '*/*',
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -35,11 +35,11 @@ const actions = {
       referrerPolicy: 'strict-origin-when-cross-origin',
       body:
         `from_form=1&is_private=0&cmd=uploadfile&doctype=PRULIA+Pedia&` +
-        `docname=${data.docname}&fieldname=${
-          data.fieldname
-        }&filename=&file_url=&filedata=${encodeURIComponent(
-          data.filedata
-        )}&file_size=${data.file_size}`,
+        `docname=${data.docname}&fieldname=${data.fieldname}&filename=${
+          data.filename
+        }&file_url=&filedata=${encodeURIComponent(data.filedata)}&file_size=${
+          data.file_size
+        }`,
       method: 'POST',
       mode: 'cors',
       credentials: 'include'
