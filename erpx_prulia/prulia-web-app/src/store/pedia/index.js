@@ -49,9 +49,9 @@ const actions = {
       method: 'POST',
       mode: 'cors',
       credentials: 'include'
-    }).then(async response => {
-      let ret = await response.json()
-      if (response.ok) {
+    })
+      .then(response => response.json())
+      .then(ret => {
         let { message } = ret
         let { file_url } = message
 
@@ -59,8 +59,7 @@ const actions = {
           name: data.docname,
           [data.fieldname]: file_url
         })
-      } else return Promise.reject({ response: { data } })
-    })
+      })
   },
   addComment({ commit, getters }, data) {
     return axios
