@@ -303,6 +303,7 @@ export default {
               group: dayjs(comment.comment_date).calendar(null, {
                 sameDay: '[Today]', // The same day ( Today at 2:30 AM )
                 lastDay: '[Yesterday]', // The day before ( Yesterday at 2:30 AM )
+                lastWeek: 'D MMM YYYY', // Everything else ( 7/10/2011 )
                 sameElse: 'DD MMM YYYY' // Everything else ( 7/10/2011 )
               })
             }
