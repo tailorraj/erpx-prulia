@@ -157,6 +157,13 @@
                         @input="dates[field.fieldname] = false"
                       ></v-date-picker>
                     </v-menu>
+
+                    <v-file-input
+                      v-if="field.fieldtype === 'Attach'"
+                      :label="field.label"
+                      @change="attachments[field.fieldname] = $event"
+                    >
+                    </v-file-input>
                   </v-col>
                 </v-row>
               </v-form>
@@ -192,6 +199,7 @@ const data = () => ({
   mode: null,
   loading: false,
   data: {},
+  attachments: {},
   currentStep: 1,
   dates: {}
 })
@@ -255,9 +263,32 @@ export default {
 
       this.$store
         .dispatch('pedia/createPedia', this.data)
-        .then(() => {
-          this.showSnackbar('Pedia submitted successfully!', 'success')
-          this.model = false
+        .then(({ data }) => {
+          const tasks = []
+          const { message } = data
+          const { name } = message //get pedia ID
+
+          Object.keys(this.attachments)
+            .filter(key => this.attachments[key])
+            .forEach(key => {
+              tasks.push(
+                this.toBase64(this.attachments[key]).then(filedata => {
+                  this.$store.dispatch('pedia/uploadAttachment', {
+                    doctype: 'PRULIA Pedia',
+                    docname: name,
+                    fieldname: key,
+                    filename: this.attachments[key].name,
+                    file_size: this.attachments[key].size,
+                    filedata
+                  })
+                })
+              )
+            })
+
+          return Promise.all(tasks).then(() => {
+            this.showSnackbar('Pedia submitted successfully!', 'success')
+            this.model = false
+          })
         })
         .catch(error => {
           let { data } = error.response
@@ -268,6 +299,20 @@ export default {
         .finally(() => {
           this.loading = false
         })
+    },
+    toBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () =>
+          resolve(
+            reader.result
+              .split('base64,')
+              .pop()
+              .trim()
+          )
+        reader.onerror = error => reject(error)
+      })
     }
   }
 }

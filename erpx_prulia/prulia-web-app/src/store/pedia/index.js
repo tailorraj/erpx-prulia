@@ -19,15 +19,31 @@ const mutations = {
 
 const actions = {
   ...make.actions(state),
-  createPedia({ dispatch }, data) {
-    axios
-      .post(
-        '/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.create_new_post',
-        data
-      )
-      .then(() => {
-        dispatch('load')
-      })
+  createPedia(opts, data) {
+    return axios.post(
+      '/api/method/erpx_prulia.prulia_pedia.doctype.prulia_pedia.prulia_pedia.create_new_post',
+      data
+    )
+  },
+  uploadAttachment(opts, data) {
+    return fetch('/', {
+      headers: {
+        accept: '*/*',
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'x-requested-with': 'XMLHttpRequest'
+      },
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      body:
+        `from_form=1&is_private=0&cmd=uploadfile&doctype=PRULIA+Pedia&` +
+        `docname=${data.docname}&fieldname=${
+          data.fieldname
+        }&filename=&file_url=&filedata=${encodeURIComponent(
+          data.filedata
+        )}&file_size=${data.file_size}`,
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include'
+    })
   },
   addComment({ commit, getters }, data) {
     return axios
