@@ -135,7 +135,7 @@
           "target": "Event"
         },
         {
-          "pattern": "eventdetail/{eventid}",
+          "pattern": "eventdetail/{eventid}:?query:",
           "name": "EventDetail",
           "target": "EventDetail"
         },

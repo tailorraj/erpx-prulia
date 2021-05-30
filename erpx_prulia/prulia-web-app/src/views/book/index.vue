@@ -18,6 +18,7 @@
         :key="`book-${index}`"
       >
         <v-card
+          rounded
           class="dusk"
           hover
           :to="{ name: 'BookDetails', params: { id: book.name } }"

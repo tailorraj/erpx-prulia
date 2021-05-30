@@ -18,6 +18,7 @@
         :key="`event-${index}`"
       >
         <v-card
+          rounded
           hover
           :to="{ name: 'EventDetails', params: { id: event.name } }"
         >

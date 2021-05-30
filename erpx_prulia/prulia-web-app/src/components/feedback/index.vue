@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="model" max-width="450px">
     <v-form v-if="model" ref="form" @submit.prevent="onSubmit" v-model="valid">
-      <v-card>
+      <v-card rounded>
         <v-card-title class="primary--text">
           Submit feedback
           <v-spacer />

@@ -10,6 +10,7 @@ import training from './training'
 import smartPartners from './smartPartners'
 import feedback from './feedback'
 import book from './book'
+import pedia from './pedia'
 
 Vue.use(Vuex)
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     training,
     smartPartners,
     feedback,
-    book
+    book,
+    pedia
   }
 })

@@ -18,6 +18,7 @@
         :key="`training-${index}`"
       >
         <v-card
+          rounded
           hover
           :to="{ name: 'TrainingDetails', params: { id: training.name } }"
         >

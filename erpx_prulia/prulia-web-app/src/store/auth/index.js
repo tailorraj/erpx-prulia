@@ -98,13 +98,12 @@ const actions = {
 
     let { filedata, file_size, filename } = data
 
-    return fetch('http://167.99.77.197', {
+    return fetch('/', {
       headers: {
         accept: '*/*',
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'x-requested-with': 'XMLHttpRequest'
       },
-      referrer: 'http://167.99.77.197/',
       referrerPolicy: 'strict-origin-when-cross-origin',
       body:
         `from_form=1&is_private=0&cmd=uploadfile&doctype=PRULIA+Member&` +

@@ -7,7 +7,7 @@
       v-model="valid"
       autocomplete="on"
     >
-      <v-card>
+      <v-card rounded>
         <v-card-title class="primary--text">
           Register Event
           <v-spacer />
@@ -15,7 +15,7 @@
         </v-card-title>
         <v-divider />
 
-        <v-card-text class="px-2 pb-2 pt-0">
+        <v-card-text class="px-2 pb-2">
           <v-list dense class="pt-0">
             <v-list-item>
               <v-select
@@ -162,6 +162,18 @@ export default {
       return this.all.find(training =>
         isEqual(this.$route.params.id, training.name)
       )
+    }
+  },
+
+  watch: {
+    model(val) {
+      if (val) {
+        const keys = ['meal_option', 'shirt_size']
+
+        keys.forEach(key => {
+          this.eventData[key] = this.member[key]
+        })
+      }
     }
   },
 

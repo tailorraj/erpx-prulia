@@ -4,7 +4,7 @@
     max-width="80%"
     content-class="popup-dialog elevation-0"
   >
-    <v-card class="transparent elevation-0">
+    <v-card rounded class="transparent elevation-0">
       <v-btn
         class="dusk"
         color="secondary"

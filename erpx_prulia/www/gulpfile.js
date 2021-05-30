@@ -9,7 +9,7 @@ var _gulp = require('gulp'),
 _gulp.task('buildui5', buildUI5);
 
 _gulp.task('default', function () {
-    _gulp.watch(['**/**', '!node_modules', '!Component-preload.js'], buildUI5);
+    _gulp.watch(['**/**', '!node_modules', '!Component-preload.js', '!chubb/**'], buildUI5);
 });
 
 _gulp.task('localhost', function () {
@@ -29,7 +29,8 @@ function buildUI5() {
         '!**/*-dbg.js',
         '!**/*-dbg.*.js',
         '!Component-preload.js',
-        '!gulpfile.js'
+        '!gulpfile.js',
+        '!chubb/**'
     ])
     .pipe(_if('**/*.js', _uglify()))
     .pipe(_if('**/*.xml', _prettydata({ type: 'minify' })))

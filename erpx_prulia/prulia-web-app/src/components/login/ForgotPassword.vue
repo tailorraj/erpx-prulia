@@ -1,6 +1,6 @@
 <template>
   <v-form @submit.prevent="onSubmit" v-model="valid">
-    <v-card>
+    <v-card rounded>
       <v-card-title class="primary--text">
         Forgot Password
         <v-spacer></v-spacer>

@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="model" max-width="450px">
-    <v-card>
+    <v-card rounded>
       <v-card-title class="primary--text">
         Upload Profile Picture
         <v-spacer />

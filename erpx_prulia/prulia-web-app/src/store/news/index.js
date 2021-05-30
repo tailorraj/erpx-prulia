@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const state = {
   all: [],
+  loaded: false,
   popups: [],
   showPopup: false
 }
@@ -66,6 +67,7 @@ const actions = {
       .then(({ data }) => {
         let { message } = data
         commit('SET_ALL', message || [])
+        commit('SET_LOADED', true)
       })
   }
 }

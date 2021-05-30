@@ -15,6 +15,7 @@
         >
           <a :href="link.href" target="_blank" style="text-decoration: none">
             <v-card
+              rounded
               class="vanilla elevate-on-hover"
               hover
               flat
@@ -46,6 +47,7 @@
           :key="`news-${index}`"
         >
           <v-card
+            rounded
             hover
             :to="{ name: 'NewsDetails', params: { id: news.name } }"
           >

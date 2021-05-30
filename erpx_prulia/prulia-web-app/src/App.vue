@@ -159,6 +159,10 @@ export default {
         {
           title: 'Smart Partners',
           route: { name: 'SmartPartners' }
+        },
+        {
+          title: 'Pedia',
+          route: { name: 'Pedia' }
         }
       ]
     }

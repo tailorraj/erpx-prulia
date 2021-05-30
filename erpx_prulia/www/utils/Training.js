@@ -191,10 +191,21 @@ sap.ui.define([
 	              oController.getOwnerComponent().getModel("appParam").setProperty("/busy", true);
 	              this.createAttendance(bCreate, this.eventPrefDialog.getModel(), oMemberModel).done(
 	                  function(data, status, xhr){
-	                    if(data.message === "success"){
-	                      MessageToast.show("Preferences was update successfully");
+	                    if(data.message.success === "success"){
+                        if(data.message.training.training_with_fees){
+
+                          if(data.message.payment_link){
+                            window.location.href = data.message.payment_link;
+                          } else {
+                            MessageToast.show("Failed to initiate payment!");
+                          }
+                          
+                        }
+                        else{
+                          MessageToast.show("Preferences was update successfully");
+                        }
 	                    } else {
-	                      MessageToast.show(JSON.parse(JSON.parse(data._server_messages)[0]).message);
+	                      MessageToast.show("Whoops! Something went wrong!");
 	                    }
 
 	                  }
