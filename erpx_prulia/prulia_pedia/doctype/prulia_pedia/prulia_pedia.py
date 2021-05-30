@@ -62,6 +62,23 @@ def create_new_post(data):
 
 
 @frappe.whitelist()
+def update_post(data):
+	dat = json.loads(data)
+	doc = frappe.get_doc("PRULIA Pedia", dat.get('name'))
+
+	doc.flags.ignore_permissions = True
+	doc.flags.ignore_mandatory = True
+
+	for key in dat:
+		if key != 'name':
+			doc.set(key, dat.get(key))
+
+	doc.save()
+
+	return doc
+
+
+@frappe.whitelist()
 def add_comment(data):
 	dat = json.loads(data)
 	doc = frappe.new_doc("PRULIA Pedia Comment")
