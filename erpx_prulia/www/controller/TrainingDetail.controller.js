@@ -6,8 +6,7 @@ sap.ui.define([
 	"com/erpx/site/prulia/PRULIA/utils/Training",
 	"com/erpx/site/prulia/PRULIA/utils/Login",
   	"com/erpx/site/prulia/PRULIA/utils/ErrorHandler",
-	  "com/erpx/site/prulia/PRULIA/utils/Config",
-], function (Controller, DateFormat, MessageBox, MessageToast, Training, Login, ErrorHandler, Config) {
+], function (Controller, DateFormat, MessageBox, MessageToast, Training, Login, ErrorHandler) {
 	"use strict";
 
 	return Controller.extend("com.erpx.site.prulia.PRULIA.controller.TrainingDetail", {
@@ -88,27 +87,8 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.erpx.site.prulia.PRULIA.view.NewsDetail
 		 */
-		onAfterRendering: function() {
-			this.removeUnpaids().done(
-				function(data, status, xhr){
-					console.log(data);
-				}
-			).fail(
-				function(error){
-					ErrorHandler.handleAjaxError(error);
-				}
-			);
-		},
-
-		removeUnpaids: function(){
-			return $.ajax({
-				type: "POST",
-				url: Config.serverURL+'/api/method/erpx_prulia.prulia_trainings.doctype.prulia_training.prulia_training.remove_unpaid_trainees',
-				data: JSON.stringify({}),
-				dataType: 'json',
-				contentType: 'application/json'
-			});
-		},
+		// onAfterRendering: function() {
+		// },
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
