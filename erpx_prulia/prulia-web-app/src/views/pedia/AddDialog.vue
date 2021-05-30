@@ -298,10 +298,13 @@ export default {
           })
         })
         .catch(error => {
-          let { data } = error.response
-          let { message } = data
+          let { data } = error?.response || {}
+          let { message } = data || {}
 
-          this.showSnackbar(message, 'error')
+          this.showSnackbar(
+            message || 'Upload attachment is not allowed',
+            'error'
+          )
         })
         .finally(() => {
           this.loading = false
