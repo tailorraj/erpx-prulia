@@ -27,15 +27,15 @@ const getDOB = ic => {
 
     var str = year + "-" + month + "-" + day;
 
-    // if invalid date, return false
-    if (new Date(str).toString() === "Invalid Date") {
-      return null;
-    }
-
-    return str;
+    // if valid date, return date
+    if (isValidDate(str)) return str;
   }
 
-  return null;
+  return "";
+};
+
+const isValidDate = date => {
+  return new Date(date).toString() !== "Invalid Date";
 };
 
 const getAge = dateOfBirth => {
@@ -279,8 +279,6 @@ class PersonalInformation extends React.Component {
                 validate={values => {
                   const errors = {};
 
-                  console.log(values);
-
                   if (!values.mainInsuredName)
                     errors.mainInsuredName = "Name is required";
 
@@ -301,9 +299,22 @@ class PersonalInformation extends React.Component {
                   ) {
                     errors.mainInsuredNric = "Invalid NRIC";
                   } else {
-                    values.mainInsuredBirthDate = getDOB(
-                      values.mainInsuredNric
-                    );
+                    let mainDOB = getDOB(values.mainInsuredNric);
+                    if (mainDOB) {
+                      if (!values.mainInsuredBirthDate) {
+                        values.mainInsuredBirthDate = mainDOB;
+                      }
+                    } else {
+                      errors.mainInsuredNric = "Invalid NRIC";
+                    }
+                  }
+
+                  if (!values.mainInsuredBirthDate) {
+                    errors.mainInsuredBirthDate = "Date of birth is required";
+                  } else {
+                    if (!isValidDate(values.mainInsuredBirthDate)) {
+                      errors.mainInsuredBirthDate = "Date of birth is invalid";
+                    }
                   }
 
                   if (!values.mainInsuredMobileNo)
@@ -335,7 +346,22 @@ class PersonalInformation extends React.Component {
                     ) {
                       errors.spouseNric = "Invalid NRIC";
                     } else {
-                      values.spouseBirthDate = getDOB(values.spouseNric);
+                      let spouseDOB = getDOB(values.spouseNric);
+                      if (spouseDOB) {
+                        if (!values.spouseBirthDate) {
+                          values.spouseBirthDate = spouseDOB;
+                        }
+                      } else {
+                        errors.spouseNric = "Invalid NRIC";
+                      }
+                    }
+
+                    if (!values.spouseBirthDate) {
+                      errors.spouseBirthDate = "Date of birth is required";
+                    } else {
+                      if (!isValidDate(values.spouseBirthDate)) {
+                        errors.spouseBirthDate = "Date of birth is invalid";
+                      }
                     }
                   }
 
@@ -346,6 +372,10 @@ class PersonalInformation extends React.Component {
                       }
 
                       if (key.startsWith("childBirthDate")) {
+                        if (!isValidDate(values[key])) {
+                          errors[key] = "Date of birth is invalid";
+                        }
+
                         if (!getAge(values[key]))
                           errors[key] = "Date of birth is required";
 
@@ -364,7 +394,6 @@ class PersonalInformation extends React.Component {
                   }
 
                   Object.keys(values).forEach(key => {
-                    console.log(key);
                     this.props.gettingValues(
                       {
                         target: {
@@ -380,7 +409,6 @@ class PersonalInformation extends React.Component {
                   return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                  // console.log(JSON.stringify(values, null, 2));
                   this.props.gettingValues(
                     {
                       target: {
@@ -489,6 +517,10 @@ class PersonalInformation extends React.Component {
                             value={values.mainInsuredBirthDate}
                             onChange={handleChange}
                           />
+                          <span className="error">
+                            {errors.mainInsuredBirthDate &&
+                              errors.mainInsuredBirthDate}
+                          </span>
                         </div>
 
                         <div className="inputGroup two three">
@@ -636,6 +668,9 @@ class PersonalInformation extends React.Component {
                             value={values.spouseBirthDate}
                             onChange={handleChange}
                           />
+                          <span className="error">
+                            {errors.spouseBirthDate && errors.spouseBirthDate}
+                          </span>
                         </div>
                       </div>
                     )}
