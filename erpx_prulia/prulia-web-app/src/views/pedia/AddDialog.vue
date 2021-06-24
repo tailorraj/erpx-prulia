@@ -87,6 +87,7 @@
                       :label="field.description || field.label"
                       v-model="data[field.fieldname]"
                       :rules="isRequired(field, 'Please check here')"
+                      :readonly="!!field.read_only"
                     />
 
                     <v-text-field
@@ -94,6 +95,7 @@
                       :label="field.label"
                       v-model="data[field.fieldname]"
                       :rules="isRequired(field)"
+                      :readonly="!!field.read_only"
                     ></v-text-field>
 
                     <v-select
@@ -102,6 +104,7 @@
                       v-model="data[field.fieldname]"
                       :rules="isRequired(field)"
                       :items="field.options.split(/\n/).filter(item => item)"
+                      :readonly="!!field.read_only"
                     >
                       <template #item="{item, on, attrs}">
                         <template v-if="item.startsWith('*')">
@@ -129,7 +132,7 @@
                       :label="field.label"
                       :value="field.default || ''"
                       @change="data[field.fieldname] = $event"
-                      :readonly="!!field.default"
+                      :readonly="!!field.default || !!field.read_only"
                       :rules="isRequired(field)"
                     >
                     </v-textarea>
@@ -168,6 +171,7 @@
                           'File size should be less than 5 MB!'
                       ]"
                       @change="attachments[field.fieldname] = $event"
+                      :readonly="!!field.read_only"
                     >
                     </v-file-input>
                   </v-col>
