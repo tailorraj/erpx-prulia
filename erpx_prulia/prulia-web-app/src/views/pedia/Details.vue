@@ -14,7 +14,7 @@
       </v-list-item>
     </v-list>
 
-    <v-expansion-panels accordion multiple>
+    <v-expansion-panels accordion multiple mandatory>
       <template v-for="(section, index) in fields">
         <v-expansion-panel
           v-if="showSection(section)"
