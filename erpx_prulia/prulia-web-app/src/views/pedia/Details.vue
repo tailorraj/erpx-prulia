@@ -45,7 +45,8 @@
                   v-if="
                     field.fieldtype === 'Data' ||
                       field.fieldtype === 'Select' ||
-                      field.fieldtype === 'Date'
+                      field.fieldtype === 'Date' ||
+                      field.fieldtype === 'Datetime'
                   "
                   :label="field.label"
                   v-model="currentPedia[field.fieldname]"
@@ -102,12 +103,15 @@
           }}</span>
         </template>
         <v-form v-model="valid" @submit.prevent="onComment">
-          <v-text-field
+          <v-textarea
             v-model="commentText"
             label="Leave a comment..."
             :rules="[v => !!v || 'Comment is required']"
             filled
             hide-details
+            auto-grow
+            :rows="1"
+            row-height="1"
           >
             <template #append-outer>
               <v-btn
@@ -120,7 +124,7 @@
                 Post
               </v-btn>
             </template>
-          </v-text-field>
+          </v-textarea>
         </v-form>
       </v-timeline-item>
 
@@ -149,7 +153,7 @@
               }}</span>
             </template>
             <v-card rounded>
-              <v-card-text>
+              <v-card-text style="white-space: pre-line;">
                 {{ comment.comment }}
               </v-card-text>
               <v-divider />
@@ -191,12 +195,15 @@
               hide-dot
             >
               <v-form v-model="validReply" @submit.prevent="onComment">
-                <v-text-field
+                <v-textarea
                   v-model="replyText"
                   label="Leave a comment..."
                   :rules="[v => !!v || 'Comment is required']"
                   filled
                   hide-details
+                  auto-grow
+                  :rows="1"
+                  row-height="1"
                 >
                   <template #append-outer>
                     <v-btn
@@ -209,7 +216,7 @@
                       Post
                     </v-btn>
                   </template>
-                </v-text-field>
+                </v-textarea>
               </v-form>
             </v-timeline-item>
 
@@ -227,7 +234,7 @@
                 }}</span>
               </template>
               <v-card>
-                <v-card-text>
+                <v-card-text style="white-space: pre-line;">
                   {{ reply.comment }}
                 </v-card-text>
                 <v-divider />
