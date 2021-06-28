@@ -62,18 +62,46 @@ def get_data():
 			"type": "module",
 			"label": _("PRULIA News")
 		},{
+            "module_name": "PRULIA Book",
+            "color": "red",
+             "icon": "octicon octicon-book",
+            "_doctype": "PRULIA Book",
+            "type": "list",
+            "link": "List/PRULIA Book",
+            "label": _("PRULIA Book")
+        },{
             "module_name": "PRULIA PA",
             "color": "red",
-            "icon": "octicon octicon-rss",
+            "icon": "octicon octicon-checklist",
             "type": "module",
             "label": _("PRULIA PA"),
         },{
             "module_name": "PRULIA PA",
             "color": "red",
-            "icon": "octicon octicon-rss",
+            "icon": "octicon octicon-checklist",
             "_doctype": "PRULIA PA",
             "type": "list",
             "link": "List/PRULIA PA",
             "label": _("PRULIA PA")
-        }
+        },{
+            "module_name": "PRULIA Pedia",
+            "color": "red",
+            "icon": "octicon octicon-comment-discussion",
+            "type": "module",
+            "label": _("PRULIA Pedia"),
+        },{
+	        "module_name": "PRULIA Pedia",
+	        "color": "red",
+            "icon": "octicon octicon-comment-discussion",
+	        "_doctype": "PRULIA Pedia",
+	        "type": "list",
+	        "link": "List/PRULIA Pedia",
+	        "label": _("PRULIA Pedia")
+        },{
+	        "module_name": "PRULIA Telco",
+	        "color": "red",
+	        "icon": "octicon octicon-device-mobile",
+	        "type": "module",
+	        "label": _("PRULIA Telco"),
+	    },
 	]
