@@ -5,6 +5,8 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+from jinja2 import Template
+from erpx_prulia.prulia_members.doctype.prulia_member.prulia_member import mobile_member_login
 
 class PRULIABanner(Document):
 	pass
@@ -25,4 +27,10 @@ def get_banner():
 	banners = frappe.get_all('PRULIA Banner', fields=['name', 'banner_name','image','published', 'type', 'link', 'content', 'link_same_tab'],
 						filters=[('PRULIA Banner', "published", "=", 1)],
 						order_by='name')
+	member = mobile_member_login()
+
+	for banner in banners:
+		template = Template(banner.content)
+		banner.content = template.render(member = member)
+
 	return banners
