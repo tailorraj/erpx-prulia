@@ -228,12 +228,12 @@ class PersonalAccidentInsurance extends React.Component {
             </p>
             <p className="p2">
               This product is underwritten by Chubb Insurance Malaysia Berhad
-              (“Chubb”) and is distributed by [insert full Prulia name] as the
-              registered agent of Chubb. Chubb is a general insurer licensed
-              under the Financial Services Act 2013 and regulated by Bank Negara
-              Malaysia. The details provided herein is not complete and for you
-              to know more of this insurance product, please read the Policy
-              Wordings and Product Disclosure Sheet.
+              (“Chubb”) and is distributed by PRULIA Sdn Bhd as the registered
+              agent of Chubb. Chubb is a general insurer licensed under the
+              Financial Services Act 2013 and regulated by Bank Negara Malaysia.
+              The details provided herein is not complete and for you to know
+              more of this insurance product, please read the Policy Wordings
+              and Product Disclosure Sheet.
             </p>
           </div>
 
@@ -254,12 +254,21 @@ class PersonalAccidentInsurance extends React.Component {
             <div className="div">
               <img src={pdfIcon} />{" "}
               <a
-                href={`${process.env.PUBLIC_URL}/assets/files/prulia_endorsement_up_to_age_80.pdf`}
+                href={`${process.env.PUBLIC_URL}/assets/files/product_disclosure_sheet.pdf`}
                 download
               >
-                PRULIA Endorsement
+                Product Disclosure Sheet (PDS)
               </a>
             </div>
+            {/*<div className="div">*/}
+            {/*  <img src={pdfIcon} />{" "}*/}
+            {/*  <a*/}
+            {/*    href={`${process.env.PUBLIC_URL}/assets/files/prulia_endorsement_up_to_age_80.pdf`}*/}
+            {/*    download*/}
+            {/*  >*/}
+            {/*    PRULIA Endorsement*/}
+            {/*  </a>*/}
+            {/*</div>*/}
             {/*<div className="div"><img src={pdfIcon}/> <a href="#">Personal Data Protection Notice</a></div>*/}
             {/*<div className="div"><img src={pdfIcon}/> <a href="#">Declaration And Authorization</a></div>*/}
             {/*<div className="div"><img src={pdfIcon}/> <a href="#">Eligibility Criteria</a></div>*/}
@@ -267,7 +276,7 @@ class PersonalAccidentInsurance extends React.Component {
 
           {this.props.state.total != 0 && (
             <div className="buttonDiv">
-              <Link to="/personal-information">BUY NOW</Link>
+              <Link to="/personal-information">ENROLL NOW</Link>
             </div>
           )}
         </div>
