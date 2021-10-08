@@ -58,7 +58,7 @@ class PersonalAccidentInsurance extends React.Component {
                     <div id="formBasicCheckbox" className="insideSecond">
                       <h6>Main Insured</h6>
                       <p>
-                        Accident, Death or TPD <br />
+                        Accidental Death<br />
                         <span>RM1,000,000</span>
                       </p>
                     </div>
@@ -81,14 +81,17 @@ class PersonalAccidentInsurance extends React.Component {
               </Card.Header>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                  <p>Accident, Death or Total & Permanent Disability</p>
+                  <p>Accidental Death</p>
                   <span>RM1,000,000</span>
+
+                  <p>Accidental Permanent Disablement</p>
+                  <span>Up to RM1,000,000</span>
 
                   <p>Funeral Expenses</p>
                   <span>RM3,000</span>
 
-                  <p>Medical</p>
-                  <span style={{ marginBottom: 0 }}>RM5,000</span>
+                  <p>Accidental Medical Expenses</p>
+                  <span style={{ marginBottom: 0 }}>Up to RM5,000</span>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
@@ -109,7 +112,7 @@ class PersonalAccidentInsurance extends React.Component {
                     <div id="formBasicCheckbox" className="insideSecond">
                       <h6>Spouse (Optional)</h6>
                       <p>
-                        Accident, Death or TPD <br />
+                        Accidental Death <br />
                         <span>RM1,000,000</span>
                       </p>
                     </div>
@@ -132,14 +135,17 @@ class PersonalAccidentInsurance extends React.Component {
               </Card.Header>
               <Accordion.Collapse eventKey="1">
                 <Card.Body>
-                  <p>Accident, Death or Total & Permanent Disability</p>
+                  <p>Accidental Death</p>
                   <span>RM1,000,000</span>
+
+                  <p>Accidental Permanent Disablement</p>
+                  <span>Up to RM1,000,000</span>
 
                   <p>Funeral Expenses</p>
                   <span>RM3,000</span>
 
-                  <p>Medical</p>
-                  <span style={{ marginBottom: 0 }}>RM5,000</span>
+                  <p>Accidental Medical Expenses</p>
+                  <span style={{ marginBottom: 0 }}>Up to RM5,000</span>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
@@ -161,7 +167,7 @@ class PersonalAccidentInsurance extends React.Component {
                     <div id="formBasicCheckbox" className="insideSecond">
                       <h6>Eligible Child (Optional)</h6>
                       <p>
-                        Accident, Death or TPD
+                        Accidental Death
                         <br />
                         <span>RM100,000 each</span>
                       </p>
@@ -204,14 +210,17 @@ class PersonalAccidentInsurance extends React.Component {
               </Card.Header>
               <Accordion.Collapse eventKey="2">
                 <Card.Body>
-                  <p>Accident, Death or Total & Permanent Disability</p>
+                  <p>Accidental Death</p>
                   <span>RM100,000</span>
+
+                  <p>Accidental Permanent Disablement</p>
+                  <span>Up to RM1,000,000</span>
 
                   <p>Funeral Expenses</p>
                   <span>RM3,000</span>
 
-                  <p>Medical</p>
-                  <span style={{ marginBottom: 0 }}>RM5,000</span>
+                  <p>Accidental Medical Expenses</p>
+                  <span style={{ marginBottom: 0 }}>Up to RM5,000</span>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
@@ -221,6 +230,9 @@ class PersonalAccidentInsurance extends React.Component {
             <label>Total</label>
             <span>RM{this.props.state.total}</span>
           </div>
+	  <div>
+		<i align="right">(Premium inclusive Service Tax)</i>
+	  </div>
 
           <div className="lastPrivacy">
             <p className="p1">

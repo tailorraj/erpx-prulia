@@ -205,10 +205,6 @@ class Declaration extends React.Component {
                       to or correction of my personal data, or for any other
                       queries or complaints.
                     </p>
-                    <p1>
-                      I understand and agreed that this is an annual
-                      auto-renewal policy.
-                    </p1>
                   </div>
                 </div>
 
@@ -240,7 +236,7 @@ class Declaration extends React.Component {
                     </p>
                     <p1>
                       I understand and agreed that this is an annual
-                      auto-renewal policy.
+                      auto-renewable policy.
                     </p1>
                   </div>
                 </div>
