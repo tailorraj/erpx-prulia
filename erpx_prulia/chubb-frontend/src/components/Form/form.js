@@ -572,39 +572,35 @@ class Form extends React.Component {
                 Kenyataan Mengikut Jadual 9 Akta Perkhidmatan Kewangan 2013
               </p>
               <p>
-                (a) not to make a misrepresentation to Chubb Insurance Malaysia
-                Berhad (Chubb) when answering any questions We ask in this
-                proposal form; <br />
-                <br />
-                (b) when renewing this Policy, not to make a misrepresentation
-                to Us in answering any questions, or confirming or amending any
-                matter previously disclosed to Us in relation to this Policy;
-                and <br /> <br />
-                (c) to disclose to Us any matter, other than what We have asked
-                in (a) and (b) above, that You know to be relevant to Our
-                decision on whether to accept the risk or not and the rates and
-                terms to be applied. <br /> <br />
+                You have a duty to take resonable care: <br /> <br />
+                (a) When answering the questions continaed in this enrolment
+                    form and before this contract of insurance is entered into,
+                    you are reminded to take reasonable care not to make a
+                    misrepresentation to Chubb Insurance Malaysia Berhad ("Chubb").
+                    This duty of disclosure shall continue until the time the
+                    contract is entered into, varied or renewed. <br /> <br />
+                (b) You are reminded to take reasonable care to disclose to Chubb
+                    any matter, other than those questions asked in this enrolment
+                    form, that you know to be relevant to Chubb's decision on
+                    whether to accept your risk or not and the rates and term
+                    to be applied. <br /> <br />
                 Your duty to take reasonable care for the above shall be based
                 on what a reasonable person in Your circumstances would have
                 known. <br /> <br />
                 <i>
                   Anda mempunyai kewajipan untuk mengambil langkah yang
                   sewajarnya : <br /> <br />
-                  (a) untuk tidak membuat salah nyataan kepada Chubb Insurance
-                  Malaysia Berhad (Chubb) apabila menjawab apa-apa soalan yang
-                  Kami tanya di dalam borang cadangan ini;
-                  <br /> <br />
-                  (b) apabila memperbaharui Polisi ini, tidak membuat salah
-                  nyataan kepada Kami apabila menjawab apa-apa soalan, atau
-                  mengesahkan atau meminda apa-apa perkara yang telah didedahkan
-                  sebelum itu kepada Kami berhubungan dengan Polisi ini; dan
-                  <br /> <br />
-                  (c) untuk mendedahkan kepada Kami apa-apa perkara, selain
-                  daripada apa yang Kami kehendaki di (a) dan (b) di atas, yang
-                  Anda ketahui sebagai berkaitan dengan keputusan Kami sama ada
-                  untuk menerima risiko atau tidak dan kadar dan terma yang
-                  hendak dikenakan.
-                  <br /> <br />
+                  (a) Semasa menjawab soalan-soalan yang terkandung dalam borang
+                      pendaftaran ini dan sebelum kontrak insurans ini dimeterai,
+                      anda diingatkan untuk berhati-hati agar tidak membuat
+                      pernyataan yang salah kepada Chubb Insurance Malaysia Berhad
+                      ("Chubb"). Kewajipan pendedahan ini akan berterusan sehingga
+                      masa kontrak dimeterai, diubah atau diperbaharui. <br /> <br />
+                  (b) Anda diperingatkan untuk mendedahkan kepada Kami apa-apa
+                      perkara, selain daripada apa yang Kami kehendaki, yang Anda
+                      ketahui sebagai berkaitan dengan keputusan Kami sama ada
+                      untuk menerima risiko atau tidak dan kadar dan terma yang
+                      hendak dikenakan. <br /> <br />
                   Kewajipan Anda untuk mengambil langkah yang sewajarnya untuk
                   di atas adalah berdasarkan kepada apa yang orang yang
                   mengalami keadaan Anda mungkin ketahui.
